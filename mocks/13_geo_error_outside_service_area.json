@@ -1,0 +1,13 @@
+{
+  "_description": "Адреса в іншому місті: 422 з detail.code=outside_service_area (UI показує «Поки працюємо лише по Києву»).",
+  "_request": "curl --location 'http://localhost:8000/geo/geocode?q=%D0%9B%D1%8C%D0%B2%D1%96%D0%B2%2C+%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82+%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%B8+10' --header 'X-API-Key: <API_KEY>'",
+  "_request_readable": "GET http://localhost:8000/geo/geocode?q=Львів, проспект Свободи 10",
+  "_status": 422,
+  "_saved_at": "2026-11-21T12:45:31+00:00",
+  "response": {
+    "detail": {
+      "code": "outside_service_area",
+      "message": "service area is limited to: Київ"
+    }
+  }
+}
