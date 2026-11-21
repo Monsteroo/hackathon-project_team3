@@ -11,8 +11,9 @@ services:
     region: frankfurt          # найближче до Supabase (eu-west-1); змінити після створення не можна
     branch: main
     rootDir: backend           # автодеплой лише на зміни в backend/
-    dockerfilePath: ./backend/Dockerfile   # шляхи рахуються від кореня репо, навіть коли сам файл у backend/
-    dockerContext: ./backend
+    # З rootDir Render рахує ці шляхи від нього: ./backend тут дав би backend/backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     healthCheckPath: /health
     autoDeployTrigger: commit
     envVars:
