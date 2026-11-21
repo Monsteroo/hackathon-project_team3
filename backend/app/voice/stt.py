@@ -1,22 +1,19 @@
 """Голос → текст: Groq Whisper (`whisper-large-v3`), мова примусово українська.
 
-Підказка (prompt) зі словником брендів підвищує точність назв. Словник — `app/voice/data/stt_vocabulary.txt`
-(по одному слову на рядок); поки порожній — чекаємо брендів з каталогу (PRODUCTS.brand).
+Підказка (prompt) зі словником продуктів і брендів (`app/voice/data/vocabulary.txt`) підвищує точність назв.
 """
 
 import logging
-from functools import lru_cache
-from pathlib import Path
 
 import httpx
 
 from app.config import get_settings
 from app.voice.errors import VoiceError
+from app.voice.vocabulary import whisper_prompt
 
 log = logging.getLogger(__name__)
 
 GROQ_STT_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
-VOCAB_FILE = Path(__file__).resolve().parent / "data" / "stt_vocabulary.txt"
 MAX_AUDIO_BYTES = 1_500_000  # 60 с opus 32 кбіт/с ≈ 0.25 MB, mp4/aac із Safari ≈ 0.5–1 MB
 MAX_DURATION_S = 60  # рішення команди 21.11 (фронт зупиняє запис на 60 с)
 DURATION_LIMIT_S = 65  # сервер приймає з невеликим запасом на кодування
@@ -24,18 +21,12 @@ NO_SPEECH_THRESHOLD = 0.8
 TIMEOUT_S = 20.0
 
 
-@lru_cache
-def vocabulary_prompt() -> str:
-    if not VOCAB_FILE.exists():
-        return ""
-    lines = VOCAB_FILE.read_text(encoding="utf-8").splitlines()
-    words = [w.strip() for w in lines if w.strip() and not w.startswith("#")]
-    # Whisper бере до 224 токенів підказки — тримаємо коротко
-    return ("Список покупок: " + ", ".join(words))[:600] if words else ""
-
-
 async def transcribe(
-    audio: bytes, filename: str, content_type: str | None, client: httpx.AsyncClient | None = None
+    audio: bytes,
+    filename: str,
+    content_type: str | None,
+    client: httpx.AsyncClient | None = None,
+    model: str | None = None,
 ) -> dict:
     settings = get_settings()
     if not settings.groq_api_key:
@@ -45,8 +36,13 @@ async def transcribe(
     if len(audio) > MAX_AUDIO_BYTES:
         raise VoiceError("audio_too_large", "recording is larger than 1.5 MB", status=413, fallback=False)
 
-    data = {"model": settings.groq_stt_model, "language": "uk", "temperature": "0", "response_format": "verbose_json"}
-    if prompt := vocabulary_prompt():
+    data = {
+        "model": model or settings.groq_stt_model,
+        "language": "uk",
+        "temperature": "0",
+        "response_format": "verbose_json",
+    }
+    if prompt := whisper_prompt():
         data["prompt"] = prompt
 
     own = client is None
