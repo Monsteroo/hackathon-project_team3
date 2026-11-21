@@ -1,12 +1,14 @@
-import { ArrowLeft, ArrowRight, LoaderCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, LoaderCircle, LocateFixed } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { AddProductSearch } from '../components/AddProductSearch/AddProductSearch'
+import { AddressSearch } from '../components/AddressSearch/AddressSearch'
 import { Button } from '../components/Button/Button'
 import { ConstraintsPanel } from '../components/ConstraintsPanel/ConstraintsPanel'
 import { ProductList } from '../components/ProductList/ProductList'
 import {
   addItem,
+  applyConstraints,
   getBasketDraft,
   initFromVoice,
   isSameVoice,
@@ -15,15 +17,21 @@ import {
   setCount,
   setMode,
   setRadius,
-  toAgentItems,
   toggleExclude,
   useBasketDraft,
 } from '../features/basket/draftStore'
-import { parseItems } from '../features/basket/parseItems'
+import { parseItems, type ParseStatus } from '../features/basket/parseItems'
 import type { BasketItem } from '../features/basket/types'
 import { useCatalogChains } from '../features/basket/useCatalogChains'
+import {
+  getCurrentPosition,
+  POSITION_MESSAGES,
+  PositionError,
+  type Origin,
+  type PositionFailure,
+} from '../features/location/position'
 import { localVoiceResult } from '../lib/api/client'
-import type { VoiceResult } from '../lib/api/types'
+import type { Place, VoiceResult } from '../lib/api/types'
 import { pluralItems } from '../lib/format'
 import { useCity } from '../lib/useCity'
 import { MQ_COMPACT, useMediaQuery } from '../lib/useMediaQuery'
@@ -36,17 +44,33 @@ function inChains(n: number): string {
   return n % 10 === 1 && n % 100 !== 11 ? `у ${n} мережі` : `у ${n} мережах`
 }
 
-/** Новий запит → нова чернетка; той самий (повернулися з /results) → лишаємо правки. */
-async function startFrom(voice: VoiceResult) {
-  if (isSameVoice(getBasketDraft()?.voice ?? null, voice)) return
+/** Той самий запит (повернулися з /results) → лишаємо правки, агента не кличемо. */
+function needsParse(voice: VoiceResult): boolean {
+  return !isSameVoice(getBasketDraft()?.voice ?? null, voice)
+}
+
+/** Нова чернетка з запиту + позиції й обмеження від агента (/agent/parse). null — розбору не було. */
+async function startFrom(voice: VoiceResult): Promise<ParseStatus | null> {
+  if (!needsParse(voice)) return null
   initFromVoice(voice)
-  const items = await parseItems(voice)
-  if (isSameVoice(getBasketDraft()?.voice ?? null, voice)) items.forEach(addItem)
+  const parsed = await parseItems(voice)
+  if (!isSameVoice(getBasketDraft()?.voice ?? null, voice)) return null
+  parsed.items.forEach(addItem)
+  applyConstraints(parsed)
+  return parsed.status
+}
+
+/** Порожній список: чому він порожній. */
+const EMPTY_TITLE: Record<ParseStatus | 'none', string> = {
+  ok: 'Додайте товари, які треба купити',
+  none: 'Додайте товари, які треба купити',
+  empty: 'Не вдалося розпізнати продукти в запиті',
+  unavailable: 'Не вдалося розібрати запит автоматично',
 }
 
 /**
  * Екран 2 «Я зрозумів так» (design/BRIEF.md, DESIGN.md §4.9). Список ліворуч, обмеження праворуч.
- * Режим і радіус — з VoiceResult; товари поки додаються вручну, поки немає агента (parseItems).
+ * Режим і радіус — з VoiceResult; товари, бюджет і склад — з розбору агента (parseItems), далі правки вручну.
  */
 export function ConfirmPage() {
   const location = useLocation()
@@ -57,10 +81,16 @@ export function ConfirmPage() {
   const compact = useMediaQuery(MQ_COMPACT)
   const chains = useCatalogChains(city.name)
 
-  /** Прийшов лише рядок (старий формат state): VoiceResult збираємо локально. */
-  const [parsing, setParsing] = useState(() => !state?.voice && !!state?.query)
+  /** Агент розбирає запит (LLM — 2–4 с). Рядок без VoiceResult (старий формат state) — VoiceResult збираємо локально. */
+  const [parsing, setParsing] = useState(() => (state?.voice ? needsParse(state.voice) : !!state?.query))
   const [announce, setAnnounce] = useState('')
+  const [parseStatus, setParseStatus] = useState<ParseStatus | null>(null)
+  /** Крок 3: визначаємо місце після CTA. */
+  const [locating, setLocating] = useState(false)
+  /** GPS не вийшов → поле адреси. */
+  const [positionFailure, setPositionFailure] = useState<PositionFailure | null>(null)
   const searchRef = useRef<HTMLInputElement>(null)
+  const addressRef = useRef<HTMLInputElement>(null)
   /** Один старт на запис історії: StrictMode викликає ефект двічі. */
   const startedRef = useRef<string | null>(null)
 
@@ -69,9 +99,13 @@ export function ConfirmPage() {
     startedRef.current = location.key
     if (state?.voice) {
       void startFrom(state.voice)
+        .then(setParseStatus)
+        .finally(() => setParsing(false))
     } else if (state?.query) {
       const query = state.query
-      void startFrom(localVoiceResult(query)).finally(() => setParsing(false))
+      void startFrom(localVoiceResult(query))
+        .then(setParseStatus)
+        .finally(() => setParsing(false))
     } else if (!getBasketDraft()) {
       navigate('/', { replace: true })
     }
@@ -105,13 +139,35 @@ export function ConfirmPage() {
     if (item) setAnnounce(`Прибрано: ${item.label}`)
   }
 
-  function submit() {
+  function goToResults(origin: Origin) {
+    navigate('/results', { state: { origin } })
+  }
+
+  /** «Знайти ціни»: спершу GPS; заборонено чи не вийшло — поле адреси. */
+  async function submit() {
     const current = getBasketDraft()
     if (!current || current.items.length === 0) {
       searchRef.current?.focus()
       return
     }
-    navigate('/results', { state: { draft: current, items: toAgentItems(current) } })
+    if (locating) return
+    setLocating(true)
+    try {
+      const { lat, lng } = await getCurrentPosition()
+      goToResults({ lat, lng, label: null, source: 'gps' })
+    } catch (e) {
+      setLocating(false)
+      setPositionFailure(e instanceof PositionError ? e.reason : 'unavailable')
+      // Поле з'являється після рендера.
+      requestAnimationFrame(() => {
+        addressRef.current?.focus()
+        addressRef.current?.scrollIntoView?.({ block: 'center' })
+      })
+    }
+  }
+
+  function onAddress(place: Place) {
+    goToResults({ lat: place.lat, lng: place.lng, label: place.label, source: 'address' })
   }
 
   const ctaLabel = `Знайти ціни · ${pluralItems(count)}`
@@ -147,8 +203,10 @@ export function ConfirmPage() {
 
           {isEmpty ? (
             <p className={styles.empty}>
-              <strong>Додайте товари, які треба купити</strong>
-              Почніть вводити назву: підкажемо категорію або товар із каталогу
+              <strong>{EMPTY_TITLE[parseStatus ?? 'none']}</strong>
+              {parseStatus === 'empty' || parseStatus === 'unavailable'
+                ? 'Додайте товари вручну: почніть вводити назву, і ми підкажемо категорію або товар із каталогу'
+                : 'Почніть вводити назву: підкажемо категорію або товар із каталогу'}
             </p>
           ) : (
             <ProductList
@@ -178,6 +236,15 @@ export function ConfirmPage() {
             onMode={setMode}
             onRadius={setRadius}
           />
+          {positionFailure && (
+            <div className={styles.location}>
+              <p className={styles.locationNote}>
+                <LocateFixed strokeWidth={1.75} aria-hidden="true" />
+                <span role="status">{POSITION_MESSAGES[positionFailure]}</span>
+              </p>
+              <AddressSearch inputRef={addressRef} near={{ lat: city.lat, lng: city.lng }} onPick={onAddress} />
+            </div>
+          )}
           <div className={styles.cta}>
             <p className={`${styles.meta} num`}>
               {chains ? `Порівняємо весь кошик ${inChains(chains)}` : 'Порівняємо весь кошик, а не окремі знижки'}
@@ -185,10 +252,11 @@ export function ConfirmPage() {
             <Button
               className={styles.ctaButton}
               disabled={count === 0}
+              loading={locating}
               iconEnd={<ArrowRight strokeWidth={1.75} aria-hidden="true" />}
-              onClick={submit}
+              onClick={() => void submit()}
             >
-              {ctaLabel}
+              {locating ? 'Визначаю, де ви…' : ctaLabel}
             </Button>
           </div>
         </section>

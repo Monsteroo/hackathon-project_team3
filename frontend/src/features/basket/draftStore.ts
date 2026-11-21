@@ -157,6 +157,33 @@ export function setRadius(km: number) {
   update((d) => ({ ...d, radiusKm: clampRadius(km) }))
 }
 
+/**
+ * Обмеження з розбору агента. Не перетирає те, що вже задано: бюджет і склад лише доповнюються,
+ * режим і радіус з голосу (VoiceResult) головніші за розбір тексту.
+ */
+export function applyConstraints(c: {
+  budget: number | null
+  exclude: Tag[]
+  mode: Mode | null
+  radiusKm: number | null
+}) {
+  update((d) => {
+    const voiceMode = d.voice?.mode ?? null
+    const voiceRadius = d.voice?.radius_km ?? null
+    const mode = voiceMode ?? c.mode ?? d.mode
+    let radiusKm = d.radiusKm
+    if (voiceRadius == null && c.radiusKm != null) radiusKm = clampRadius(c.radiusKm)
+    else if (mode !== d.mode) radiusKm = DEFAULT_RADIUS_KM[mode]
+    return {
+      ...d,
+      budget: d.budget ?? (c.budget != null && c.budget > 0 ? Math.round(c.budget) : null),
+      exclude: [...new Set([...d.exclude, ...c.exclude])],
+      mode,
+      radiusKm,
+    }
+  })
+}
+
 // --- Фабрики позицій ---
 
 export function itemFromCategory(c: CategoryInfo): Omit<BasketItem, 'id'> {

@@ -1,0 +1,243 @@
+/* Екран 3 «Карта + 3 варіанти». DESIGN.md §4.2 StoreCard, MASTER OptionCard / Map. Desktop-first. */
+.page {
+  display: grid;
+  grid-template-columns: minmax(var(--panel-list-min), var(--panel-list-max)) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.head {
+  min-width: 0;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--size-touch);
+  border-radius: var(--radius-sm);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  color: var(--said-fg);
+  text-decoration: none;
+}
+
+.back svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.back:hover {
+  color: var(--color-text);
+}
+
+.title {
+  font: var(--weight-bold) var(--text-h1) var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.whole {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: var(--space-xs) 0 0;
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.whole svg {
+  flex: none;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-ms);
+}
+
+.status {
+  margin: 0;
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.problem {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-sm) var(--space-ms);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.problem > svg {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  color: var(--color-danger);
+}
+
+.problem > p {
+  margin: 0;
+  font: var(--weight-medium) var(--text-body) var(--font-ui);
+}
+
+.problemActions {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.notesTitle {
+  margin: 0 0 var(--space-xs);
+  font: var(--weight-semibold) var(--text-label) var(--font-ui);
+  color: var(--color-text);
+}
+
+.why,
+.missing {
+  padding: var(--space-ms) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.why p:last-child {
+  margin: 0;
+}
+
+.missing ul {
+  margin: 0;
+  padding-left: var(--space-md);
+}
+
+.missingName {
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+}
+
+/* DESIGN.md §5: на warning-subtle текст лише text-2, колір warning — для іконки. */
+.warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-ms) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--color-warning-subtle);
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.warning svg {
+  flex: none;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  margin-top: var(--space-2xs);
+  color: var(--color-warning);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.actions a {
+  text-decoration: none;
+}
+
+.grow {
+  flex: 1;
+}
+
+.mapCol {
+  position: sticky;
+  top: var(--space-md);
+  min-width: 0;
+}
+
+.map {
+  height: calc(100dvh - var(--header-height) - 2 * var(--space-lg));
+  min-height: var(--dim-100);
+  border: 1px solid var(--color-border);
+}
+
+.originChip {
+  position: absolute;
+  z-index: var(--z-sticky);
+  top: var(--space-md);
+  left: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  max-width: 60%;
+  min-height: var(--size-touch);
+  margin: 0;
+  padding: 0 var(--space-ms);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+}
+
+.originChip svg {
+  flex: none;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  color: var(--color-text-2);
+}
+
+.originChip span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* < 1024px: карта зверху, картки під нею, дії — у нижній панелі. */
+@media (max-width: 1023px) {
+  .page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+    padding-bottom: calc(var(--bottombar-height) + env(safe-area-inset-bottom));
+  }
+
+  .mapCol {
+    position: relative;
+    top: auto;
+    order: -1;
+  }
+
+  .map {
+    height: var(--dim-80);
+    min-height: 0;
+  }
+
+  .actions {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-sticky);
+    padding: var(--space-ms) var(--gutter) calc(var(--space-ms) + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--bottombar-border);
+    background: var(--bottombar-bg);
+  }
+}
