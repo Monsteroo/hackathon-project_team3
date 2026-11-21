@@ -65,8 +65,13 @@ def test_address_in_other_city_is_outside_not_substituted():
         if "photon" in req.url.host:
             raise AssertionError("Photon не має підміняти адресу, коли Nominatim працює")
         return httpx.Response(200, json=[] if req.url.params.get("bounded") else [lviv])
+    calls = []
+    c = httpx.Client(transport=httpx.MockTransport(lambda req: calls.append(1) or h(req)))
     with pytest.raises(g.OutsideServiceArea):
-        g.geocode("Львів, Свободи 10", client=httpx.Client(transport=httpx.MockTransport(h)))
+        g.geocode("Львів, Свободи 10", client=c)
+    with pytest.raises(g.OutsideServiceArea):   # з кешу, без повторних запитів до Nominatim
+        g.geocode("Львів, Свободи 10", client=c)
+    assert len(calls) == 2  # bounded + unbounded лише першого разу
 
 
 def test_photon_results_outside_kyiv_dropped():

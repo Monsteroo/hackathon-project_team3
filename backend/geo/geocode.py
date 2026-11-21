@@ -12,6 +12,7 @@ from collections import OrderedDict
 
 import httpx
 
+from backend.logsafe import err_summary
 from backend.config import get_settings, in_service_area, outside_area_message, service_bboxes
 
 log = logging.getLogger(__name__)
@@ -54,6 +55,7 @@ class _LRU(OrderedDict):
 
 
 _cache = _LRU()
+_OUTSIDE = object()  # у кеші: «адреса є, але поза містами демо»
 _throttle_lock = threading.Lock()
 _last_nominatim = 0.0
 
@@ -128,6 +130,8 @@ def geocode(q: str, limit: int = 5, suggest: bool = False, bias: tuple[float, fl
         return []
     key = ("s" if suggest else "g", q.lower(), limit, bias and (round(bias[0], 2), round(bias[1], 2)))
     if (hit := _cache.get_or(key)) is not None:
+        if hit is _OUTSIDE:
+            raise OutsideServiceArea()
         return hit
 
     own = client is None
@@ -142,17 +146,18 @@ def geocode(q: str, limit: int = 5, suggest: bool = False, bias: tuple[float, fl
                     # щоб сказати «поки лише Київ», а не підсунути схожу київську вулицю.
                     anywhere = _nominatim_search(client, q, 1, bounded=False)
                     if anywhere and not in_service_area(anywhere[0]["lat"], anywhere[0]["lng"]):
+                        _cache.put(key, _OUTSIDE)
                         raise OutsideServiceArea()
             except OutsideServiceArea:
                 raise
             except Exception as e:  # noqa: BLE001
-                log.warning("Nominatim search failed: %s", e)
+                log.warning("Nominatim search failed: %s", err_summary(e))
                 results = None
         if results is None:  # Nominatim недоступний (не «порожньо») або режим підказок
             try:
                 results = _photon_search(client, q, limit, bias)
             except Exception as e:  # noqa: BLE001
-                log.warning("Photon search failed: %s", e)
+                log.warning("Photon search failed: %s", err_summary(e))
                 if not suggest:
                     raise GeocoderUnavailable("Обидва геокодери недоступні") from e
                 results = []
@@ -189,7 +194,7 @@ def reverse(lat: float, lng: float, client: httpx.Client | None = None) -> dict 
             if "error" not in j:
                 result = _from_nominatim(j)
         except Exception as e:  # noqa: BLE001
-            log.warning("Nominatim reverse failed: %s", e)
+            log.warning("Nominatim reverse failed: %s", err_summary(e))
             try:
                 r = client.get(f"{get_settings().photon_url}/reverse", params={"lat": lat, "lon": lng})
                 r.raise_for_status()

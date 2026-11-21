@@ -20,8 +20,14 @@
 
 ## Контракти endpoints (реальні відповіді, скорочено)
 
-Помилки завжди однакові: голос — `{"error": {"code", "message", "fallback"}}`, гео — `{"detail": {"code", "message"}}`.
-`message` уже українською, його можна показувати користувачу як є.
+Формати помилок (три різні — обробляйте всі):
+- голос: `{"error": {"code", "message", "fallback"}}`;
+- гео: `{"detail": {"code", "message"}}`;
+- валідація параметрів FastAPI (неправильний тип, порожній `q`, `mode=bike`, відсутній `lat`) — **422** зі
+  списком: `{"detail": [{"type": "string_too_short", "loc": ["query", "q"], "msg": "…", "input": "а", "ctx": {…}}]}`.
+  Відрізняйте за `Array.isArray(body.detail)`; `msg` англійською, тож показуйте власний текст.
+
+`message` у перших двох уже українською, його можна показувати користувачу як є.
 
 ### `POST /api/transcribe` (multipart `audio`, ≤ 60 с, < 4 MB)
 ```json
@@ -38,7 +44,8 @@
 - `text` → агенту (Учасник 5); `raw_text` — для показу «що ми почули».
 - `mode` (`walk`/`car`/`null`) і `radius_km` (`null` = не згадано) → у `/api/stores/nearby`. Якщо `null` — залишайте поточний перемикач.
 - `cleanup.guard: "rejected"` означає, що LLM спробувала щось додати і ми віддали сирий текст. Можна показати «текст без обробки».
-- Коди помилок: `stt_rate_limited` (429), `stt_unavailable`, `stt_timeout`, `stt_not_configured` (усі з `fallback: true`); `no_speech`, `audio_empty`, `audio_too_large` (`fallback: false` — попросіть повторити).
+- Коди помилок з `fallback: true` (запропонуйте Web Speech / ручний ввід): `stt_rate_limited` (429), `stt_unavailable` (502), `stt_timeout` (504), `stt_not_configured` (503), `audio_unsupported` (400 — браузер записав формат, який Whisper не прочитав).
+- З `fallback: false` (попросіть повторити): `no_speech` (422), `audio_empty` (400), `audio_too_large` (413, > 1.5 MB), `audio_too_long` (413, > 65 с), `rate_limited` (429 — понад 10 запитів/хв з одного IP; стосується і `/api/parse-text`).
 
 ### `POST /api/parse-text` `{"text": "...", "source": "manual" | "web_speech"}`
 Та сама відповідь, що й у `/api/transcribe`, але `duration_s: null`.
@@ -55,7 +62,8 @@
 ```json
 {"label": "вулиця Хрещатик, 22, Київ", "full": "…", "lat": 50.4498, "lng": 30.5231, "source": "nominatim"}
 ```
-Поза Києвом → 422 `outside_service_area`.
+Поза Києвом → 422 `outside_service_area`. Якщо геокодер не знайшов адреси для точки, приходить 200 з
+`"source": "coords"` і `label` у вигляді `"50.44980, 30.52310"`; координати все одно придатні для пошуку.
 
 ### `GET /api/stores/nearby?lat&lng&mode=walk|car&radius_km&store_ids=id1,id2`
 ```json

@@ -28,6 +28,7 @@ import httpx
 
 from backend.config import get_settings
 from backend.geo.routing import MAX_RADIUS_KM
+from backend.logsafe import err_summary
 from backend.voice.numbers import NUMBER_WORD_ALT, NUM_WORDS, DIGITS_RE, norm, parse_number, spoken_values, to_float
 
 log = logging.getLogger(__name__)
@@ -197,12 +198,6 @@ def _llm(model: str, raw: str, client: httpx.Client) -> dict:
     return data
 
 
-def _err(e: Exception) -> str:
-    """Для логів: лише тип і статус, без тексту запиту користувача."""
-    status = getattr(getattr(e, "response", None), "status_code", None)
-    return f"{type(e).__name__}{f' {status}' if status else ''}"
-
-
 def clean_text(raw: str, client: httpx.Client | None = None) -> dict:
     """→ {text, raw_text, mode, radius_km, cleanup: {model, guard, new_words, issues, tokens}}"""
     raw = " ".join(raw.split())
@@ -224,7 +219,7 @@ def clean_text(raw: str, client: httpx.Client | None = None) -> dict:
                 data, used = _llm(model, raw, client), model
                 break
             except Exception as e:  # noqa: BLE001
-                log.warning("cleanup via %s failed: %s", model, _err(e))
+                log.warning("cleanup via %s failed: %s", model, err_summary(e))
     finally:
         if own:
             client.close()

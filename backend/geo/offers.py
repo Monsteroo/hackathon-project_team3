@@ -12,18 +12,15 @@ from pathlib import Path
 from typing import Iterable
 
 from backend.config import DATA_DIR
+from backend.logsafe import parse_bool
 
 OFFERS_CSV = DATA_DIR / "raw" / "offers_sample.csv"
-
-
-def _truthy(v: str | None) -> bool:
-    return str(v).strip().lower() in {"true", "1", "t", "yes"}
 
 
 def store_ids_in_stock(rows: Iterable[dict]) -> set[str]:
     """ID у форматі довідника (`zakaz:48246407`, `silpo:<branchId>`) для магазинів з товаром у наявності."""
     return {f"{r['source'].strip().lower()}:{r['store_id'].strip()}"
-            for r in rows if _truthy(r.get("in_stock")) and r.get("source") and r.get("store_id")}
+            for r in rows if parse_bool(r.get("in_stock")) and r.get("source") and r.get("store_id")}
 
 
 def load_offer_store_ids(path: Path = OFFERS_CSV) -> set[str]:

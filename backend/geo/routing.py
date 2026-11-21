@@ -14,6 +14,7 @@ import httpx
 
 from backend.config import get_settings
 from backend.geo.distance import haversine_km
+from backend.logsafe import err_summary
 
 log = logging.getLogger(__name__)
 
@@ -72,7 +73,7 @@ def travel_matrix(origin: tuple[float, float], targets: Sequence[tuple[float, fl
             try:
                 return _matrix_batch(client, origin, batch, mode)
             except Exception as e:  # noqa: BLE001 — будь-яка помилка мережі/API → fallback
-                log.warning("Valhalla matrix failed (%s): %s", mode, e)
+                log.warning("Valhalla matrix failed (%s): %s", mode, err_summary(e))
                 return [None] * len(batch)
 
         with ThreadPoolExecutor(max_workers=min(4, len(batches))) as pool:
@@ -121,7 +122,7 @@ def route_shape(origin: tuple[float, float], dest: tuple[float, float], mode: Mo
                 "estimated": False,
                 "coordinates": [[a, b] for a, b in _decode_polyline6(trip["legs"][0]["shape"])]}
     except Exception as e:  # noqa: BLE001
-        log.warning("Valhalla route failed (%s): %s", mode, e)
+        log.warning("Valhalla route failed (%s): %s", mode, err_summary(e))
         return {**estimate(origin, dest, mode), "coordinates": [list(origin), list(dest)]}
     finally:
         if own:

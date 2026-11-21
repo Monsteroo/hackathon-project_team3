@@ -12,6 +12,7 @@ from typing import Iterable
 
 from backend.config import DATA_DIR
 from backend.geo.distance import haversine_km
+from backend.logsafe import parse_bool
 
 STORES_JSON = DATA_DIR / "stores.json"
 
@@ -64,10 +65,6 @@ UA_BBOX = (44.0, 22.0, 52.5, 40.3)  # lat_min, lng_min, lat_max, lng_max
 
 def in_ukraine_bbox(lat: float, lng: float) -> bool:
     return UA_BBOX[0] <= lat <= UA_BBOX[2] and UA_BBOX[1] <= lng <= UA_BBOX[3]
-
-
-def parse_bool(v: str) -> bool:
-    return str(v).strip().lower() in {"true", "1", "yes", "t"}
 
 
 def stores_from_csv(rows: Iterable[dict]) -> list[dict]:
