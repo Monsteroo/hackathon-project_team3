@@ -6,6 +6,7 @@ from typing import Literal
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.geo.directory import load_stores
+from backend.geo.geocode import GeocoderUnavailable, geocode, reverse
 from backend.geo.nearby import find_nearby, find_store
 from backend.geo.routing import maps_urls, route_shape
 
@@ -44,6 +45,32 @@ def route(
         **route_shape((lat, lng), dest, mode),
         "maps_urls": maps_urls((lat, lng), dest),
     }
+
+
+@router.get("/geocode")
+def geocode_address(
+    q: str = Query(..., min_length=2, max_length=200),
+    suggest: bool = Query(False, description="true — підказки під час набору (лише Photon)"),
+    lat: float | None = Query(None, ge=-90, le=90, description="зміщення підказок до поточної позиції"),
+    lng: float | None = Query(None, ge=-180, le=180),
+    limit: int = Query(5, ge=1, le=10),
+):
+    bias = (lat, lng) if lat is not None and lng is not None else None
+    try:
+        return {"results": geocode(q, limit=limit, suggest=suggest, bias=bias)}
+    except GeocoderUnavailable:
+        raise HTTPException(503, {"code": "geocoder_unavailable",
+                                  "message": "Пошук адреси тимчасово недоступний. Спробуйте кнопку геолокації."})
+
+
+@router.get("/reverse")
+def reverse_geocode(lat: float = Lat, lng: float = Lng):
+    try:
+        result = reverse(lat, lng)
+    except GeocoderUnavailable:
+        raise HTTPException(503, {"code": "geocoder_unavailable", "message": "Не вдалося визначити адресу"})
+    # Без адреси координати все одно придатні для пошуку магазинів
+    return result or {"label": f"{lat:.5f}, {lng:.5f}", "full": "", "lat": lat, "lng": lng, "source": "coords"}
 
 
 @router.get("/stores")

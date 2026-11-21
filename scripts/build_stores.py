@@ -55,9 +55,46 @@ def refresh_osm() -> None:
     raise SystemExit("Overpass недоступний — спробуйте пізніше")
 
 
+ADDR_CACHE = RAW / "osm_addresses.json"
+
+
+def fill_addresses(stores: list[dict], fetch: bool) -> int:
+    """Магазини з OSM без addr:* → адреса зворотним геокодингом (Nominatim, 1 rps, кеш у файлі)."""
+    cache = json.loads(ADDR_CACHE.read_text(encoding="utf-8")) if ADDR_CACHE.exists() else {}
+    missing = [s for s in stores if s["source"] == "osm" and not s["address"]]
+    if fetch:
+        from backend.geo.geocode import reverse
+
+        todo = [s for s in missing if s["id"] not in cache]
+        for i, s in enumerate(todo, 1):
+            try:
+                res = reverse(s["lat"], s["lng"])
+                cache[s["id"]] = {"address": res["label"] if res else "", "city": ""}
+                if res:  # місто з label прибираємо — воно окремим полем
+                    parts = res["label"].split(", ")
+                    if len(parts) > 1:
+                        cache[s["id"]] = {"address": ", ".join(parts[:-1]), "city": parts[-1]}
+            except Exception as e:  # noqa: BLE001
+                print(f"  {s['id']}: {e}")
+            if i % 20 == 0:
+                print(f"  адреси: {i}/{len(todo)}")
+                ADDR_CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+        ADDR_CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+    filled = 0
+    for s in missing:
+        hit = cache.get(s["id"])
+        if hit and hit["address"]:
+            s["address"] = hit["address"]
+            s["city"] = s["city"] or hit["city"]
+            filled += 1
+    return filled
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--refresh-osm", action="store_true")
+    ap.add_argument("--fetch-addresses", action="store_true",
+                    help="дозаповнити адреси OSM-магазинів через Nominatim (~1 с на магазин)")
     args = ap.parse_args()
     if args.refresh_osm or not OSM_PATH.exists():
         refresh_osm()
@@ -65,6 +102,7 @@ def main() -> None:
     rows = list(csv.DictReader(CSV_PATH.open(encoding="utf-8")))
     osm = json.loads(OSM_PATH.read_text(encoding="utf-8"))["elements"]
     stores, stats = build_directory(rows, osm)
+    stats["osm_address_filled"] = fill_addresses(stores, fetch=args.fetch_addresses)
 
     STORES_JSON.write_text(json.dumps({
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
