@@ -1,11 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# Node / frontend
+node_modules/
+
+# Secrets
 .env
 .env.*
 !.env.example
-__pycache__/
-*.pyc
-.venv/
-node_modules/
+
+# OS / editors
 .DS_Store
-output/
-assets/
+.idea/
+.vscode/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Local test artifacts
 _test_socks/
+
+# MarTech creatives: generated scenes and renders (root-level only, so frontend/src/assets stays tracked)
+/assets/
+/output/
+
+# Local raw API dumps (snapshots that we commit live elsewhere)
+backend/data/raw/

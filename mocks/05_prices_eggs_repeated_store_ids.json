@@ -1,0 +1,220 @@
+{
+  "_description": "Яйця курячі в двох магазинах; store_ids передано повторюваним параметром (а не через кому) — обидва формати працюють.",
+  "_request": "curl --location 'http://localhost:8000/catalog/prices?q=%D1%8F%D0%B9%D1%86%D1%8F%20%D0%BA%D1%83%D1%80%D1%8F%D1%87%D1%96&store_ids=48201031&store_ids=1edb6b13-defd-6bb8-a1c4-87d073549907&limit=5' --header 'X-API-Key: <API_KEY>'",
+  "_request_readable": "GET http://localhost:8000/catalog/prices?q=яйця курячі&store_ids=48201031&store_ids=1edb6b13-defd-6bb8-a1c4-87d073549907&limit=5  (header X-API-Key: <API_KEY>)",
+  "_status": 200,
+  "_saved_at": "2026-11-21T12:16:52+00:00",
+  "response": {
+    "query": "яйця курячі",
+    "tokens": [
+      "яйця",
+      "курячі"
+    ],
+    "store_ids": [
+      "48201031",
+      "1edb6b13-defd-6bb8-a1c4-87d073549907"
+    ],
+    "missing_store_ids": [],
+    "products": [
+      {
+        "product_id": 301,
+        "gtin": "4820147581486",
+        "title": "Яйця курячі Ясенсвіт Мікс різновагові 10шт",
+        "brand": "Ясенсвіт",
+        "category": "eggs",
+        "pack_qty": 10.0,
+        "pack_unit": "pcs",
+        "fat_pct": null,
+        "tags": [],
+        "composition_known": true,
+        "img_url": "https://img2.zakaz.ua/bd2ab7450db645c097026a801df4ffb5/1733759194-s350x350.jpg",
+        "stores_count": 2,
+        "min_price": 82.99,
+        "max_price": 83.99,
+        "min_unit_price": 8.3,
+        "prices": [
+          {
+            "store_id": "48201031",
+            "chain": "novus",
+            "store_name": "NOVUS Retroville DRIVE",
+            "city": "Київ",
+            "address": "пр. Європейського Союзу, 47",
+            "price": 82.99,
+            "old_price": null,
+            "promo_percent": null,
+            "promo_until": null,
+            "unit_price": 8.3,
+            "unit_price_label": "₴/шт",
+            "in_stock": true,
+            "stock": null,
+            "url": "https://novus.zakaz.ua/uk/products/iaitse-kuriache-iasensvit--04820147581486/",
+            "fetched_at": "2026-11-21T12:06:19.950547Z"
+          },
+          {
+            "store_id": "1edb6b13-defd-6bb8-a1c4-87d073549907",
+            "chain": "silpo",
+            "store_name": "Сільпо №1990",
+            "city": "Київ",
+            "address": "просп. Берестейський, 87",
+            "price": 83.99,
+            "old_price": null,
+            "promo_percent": null,
+            "promo_until": null,
+            "unit_price": 8.4,
+            "unit_price_label": "₴/шт",
+            "in_stock": true,
+            "stock": 116,
+            "url": "https://silpo.ua/product/yaitsia-kuriachi-yasensvit-mixed-riznovagovi-963047",
+            "fetched_at": "2026-11-21T12:13:55.503787Z"
+          }
+        ]
+      },
+      {
+        "product_id": 296,
+        "gtin": "4820147580694",
+        "title": "Яйця курячі Novus С0 10шт",
+        "brand": "Novus",
+        "category": "eggs",
+        "pack_qty": 10.0,
+        "pack_unit": "pcs",
+        "fat_pct": null,
+        "tags": [
+          "private_label"
+        ],
+        "composition_known": true,
+        "img_url": "https://img3.zakaz.ua/f9a0a18962084658bf4b255c49dd2300/1765441555-s350x350.jpg",
+        "stores_count": 1,
+        "min_price": 76.99,
+        "max_price": 76.99,
+        "min_unit_price": 7.7,
+        "prices": [
+          {
+            "store_id": "48201031",
+            "chain": "novus",
+            "store_name": "NOVUS Retroville DRIVE",
+            "city": "Київ",
+            "address": "пр. Європейського Союзу, 47",
+            "price": 76.99,
+            "old_price": null,
+            "promo_percent": null,
+            "promo_until": null,
+            "unit_price": 7.7,
+            "unit_price_label": "₴/шт",
+            "in_stock": true,
+            "stock": null,
+            "url": "https://novus.zakaz.ua/uk/products/iaitse-novus--04820147580694/",
+            "fetched_at": "2026-11-21T12:06:19.950547Z"
+          }
+        ]
+      },
+      {
+        "product_id": 294,
+        "gtin": "4820278380019",
+        "title": "Яйця курячі Шаничі СВ 6шт",
+        "brand": "Шаничі",
+        "category": "eggs",
+        "pack_qty": 6.0,
+        "pack_unit": "pcs",
+        "fat_pct": null,
+        "tags": [],
+        "composition_known": true,
+        "img_url": "https://img3.zakaz.ua/4f6c2dc084d34fdf932551e8cbcb9e89/1791510754-s350x350.jpg",
+        "stores_count": 1,
+        "min_price": 84.99,
+        "max_price": 84.99,
+        "min_unit_price": 14.17,
+        "prices": [
+          {
+            "store_id": "48201031",
+            "chain": "novus",
+            "store_name": "NOVUS Retroville DRIVE",
+            "city": "Київ",
+            "address": "пр. Європейського Союзу, 47",
+            "price": 84.99,
+            "old_price": null,
+            "promo_percent": null,
+            "promo_until": null,
+            "unit_price": 14.17,
+            "unit_price_label": "₴/шт",
+            "in_stock": true,
+            "stock": null,
+            "url": "https://novus.zakaz.ua/uk/products/iaitse-kuriache-shanichi--04820278380019/",
+            "fetched_at": "2026-11-21T12:06:19.950547Z"
+          }
+        ]
+      },
+      {
+        "product_id": 288,
+        "gtin": "4820156150031",
+        "title": "Яйця курячі Квочка С1 10шт",
+        "brand": "Квочка",
+        "category": "eggs",
+        "pack_qty": 10.0,
+        "pack_unit": "pcs",
+        "fat_pct": null,
+        "tags": [],
+        "composition_known": true,
+        "img_url": "https://img2.zakaz.ua/4a1e4f4fa45f4ea09ac43c59dd3378d7/1756915446-s350x350.jpg",
+        "stores_count": 1,
+        "min_price": 76.64,
+        "max_price": 76.64,
+        "min_unit_price": 7.66,
+        "prices": [
+          {
+            "store_id": "1edb6b13-defd-6bb8-a1c4-87d073549907",
+            "chain": "silpo",
+            "store_name": "Сільпо №1990",
+            "city": "Київ",
+            "address": "просп. Берестейський, 87",
+            "price": 76.64,
+            "old_price": null,
+            "promo_percent": null,
+            "promo_until": null,
+            "unit_price": 7.66,
+            "unit_price_label": "₴/шт",
+            "in_stock": true,
+            "stock": 41,
+            "url": "https://silpo.ua/product/yaitsia-kuriachi-s1-kvochka-452276",
+            "fetched_at": "2026-11-21T12:13:55.503787Z"
+          }
+        ]
+      },
+      {
+        "product_id": 291,
+        "gtin": "4820278380026",
+        "title": "Яйця курячі Шаничі С0 10шт",
+        "brand": "Шаничі Родинна ферма",
+        "category": "eggs",
+        "pack_qty": 10.0,
+        "pack_unit": "pcs",
+        "fat_pct": null,
+        "tags": [],
+        "composition_known": true,
+        "img_url": "https://img3.zakaz.ua/5410c4e4f2594a42bd29d13fb5c622c2/1723260573-s350x350.jpg",
+        "stores_count": 1,
+        "min_price": 129.0,
+        "max_price": 129.0,
+        "min_unit_price": 12.9,
+        "prices": [
+          {
+            "store_id": "48201031",
+            "chain": "novus",
+            "store_name": "NOVUS Retroville DRIVE",
+            "city": "Київ",
+            "address": "пр. Європейського Союзу, 47",
+            "price": 129.0,
+            "old_price": null,
+            "promo_percent": null,
+            "promo_until": null,
+            "unit_price": 12.9,
+            "unit_price_label": "₴/шт",
+            "in_stock": true,
+            "stock": null,
+            "url": "https://novus.zakaz.ua/uk/products/iaitse-kuriache-shanichi--04820278380026/",
+            "fetched_at": "2026-11-21T12:06:19.950547Z"
+          }
+        ]
+      }
+    ]
+  }
+}
