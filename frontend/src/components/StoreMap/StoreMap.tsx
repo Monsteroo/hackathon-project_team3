@@ -15,6 +15,12 @@ export interface MapPin {
   text: string
   /** Підказка при наведенні: мережа й адреса. */
   title: string
+  /** Сума кошика в цьому магазині — підпис під піном. */
+  price?: string
+  /** Магазин поза варіантами: світліший пін. */
+  muted?: boolean
+  /** Найдешевший магазин: підпис ціни зеленим. */
+  cheapest?: boolean
 }
 
 /** Відрізок маршруту з /geo/route: [lng, lat]. estimated → пряма-оцінка, малюємо пунктиром. */
@@ -22,6 +28,9 @@ export interface MapRoute {
   coordinates: [number, number][]
   estimated: boolean
 }
+
+/** Крок між пінами з однаковими координатами (≈ ширина піна з підписом ціни). */
+const PIN_SPREAD_PX = 52
 
 const ROUTE_SOURCE = 'route'
 const ROUTE_LAYERS = ['route-casing', 'route-line', 'route-line-estimated'] as const
@@ -96,7 +105,9 @@ export function StoreMap({
   const [lng, lat] = center
   const originLat = origin?.lat
   /** Піни порівнюються за вмістом: масив з батька може бути новим на кожному рендері. */
-  const pinsKey = (pins ?? []).map((p) => `${p.id}:${p.lat}:${p.lng}:${p.text}`).join('|')
+  const pinsKey = (pins ?? [])
+    .map((p) => `${p.id}:${p.lat}:${p.lng}:${p.text}:${p.price ?? ''}:${p.muted ? 1 : 0}:${p.cheapest ? 1 : 0}`)
+    .join('|')
   const pinsRef = useRef(pins)
   useEffect(() => {
     pinsRef.current = pins
@@ -204,9 +215,17 @@ export function StoreMap({
     const pins = pinsRef.current
     if (!map || !pins) return
     const markers = markersRef.current
+    // Кілька магазинів за однією адресою (напр. DRIVE-точки Zakaz.ua): розводимо віялом, щоб не ховались.
+    const sameSpot = new Map<string, number>()
+    const spotSize = new Map<string, number>()
+    for (const pin of pins) spotSize.set(`${pin.lat}:${pin.lng}`, (spotSize.get(`${pin.lat}:${pin.lng}`) ?? 0) + 1)
     for (const pin of pins) {
+      const spot = `${pin.lat}:${pin.lng}`
+      const index = sameSpot.get(spot) ?? 0
+      sameSpot.set(spot, index + 1)
+      const shift = (index - ((spotSize.get(spot) ?? 1) - 1) / 2) * PIN_SPREAD_PX
       const el = document.createElement('div')
-      el.className = styles.pin
+      el.className = [styles.pin, pin.muted && styles.muted, pin.cheapest && styles.cheapest].filter(Boolean).join(' ')
       el.setAttribute('aria-hidden', 'true')
       el.title = pin.title
       const body = document.createElement('span')
@@ -216,11 +235,17 @@ export function StoreMap({
       logo.textContent = pin.text
       body.append(logo)
       el.append(body)
+      if (pin.price) {
+        const price = document.createElement('span')
+        price.className = `${styles.price} num`
+        price.textContent = pin.price
+        el.append(price)
+      }
       el.addEventListener('click', (e) => {
         e.stopPropagation()
         onPinClickRef.current?.(pin.id)
       })
-      const marker = new maplibregl.Marker({ element: el }).setLngLat([pin.lng, pin.lat]).addTo(map)
+      const marker = new maplibregl.Marker({ element: el, offset: [shift, 0] }).setLngLat([pin.lng, pin.lat]).addTo(map)
       markers.set(pin.id, { marker, el })
     }
     return () => {
@@ -238,7 +263,8 @@ export function StoreMap({
     for (const [id, { el }] of markersRef.current) {
       el.classList.toggle(styles.selected, selected.has(id))
     }
-    const points = pins.filter((p) => selected.has(p.id)).map((p) => [p.lng, p.lat] as [number, number])
+    // У кадрі — усі магазини (вибраний варіант виділено кольором і маршрутом).
+    const points = pins.map((p) => [p.lng, p.lat] as [number, number])
     if (originLat != null && originLng != null) points.push([originLng, originLat])
     // Маршрут може вигинатися за межі прямокутника «людина — магазин»: він теж має влізти в кадр.
     for (const r of routesRef.current ?? []) points.push(...r.coordinates)

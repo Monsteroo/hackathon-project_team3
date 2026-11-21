@@ -288,7 +288,8 @@ export interface MissingItem {
 }
 
 export interface AgentBasket {
-  type: 'nearest' | 'cheapest' | 'smart_split'
+  /** `store` — не варіант агента, а кошик одного магазину з `BasketOut.stores` (фронт збирає сам). */
+  type: 'nearest' | 'cheapest' | 'smart_split' | 'store'
   /** 1 магазин, або 2 для smart_split. */
   stores: AgentStore[]
   lines: BasketLine[]
@@ -298,12 +299,30 @@ export interface AgentBasket {
   missing: MissingItem[]
 }
 
+/** Один магазин у радіусі: що в ньому є з кошика і за скільки (усі магазини, не лише варіанти). */
+export interface StoreOption {
+  store: AgentStore
+  lines: BasketLine[]
+  /** Сума знайдених позицій у цьому магазині. */
+  total: number
+  /** Скільки позицій кошика знайдено. */
+  found: number
+  missing: MissingItem[]
+  within_budget: boolean
+  /** Найдешевший серед магазинів з найповнішим кошиком — підсвітити. */
+  cheapest: boolean
+  /** Найближчий за часом у дорозі. */
+  nearest: boolean
+}
+
 export interface BasketOut {
   parsed: ParsedRequest
   /** items — список підтверджено; rules — запит розібрано без LLM. */
   parser: 'llm' | 'rules' | 'items'
   stores_considered: number
   baskets: AgentBasket[]
+  /** Усі магазини в радіусі, де знайшлася хоч одна позиція, від найповнішого й найдешевшого. Старі збережені відповіді — без поля. */
+  stores?: StoreOption[]
   explanation: string
   warnings: string[]
 }

@@ -1,0 +1,116 @@
+/* Список «Усі магазини поруч» під варіантами (екран 3). Компактний рядок на токенах StoreCard. */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: 0;
+  font: var(--weight-semibold) var(--text-label) var(--font-ui);
+  color: var(--color-text);
+}
+
+.count {
+  color: var(--color-text-3);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-ms);
+  width: 100%;
+  min-height: var(--size-touch);
+  padding: var(--space-sm) var(--space-ms);
+  border: 1px solid var(--store-card-border);
+  border-radius: var(--radius-md);
+  background: var(--store-card-bg);
+  color: var(--color-text);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: var(--store-card-transition);
+}
+
+.row:hover {
+  border-color: var(--store-card-border-hover);
+}
+
+.row:active {
+  background: var(--store-card-bg-pressed);
+}
+
+.row[aria-pressed='true'] {
+  border-color: var(--store-card-border-selected);
+  box-shadow: var(--store-card-shadow-selected);
+}
+
+.row:focus-visible {
+  outline: var(--focus-width) solid var(--color-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  overflow: hidden;
+  font: var(--weight-semibold) var(--store-card-chain-font) var(--font-ui);
+  color: var(--store-card-chain-fg);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.address {
+  font-weight: var(--weight-regular);
+  color: var(--store-card-meta-fg);
+}
+
+.meta {
+  font: var(--weight-regular) var(--store-card-meta-font) var(--font-ui);
+  color: var(--store-card-meta-fg);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price {
+  font: var(--weight-bold) var(--text-body) var(--font-display);
+  color: var(--store-card-total-fg);
+  white-space: nowrap;
+}
+
+.cheapest {
+  color: var(--color-savings-strong);
+}
+
+.tag {
+  font: var(--weight-medium) var(--text-caption) var(--font-ui);
+  color: var(--color-text-2);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+}

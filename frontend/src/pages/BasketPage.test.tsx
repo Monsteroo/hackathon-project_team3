@@ -152,4 +152,33 @@ describe('BasketPage', () => {
     renderPage('/basket/smart_split')
     expect(screen.getByRole('heading', { name: 'Такого варіанту немає' })).toBeInTheDocument()
   })
+
+  it('opens the basket of a store from the all-stores list', () => {
+    saveResult({
+      key: 'k',
+      origin: { lat: 50.4, lng: 30.6, label: 'Позняки', source: 'address' },
+      request: { text: '', lat: 50.4, lng: 30.6, mode: 'walk' },
+      result: {
+        ...RESULT,
+        stores: [
+          {
+            store: store('novus', 'Novus', 2.1),
+            lines: [line({ store_id: 'novus', price: 52, line_total: 52 })],
+            total: 52,
+            found: 1,
+            missing: [{ name: 'гречка', reason: 'not_found' }],
+            within_budget: true,
+            cheapest: false,
+            nearest: false,
+          },
+        ],
+      },
+      savedAt: '2026-11-21T15:00:00Z',
+    })
+    renderPage('/basket/store-novus')
+    expect(screen.getByText('Магазин поруч')).toBeInTheDocument()
+    expect(screen.getAllByText('Novus').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('52,00 ₴').length).toBeGreaterThan(0)
+    expect(screen.getByRole('link', { name: /Маршрут/ })).toHaveAttribute('href', 'https://maps.example/novus')
+  })
 })

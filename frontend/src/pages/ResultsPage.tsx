@@ -5,6 +5,7 @@ import buttonStyles from '../components/Button/Button.module.css'
 import { Button } from '../components/Button/Button'
 import { OptionCard } from '../components/OptionCard/OptionCard'
 import cardStyles from '../components/OptionCard/OptionCard.module.css'
+import { StoreList } from '../components/StoreList/StoreList'
 import { StoreMap, type MapPin as Pin } from '../components/StoreMap/StoreMap'
 import { useBasketDraft } from '../features/basket/draftStore'
 import type { Origin } from '../features/location/position'
@@ -16,19 +17,22 @@ import {
   missingReason,
   monogram,
   routeUrl,
+  STORE_OPTION_PREFIX,
+  storeBasket,
   type OptionType,
 } from '../features/results/options'
 import { loadResult, requestKey, saveResult } from '../features/results/resultsStore'
 import { useRoutes } from '../features/results/useRoutes'
 import { api, ApiError } from '../lib/api/client'
-import type { AgentBasket, BasketOut } from '../lib/api/types'
-import { pluralItems } from '../lib/format'
+import type { AgentBasket, AgentStore, BasketOut, StoreOption } from '../lib/api/types'
+import { formatPrice, pluralItems } from '../lib/format'
 import { useCity } from '../lib/useCity'
 import styles from './ResultsPage.module.css'
 
 type State = { origin?: Origin; from?: 'confirm' } | null
 
 const NO_BASKETS: AgentBasket[] = []
+const NO_STORES: StoreOption[] = []
 
 type Load =
   | { status: 'loading' }
@@ -88,6 +92,10 @@ export function ResultsPage() {
   const [fetched, setFetched] = useState<Fetched | null>(null)
   const [attempt, setAttempt] = useState(0)
   const [selected, setSelected] = useState<OptionType | null>(null)
+  /** Магазин зі списку «усі магазини» (або клік на його пін): замінює вибраний варіант. */
+  const [selectedStore, setSelectedStore] = useState<string | null>(null)
+  const [hoveredStore, setHoveredStore] = useState<string | null>(null)
+  const storeRowRefs = useRef(new Map<string, HTMLButtonElement>())
 
   // Той самий запит уже рахували (повернулися з екрана 4) — без нового виклику агента.
   const cached = key && saved?.key === key ? saved.result : null
@@ -134,46 +142,63 @@ export function ResultsPage() {
   const result = load.status === 'ready' ? load.result : null
   const baskets = result?.baskets ?? NO_BASKETS
   const fallback = defaultOption(baskets)
-  const current =
+  const allStores = result?.stores ?? NO_STORES
+  const activeOption =
     baskets.find((b) => b.type === selected) ?? baskets.find((b) => b.type === fallback) ?? baskets[0] ?? null
+  const storeOption = selectedStore ? allStores.find((o) => o.store.store_id === selectedStore) : undefined
+  const current = storeOption ? storeBasket(storeOption) : activeOption
   const best = bestOption(baskets)
   const requested = result?.parsed.items.length ?? draft?.items.length ?? 0
   const mode = request?.mode ?? draft?.mode ?? 'walk'
 
+  /** Піни: магазини варіантів + усі інші магазини в радіусі з `stores` (сума кошика під піном). */
   const pins: Pin[] = (() => {
+    const totals = new Map((result?.stores ?? []).map((o) => [o.store.store_id, o]))
     const seen = new Map<string, Pin>()
-    for (const b of baskets) {
-      for (const s of b.stores) {
-        if (!seen.has(s.store_id)) {
-          seen.set(s.store_id, {
-            id: s.store_id,
-            lat: s.lat,
-            lng: s.lng,
-            text: monogram(s),
-            title: [chainName(s), s.address].filter(Boolean).join(' · '),
-          })
-        }
-      }
+    const add = (s: AgentStore, muted: boolean) => {
+      if (seen.has(s.store_id)) return
+      const option = totals.get(s.store_id)
+      const price = option ? formatPrice(option.total) : undefined
+      const found = option && option.found < requested ? `знайдено ${option.found} з ${requested}` : null
+      seen.set(s.store_id, {
+        id: s.store_id,
+        lat: s.lat,
+        lng: s.lng,
+        text: monogram(s),
+        title: [chainName(s), s.address, price, found].filter(Boolean).join(' · '),
+        price,
+        muted,
+        cheapest: option?.cheapest,
+      })
     }
+    for (const b of baskets) for (const s of b.stores) add(s, false)
+    for (const o of result?.stores ?? []) add(o.store, true)
     return [...seen.values()]
   })()
 
   const storeIds = (b: AgentBasket | null | undefined) => b?.stores.map((s) => s.store_id) ?? []
   const hoveredBasket = baskets.find((b) => b.type === hovered)
+  const hoverIds = hoveredStore ? [hoveredStore] : storeIds(hoveredBasket)
 
   function select(type: OptionType, focus = false) {
     setSelected(type)
+    setSelectedStore(null)
     if (focus) cardRefs.current.get(type)?.focus()
   }
 
-  /** Клік на пін: варіант з одним цим магазином, інакше Smart Split, де він є. */
+  function selectStore(id: string, scroll = false) {
+    setSelectedStore(id)
+    if (scroll) storeRowRefs.current.get(id)?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }
+
+  /** Клік на пін: варіант з одним цим магазином, інакше магазин зі списку «усі магазини», інакше Smart Split. */
   function onPinClick(id: string) {
     const single = baskets.find((b) => b.stores.length === 1 && b.stores[0].store_id === id && b.type === selected)
-    const match =
-      single ??
-      baskets.find((b) => b.stores.length === 1 && b.stores[0].store_id === id) ??
-      baskets.find((b) => b.stores.some((s) => s.store_id === id))
-    if (match) select(match.type)
+    const match = single ?? baskets.find((b) => b.stores.length === 1 && b.stores[0].store_id === id)
+    if (match) return select(match.type)
+    if (allStores.some((o) => o.store.store_id === id)) return selectStore(id, true)
+    const split = baskets.find((b) => b.stores.some((s) => s.store_id === id))
+    if (split) select(split.type)
   }
 
   function onCardKeyDown(e: KeyboardEvent<HTMLDivElement>, index: number) {
@@ -284,12 +309,12 @@ export function ResultsPage() {
                 key={b.type}
                 basket={b}
                 baskets={baskets}
-                selected={b.type === current?.type}
+                selected={!storeOption && b.type === activeOption?.type}
                 best={b.type === best}
                 requested={requested}
                 budget={draft?.budget ?? result.parsed.constraints.budget_uah}
                 mode={mode}
-                tabIndex={b.type === current?.type ? 0 : -1}
+                tabIndex={b.type === activeOption?.type ? 0 : -1}
                 onSelect={() => select(b.type)}
                 onKeyDown={(e) => onCardKeyDown(e, i)}
                 onHover={(on) => setHovered(on ? b.type : null)}
@@ -306,7 +331,7 @@ export function ResultsPage() {
           <div className={styles.notes}>
             {current && current.missing.length > 0 && (
               <div className={styles.missing}>
-                <p className={styles.notesTitle}>Не знайшли в цьому варіанті</p>
+                <p className={styles.notesTitle}>{storeOption ? 'Не знайшли в цьому магазині' : 'Не знайшли в цьому варіанті'}</p>
                 <ul>
                   {current.missing.map((m) => (
                     <li key={m.name}>
@@ -348,7 +373,7 @@ export function ResultsPage() {
               </a>
             )}
             <Link
-              to={`/basket/${current.type}`}
+              to={`/basket/${storeOption ? STORE_OPTION_PREFIX + storeOption.store.store_id : current.type}`}
               className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.grow}`}
             >
               Деталі кошика
@@ -357,6 +382,21 @@ export function ResultsPage() {
               </span>
             </Link>
           </div>
+        )}
+
+        {allStores.length > 0 && (
+          <StoreList
+            stores={allStores}
+            requested={requested}
+            mode={mode}
+            selectedId={storeOption ? storeOption.store.store_id : null}
+            onSelect={(id) => selectStore(id)}
+            onHover={setHoveredStore}
+            rowRef={(id, el) => {
+              if (el) storeRowRefs.current.set(id, el)
+              else storeRowRefs.current.delete(id)
+            }}
+          />
         )}
       </div>
 
@@ -373,10 +413,10 @@ export function ResultsPage() {
           origin={origin}
           pins={pins}
           selectedIds={storeIds(current)}
-          hoverIds={storeIds(hoveredBasket)}
+          hoverIds={hoverIds}
           onPinClick={onPinClick}
           routes={routes}
-          label="Карта: ви, магазини варіантів і маршрут до вибраного"
+          label="Карта: ви, усі магазини поруч із сумою кошика і маршрут до вибраного"
         />
       </div>
     </section>
