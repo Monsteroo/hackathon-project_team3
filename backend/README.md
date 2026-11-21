@@ -103,10 +103,10 @@ uv run uvicorn app.main:app --reload
 
 ## Деплой (Render, безкоштовно)
 
-Бекенд збирається в Docker-образ (`backend/Dockerfile`), а сервіс описано в [`render.yaml`](../render.yaml) у корені репо. Безкоштовний план Render дає 0,1 CPU, 512 МБ RAM і 750 годин на місяць, яких вистачає на один сервіс 24/7. Без запитів сервіс засинає через 15 хвилин.
+Усе для деплою лежить у `backend/`: образ (`Dockerfile`, `.dockerignore`) і сервіс Render ([`render.yaml`](render.yaml)). Деплоїться лише модуль `catalog` (`ENABLED_MODULES=catalog` у `render.yaml`): на сервері будуть `/catalog/*` і `/health`, а `geo` і `voice` не імпортуються й не потребують своїх секретів. Безкоштовний план Render дає 0,1 CPU, 512 МБ RAM і 750 годин на місяць, яких вистачає на один сервіс 24/7. Без запитів сервіс засинає через 15 хвилин.
 
 1. Злий зміни в `main`: Render деплоїть цю гілку.
-2. Render → **New → Blueprint** → вибери цей репо. Якщо репо належить іншому акаунту, його власник має дозволити GitHub-застосунок Render.
+2. Render → **New → Blueprint** → вибери цей репо → у полі **Blueprint Path** вкажи `backend/render.yaml`. Без цього Render шукатиме файл у корені й не знайде. Якщо репо належить іншому акаунту, його власник має дозволити GitHub-застосунок Render.
 3. Render попросить значення змінних із `sync: false`:
    - `DATABASE_URL` — рядок Session pooler із Supabase, той самий, що в `backend/.env`;
    - `API_KEYS` — **новий** продакшен-ключ;
@@ -125,7 +125,7 @@ docker build -t voicecart-backend .
 ```
 
 ```bash
-docker run --rm -p 8000:10000 -e PORT=10000 -e DATABASE_URL=postgresql+asyncpg://postgres:postgres@host.docker.internal:5432/voicecart -e DB_SSL=false -e API_KEYS=local-test-key voicecart-backend
+docker run --rm -p 8000:10000 -e PORT=10000 -e ENABLED_MODULES=catalog -e DATABASE_URL=postgresql+asyncpg://postgres:postgres@host.docker.internal:5432/voicecart -e DB_SSL=false -e API_KEYS=local-test-key voicecart-backend
 ```
 
 `.env` в образ не потрапляє (див. `.dockerignore`), тому всі налаштування передаються змінними оточення.

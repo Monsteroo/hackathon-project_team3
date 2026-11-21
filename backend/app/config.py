@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     # Порожньо означає, що захищені ендпоінти відповідають 503, а не відкриваються всім.
     api_keys: str = ""
 
+    # Які модулі підключати (через кому). За замовчуванням усі; для окремого деплою одного модуля,
+    # напр. каталогу, — ENABLED_MODULES=catalog. Список модулів — MODULES у app/main.py.
+    enabled_modules: str = "catalog,geo,voice"
+
     # Планувальник фонових задач у процесі FastAPI
     scheduler_enabled: bool = True
     scheduler_timezone: str = "Europe/Kyiv"
@@ -47,6 +51,10 @@ class Settings(BaseSettings):
     @property
     def api_key_list(self) -> list[str]:
         return [key.strip() for key in self.api_keys.split(",") if key.strip()]
+
+    @property
+    def enabled_module_list(self) -> list[str]:
+        return [name.strip() for name in self.enabled_modules.split(",") if name.strip()]
 
 
 @lru_cache

@@ -19,3 +19,7 @@ conftest.py
 README.md
 Dockerfile
 .dockerignore
+
+# Конфіг деплою й локальні аудіо для evals voice в образі не потрібні
+render.yaml
+app/voice/evals/audio/
