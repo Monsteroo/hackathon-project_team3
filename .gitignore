@@ -7,6 +7,9 @@ __pycache__/
 .mypy_cache/
 *.egg-info/
 
+# Node / frontend
+node_modules/
+
 # Secrets
 .env
 .env.*
@@ -19,6 +22,13 @@ __pycache__/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Local test artifacts
+_test_socks/
+
+# MarTech creatives: generated scenes and renders (root-level only, so frontend/src/assets stays tracked)
+/assets/
+/output/
 
 # Local raw API dumps (snapshots that we commit live elsewhere)
 backend/data/raw/

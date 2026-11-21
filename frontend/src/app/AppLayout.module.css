@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: var(--size-control);
+  padding: 0 var(--gutter);
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.logo {
+  font: var(--weight-bold) var(--text-h2) var(--font-display);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.main {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--gutter) var(--space-2xl);
+}
