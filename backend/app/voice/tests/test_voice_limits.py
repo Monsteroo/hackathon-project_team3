@@ -38,24 +38,20 @@ def test_rate_limiter_window():
     assert rl.allow("ip", 2, 61)  # вікно зсунулось
 
 
-async def test_parse_text_limited_to_10_per_minute(monkeypatch):
-    async def fake_clean(t):
-        return {
-            "text": t,
-            "raw_text": t,
-            "mode": None,
-            "radius_km": None,
-            "cleanup": {"model": None, "guard": "skipped"},
-        }
+async def test_transcribe_limited_to_10_per_minute(monkeypatch):
+    async def fake_transcribe(audio, filename, content_type):
+        return {"text": "хліб", "raw_text": "хліб", "mode": None, "radius_km": None, "duration_s": 1.0,
+                "source": "groq_whisper", "cleanup": {"model": None, "guard": "skipped"}}  # fmt: skip
 
-    monkeypatch.setattr("app.voice.service.clean_text", fake_clean)
+    monkeypatch.setattr("app.voice.service.transcribe_and_clean", fake_transcribe)
+    audio = {"audio": ("a.webm", b"abc", "audio/webm")}
     async with api() as c:
-        codes = [(await c.post("/voice/parse-text", json={"text": "хліб"})).status_code for _ in range(11)]
-        last = await c.post("/voice/parse-text", json={"text": "хліб"})
+        codes = [(await c.post("/voice/transcribe", files=audio)).status_code for _ in range(11)]
+        last = await c.post("/voice/transcribe", files=audio)
     assert codes == [200] * 10 + [429]
     assert last.json()["detail"]["code"] == "rate_limited"
     async with api(**{"X-Forwarded-For": "203.0.113.7"}) as c:  # інший клієнт за проксі
-        assert (await c.post("/voice/parse-text", json={"text": "хліб"})).status_code == 200
+        assert (await c.post("/voice/transcribe", files=audio)).status_code == 200
 
 
 async def test_audio_over_1_5_mb_rejected():

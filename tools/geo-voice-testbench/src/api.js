@@ -44,13 +44,6 @@ export const api = {
     form.append("audio", blob, `voice.${ext}`);
     return request("/voice/transcribe", { method: "POST", body: form });
   },
-  parseText(text, source = "manual") {
-    return request("/voice/parse-text", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text, source }),
-    });
-  },
   geocode(q, { suggest = false, near } = {}) {
     return request(`/geo/geocode?${qs({ q, suggest, lat: near?.lat, lng: near?.lng, limit: 5 })}`);
   },

@@ -19,7 +19,7 @@ const API_KEY = import.meta.env.VITE_API_KEY ?? ''
 /** Без ключа бекенд відповідає 401 на все: голос тоді одразу йде через Web Speech. */
 export const hasApiKey = API_KEY.length > 0
 
-/** Максимум тексту для /voice/parse-text (backend/app/voice/schemas.py). */
+/** Максимум тексту запиту, що йде агенту (/agent/parse, /agent/basket). */
 export const MAX_TEXT_LENGTH = 2000
 
 export class ApiError extends Error {
@@ -87,15 +87,6 @@ export const api = {
     return request('/voice/transcribe', { method: 'POST', body: form, signal })
   },
 
-  parseText(text: string, source: 'manual' | 'web_speech' = 'manual', signal?: AbortSignal): Promise<VoiceResult> {
-    return request('/voice/parse-text', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: text.slice(0, MAX_TEXT_LENGTH), source }),
-      signal,
-    })
-  },
-
   geocode(q: string, { suggest = false, near }: { suggest?: boolean; near?: LatLng } = {}): Promise<GeocodeResponse> {
     return request(`/geo/geocode?${qs({ q, suggest, lat: near?.lat, lng: near?.lng, limit: 5 })}`)
   },
@@ -134,7 +125,7 @@ export const api = {
   },
 }
 
-/** Локальний VoiceResult, коли /voice/parse-text недоступний: текст як є, обмеження не розпізнані. */
+/** VoiceResult для набраного тексту: текст як є. Продукти, режим, радіус і бюджет розбирає агент (/agent/parse). */
 export function localVoiceResult(text: string, source: 'manual' | 'web_speech' = 'manual'): VoiceResult {
   return {
     text,

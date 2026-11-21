@@ -66,7 +66,7 @@ class AgentItem(BaseModel):
 class BasketIn(BaseModel):
     """Або text (агент розбирає сам), або items — уже підтверджений список з екрана 2 (без виклику LLM).
 
-    text, raw_text, mode, radius_km — рівно ті поля, що повертає /voice/transcribe і /voice/parse-text.
+    text, raw_text, mode, radius_km — рівно ті поля, що повертає /voice/transcribe.
     """
 
     text: str = Field("", max_length=1000, description="Розпізнаний або введений текст запиту")

@@ -35,7 +35,6 @@ flowchart LR
 | Endpoint | Що робить |
 |---|---|
 | `POST /voice/transcribe` (multipart `audio`) | Whisper + чистка → `{text, raw_text, mode, radius_km, duration_s, cleanup}` |
-| `POST /voice/parse-text` `{text, source}` | Та сама чистка для ручного вводу й Web Speech |
 | `GET /geo/stores/nearby?lat&lng&mode=walk\|car&radius_km&store_ids=` | Усі магазини в радіусі + до 5 найближчих із цінами поза ним, за часом у дорозі, + `recommended_store_id` |
 | `GET /geo/route?lat&lng&store_id&mode` | Лінія маршруту (Valhalla) як GeoJSON `[lng, lat]` + посилання Google Maps |
 | `GET /geo/geocode?q&suggest` / `GET /geo/reverse?lat&lng` | Адреса ↔ координати (лише Київ, українською) |

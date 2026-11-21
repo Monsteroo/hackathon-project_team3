@@ -25,7 +25,7 @@
 | `.env.local` (не комітиться) | `VITE_API_KEY=<API_KEY>` — значення з `API_KEYS` у `backend/.env`. Без ключа бекенд віддає 401 | HANDOFF, п. 2 |
 | `src/vite-env.d.ts` | Оголосити `VITE_API_KEY` в `ImportMetaEnv` | — |
 | `src/lib/api/types.ts` (новий) | `Mode`, `Store`, `NearbyStore`, `NearbyResponse`, `RouteResponse`, `Place`, `GeocodeResponse`, `VoiceResult`, типи помилок | HANDOFF, розділ «TypeScript-типи» (готовий код) |
-| `src/lib/api/client.ts` (новий) | `request<T>()` із заголовком `X-API-Key`, клас `ApiError {code, message, status, fallback}`. Методи: `transcribe`, `parseText`, `geocode`, `reverse`, `nearby`, `route` | `tools/geo-voice-testbench/src/api.js` |
+| `src/lib/api/client.ts` (новий) | `request<T>()` із заголовком `X-API-Key`, клас `ApiError {code, message, status, fallback}`. Методи: `transcribe`, `geocode`, `reverse`, `nearby`, `route` | `tools/geo-voice-testbench/src/api.js` |
 | `src/lib/api/errors.ts` (новий) | Мапа `code → український текст` для UI. `detail.message` від бекенду англійською, його не показуємо | HANDOFF, таблиця «Коди помилок → текст для UI» |
 
 Ключ у бандлі не секретний. Від зловживань Groq захищає ліміт 10 запитів/хв з IP на `/voice/*`.
@@ -77,7 +77,7 @@
 - `POST /voice/transcribe` (multipart `audio`, ≤ 60 с, ≤ 1.5 MB) → `VoiceResult`:
   `text` (очищений, для агента), `raw_text` (що почули), `mode` (`walk | car | null`),
   `radius_km` (`number | null`). Whisper large-v3 дає кращу українську, ніж Web Speech, і працює у Firefox.
-- `POST /voice/parse-text` `{text, source: "manual" | "web_speech"}` → той самий `VoiceResult`.
+- Набраний текст (ручний ввід, Web Speech) на бекенд окремо не йде: `localVoiceResult(text, source)` на фронті, розбір — агентом (`/agent/parse`). `/voice/parse-text` прибрано.
   Для ручного вводу й результату Web Speech.
 - Помилка з `fallback: true` означає: бекенд не впорався, треба перейти на Web Speech.
 
@@ -98,7 +98,7 @@
    (`state`, `error`, `toggle`, `cancel`, `levelRef`), і всередині вирішує: бекенд або Web Speech.
    Тоді `RequestPage` змінюється мінімально. Стан `processing` = чекаємо відповідь `/voice/transcribe`.
 4. `useWebSpeech.js` зі стенду переносити не треба. Його роль уже виконує `useSpeechRecognition.ts`.
-5. Сабміт: якщо текст набрано вручну, викликати `api.parseText(text, 'manual')`. Далі передати на `/confirm`
+5. Сабміт: якщо текст набрано вручну, зібрати `localVoiceResult(text, 'manual')`. Далі передати на `/confirm`
    увесь `VoiceResult`, а не лише рядок:
    `navigate('/confirm', { state: { voice: VoiceResult, cityId } })`.
 6. Показати `raw_text` у полі, а `text` віддати далі. Альтернатива: показати `text` одразу. Вирішити з дизайном.

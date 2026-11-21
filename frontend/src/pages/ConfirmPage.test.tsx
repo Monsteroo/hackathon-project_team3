@@ -109,19 +109,12 @@ describe('ConfirmPage', () => {
     expect(screen.getByRole('group', { name: 'Кількість: Хліб' })).toBeInTheDocument()
   })
 
-  it('parses a plain query (old state shape) on the backend', async () => {
-    const fetchMock = vi.fn((path: string) =>
-      Promise.resolve(
-        path.startsWith('/voice/parse-text')
-          ? new Response(JSON.stringify(voice({ raw_text: 'кефір', text: 'кефір', mode: 'car', radius_km: 5 })), { status: 200 })
-          : new Response('{}', { status: 500 }),
-      ),
-    )
+  it('starts from a plain query (old state shape) without /voice/parse-text', async () => {
+    const fetchMock = vi.fn((_path: string) => Promise.resolve(new Response('{}', { status: 500 })))
     vi.stubGlobal('fetch', fetchMock)
     renderAt({ query: 'кефір' })
-    expect(screen.getByText('Розбираю запит…')).toBeInTheDocument()
-    expect(await screen.findByRole('radio', { name: /^5\s*км/ })).toBeChecked()
-    expect(screen.getByRole('radio', { name: 'Авто' })).toBeChecked()
+    expect(await screen.findByRole('radio', { name: 'Пішки' })).toBeChecked()
+    expect(fetchMock.mock.calls.some(([path]) => String(path).startsWith('/voice/'))).toBe(false)
   })
 
   it('redirects to the request screen without state or draft', async () => {

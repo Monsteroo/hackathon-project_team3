@@ -62,7 +62,7 @@ uv run python -m app.catalog.etl --help  # ETL цін вручну (той са�
   - `POST /parse` `{text}` → розбір: позиції з `category` і обмеження (`budget_uah`, `exclude` тегами складу, `travel_mode`, `radius_km`, `preferred_chains`). Для екрана «Я зрозумів так».
   - `POST /basket` — або `{text, raw_text?, lat, lng, mode?, radius_km?}` (агент розбирає текст; поля — рівно з `VoiceResult`), або `{items: [{label?, category | gtin | query, need, unit, exclude}], budget_uah?, lat, lng, mode?, radius_km?}` — підтверджений список з екрана 2, без LLM. Відповідь: до 3 кошиків (`nearest`, `cheapest`, `smart_split`) з цінами каталогу, `missing` з причиною, `explanation`.
   - Магазини поруч агент бере з `geo.service.find_nearby` (маршрути Valhalla); якщо geo впав — оцінка за прямою з `catalog.list_stores`.
-  - Ланцюжок фронту: `/voice/transcribe` (або `/voice/parse-text`) + GPS → `/agent/basket` → маршрут `/geo/route` до обраного магазину.
+  - Ланцюжок фронту: голос → `/voice/transcribe` (набраний текст іде як є) → `/agent/parse` (екран 2) → GPS → `/agent/basket` → маршрут `/geo/route` до обраного магазину. `/voice/parse-text` прибрано: текст розбирає агент.
 
 ## Правила даних
 

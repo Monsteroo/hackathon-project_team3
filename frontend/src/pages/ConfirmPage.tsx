@@ -22,7 +22,7 @@ import {
 import { parseItems } from '../features/basket/parseItems'
 import type { BasketItem } from '../features/basket/types'
 import { useCatalogChains } from '../features/basket/useCatalogChains'
-import { api, localVoiceResult } from '../lib/api/client'
+import { localVoiceResult } from '../lib/api/client'
 import type { VoiceResult } from '../lib/api/types'
 import { pluralItems } from '../lib/format'
 import { useCity } from '../lib/useCity'
@@ -57,7 +57,7 @@ export function ConfirmPage() {
   const compact = useMediaQuery(MQ_COMPACT)
   const chains = useCatalogChains(city.name)
 
-  /** Прийшов лише рядок (старий формат state): спершу /voice/parse-text. */
+  /** Прийшов лише рядок (старий формат state): VoiceResult збираємо локально. */
   const [parsing, setParsing] = useState(() => !state?.voice && !!state?.query)
   const [announce, setAnnounce] = useState('')
   const searchRef = useRef<HTMLInputElement>(null)
@@ -71,11 +71,7 @@ export function ConfirmPage() {
       void startFrom(state.voice)
     } else if (state?.query) {
       const query = state.query
-      api
-        .parseText(query)
-        .catch(() => localVoiceResult(query))
-        .then((voice) => startFrom(voice))
-        .finally(() => setParsing(false))
+      void startFrom(localVoiceResult(query)).finally(() => setParsing(false))
     } else if (!getBasketDraft()) {
       navigate('/', { replace: true })
     }

@@ -22,7 +22,11 @@ export default function App() {
   const recorder = useVoiceRecorder({
     onStop: (blob) => run(api.transcribe(blob).then(setVoice)),
   });
-  const webSpeech = useWebSpeech({ onResult: (t) => run(api.parseText(t, "web_speech").then(setVoice)) });
+  // Набраний / Web Speech текст на бекенд окремо не йде (його розбирає агент), тож VoiceResult збираємо тут
+  const webSpeech = useWebSpeech({
+    onResult: (t) =>
+      setVoice({ text: t, raw_text: t, mode: null, radius_km: null, duration_s: null, source: "web_speech", cleanup: { model: null, guard: "skipped", new_words: [], issues: {}, tokens: 0 } }),
+  });
   const geo = useGeolocation();
 
   const findStores = (o, m = mode) =>
