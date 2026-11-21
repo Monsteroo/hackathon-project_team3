@@ -1,0 +1,184 @@
+/* DESIGN.md §4.1 VoiceButton */
+.wrap {
+  --level: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--voice-message-gap);
+}
+
+.voice {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--voice-size);
+  height: var(--voice-size);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--voice-radius);
+  background: var(--voice-bg);
+  color: var(--voice-fg);
+  transition: var(--voice-transition);
+  cursor: pointer;
+}
+
+.voice:hover {
+  background: var(--voice-bg-hover);
+}
+
+.voice:active {
+  background: var(--voice-bg-active);
+}
+
+.icon {
+  width: var(--voice-icon-size);
+  height: var(--voice-icon-size);
+}
+
+.ring {
+  position: absolute;
+  inset: calc(-1 * (var(--voice-ring-gap) + var(--voice-ring-width)));
+  border: var(--voice-ring-width) solid var(--voice-ring-color);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(
+    calc(var(--voice-ring-scale-min) + (var(--voice-ring-scale-max) - var(--voice-ring-scale-min)) * var(--level))
+  );
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+
+.wrap[data-state='listening'] .voice {
+  background: var(--voice-bg-listening);
+}
+
+.wrap[data-state='listening'] .ring {
+  opacity: 1;
+}
+
+.wrap[data-state='processing'] .voice {
+  background: var(--voice-bg-processing);
+  cursor: progress;
+}
+
+.wrap[data-state='blocked'] .voice {
+  background: var(--voice-bg-blocked);
+  color: var(--voice-fg-blocked);
+  border-color: var(--voice-border-blocked);
+  cursor: not-allowed;
+}
+
+.spin {
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Смужка рівня — лише для reduced motion, замість кільця. */
+.level {
+  display: none;
+  width: var(--voice-level-width);
+  height: var(--voice-level-height);
+  border-radius: var(--radius-full);
+  background: var(--voice-level-track);
+  overflow: hidden;
+}
+
+.level span {
+  display: block;
+  height: 100%;
+  background: var(--voice-level-fill);
+  transform-origin: left;
+  transform: scaleX(var(--level));
+}
+
+/* inline: 48px усередині композера на десктопі */
+.inline {
+  flex-direction: row;
+  gap: 0;
+}
+
+.inline .voice {
+  width: var(--voice-size-inline);
+  height: var(--voice-size-inline);
+}
+
+.inline .icon {
+  width: var(--voice-icon-size-inline);
+  height: var(--voice-icon-size-inline);
+}
+
+.inline .ring {
+  inset: calc(-1 * var(--space-xs));
+}
+
+/* Статус і помилки */
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.start {
+  align-items: flex-start;
+  text-align: start;
+}
+
+.status {
+  min-height: var(--voice-status-min-height);
+  font: var(--weight-medium) var(--voice-status-font) var(--font-ui);
+  color: var(--voice-status-fg);
+}
+
+.start .status:empty {
+  min-height: 0;
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  max-width: var(--voice-message-max-width);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  color: var(--voice-error-fg);
+  text-align: start;
+}
+
+.start .error {
+  max-width: none;
+}
+
+.error svg {
+  flex: none;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  margin-top: var(--space-2xs);
+}
+
+.hint {
+  max-width: var(--voice-message-max-width);
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    transform: scale(1);
+  }
+
+  .wrap[data-state='listening'] .level {
+    display: block;
+  }
+
+  .spin {
+    animation: none;
+  }
+}

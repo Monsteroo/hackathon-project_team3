@@ -5,6 +5,8 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary' | 'ghost'
   size?: 'default' | 'sm'
   icon?: ReactNode
+  /** Іконка після тексту, напр. стрілка «далі». */
+  iconEnd?: ReactNode
   loading?: boolean
 }
 
@@ -13,6 +15,7 @@ export function Button({
   variant = 'primary',
   size = 'default',
   icon,
+  iconEnd,
   loading = false,
   className,
   children,
@@ -30,6 +33,11 @@ export function Button({
         </span>
       )}
       {children}
+      {iconEnd && !loading && (
+        <span className={styles.icon} aria-hidden="true">
+          {iconEnd}
+        </span>
+      )}
     </button>
   )
 }

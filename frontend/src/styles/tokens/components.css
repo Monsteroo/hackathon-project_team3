@@ -33,6 +33,7 @@
   --voice-size:            var(--size-mic);
   --voice-size-compact:    var(--size-mic-compact);
   --voice-size-inline:     var(--dim-12);          /* 48px, RequestComposer на десктопі */
+  --voice-icon-size-inline: var(--size-icon-md);  /* 20px */
   --voice-icon-size:       var(--dim-8);          /* 32px; у MASTER, але не в шкалі іконок */
   --voice-icon-size-compact: var(--size-icon-lg);
   --voice-radius:          var(--radius-full);
@@ -64,6 +65,8 @@
   --voice-status-fg:    var(--color-text-2);
   --voice-error-fg:     var(--color-danger);
   --voice-message-gap:  var(--space-ms);
+  --voice-status-min-height: var(--dim-5);      /* 20px: рядок статусу не стрибає */
+  --voice-message-max-width: var(--dim-70);     /* 280px */
 
   /* рівень гучності для prefers-reduced-motion */
   --voice-level-width:  var(--size-mic);
@@ -278,6 +281,7 @@
   --city-list-max-height: var(--dim-80);         /* 320px ≈ 6,5 рядка */
   --city-list-offset:  var(--space-xs);
   --city-list-z:       var(--z-popover);
+  --city-panel-width:  var(--dim-80);           /* 320px: випадна панель compact ≥ 768px */
 
   --city-option-height:    var(--size-control);  /* 48px */
   --city-option-padding-x: var(--space-ms);
@@ -294,4 +298,83 @@
   --city-error-fg:     var(--color-danger);
 
   --city-chevron-transition: transform var(--dur-base) var(--ease-out);
+}
+
+/* === COMPONENT: AppHeader === */
+:root {
+  --header-height:        var(--dim-16);          /* 64px, десктоп */
+  --header-height-mobile: var(--dim-14);          /* 56px */
+  --header-gap:           var(--space-lg);
+  --logo-font:            var(--text-h2);         /* Onest 700 */
+  --logo-dot-size:        var(--space-sm);
+  --logo-dot-bg:          var(--color-accent);
+
+  --steps-font:           var(--text-label);
+  --steps-fg:             var(--color-text-3);
+  --steps-separator-fg:   var(--color-border-strong);
+  --steps-current-bg:     var(--color-accent);
+  --steps-current-fg:     var(--color-on-accent);
+
+  --free-pill-font:   var(--text-label);
+  --free-pill-bg:     var(--color-surface);
+  --free-pill-border: var(--color-border);
+}
+
+/* === COMPONENT: RequestHero === */
+:root {
+  --hero-bg:             var(--color-accent-tint);
+  --hero-radius:         var(--radius-xl);
+  --hero-radius-mobile:  var(--radius-lg);
+  --hero-padding:        var(--space-3xl);
+  --hero-padding-mobile: var(--space-lg) var(--space-md);
+  --hero-gap:            var(--space-2xl);
+  --hero-title-font:     var(--text-display);     /* 40/48 десктоп, 32/40 мобільний */
+  --hero-sub-font:       var(--text-body-lg);
+  --hero-sub-fg:         var(--color-text-2);
+  --hero-highlight-bg:   var(--color-accent);     /* виділення в заголовку = дія, не економія */
+  --hero-highlight-fg:   var(--color-on-accent);
+
+  /* композер: поле + голос + «Знайти кошик» */
+  --composer-min-height:   var(--dim-16);         /* 64px */
+  --composer-max-height:   var(--dim-42);         /* 168px = 6 рядків по 28px */
+  --composer-mobile-min-height: var(--dim-18);    /* 72px = 3 рядки по 24px */
+  --composer-bg:           var(--color-surface);
+  --composer-border:       var(--color-accent-fg);
+  --composer-border-width: var(--dim-0-5);
+  --composer-border-invalid: var(--color-danger);
+  --composer-radius:       var(--radius-lg);
+  --composer-shadow:       var(--shadow-md);
+  --composer-font:         var(--text-body-lg);
+  --composer-font-mobile:  var(--text-body);      /* 16px — без зуму в iOS */
+  --composer-placeholder-fg: var(--color-text-3);
+  --composer-error-fg:     var(--color-danger);
+  --composer-hint-fg:      var(--color-text-2);
+
+  /* чипи-приклади */
+  --example-height:       var(--size-touch);
+  --example-padding-x:    var(--space-ms);
+  --example-bg:           var(--color-surface);
+  --example-border:       var(--color-border-strong);
+  --example-bg-hover:     var(--color-accent-subtle);
+  --example-border-hover: var(--color-accent-fg);
+  --example-icon-fg:      var(--color-text-2);
+
+  /* приклад результату */
+  --preview-bg:          var(--color-surface);
+  --preview-radius:      var(--radius-lg);
+  --preview-shadow:      var(--shadow-md);
+  --preview-padding:     var(--space-lg);
+  --preview-caption-fg:  var(--color-text-3);
+  --preview-row-border:  var(--color-border);
+  --preview-row-radius:  var(--radius-md);
+  --preview-best-bg:     var(--color-accent);
+  --preview-best-border: var(--color-accent-fg);
+  --preview-best-fg:     var(--color-on-accent);
+  --preview-meta-fg:     var(--color-text-2);
+  --preview-sum-font:    var(--text-body-lg);
+
+  /* нижня панель на мобільному */
+  --bottombar-bg:     var(--color-surface);
+  --bottombar-border: var(--color-border);
+  --bottombar-height: calc(var(--size-control) + 2 * var(--space-ms));
 }
