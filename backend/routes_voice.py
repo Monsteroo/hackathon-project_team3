@@ -1,10 +1,14 @@
-"""HTTP API голосу: аудіо → чистий текст + mode/radius_km; той самий розбір для набраного тексту."""
+"""HTTP API голосу: аудіо → чистий текст + mode/radius_km; той самий розбір для набраного тексту.
+
+Ендпоінти синхронні (`def`): виклики Groq блокуючі, FastAPI виконує їх у пулі потоків і не блокує event loop.
+"""
 from __future__ import annotations
 
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, Request, UploadFile
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
+from backend.ratelimit import check_voice_limit
 from backend.voice.cleanup import clean_text
 from backend.voice.errors import VoiceError
 from backend.voice.stt import MAX_AUDIO_BYTES, transcribe
@@ -17,9 +21,11 @@ def _error(e: VoiceError) -> JSONResponse:
 
 
 @router.post("/transcribe")
-async def transcribe_audio(audio: UploadFile = File(..., description="webm/opus, mp4/aac, wav, mp3; до 60 с")):
-    data = await audio.read(MAX_AUDIO_BYTES + 1)
+def transcribe_audio(request: Request,
+                     audio: UploadFile = File(..., description="webm/opus, mp4/aac, wav, mp3; до 60 с, до 1.5 MB")):
     try:
+        check_voice_limit(request)
+        data = audio.file.read(MAX_AUDIO_BYTES + 1)
         stt = transcribe(data, audio.filename or "audio.webm", audio.content_type)
     except VoiceError as e:
         return _error(e)
@@ -32,6 +38,10 @@ class TextIn(BaseModel):
 
 
 @router.post("/parse-text")
-def parse_text(body: TextIn):
+def parse_text(request: Request, body: TextIn):
     """Для ручного вводу та fallback Web Speech: та сама чистка і витяг mode/radius_km."""
+    try:
+        check_voice_limit(request)
+    except VoiceError as e:
+        return _error(e)
     return {**clean_text(body.text), "duration_s": None, "source": body.source}

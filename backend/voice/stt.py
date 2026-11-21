@@ -17,8 +17,9 @@ log = logging.getLogger(__name__)
 
 GROQ_STT_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
 VOCAB_FILE = DATA_DIR / "stt_vocabulary.txt"
-MAX_AUDIO_BYTES = 4 * 1024 * 1024   # ліміт тіла запиту Vercel 4.5 MB; 60 с opus ≈ 0.5 MB
+MAX_AUDIO_BYTES = 1_500_000         # 60 с opus 32 кбіт/с ≈ 0.25 MB, mp4/aac із Safari ≈ 0.5–1 MB; запас без зловживань
 MAX_DURATION_S = 60                 # рішення команди 21.11 (фронт зупиняє запис на 60 с)
+DURATION_LIMIT_S = 65               # сервер приймає з невеликим запасом на кодування
 NO_SPEECH_THRESHOLD = 0.8
 TIMEOUT_S = 20.0
 
@@ -63,13 +64,19 @@ def transcribe(audio: bytes, filename: str, content_type: str | None, client: ht
     if r.status_code == 429:
         raise VoiceError("stt_rate_limited", "Ліміт розпізнавання вичерпано, спробуйте за хвилину", status=429)
     if r.status_code == 400:
-        log.warning("Groq STT 400: %s", r.text[:300])
+        log.warning("Groq STT HTTP 400")
         raise VoiceError("audio_unsupported", "Не вдалося прочитати аудіо. Спробуйте ще раз", status=400)
     if r.status_code >= 300:
-        log.warning("Groq STT %s: %s", r.status_code, r.text[:300])
+        log.warning("Groq STT HTTP %s", r.status_code)
         raise VoiceError("stt_unavailable", "Сервіс розпізнавання недоступний", status=502)
 
-    j = r.json()
+    try:
+        j = r.json()
+    except ValueError as e:
+        log.warning("Groq STT: invalid JSON")
+        raise VoiceError("stt_unavailable", "Сервіс розпізнавання повернув некоректну відповідь", status=502) from e
+    if (j.get("duration") or 0) > DURATION_LIMIT_S:
+        raise VoiceError("audio_too_long", f"Запис задовгий (максимум {MAX_DURATION_S} с)", status=413, fallback=False)
     segments = j.get("segments") or []
     text = (j.get("text") or "").strip()
     # Whisper на тиші іноді «галюцинує» фрази на кшталт «Дякую за перегляд» — відсікаємо за no_speech_prob
