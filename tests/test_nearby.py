@@ -1,0 +1,79 @@
+import pytest
+from fastapi.testclient import TestClient
+
+from backend.app import app
+from backend.geo import nearby
+
+ORIGIN = (50.4500, 30.5200)
+
+
+def store(id_, lat, lng, online=True, alt=()):
+    return {"id": id_, "alt_ids": list(alt), "chain": "novus", "chain_name": "NOVUS", "name": id_, "city": "Київ",
+            "address": "", "lat": lat, "lng": lng, "place_id": f"{lat},{lng}", "has_online_prices": online,
+            "has_pickup": online}
+
+
+STORES = (
+    store("osm:n1", 50.4510, 30.5200, online=False),       # ~0.1 км, без цін
+    store("zakaz:1", 50.4560, 30.5200),                     # ~0.7 км
+    store("silpo:a", 50.4600, 30.5200, alt=["silpo:old"]),  # ~1.1 км
+    store("zakaz:far", 50.5200, 30.5200),                   # ~7.8 км
+)
+
+
+@pytest.fixture(autouse=True)
+def fake_data(monkeypatch):
+    monkeypatch.setattr(nearby, "load_stores", lambda: STORES)
+
+    def fake_matrix(origin, targets, mode, client=None):
+        # час пропорційний відстані по прямій: детерміновано, без мережі
+        return [{"distance_km": round(nearby.haversine_km(*origin, *t), 2),
+                 "duration_min": round(nearby.haversine_km(*origin, *t) * 12, 1), "estimated": False}
+                for t in targets]
+    monkeypatch.setattr(nearby, "travel_matrix", fake_matrix)
+
+
+def test_default_walk_radius_and_recommend_nearest_online():
+    r = nearby.find_nearby(*ORIGIN)
+    assert r["radius_km"] == 2.0 and not r["radius_expanded"]
+    assert [s["id"] for s in r["stores"]] == ["osm:n1", "zakaz:1", "silpo:a"]
+    assert r["recommended_id"] == "zakaz:1"  # найближчий osm без цін пропускаємо
+    assert r["recommended_reason"] == "nearest_with_online_prices"
+
+
+def test_confirmed_store_ids_win_even_outside_radius():
+    r = nearby.find_nearby(*ORIGIN, store_ids=["zakaz:far"])
+    assert r["recommended_id"] == "zakaz:far"
+    assert r["recommended_reason"] == "confirmed_offer"
+    far = next(s for s in r["stores"] if s["id"] == "zakaz:far")
+    assert far["confirmed"] and not far["in_radius"]
+
+
+def test_confirmed_matches_alt_ids():
+    r = nearby.find_nearby(*ORIGIN, store_ids=["silpo:old"])
+    assert r["recommended_id"] == "silpo:a"
+
+
+def test_radius_expands_when_empty():
+    r = nearby.find_nearby(50.6000, 30.5200, mode="walk")  # ~9 км від найближчого
+    assert r["radius_expanded"] and r["radius_km"] == 16.0
+    assert r["count"] >= 1
+
+
+def test_car_default_radius():
+    r = nearby.find_nearby(*ORIGIN, mode="car")
+    assert r["radius_km"] == 10.0 and r["count"] == 4
+
+
+def test_api_nearby_and_validation():
+    c = TestClient(app)
+    ok = c.get("/api/stores/nearby", params={"lat": ORIGIN[0], "lng": ORIGIN[1], "store_ids": "zakaz:1, silpo:a"})
+    assert ok.status_code == 200 and ok.json()["recommended_id"] == "zakaz:1"
+    assert set(ok.json()["stores"][0]["maps_urls"]) == {"walking", "driving", "transit"}
+    assert c.get("/api/stores/nearby", params={"lat": 50.45, "lng": 30.52, "mode": "bike"}).status_code == 422
+    assert c.get("/api/stores/nearby", params={"lat": 50.45}).status_code == 422
+
+
+def test_api_route_unknown_store():
+    r = TestClient(app).get("/api/route", params={"lat": 50.45, "lng": 30.52, "store_id": "nope"})
+    assert r.status_code == 404

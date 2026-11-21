@@ -101,18 +101,30 @@ def stores_from_csv(rows: Iterable[dict]) -> list[dict]:
     return out
 
 
+SAME_STORE_RADIUS_KM = 0.06  # дві філії однієї мережі ближче 60 м = один фізичний магазин
+
+
 def dedup_same_address(stores: list[dict]) -> list[dict]:
     """Дві філії однієї мережі за однією адресою (типово Сільпо) → один магазин з alt_ids.
 
-    Основним лишаємо той, що has_pickup=True, інший ID зберігаємо в alt_ids,
-    щоб ціни Учасника 2 знаходились за будь-яким із них.
+    Та сама адреса або відстань < 60 м (адреси в джерелі пишуть по-різному:
+    «пл. Спортивна, 1А» / «пл. Спортивна, пл, 1А»). Основним лишаємо has_pickup=True,
+    інші ID — в alt_ids, щоб ціни Учасника 2 знаходились за будь-яким із них.
     """
-    groups: dict[tuple, list[dict]] = defaultdict(list)
-    for s in stores:
-        groups[(s["chain"], s["city"].lower(), s["address"].lower())].append(s)
+    groups: list[list[dict]] = []
+    for s in sorted(stores, key=lambda s: (not s["has_pickup"], s["id"])):
+        for g in groups:
+            head = g[0]
+            if head["chain"] == s["chain"] and (
+                (head["city"].lower(), head["address"].lower()) == (s["city"].lower(), s["address"].lower())
+                or haversine_km(head["lat"], head["lng"], s["lat"], s["lng"]) < SAME_STORE_RADIUS_KM
+            ):
+                g.append(s)
+                break
+        else:
+            groups.append([s])
     out = []
-    for group in groups.values():
-        group.sort(key=lambda s: (not s["has_pickup"], s["id"]))
+    for group in groups:
         main = dict(group[0])
         main["alt_ids"] = [s["id"] for s in group[1:]]
         out.append(main)

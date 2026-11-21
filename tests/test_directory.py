@@ -47,6 +47,16 @@ def test_dedup_same_address_prefers_pickup():
     assert out[0]["alt_ids"] == ["silpo:a"]
 
 
+def test_dedup_close_points_with_different_address_spelling():
+    stores = stores_from_csv([
+        row(source="silpo", chain="silpo", store_id="a", address="пл. Спортивна, 1А", lat="50.43800"),
+        row(source="silpo", chain="silpo", store_id="b", address="пл. Спортивна, пл, 1А", lat="50.43803"),
+        row(source="silpo", chain="silpo", store_id="c", address="Інша, 5", lat="50.44000"),  # ~220 м
+    ])
+    out = dedup_same_address(stores)
+    assert sorted(len(s["alt_ids"]) for s in out) == [0, 1]
+
+
 def test_osm_filters_foreign_unknown_and_silpo():
     els = [
         osm(1, 50.45, 30.52),
