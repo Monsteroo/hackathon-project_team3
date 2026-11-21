@@ -23,6 +23,8 @@ CHAIN_NAMES = {
 log = logging.getLogger(__name__)
 ALLOWED_TAGS = {"sugar", "palm_oil", "lactose", "private_label"}  # теги складу каталогу
 OUTSIDE_RADIUS_MAX_KM = 30  # далі за це не пропонуємо, навіть якщо в радіусі порожньо
+# Товарів на позицію з каталогу: при 10 найдешевший товар конкретного магазину часто не потрапляв у вибірку
+SEARCH_LIMIT = 50
 ROAD_FACTOR = 1.3  # вулиці не прямі: пряма відстань × 1.3 ≈ відстань по дорозі
 SPEED_KMH = {"walk": 5, "car": 25}
 
@@ -53,12 +55,16 @@ async def stores_from_geo(
     """Магазини з цінами поруч від модуля geo (Учасник 1): маршрути Valhalla, дефолтний радіус команди.
 
     Якщо в радіусі магазинів з цінами немає, беремо найближчі з цінами поза радіусом і попереджаємо.
+
+    `has_online_prices` у geo — зі статичного знімка (app/geo/data/stores.json), зробленого до того, як ETL
+    завантажив більшість філій Сільпо, тож йому не віримо: беремо всі магазини мереж з онлайн-каталогом
+    (Zakaz, Сільпо), а чи є там ціни, вирішує пошук у каталозі. OSM-магазини цін не мають ніколи.
     """
     res = await geo.find_nearby(lat, lng, mode=c.travel_mode, radius_km=c.radius_km)
     warnings: list[str] = []
     priced = [
         s for s in res["stores"]
-        if s["has_online_prices"] and s["source"] != "osm"
+        if s["source"] != "osm"
         and (not c.preferred_chains or s["chain"] in c.preferred_chains)
     ]  # fmt: skip
     chosen = [s for s in priced if s["in_radius"]]
@@ -173,7 +179,7 @@ async def _search(session: AsyncSession, item: RequestedItem, store_ids: list[st
     for query, category in search_attempts(item):
         try:
             found = await catalog.search_prices(
-                session, query=query, store_ids=store_ids, category=category, exclude=exclude, limit=10
+                session, query=query, store_ids=store_ids, category=category, exclude=exclude, limit=SEARCH_LIMIT
             )
         except ValueError:  # у запиті немає слів, придатних для пошуку
             continue
