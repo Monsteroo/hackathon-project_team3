@@ -9,6 +9,7 @@
 """
 from __future__ import annotations
 
+import re
 from typing import Iterable
 
 import httpx
@@ -21,9 +22,27 @@ MAX_EXPANSIONS = 3
 CONFIRMED_OUTSIDE_RADIUS = 5  # скільки найближчих підтверджених магазинів поза радіусом теж рахувати
 
 
+UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", re.IGNORECASE)
+
+
+def normalize_store_id(raw: str) -> str:
+    """Приймаємо і наш формат (`zakaz:48201031`, `silpo:<uuid>`), і сирий з API Учасниці 2 / агента:
+    числовий ID — Zakaz.ua, uuid — Сільпо (branchId)."""
+    sid = raw.strip()
+    if ":" in sid:
+        source, _, rest = sid.partition(":")
+        return f"{source.lower()}:{rest.strip()}"
+    if sid.isdigit():
+        return f"zakaz:{sid}"
+    if UUID_RE.match(sid):
+        return f"silpo:{sid.lower()}"
+    return sid
+
+
 def find_store(store_id: str) -> dict | None:
+    sid = normalize_store_id(store_id)
     for s in load_stores():
-        if s["id"] == store_id or store_id in s["alt_ids"]:
+        if s["id"] == sid or sid in s["alt_ids"]:
             return s
     return None
 
@@ -36,7 +55,11 @@ def find_nearby(lat: float, lng: float, mode: Mode = "walk", radius_km: float | 
                 store_ids: Iterable[str] | None = None, client: httpx.Client | None = None) -> dict:
     origin = (lat, lng)
     radius = min(radius_km or DEFAULT_RADIUS_KM[mode], MAX_RADIUS_KM)
-    confirmed_ids = {s.strip() for s in (store_ids or []) if s and s.strip()}
+    requested = [s.strip() for s in (store_ids or []) if s and s.strip()]
+    known = {i for s in load_stores() for i in (s["id"], *s["alt_ids"])}
+    unknown = [r for r in requested if normalize_store_id(r) not in known]
+    # Жоден ID не знайдено → працюємо як без store_ids, а невідомі ID повертаємо фронту/агенту
+    confirmed_ids = {normalize_store_id(r) for r in requested} & known
 
     with_dist = [(haversine_km(lat, lng, s["lat"], s["lng"]), s) for s in load_stores()]
     with_dist.sort(key=lambda x: x[0])
@@ -103,6 +126,7 @@ def find_nearby(lat: float, lng: float, mode: Mode = "walk", radius_km: float | 
                    else "mixed" if any(i["estimated"] for i in items) else "valhalla",
         "recommended_id": recommended["id"] if recommended else None,
         "recommended_reason": reason,
+        "unknown_store_ids": unknown,
         "count": len(items),
         "stores": items,
     }

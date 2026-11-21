@@ -88,3 +88,45 @@ def test_priced_store_outside_radius_is_still_recommended(monkeypatch):
     r = nearby.find_nearby(*ORIGIN)
     assert r["recommended_id"] == "zakaz:far" and r["recommended_reason"] == "nearest_with_online_prices"
     assert [s["in_radius"] for s in r["stores"]] == [True, False]
+
+
+# --- B1: сирі ID з API Учасниці 2 / агента --------------------------------------------------
+
+@pytest.mark.parametrize("raw,norm", [
+    ("48201031", "zakaz:48201031"),
+    ("zakaz:48201031", "zakaz:48201031"),
+    (" 1EDB6B12-C559-61CC-B8C3-EB10F39E9FE0 ", "silpo:1edb6b12-c559-61cc-b8c3-eb10f39e9fe0"),
+    ("silpo:1edb6b12-c559-61cc-b8c3-eb10f39e9fe0", "silpo:1edb6b12-c559-61cc-b8c3-eb10f39e9fe0"),
+    ("osm:n123", "osm:n123"),
+])
+def test_normalize_store_id(raw, norm):
+    assert nearby.normalize_store_id(raw) == norm
+
+
+def test_raw_ids_and_alt_ids_are_confirmed():
+    r = nearby.find_nearby(*ORIGIN, store_ids=["1", "old"])  # «old» не uuid і не число → невідомий
+    assert r["recommended_id"] == "zakaz:1" and r["recommended_reason"] == "confirmed_offer"
+    assert r["unknown_store_ids"] == ["old"]
+
+
+def test_all_unknown_ids_behave_like_no_ids():
+    r = nearby.find_nearby(*ORIGIN, store_ids=["999999", "nope"])
+    assert r["recommended_reason"] == "nearest_with_online_prices" and r["recommended_id"] == "zakaz:1"
+    assert r["unknown_store_ids"] == ["999999", "nope"]
+    assert not any(s["confirmed"] for s in r["stores"])
+
+
+def test_real_silpo_alt_branch_resolves(monkeypatch):
+    """Сільпо №2025 і №3319 — одна адреса (Бережанська, 22): uuid №3319 від агента веде до того ж магазину."""
+    monkeypatch.undo()  # справжній довідник
+    from backend.geo.nearby import find_store
+    a = find_store("1eda8887-bf7c-6f38-b0cb-9503162b5586")
+    b = find_store("1eda888d-b60d-66f4-a557-03a302d993f3")
+    assert a is not None and a is b
+
+
+def test_api_route_accepts_raw_id(monkeypatch):
+    monkeypatch.setattr("backend.routes_geo.route_shape",
+                        lambda o, d, m: {"distance_km": 1, "duration_min": 1, "estimated": True, "coordinates": []})
+    r = TestClient(app).get("/api/route", params={"lat": ORIGIN[0], "lng": ORIGIN[1], "store_id": "1"})
+    assert r.status_code == 200 and r.json()["store_id"] == "zakaz:1"
