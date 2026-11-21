@@ -56,29 +56,6 @@ function errorText(code: string, statusCode: number): string {
   return 'Не вдалося отримати ціни. Спробуйте ще раз'
 }
 
-/** Підпис «звідки»: адреса з поля або /geo/reverse для GPS. */
-function useOriginLabel(origin: Origin | null): string | null {
-  const [reversed, setReversed] = useState<{ at: string; label: string | null } | null>(null)
-  const lat = origin?.lat
-  const lng = origin?.lng
-  const known = origin?.label ?? null
-  const at = `${lat},${lng}`
-  useEffect(() => {
-    if (known || lat == null || lng == null) return
-    let cancelled = false
-    api
-      .reverse({ lat, lng })
-      .then((p) => {
-        if (!cancelled) setReversed({ at: `${lat},${lng}`, label: p.source === 'coords' ? null : p.label })
-      })
-      .catch(() => {})
-    return () => {
-      cancelled = true
-    }
-  }, [lat, lng, known])
-  return known ?? (reversed?.at === at ? reversed.label : null)
-}
-
 /**
  * Екран 3 «Карта + 3 варіанти» (BRIEF, DESIGN.md §4.2, MASTER OptionCard / Map).
  * Чернетка екрана 2 + місце → POST /agent/basket (5–9 с) → до 3 карток і піни на карті.
@@ -114,7 +91,6 @@ export function ResultsPage() {
   }
   const [hovered, setHovered] = useState<OptionType | null>(null)
   const cardRefs = useRef(new Map<OptionType, HTMLDivElement>())
-  const originLabel = useOriginLabel(origin)
 
   // Без списку чи місця тут нічого показати: назад на потрібний крок.
   useEffect(() => {
@@ -127,17 +103,22 @@ export function ResultsPage() {
     const { request, origin } = latest.current
     if (!request || !key || !origin || hasCache) return
     const controller = new AbortController()
-    api
-      .buildBasket(request, controller.signal)
-      .then((result) => {
-        saveResult({ key, origin, request, result, savedAt: new Date().toISOString() })
-        setFetched({ key, attempt, result })
-      })
-      .catch((e: unknown) => {
-        if ((e as Error)?.name === 'AbortError') return
-        const err = e instanceof ApiError ? e : new ApiError('unknown', 'unknown')
-        setFetched({ key, attempt, code: err.code, statusCode: err.status })
-      })
+    // StrictMode прибирає і повторно запускає ефект. Даємо першій спробі скасуватися до POST.
+    queueMicrotask(() => {
+      if (controller.signal.aborted) return
+      api
+        .buildBasket(request, controller.signal)
+        .then((result) => {
+          if (controller.signal.aborted) return
+          saveResult({ key, origin, request, result, savedAt: new Date().toISOString() })
+          setFetched({ key, attempt, result })
+        })
+        .catch((e: unknown) => {
+          if (controller.signal.aborted || (e as Error)?.name === 'AbortError') return
+          const err = e instanceof ApiError ? e : new ApiError('unknown', 'unknown')
+          setFetched({ key, attempt, code: err.code, statusCode: err.status })
+        })
+    })
     return () => controller.abort()
   }, [key, hasCache, attempt])
 
@@ -218,7 +199,7 @@ export function ResultsPage() {
 
   const warnings = [
     ...(result?.warnings ?? []),
-    ...(draft && unsupportedExcludes(draft).includes('private_label')
+    ...(draft && result?.parser !== 'items' && unsupportedExcludes(draft).includes('private_label')
       ? ['Фільтр «без власних марок» поки не враховується під час підбору']
       : []),
   ]
@@ -373,7 +354,7 @@ export function ResultsPage() {
         {origin && (
           <p className={styles.originChip}>
             <MapPin strokeWidth={1.75} aria-hidden="true" />
-            <span>{originLabel ?? 'Ваше місце'}</span>
+            <span>{origin.label ?? 'Ваше місце'}</span>
           </p>
         )}
         <StoreMap

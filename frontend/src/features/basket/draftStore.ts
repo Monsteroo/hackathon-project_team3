@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react'
-import type { CatalogProduct, Mode, VoiceResult } from '../../lib/api/types'
+import type { AgentItem, CatalogProduct, Mode, VoiceResult } from '../../lib/api/types'
 import { categoryInfo, type CategoryInfo } from './categories'
-import type { AgentItem, BasketDraft, BasketItem, Tag, Unit } from './types'
+import type { BasketDraft, BasketItem, Tag, Unit } from './types'
 
 /**
  * Чернетка кошика екрана 2. Зберігається в sessionStorage, щоб пережити «Назад» з /results
@@ -220,7 +220,7 @@ export function itemFromQuery(text: string): Omit<BasketItem, 'id'> {
 export function toAgentItems(draft: BasketDraft): AgentItem[] {
   return draft.items.map((i) => {
     const exclude = [...new Set([...draft.exclude, ...i.exclude])]
-    const base = { need: i.count * i.packQty, unit: i.unit, exclude }
+    const base = { label: i.label, need: i.count * i.packQty, unit: i.unit, exclude }
     if (i.gtin) return { ...base, gtin: i.gtin }
     if (i.category && !i.query) return { ...base, category: i.category }
     return { ...base, query: i.query ?? i.label }
