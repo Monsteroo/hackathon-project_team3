@@ -1,0 +1,134 @@
+/* Згенеровано з design/DESIGN.md. Джерело правди — DESIGN.md; змінюйте спершу там. */
+/* Розділ 2: Primitive tokens. Шрифти підключено в index.html. */
+
+/* === PRIMITIVES === */
+
+:root {
+  /* --- Graphite: нейтральна база (світла й темна тема) --- */
+  --graphite-0:   #FFFFFF;
+  --graphite-25:  #F8F8F4;   /* теплий off-white замість холодного сірого */
+  --graphite-50:  #F4F4F5;
+  --graphite-75:  #F1F1EB;
+  --graphite-100: #E2E2E6;
+  --graphite-300: #A1A1AA;
+  --graphite-400: #8E8E98;
+  --graphite-450: #8B8B94;
+  --graphite-500: #6B6B75;
+  --graphite-550: #63636B;
+  --graphite-600: #52525B;
+  --graphite-800: #2E2E36;
+  --graphite-850: #24242A;
+  --graphite-900: #1B1B20;
+  --graphite-925: #18181B;
+  --graphite-950: #111114;
+  --graphite-925-a48: rgba(24, 24, 27, 0.48);
+
+  /* --- Lime: акцент Sayvy (заливки) і економія (оливкові кроки 700–800) --- */
+  --lime-50:  #F7FDE6;
+  --lime-100: #ECFCCB;
+  --lime-300: #D4F75E;
+  --lime-400: #C6F432;
+  --lime-500: #B5E61D;
+  --lime-700: #4D7C0F;
+  --lime-800: #3F6212;
+  --lime-900: #262F12;
+  --lime-950: #1F2A0A;
+
+  /* --- Amber: аналог, нестандартна вага, сліди алергенів --- */
+  --amber-50:  #FEF3E2;
+  --amber-300: #F5B454;
+  --amber-800: #9A4A06;
+  --amber-950: #3A2A12;
+
+  /* --- Red: бюджет, помилка, алерген у складі --- */
+  --red-50:  #FDECEC;
+  --red-400: #F87171;
+  --red-600: #C2261F;
+  --red-700: #A61F19;
+  --red-950: #3B1616;
+
+  /* --- Typography --- */
+  --font-family-onest: 'Onest', system-ui, sans-serif;
+  --font-family-inter: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+
+  --font-size-12: 0.75rem;
+  --font-size-13: 0.8125rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
+  --font-size-20: 1.25rem;
+  --font-size-24: 1.5rem;
+  --font-size-28: 1.75rem;
+  --font-size-32: 2rem;
+  --font-size-40: 2.5rem;
+
+  --line-height-16: 1rem;
+  --line-height-18: 1.125rem;
+  --line-height-20: 1.25rem;
+  --line-height-24: 1.5rem;
+  --line-height-28: 1.75rem;
+  --line-height-32: 2rem;
+  --line-height-40: 2.5rem;
+  --line-height-48: 3rem;
+
+  /* --- Dimension: крок 4px (відступи й розміри) --- */
+  --dim-0:  0;
+  --dim-0-5: 0.125rem; /*  2px */
+  --dim-1:  0.25rem;   /*  4px */
+  --dim-2:  0.5rem;    /*  8px */
+  --dim-3:  0.75rem;   /* 12px */
+  --dim-4:  1rem;      /* 16px */
+  --dim-5:  1.25rem;   /* 20px */
+  --dim-6:  1.5rem;    /* 24px */
+  --dim-8:  2rem;      /* 32px */
+  --dim-10: 2.5rem;    /* 40px */
+  --dim-11: 2.75rem;   /* 44px */
+  --dim-12: 3rem;      /* 48px */
+  --dim-14: 3.5rem;    /* 56px */
+  --dim-16: 4rem;      /* 64px */
+  --dim-18: 4.5rem;    /* 72px */
+  --dim-20: 5rem;      /* 80px */
+  --dim-24: 6rem;      /* 96px */
+  --dim-42: 10.5rem;   /* 168px */
+  --dim-70: 17.5rem;   /* 280px */
+  --dim-80: 20rem;     /* 320px */
+  --dim-100: 25rem;    /* 400px */
+  --dim-120: 30rem;    /* 480px */
+
+  /* --- Radius --- */
+  --round-6:    6px;
+  --round-10:   10px;
+  --round-14:   14px;
+  --round-20:   20px;
+  --round-full: 9999px;
+
+  /* --- Shadow --- */
+  --shadow-1: 0 1px 2px rgba(24, 24, 27, 0.06);
+  --shadow-2: 0 4px 12px rgba(24, 24, 27, 0.08);
+  --shadow-3: 0 -4px 24px rgba(24, 24, 27, 0.12);
+  --shadow-4: 0 16px 40px rgba(24, 24, 27, 0.16);
+
+  /* --- Motion --- */
+  --duration-0:   1ms;
+  --duration-120: 120ms;
+  --duration-200: 200ms;
+  --duration-280: 280ms;
+  --easing-decelerate: cubic-bezier(0.2, 0, 0, 1);
+  --easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  /* --- Layer --- */
+  --layer-0:  0;
+  --layer-10: 10;
+  --layer-20: 20;
+  --layer-30: 30;
+  --layer-40: 40;
+  --layer-50: 50;
+
+  /* --- Opacity --- */
+  --opacity-40: 0.4;
+}

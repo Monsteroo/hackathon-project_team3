@@ -1,0 +1,8 @@
+.stub {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.note {
+  color: var(--color-text-2);
+}
