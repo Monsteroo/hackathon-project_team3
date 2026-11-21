@@ -161,7 +161,10 @@ describe('ResultsPage', () => {
 
     await screen.findByRole('radio', { name: /Найвигідніший/ })
     expect(screen.getByText('Ваше місце')).toBeInTheDocument()
-    expect(fetchMock.mock.calls.map(([path]) => path)).toEqual(['/agent/basket'])
+    const paths = fetchMock.mock.calls.map(([path]) => String(path))
+    // Агент — рівно один раз; після нього — лінія маршруту до вибраного магазину (/geo/route).
+    expect(paths.filter((p) => p.startsWith('/agent/'))).toEqual(['/agent/basket'])
+    expect(paths.filter((p) => p.startsWith('/geo/route')).length).toBeGreaterThanOrEqual(1)
     const [, init] = fetchMock.mock.calls[0]
     expect(init?.method).toBe('POST')
     expect(JSON.parse(init?.body as string)).toMatchObject({ lat: 50.45, lng: 30.52, mode: 'car' })

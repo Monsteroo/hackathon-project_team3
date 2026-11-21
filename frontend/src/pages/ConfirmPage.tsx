@@ -140,7 +140,8 @@ export function ConfirmPage() {
   }
 
   function goToResults(origin: Origin) {
-    navigate('/results', { state: { origin } })
+    // from: 'confirm' → «До списку» на /results повертає по історії, а не додає новий запис.
+    navigate('/results', { state: { origin, from: 'confirm' } })
   }
 
   /** «Знайти ціни»: спершу GPS; заборонено чи не вийшло — поле адреси. */
