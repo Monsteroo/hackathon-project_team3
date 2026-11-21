@@ -69,9 +69,9 @@ describe('basket draft', () => {
     )
     toggleExclude('sugar')
     expect(toAgentItems(getBasketDraft()!)).toEqual([
-      { category: 'milk', need: 2000, unit: 'ml', exclude: ['sugar'] },
-      { query: 'буряк червоний', need: 1, unit: 'pcs', exclude: ['sugar'] },
-      { gtin: '4823005209157', need: 180, unit: 'g', exclude: ['sugar'] },
+      { label: 'Молоко', category: 'milk', need: 2000, unit: 'ml', exclude: ['sugar'] },
+      { label: 'Буряк червоний', query: 'буряк червоний', need: 1, unit: 'pcs', exclude: ['sugar'] },
+      { label: 'Сир Яготинський 180г', gtin: '4823005209157', need: 180, unit: 'g', exclude: ['sugar'] },
     ])
   })
 

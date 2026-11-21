@@ -1,8 +1,9 @@
 import type { BasketRequest } from '../../lib/api/types'
 import type { Origin } from '../location/position'
 import type { BasketDraft, Tag, Unit } from '../basket/types'
+import { toAgentItems } from '../basket/draftStore'
 
-/** Теги складу, які розуміє агент (backend/app/agent/schemas.py, ExcludeTag). */
+/** Теги складу, які агент розпізнає під час повторного розбору тексту. */
 const EXCLUDE_TEXT: Partial<Record<Tag, string>> = {
   sugar: 'без цукру',
   lactose: 'без лактози',
@@ -22,11 +23,7 @@ export function quantityText(qty: number, unit: Unit): string {
   return `${v} ${big}`
 }
 
-/**
- * Чернетка екрана 2 → текст для /agent/basket. Агент приймає лише текст і розбирає його заново,
- * тому збираємо його з того, що людина бачила й правила: позиції з кількістю, склад, бюджет.
- * Режим і радіус ідуть окремими полями (головніші за текст).
- */
+/** Текстовий варіант підтвердженої чернетки для старішої версії /agent/basket. */
 export function draftToText(draft: BasketDraft): string {
   // Лише перша літера мала: бренди («Галичина») лишаються як є.
   const items = draft.items.map((i) => `${lowerFirst(i.label)} ${quantityText(i.count * i.packQty, i.unit)}`)
@@ -35,14 +32,16 @@ export function draftToText(draft: BasketDraft): string {
   return [items.join(', '), ...limits].filter(Boolean).join(', ')
 }
 
-/** Фільтри, які агент поки не вміє (напр. «без власних марок»): показати попередження. */
+/** Фільтри, які потребують структурованих позицій. */
 export function unsupportedExcludes(draft: BasketDraft): Tag[] {
   return draft.exclude.filter((t) => !EXCLUDE_TEXT[t])
 }
 
 export function toBasketRequest(draft: BasketDraft, origin: Origin, city?: string): BasketRequest {
   return {
-    text: draftToText(draft),
+    text: draftToText(draft).slice(0, 1000),
+    items: toAgentItems(draft),
+    budget_uah: draft.budget,
     raw_text: draft.voice?.raw_text ?? null,
     lat: origin.lat,
     lng: origin.lng,
