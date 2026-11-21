@@ -173,3 +173,133 @@ export interface PriceSearchResponse {
   missing_store_ids: string[]
   products: CatalogProduct[]
 }
+
+// --- agent (backend/app/agent/schemas.py, mocks/16_*, mocks/17_*) ---
+
+export type AgentCategory =
+  | 'milk'
+  | 'kefir'
+  | 'curd'
+  | 'sour_cream'
+  | 'butter'
+  | 'cheese'
+  | 'eggs'
+  | 'flour'
+  | 'sugar'
+  | 'vanilla_sugar'
+  | 'buckwheat'
+  | 'rice'
+  | 'pasta'
+  | 'sunflower_oil'
+  | 'bread'
+  | 'coffee_ground'
+  | 'coffee_beans'
+  | 'tea'
+  | 'bananas'
+  | 'apples'
+
+export type AgentExcludeTag = 'sugar' | 'palm_oil' | 'lactose'
+
+export interface RequestedItem {
+  /** Коротка назва українською для UI: «сир кисломолочний». */
+  name: string
+  /** Слова для пошуку в назві товару в каталозі. */
+  search_query: string
+  category: AgentCategory | null
+  /** Скільки потрібно в `unit`. Для пачкових категорій агент іноді дає штуки: «кава: 1 pcs». */
+  quantity: number
+  unit: 'g' | 'ml' | 'pcs'
+  /** Лише якщо людина сама назвала бренд. */
+  brand: string | null
+  /** Можна прибрати, якщо не вкладаємося в бюджет. */
+  optional: boolean
+}
+
+export interface AgentConstraints {
+  budget_uah: number | null
+  exclude: AgentExcludeTag[]
+  /** Дефолт "walk", навіть якщо в тексті нічого не сказано. */
+  travel_mode: Mode
+  radius_km: number | null
+  preferred_chains: string[]
+}
+
+export interface ParsedRequest {
+  items: RequestedItem[]
+  constraints: AgentConstraints
+  servings: number | null
+}
+
+export interface AgentStore {
+  store_id: string
+  alt_store_ids: string[]
+  chain: string
+  chain_name: string | null
+  name: string
+  address: string | null
+  lat: number
+  lng: number
+  distance_km: number
+  duration_min: number
+  /** true — маршрут оцінено за прямою, показуйте «≈». */
+  estimated: boolean
+  maps_url: string
+}
+
+export interface BasketLine {
+  /** `name` позиції з ParsedRequest, яку закриває цей товар. */
+  requested: string
+  product_id: number
+  title: string
+  brand: string | null
+  img_url: string | null
+  store_id: string
+  pack_qty: number | null
+  pack_unit: string | null
+  packs: number
+  /** Грн за пачку. */
+  price: number
+  old_price: number | null
+  promo_percent: number | null
+  unit_price: number | null
+  unit_price_label: string
+  line_total: number
+  tags: string[]
+  note: string | null
+}
+
+export interface MissingItem {
+  name: string
+  reason: 'not_found' | 'filtered_by_composition' | (string & {})
+}
+
+export interface AgentBasket {
+  type: 'nearest' | 'cheapest' | 'smart_split'
+  /** 1 магазин, або 2 для smart_split. */
+  stores: AgentStore[]
+  lines: BasketLine[]
+  total: number
+  saving: number
+  within_budget: boolean
+  missing: MissingItem[]
+}
+
+export interface BasketOut {
+  parsed: ParsedRequest
+  /** rules — LLM недоступна, рецепти не розкладаються. */
+  parser: 'llm' | 'rules'
+  stores_considered: number
+  baskets: AgentBasket[]
+  explanation: string
+  warnings: string[]
+}
+
+export interface BasketRequest {
+  text: string
+  raw_text?: string | null
+  lat: number
+  lng: number
+  mode?: Mode | null
+  radius_km?: number | null
+  city?: string
+}

@@ -1,0 +1,177 @@
+/* DESIGN.md §4.2 StoreCard. Токени --store-card-*, --store-logo-*. */
+.card {
+  display: block;
+  width: 100%;
+  min-height: var(--store-card-min-height);
+  padding: var(--store-card-padding);
+  border: 1px solid var(--store-card-border);
+  border-radius: var(--store-card-radius);
+  background: var(--store-card-bg);
+  text-align: left;
+  cursor: pointer;
+  transition: var(--store-card-transition);
+}
+
+.card:hover {
+  border-color: var(--store-card-border-hover);
+}
+
+.card:active {
+  border-color: var(--store-card-border-hover);
+  background: var(--store-card-bg-pressed);
+}
+
+.card[aria-checked='true'] {
+  border-color: var(--store-card-border-selected);
+  box-shadow: var(--store-card-shadow-selected);
+}
+
+.card:focus-visible {
+  outline: var(--focus-width) solid var(--color-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.title {
+  margin: 0;
+  font: var(--weight-semibold) var(--store-card-title-font) var(--font-display);
+  color: var(--store-card-title-fg);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  height: var(--size-badge);
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-sm);
+  font: var(--weight-medium) var(--text-caption) var(--font-ui);
+  white-space: nowrap;
+}
+
+.badge svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.savings {
+  background: var(--color-savings-solid);
+  color: var(--color-on-savings-solid);
+}
+
+.neutral {
+  background: var(--color-surface-2);
+  color: var(--color-text-2);
+}
+
+.warning {
+  background: var(--color-warning-subtle);
+  color: var(--color-warning);
+}
+
+.chainRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+  margin: var(--store-card-gap) 0 0;
+  font: var(--weight-medium) var(--store-card-chain-font) var(--font-ui);
+  color: var(--store-card-chain-fg);
+}
+
+.chain {
+  flex: none;
+}
+
+.address {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: var(--weight-regular) var(--store-card-meta-font) var(--font-ui);
+  color: var(--store-card-meta-fg);
+}
+
+.splitRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--store-card-gap) 0 0;
+  font: var(--weight-medium) var(--store-card-chain-font) var(--font-ui);
+  color: var(--store-card-chain-fg);
+}
+
+.splitMeta {
+  font: var(--weight-regular) var(--store-card-meta-font) var(--font-ui);
+  color: var(--store-card-meta-fg);
+  text-align: right;
+}
+
+.splitSum {
+  min-width: var(--dim-16);
+  font-weight: var(--weight-semibold);
+  text-align: right;
+}
+
+.logo {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--store-logo-size);
+  height: var(--store-logo-size);
+  border: 1px solid var(--store-logo-border);
+  border-radius: var(--store-logo-radius);
+  background: var(--store-logo-fallback-bg);
+  color: var(--store-logo-fallback-fg);
+  font: var(--weight-bold) var(--text-caption) var(--font-display);
+}
+
+.total {
+  margin: var(--space-ms) 0 0;
+  font: var(--weight-semibold) var(--store-card-total-font) var(--font-ui);
+  color: var(--store-card-total-fg);
+  letter-spacing: -0.01em;
+}
+
+.trade {
+  margin: var(--space-2xs) 0 0;
+  font: var(--weight-medium) var(--store-card-tradeoff-font) var(--font-ui);
+  color: var(--store-card-tradeoff-fg);
+}
+
+.save {
+  font-weight: var(--weight-semibold);
+  color: var(--store-card-tradeoff-savings-fg);
+}
+
+.meta {
+  margin: var(--space-xs) 0 0;
+  font: var(--weight-regular) var(--store-card-meta-font) var(--font-ui);
+  color: var(--store-card-meta-fg);
+}
+
+.skeleton {
+  height: var(--store-card-min-height);
+  border-radius: var(--store-card-radius);
+  background: var(--color-skeleton);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
