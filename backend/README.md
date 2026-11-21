@@ -101,6 +101,35 @@ uv run uvicorn app.main:app --reload
 - **Не запускай ETL паралельно з кимось.** Захист є: другий запуск отримає `skipped`, бо перший тримає `pg_advisory_lock`. Але чужий процес не вбивай, дочекайся кінця.
 - Змінні оточення мають пріоритет над `.env`. Щоб на хвилинку попрацювати з локальною базою, коли в `.env` прописано Supabase: `DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/voicecart DB_SSL=false uv run …`.
 
+## Деплой (Render, безкоштовно)
+
+Усе для деплою лежить у `backend/`: образ (`Dockerfile`, `.dockerignore`) і сервіс Render ([`render.yaml`](render.yaml)). Деплоїться лише модуль `catalog` (`ENABLED_MODULES=catalog` у `render.yaml`): на сервері будуть `/catalog/*` і `/health`, а `geo` і `voice` не імпортуються й не потребують своїх секретів. Безкоштовний план Render дає 0,1 CPU, 512 МБ RAM і 750 годин на місяць, яких вистачає на один сервіс 24/7. Без запитів сервіс засинає через 15 хвилин.
+
+1. Злий зміни в `main`: Render деплоїть цю гілку.
+2. Render → **New → Blueprint** → вибери цей репо → у полі **Blueprint Path** вкажи `backend/render.yaml`. Без цього Render шукатиме файл у корені й не знайде. Якщо репо належить іншому акаунту, його власник має дозволити GitHub-застосунок Render.
+3. Render попросить значення змінних із `sync: false`:
+   - `DATABASE_URL` — рядок Session pooler із Supabase, той самий, що в `backend/.env`;
+   - `API_KEYS` — **новий** продакшен-ключ;
+   - `CORS_ORIGINS` — адреса фронта, напр. `["https://<frontend>.onrender.com"]`.
+
+   Решта (`DB_SSL`, `SCHEDULER_*`, `ETL_CRON`, `PORT`) уже задана в `render.yaml`.
+4. Після деплою відкрий `https://<сервіс>.onrender.com/docs` → **Authorize** → ключ → `GET /catalog/stores`. Міграції застосовуються самі під час кожного старту.
+5. **Не дай сервісу заснути**, інакше нічний ETL о 03:00 не стартує або обірветься посередині. На cron-job.org (безкоштовно) додай задачу `GET https://<сервіс>.onrender.com/health` кожні 10 хвилин. Вона використовує майже всі 750 безкоштовних годин, тож інших free-сервісів у цьому воркспейсі Render не має бути.
+6. **Перевір, чи магазини пускають запити з Render.** ETL ми запускали лише з української IP, а з дата-центру у Франкфурті Zakaz.ua чи Сільпо можуть відповідати 403 або 429. Тимчасово постав у Render `ETL_CRON` на найближчі хвилини (час за Києвом, напр. `40 15 * * *`), дочекайся запуску й подивись `GET /catalog/etl/status`. Потім поверни `0 3 * * *`.
+7. **План Б**, якщо магазини блокують Render: постав `SCHEDULER_ENABLED=false`, а ETL запускай із будь-якої машини, де `backend/.env` дивиться на Supabase (`uv run python -m app.catalog.etl`). API на Render віддаватиме ці дані.
+
+Перевірити образ локально (з `backend/`):
+
+```bash
+docker build -t voicecart-backend .
+```
+
+```bash
+docker run --rm -p 8000:10000 -e PORT=10000 -e ENABLED_MODULES=catalog -e DATABASE_URL=postgresql+asyncpg://postgres:postgres@host.docker.internal:5432/voicecart -e DB_SSL=false -e API_KEYS=local-test-key voicecart-backend
+```
+
+`.env` в образ не потрапляє (див. `.dockerignore`), тому всі налаштування передаються змінними оточення.
+
 ## Нічний ETL (03:00)
 
 - Планувальник APScheduler живе всередині FastAPI і щодня о **03:00 за Києвом** запускає той самий ETL, що й команда `python -m app.catalog.etl`.

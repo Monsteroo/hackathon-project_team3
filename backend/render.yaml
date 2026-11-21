@@ -1,0 +1,40 @@
+# Render Blueprint: модуль catalog бекенду VoiceCart (Учасник 2) як безкоштовний Docker web service
+# у Франкфурті. Інші модулі (geo, voice) тут вимкнені через ENABLED_MODULES і не потребують своїх секретів.
+# Render → New → Blueprint → цей репо → поле Blueprint Path: backend/render.yaml (файл не в корені репо,
+# щоб деплой бекенду не чіпав інші частини проєкту). Значення з `sync: false` Render попросить ввести під час
+# створення; у цьому файлі секретів немає й не має бути.
+services:
+  - type: web
+    name: voicecart-catalog
+    runtime: docker
+    plan: free
+    region: frankfurt          # найближче до Supabase (eu-west-1); змінити після створення не можна
+    branch: main
+    rootDir: backend           # автодеплой лише на зміни в backend/
+    dockerfilePath: ./backend/Dockerfile   # шляхи рахуються від кореня репо, навіть коли сам файл у backend/
+    dockerContext: ./backend
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: ENABLED_MODULES      # лише каталог: /catalog/*, /health; geo і voice не імпортуються
+        value: catalog
+      - key: DATABASE_URL       # Supabase → Connect → Session pooler (порт 5432), user postgres.<project-ref>
+        sync: false
+      - key: DB_SSL
+        value: "true"
+      - key: DB_POOL_SIZE
+        value: "3"
+      - key: API_KEYS           # окремий продакшен-ключ (кілька — через кому), не той, що в локальному .env
+        sync: false
+      - key: CORS_ORIGINS       # JSON-список, напр. ["https://<frontend>.onrender.com"]
+        sync: false
+      - key: SCHEDULER_ENABLED
+        value: "true"
+      - key: SCHEDULER_TIMEZONE
+        value: Europe/Kyiv
+      - key: ETL_CRON
+        value: "0 3 * * *"
+      - key: ETL_CITY
+        value: Київ

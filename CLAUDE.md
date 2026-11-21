@@ -68,7 +68,7 @@ uv run python -m app.catalog.etl --help  # ETL цін вручну (той са�
 ## Безпека
 
 - Секрети (`DATABASE_URL`, ключі Supabase, `API_KEYS`) зберігаються лише в `backend/.env`, а він у `.gitignore`. У коді, моках і документації замість ключа пиши `<API_KEY>`.
-- API захищене ключем (`app/auth.py`, заголовок `X-API-Key`). Новий модуль підключай у `app/main.py` з `dependencies=[Depends(require_api_key)]`.
+- API захищене ключем (`app/auth.py`, заголовок `X-API-Key`). Новий модуль додавай рядком у `MODULES` в `app/main.py`: його роутер автоматично отримає перевірку ключа. `ENABLED_MODULES` вмикає лише частину модулів (каталог деплоїться окремо: `backend/render.yaml`).
 - Фронт звертається тільки до FastAPI, не до Supabase напряму. На всіх таблицях увімкнено RLS (див. скіл `supabase-postgres`).
 
 ## Мова й стиль
