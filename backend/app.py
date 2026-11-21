@@ -9,9 +9,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.routes_geo import router as geo_router
+from backend.routes_voice import router as voice_router
 
 app = FastAPI(title="VoiceCart AI — Voice & Geo API", version="0.1.0")
 app.include_router(geo_router)
+app.include_router(voice_router)
 
 # Фронт на Vercel живе на тому ж домені; CORS потрібен для локального Vite (5173).
 app.add_middleware(
