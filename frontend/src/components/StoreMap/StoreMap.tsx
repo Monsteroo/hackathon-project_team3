@@ -17,6 +17,33 @@ export interface MapPin {
   title: string
 }
 
+/** Відрізок маршруту з /geo/route: [lng, lat]. estimated → пряма-оцінка, малюємо пунктиром. */
+export interface MapRoute {
+  coordinates: [number, number][]
+  estimated: boolean
+}
+
+const ROUTE_SOURCE = 'route'
+const ROUTE_LAYERS = ['route-casing', 'route-line', 'route-line-estimated'] as const
+
+/** Колір із дизайн-токена (сирі hex у коді заборонено; MapLibre не розуміє CSS-змінні). */
+function tokenColor(el: Element, name: string, fallback: string): string {
+  return getComputedStyle(el).getPropertyValue(name).trim() || fallback
+}
+
+function routeData(routes: MapRoute[]) {
+  return {
+    type: 'FeatureCollection' as const,
+    features: routes
+      .filter((r) => r.coordinates.length >= 2)
+      .map((r) => ({
+        type: 'Feature' as const,
+        properties: { estimated: r.estimated },
+        geometry: { type: 'LineString' as const, coordinates: r.coordinates },
+      })),
+  }
+}
+
 type Props = {
   center?: [number, number]
   zoom?: number
@@ -31,6 +58,8 @@ type Props = {
   /** Наведення на картку підсвічує пін. */
   hoverIds?: string[]
   onPinClick?: (id: string) => void
+  /** Маршрут від людини до магазину(-ів) вибраного варіанту. */
+  routes?: MapRoute[]
 }
 
 function prefersReducedMotion(): boolean {
@@ -51,9 +80,12 @@ export function StoreMap({
   selectedIds,
   hoverIds,
   onPinClick,
+  routes,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<maplibregl.Map | null>(null)
+  /** Джерела й шари можна додавати лише після завантаження стилю. */
+  const [styleReady, setStyleReady] = useState(false)
   const markersRef = useRef(new Map<string, { marker: maplibregl.Marker; el: HTMLElement }>())
   const onPinClickRef = useRef(onPinClick)
   useEffect(() => {
@@ -91,6 +123,7 @@ export function StoreMap({
         }
       }
     })
+    m.on('load', () => setStyleReady(true))
     setMap(m)
 
     const markers = markersRef.current
@@ -98,8 +131,55 @@ export function StoreMap({
       markers.clear()
       m.remove()
       setMap(null)
+      setStyleReady(false)
     }
   }, [])
+
+  // Лінія маршруту: обводка графітом + лайм (як вибраний пін), оцінка за прямою — пунктиром.
+  const routesKey = (routes ?? [])
+    .map((r) => `${r.estimated ? 'e' : 'r'}:${r.coordinates.length}:${r.coordinates[0]?.join(',')}:${r.coordinates.at(-1)?.join(',')}`)
+    .join('|')
+  const routesRef = useRef(routes)
+  useEffect(() => {
+    routesRef.current = routes
+  })
+  useEffect(() => {
+    const el = containerRef.current
+    if (!map || !styleReady || !el) return
+    const data = routeData(routesRef.current ?? [])
+    const source = map.getSource(ROUTE_SOURCE) as maplibregl.GeoJSONSource | undefined
+    if (source) {
+      source.setData(data)
+      return
+    }
+    const ink = tokenColor(el, '--color-accent-fg', 'black')
+    const accent = tokenColor(el, '--color-accent', 'yellowgreen')
+    map.addSource(ROUTE_SOURCE, { type: 'geojson', data })
+    // Під пінами HTML-маркерів шари лежать і так; додаємо поверх базової карти.
+    map.addLayer({
+      id: ROUTE_LAYERS[0],
+      type: 'line',
+      source: ROUTE_SOURCE,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': ink, 'line-width': 8, 'line-opacity': 0.85 },
+    })
+    map.addLayer({
+      id: ROUTE_LAYERS[1],
+      type: 'line',
+      source: ROUTE_SOURCE,
+      filter: ['!=', ['get', 'estimated'], true],
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': accent, 'line-width': 5 },
+    })
+    map.addLayer({
+      id: ROUTE_LAYERS[2],
+      type: 'line',
+      source: ROUTE_SOURCE,
+      filter: ['==', ['get', 'estimated'], true],
+      layout: { 'line-join': 'round', 'line-cap': 'butt' },
+      paint: { 'line-color': accent, 'line-width': 5, 'line-dasharray': [1.5, 1.5] },
+    })
+  }, [map, styleReady, routesKey])
 
   // Без пінів — просто центр (напр. місто).
   useEffect(() => {
@@ -160,6 +240,8 @@ export function StoreMap({
     }
     const points = pins.filter((p) => selected.has(p.id)).map((p) => [p.lng, p.lat] as [number, number])
     if (originLat != null && originLng != null) points.push([originLng, originLat])
+    // Маршрут може вигинатися за межі прямокутника «людина — магазин»: він теж має влізти в кадр.
+    for (const r of routesRef.current ?? []) points.push(...r.coordinates)
     if (points.length === 0) return
     const bounds = points.reduce(
       (b, p) => b.extend(p),
@@ -167,7 +249,7 @@ export function StoreMap({
     )
     // Зверху — місце під чип адреси.
     map.fitBounds(bounds, { padding: { top: 96, right: 64, bottom: 80, left: 48 }, maxZoom: 15, duration: prefersReducedMotion() ? 0 : 600 })
-  }, [map, pinsKey, selectedKey, originLat, originLng])
+  }, [map, pinsKey, selectedKey, originLat, originLng, routesKey])
 
   const hoverKey = (hoverIds ?? []).join('|')
   useEffect(() => {

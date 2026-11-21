@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight, CircleAlert, ExternalLink, Info, MapPin, RotateCcw } from 'lucide-react'
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import buttonStyles from '../components/Button/Button.module.css'
 import { Button } from '../components/Button/Button'
@@ -19,13 +19,14 @@ import {
   type OptionType,
 } from '../features/results/options'
 import { loadResult, requestKey, saveResult } from '../features/results/resultsStore'
+import { useRoutes } from '../features/results/useRoutes'
 import { api, ApiError } from '../lib/api/client'
 import type { AgentBasket, BasketOut } from '../lib/api/types'
 import { pluralItems } from '../lib/format'
 import { useCity } from '../lib/useCity'
 import styles from './ResultsPage.module.css'
 
-type State = { origin?: Origin } | null
+type State = { origin?: Origin; from?: 'confirm' } | null
 
 const NO_BASKETS: AgentBasket[] = []
 
@@ -67,6 +68,14 @@ export function ResultsPage() {
   const city = useCity()
 
   const saved = loadResult()
+  const cameFromList = (location.state as State)?.from === 'confirm'
+
+  /** «До списку»: якщо прийшли з /confirm — крок назад в історії (браузерні «Назад/Вперед» працюють як очікується). */
+  function backToList(e: MouseEvent<HTMLAnchorElement>) {
+    if (!cameFromList) return
+    e.preventDefault()
+    navigate(-1)
+  }
   const origin = (location.state as State)?.origin ?? saved?.origin ?? null
   const request = draft && origin ? toBasketRequest(draft, origin, city.name) : null
   const key = request ? requestKey(request) : null
@@ -204,13 +213,14 @@ export function ResultsPage() {
       : []),
   ]
   const route = current && origin ? routeUrl(current, origin, mode) : null
+  const routes = useRoutes(current, origin, mode)
   const itemsCount = draft?.items.length ?? 0
 
   return (
     <section className={styles.page} aria-labelledby="results-title">
       <div className={styles.left}>
         <header className={styles.head}>
-          <Link to="/confirm" className={styles.back}>
+          <Link to="/confirm" className={styles.back} onClick={backToList}>
             <ArrowLeft strokeWidth={1.75} aria-hidden="true" />
             До списку
           </Link>
@@ -248,7 +258,7 @@ export function ResultsPage() {
                   Спробувати ще
                 </Button>
               )}
-              <Link to="/confirm" className={`${buttonStyles.button} ${buttonStyles.ghost}`}>
+              <Link to="/confirm" className={`${buttonStyles.button} ${buttonStyles.ghost}`} onClick={backToList}>
                 Змінити список
               </Link>
             </div>
@@ -260,7 +270,7 @@ export function ResultsPage() {
             <CircleAlert strokeWidth={1.75} aria-hidden="true" />
             <p>Поруч не знайшли магазинів з цими товарами. Спробуйте більший радіус або інший список</p>
             <div className={styles.problemActions}>
-              <Link to="/confirm" className={`${buttonStyles.button} ${buttonStyles.secondary}`}>
+              <Link to="/confirm" className={`${buttonStyles.button} ${buttonStyles.secondary}`} onClick={backToList}>
                 Змінити список і радіус
               </Link>
             </div>
@@ -365,7 +375,8 @@ export function ResultsPage() {
           selectedIds={storeIds(current)}
           hoverIds={storeIds(hoveredBasket)}
           onPinClick={onPinClick}
-          label="Карта: ви й магазини варіантів"
+          routes={routes}
+          label="Карта: ви, магазини варіантів і маршрут до вибраного"
         />
       </div>
     </section>

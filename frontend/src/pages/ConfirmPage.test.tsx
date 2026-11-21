@@ -114,7 +114,10 @@ describe('ConfirmPage', () => {
     stubGeolocation('ok')
     fireEvent.click(screen.getByRole('button', { name: 'Знайти ціни · 1 товар' }))
     await waitFor(() => expect(router.state.location.pathname).toBe('/results'))
-    expect(router.state.location.state).toEqual({ origin: { lat: 50.45, lng: 30.52, label: null, source: 'gps' } })
+    expect(router.state.location.state).toEqual({
+      origin: { lat: 50.45, lng: 30.52, label: null, source: 'gps' },
+      from: 'confirm',
+    })
     expect(getBasketDraft()).toMatchObject({ budget: 500, mode: 'walk', radiusKm: 1, exclude: ['sugar'] })
     expect(draftToText(getBasketDraft()!)).toBe('молоко 1 л, без цукру, до 500 грн')
   })
@@ -149,6 +152,7 @@ describe('ConfirmPage', () => {
     await waitFor(() => expect(router.state.location.pathname).toBe('/results'))
     expect(router.state.location.state).toEqual({
       origin: { lat: 50.4498, lng: 30.5231, label: 'вулиця Хрещатик, 22, Київ', source: 'address' },
+      from: 'confirm',
     })
   })
 
