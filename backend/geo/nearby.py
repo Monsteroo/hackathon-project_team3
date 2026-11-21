@@ -9,34 +9,17 @@
 """
 from __future__ import annotations
 
-import re
 from typing import Iterable
 
 import httpx
 
 from backend.geo.directory import load_stores
+from backend.geo.ids import normalize_store_id
 from backend.geo.distance import haversine_km
 from backend.geo.routing import DEFAULT_RADIUS_KM, MAX_RADIUS_KM, Mode, maps_urls, travel_matrix
 
 MAX_EXPANSIONS = 3
 CONFIRMED_OUTSIDE_RADIUS = 5  # скільки найближчих підтверджених магазинів поза радіусом теж рахувати
-
-
-UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", re.IGNORECASE)
-
-
-def normalize_store_id(raw: str) -> str:
-    """Приймаємо і наш формат (`zakaz:48201031`, `silpo:<uuid>`), і сирий з API Учасниці 2 / агента:
-    числовий ID — Zakaz.ua, uuid — Сільпо (branchId)."""
-    sid = raw.strip()
-    if ":" in sid:
-        source, _, rest = sid.partition(":")
-        return f"{source.lower()}:{rest.strip()}"
-    if sid.isdigit():
-        return f"zakaz:{sid}"
-    if UUID_RE.match(sid):
-        return f"silpo:{sid.lower()}"
-    return sid
 
 
 def find_store(store_id: str) -> dict | None:

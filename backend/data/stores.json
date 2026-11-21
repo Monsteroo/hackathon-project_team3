@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-11-21T12:04:59+00:00",
+ "generated_at": "2026-11-21T12:29:50+00:00",
  "sources": {
   "listed": "stores.csv (Учасник 2: Zakaz.ua + Сільпо)",
   "osm": "OpenStreetMap © contributors, ODbL",
-  "offers": "offers_sample.csv"
+  "prices": "raw/01_*.json + raw/02_*.json"
  },
  "stats": {
   "osm_in": 234,
@@ -14,10 +14,11 @@
   "listed": 415,
   "dropped_other_cities": 329,
   "total": 238,
-  "with_offers": 5,
+  "with_offers": 62,
   "cities": [
    "Київ"
   ],
+  "priced_rule": "offers_count >= 50",
   "osm_address_filled": 34
  },
  "stores": [
@@ -39,6 +40,7 @@
     "silpo:1edb733e-5462-6606-9da4-51c4e9ef1e54",
     "silpo:1edee426-ba20-6f68-93f6-7f0a502ece76"
    ],
+   "offers_count": 548,
    "place_id": "50.5202,30.5145"
   },
   {
@@ -58,6 +60,7 @@
    "alt_ids": [
     "silpo:1eda888d-b60d-66f4-a557-03a302d993f3"
    ],
+   "offers_count": 582,
    "place_id": "50.5187,30.4562"
   },
   {
@@ -73,10 +76,11 @@
    "lng": 30.35835,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [
     "silpo:1f093ba3-1c94-6692-9dd2-6d3ac06a576b"
    ],
+   "offers_count": 634,
    "place_id": "50.4956,30.3584"
   },
   {
@@ -92,8 +96,9 @@
    "lng": 30.38344,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 359,
    "place_id": "50.4567,30.3834"
   },
   {
@@ -109,8 +114,9 @@
    "lng": 30.38365,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 479,
    "place_id": "50.4313,30.3836"
   },
   {
@@ -126,8 +132,9 @@
    "lng": 30.50649,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 341,
    "place_id": "50.5030,30.5065"
   },
   {
@@ -143,8 +150,9 @@
    "lng": 30.61665,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 350,
    "place_id": "50.5174,30.6166"
   },
   {
@@ -160,8 +168,9 @@
    "lng": 30.59239,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 293,
    "place_id": "50.4397,30.5924"
   },
   {
@@ -177,8 +186,9 @@
    "lng": 30.62302,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 460,
    "place_id": "50.5132,30.6230"
   },
   {
@@ -194,8 +204,9 @@
    "lng": 30.519,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 623,
    "place_id": "50.4165,30.5190"
   },
   {
@@ -211,8 +222,9 @@
    "lng": 30.63235,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 392,
    "place_id": "50.4514,30.6323"
   },
   {
@@ -228,8 +240,9 @@
    "lng": 30.50362,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 260,
    "place_id": "50.5250,30.5036"
   },
   {
@@ -245,10 +258,11 @@
    "lng": 30.42855,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [
     "silpo:1ee0f3e5-f6f3-6104-8b25-c100c3f8f734"
    ],
+   "offers_count": 264,
    "place_id": "50.5047,30.4286"
   },
   {
@@ -264,8 +278,9 @@
    "lng": 30.40623,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 270,
    "place_id": "50.4727,30.4062"
   },
   {
@@ -281,8 +296,9 @@
    "lng": 30.34575,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 274,
    "place_id": "50.4559,30.3457"
   },
   {
@@ -298,8 +314,9 @@
    "lng": 30.44086,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 385,
    "place_id": "50.5072,30.4409"
   },
   {
@@ -315,8 +332,9 @@
    "lng": 30.44726,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 400,
    "place_id": "50.4532,30.4473"
   },
   {
@@ -332,8 +350,9 @@
    "lng": 30.33759,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 380,
    "place_id": "50.4720,30.3376"
   },
   {
@@ -349,8 +368,9 @@
    "lng": 30.63185,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 319,
    "place_id": "50.4054,30.6319"
   },
   {
@@ -366,13 +386,14 @@
    "lng": 30.59345,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [
     "silpo:1edb6b40-98c2-6d92-81ab-51de6a88d469",
     "silpo:1edb6b55-e6d0-657e-9551-d54e0a9fe643",
     "silpo:1edb7335-4f25-66ce-9f29-d5cf071d641d",
     "silpo:1f073913-539f-6cd4-9a20-b1839a533387"
    ],
+   "offers_count": 666,
    "place_id": "50.4279,30.5935"
   },
   {
@@ -388,8 +409,9 @@
    "lng": 30.60059,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 349,
    "place_id": "50.5335,30.6006"
   },
   {
@@ -405,8 +427,9 @@
    "lng": 30.45169,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 362,
    "place_id": "50.5227,30.4517"
   },
   {
@@ -422,8 +445,9 @@
    "lng": 30.45909,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 285,
    "place_id": "50.4271,30.4591"
   },
   {
@@ -439,8 +463,9 @@
    "lng": 30.63158,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 400,
    "place_id": "50.4009,30.6316"
   },
   {
@@ -456,10 +481,11 @@
    "lng": 30.45815,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [
     "silpo:1edee42f-ece6-6e12-8d91-d3a7e392bfd1"
    ],
+   "offers_count": 438,
    "place_id": "50.3843,30.4581"
   },
   {
@@ -475,8 +501,9 @@
    "lng": 30.64994,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 496,
    "place_id": "50.4215,30.6499"
   },
   {
@@ -492,8 +519,9 @@
    "lng": 30.4553,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 319,
    "place_id": "50.4323,30.4553"
   },
   {
@@ -509,10 +537,11 @@
    "lng": 30.38308,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [
     "silpo:1eff9aa5-34b2-6dda-8133-f7b88dcc4e75"
    ],
+   "offers_count": 424,
    "place_id": "50.4247,30.3831"
   },
   {
@@ -528,8 +557,9 @@
    "lng": 30.46166,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 350,
    "place_id": "50.4706,30.4617"
   },
   {
@@ -545,8 +575,9 @@
    "lng": 30.5123,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 587,
    "place_id": "50.4953,30.5123"
   },
   {
@@ -562,8 +593,9 @@
    "lng": 30.49444,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 327,
    "place_id": "50.4474,30.4944"
   },
   {
@@ -579,8 +611,9 @@
    "lng": 30.63827,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 374,
    "place_id": "50.3977,30.6383"
   },
   {
@@ -596,8 +629,9 @@
    "lng": 30.51904,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 355,
    "place_id": "50.4624,30.5190"
   },
   {
@@ -615,6 +649,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5053,30.4910"
   },
   {
@@ -632,6 +667,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4848,30.6394"
   },
   {
@@ -649,6 +685,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5105,30.4197"
   },
   {
@@ -666,6 +703,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4644,30.6103"
   },
   {
@@ -685,6 +723,7 @@
    "alt_ids": [
     "silpo:1edee42d-e1bb-6062-b15c-85b79c775c85"
    ],
+   "offers_count": 0,
    "place_id": "50.4452,30.4440"
   },
   {
@@ -704,6 +743,7 @@
    "alt_ids": [
     "silpo:1eeec2d7-a720-61f8-8640-bd431739bb35"
    ],
+   "offers_count": 0,
    "place_id": "50.4173,30.6184"
   },
   {
@@ -723,6 +763,7 @@
    "alt_ids": [
     "silpo:1edb6b4f-69eb-64a6-82b6-15f58a999f30"
    ],
+   "offers_count": 0,
    "place_id": "50.4411,30.5208"
   },
   {
@@ -740,6 +781,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5087,30.6074"
   },
   {
@@ -757,6 +799,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4714,30.5023"
   },
   {
@@ -777,6 +820,7 @@
     "silpo:1edb7336-73ed-600a-baf8-73524574f50b",
     "silpo:1edee431-c930-66ec-b075-bf1a8bae2e6c"
    ],
+   "offers_count": 0,
    "place_id": "50.4560,30.4973"
   },
   {
@@ -796,6 +840,7 @@
    "alt_ids": [
     "silpo:1ee11b9b-8e8f-63d2-aa6d-938082996c70"
    ],
+   "offers_count": 0,
    "place_id": "50.4532,30.5984"
   },
   {
@@ -813,6 +858,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4143,30.6509"
   },
   {
@@ -830,6 +876,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4980,30.5179"
   },
   {
@@ -847,6 +894,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4107,30.5458"
   },
   {
@@ -866,6 +914,7 @@
    "alt_ids": [
     "silpo:1edee445-2a2c-65a0-8810-0fb90e0f6d29"
    ],
+   "offers_count": 0,
    "place_id": "50.4161,30.5319"
   },
   {
@@ -885,6 +934,7 @@
    "alt_ids": [
     "silpo:1edb735c-c506-63b2-b3f9-db14c9aca538"
    ],
+   "offers_count": 0,
    "place_id": "50.4388,30.5232"
   },
   {
@@ -902,6 +952,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5194,30.4653"
   },
   {
@@ -919,6 +970,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4966,30.4626"
   },
   {
@@ -936,6 +988,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4272,30.5306"
   },
   {
@@ -953,6 +1006,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5047,30.4373"
   },
   {
@@ -972,6 +1026,7 @@
    "alt_ids": [
     "silpo:1edee435-04af-6882-8c3a-c70e6ed87655"
    ],
+   "offers_count": 0,
    "place_id": "50.4297,30.6194"
   },
   {
@@ -989,6 +1044,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5322,30.6083"
   },
   {
@@ -1008,6 +1064,7 @@
    "alt_ids": [
     "silpo:1f0bae35-69aa-6bd2-82b6-9554c10c3d4a"
    ],
+   "offers_count": 0,
    "place_id": "50.4845,30.5955"
   },
   {
@@ -1025,6 +1082,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4120,30.6443"
   },
   {
@@ -1042,6 +1100,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5003,30.4503"
   },
   {
@@ -1059,6 +1118,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4675,30.6298"
   },
   {
@@ -1076,6 +1136,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4866,30.5851"
   },
   {
@@ -1095,6 +1156,7 @@
    "alt_ids": [
     "silpo:1ee88554-aab7-6c88-9617-5f18e549a208"
    ],
+   "offers_count": 0,
    "place_id": "50.4586,30.3994"
   },
   {
@@ -1114,6 +1176,7 @@
    "alt_ids": [
     "silpo:1efff1c1-4d04-6c94-9c75-f388b811ab7b"
    ],
+   "offers_count": 0,
    "place_id": "50.4563,30.5939"
   },
   {
@@ -1131,6 +1194,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4926,30.6000"
   },
   {
@@ -1148,6 +1212,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4153,30.5223"
   },
   {
@@ -1165,6 +1230,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4015,30.5641"
   },
   {
@@ -1182,6 +1248,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4934,30.5765"
   },
   {
@@ -1199,6 +1266,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4071,30.6662"
   },
   {
@@ -1219,6 +1287,7 @@
     "silpo:1edb730e-fefd-6302-a06d-4ba21872bb68",
     "silpo:1edb730f-5502-65ae-9b0e-4ba21872bb68"
    ],
+   "offers_count": 0,
    "place_id": "50.3738,30.4468"
   },
   {
@@ -1238,6 +1307,7 @@
    "alt_ids": [
     "silpo:1edb7337-bfd1-6268-ab8d-73524574f50b"
    ],
+   "offers_count": 0,
    "place_id": "50.3409,30.5507"
   },
   {
@@ -1257,6 +1327,7 @@
    "alt_ids": [
     "silpo:1f0355d2-8e9a-6776-937a-337c93638270"
    ],
+   "offers_count": 0,
    "place_id": "50.4717,30.4787"
   },
   {
@@ -1277,6 +1348,7 @@
     "silpo:1edb7340-0e68-65b8-90cc-11a6c487168c",
     "silpo:1f0ad8d6-ef99-60d4-b6ed-cf102ff76665"
    ],
+   "offers_count": 0,
    "place_id": "50.4713,30.5175"
   },
   {
@@ -1294,6 +1366,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4141,30.6366"
   },
   {
@@ -1314,6 +1387,7 @@
     "silpo:1edb7340-62dd-6698-b082-198a97b604e9",
     "silpo:1f05d7d3-7c8c-60ae-b4b0-8bc00e7480e1"
    ],
+   "offers_count": 0,
    "place_id": "50.4621,30.4942"
   },
   {
@@ -1333,6 +1407,7 @@
    "alt_ids": [
     "silpo:1ee11bac-502d-6cd6-bd9d-7921cac13a23"
    ],
+   "offers_count": 0,
    "place_id": "50.4359,30.4900"
   },
   {
@@ -1350,6 +1425,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5095,30.4977"
   },
   {
@@ -1367,6 +1443,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5192,30.4985"
   },
   {
@@ -1384,6 +1461,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5046,30.5119"
   },
   {
@@ -1403,6 +1481,7 @@
    "alt_ids": [
     "silpo:1edb7345-bc3f-66fa-93f1-73524574f50b"
    ],
+   "offers_count": 0,
    "place_id": "50.4056,30.6112"
   },
   {
@@ -1422,6 +1501,7 @@
    "alt_ids": [
     "silpo:1eefcaf6-029a-6868-a937-c991e9e79e41"
    ],
+   "offers_count": 0,
    "place_id": "50.5127,30.4969"
   },
   {
@@ -1439,6 +1519,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4513,30.4680"
   },
   {
@@ -1456,6 +1537,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5053,30.4535"
   },
   {
@@ -1473,6 +1555,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5099,30.5059"
   },
   {
@@ -1492,6 +1575,7 @@
    "alt_ids": [
     "silpo:1edb6b37-73a5-6540-acb1-bbad18c03843"
    ],
+   "offers_count": 0,
    "place_id": "50.3993,30.6167"
   },
   {
@@ -1507,10 +1591,11 @@
    "lng": 30.60491,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [
     "silpo:1edb6b1d-b47d-6b68-bbe1-0f4ab5c79679"
    ],
+   "offers_count": 476,
    "place_id": "50.5025,30.6049"
   },
   {
@@ -1530,6 +1615,7 @@
    "alt_ids": [
     "silpo:1edb6b36-ca5d-6e60-9135-6f0768df5f66"
    ],
+   "offers_count": 0,
    "place_id": "50.4142,30.6618"
   },
   {
@@ -1545,12 +1631,13 @@
    "lng": 30.60192,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [
     "silpo:1edb6b28-065a-65c6-9df1-276089a8ab8c",
     "silpo:1edb6b40-f531-6952-b48f-bf2cac88bd3a",
     "silpo:1f19d2e5-365f-61dc-856c-671ae0960fbf"
    ],
+   "offers_count": 617,
    "place_id": "50.5166,30.6019"
   },
   {
@@ -1568,6 +1655,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4863,30.5219"
   },
   {
@@ -1587,6 +1675,7 @@
    "alt_ids": [
     "silpo:1ef86de6-8f78-6adc-b578-535fca796f33"
    ],
+   "offers_count": 0,
    "place_id": "50.3918,30.4676"
   },
   {
@@ -1604,6 +1693,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4586,30.5831"
   },
   {
@@ -1621,6 +1711,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4529,30.4066"
   },
   {
@@ -1640,6 +1731,7 @@
    "alt_ids": [
     "silpo:1f06213d-d33c-6508-836a-4b6d531d9e48"
    ],
+   "offers_count": 0,
    "place_id": "50.4092,30.5444"
   },
   {
@@ -1657,6 +1749,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4121,30.6001"
   },
   {
@@ -1674,6 +1767,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4356,30.3808"
   },
   {
@@ -1691,6 +1785,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5137,30.4235"
   },
   {
@@ -1710,6 +1805,7 @@
    "alt_ids": [
     "silpo:1f1739ad-f1e7-6ba8-bd22-5bd655abd542"
    ],
+   "offers_count": 0,
    "place_id": "50.4900,30.4969"
   },
   {
@@ -1727,6 +1823,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4198,30.5333"
   },
   {
@@ -1744,6 +1841,7 @@
    "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 915,
    "place_id": "50.4932,30.5581"
   },
   {
@@ -1759,8 +1857,9 @@
    "lng": 30.398795,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 786,
    "place_id": "50.4066,30.3988"
   },
   {
@@ -1776,8 +1875,9 @@
    "lng": 30.4164598,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 879,
    "place_id": "50.5040,30.4165"
   },
   {
@@ -1793,8 +1893,9 @@
    "lng": 30.6056,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 867,
    "place_id": "50.4112,30.6056"
   },
   {
@@ -1810,8 +1911,9 @@
    "lng": 30.64142,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 835,
    "place_id": "50.3905,30.6414"
   },
   {
@@ -1827,8 +1929,9 @@
    "lng": 30.441555,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 802,
    "place_id": "50.3782,30.4416"
   },
   {
@@ -1844,8 +1947,9 @@
    "lng": 30.62352,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 801,
    "place_id": "50.5111,30.6235"
   },
   {
@@ -1861,8 +1965,9 @@
    "lng": 30.47774,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 813,
    "place_id": "50.5193,30.4777"
   },
   {
@@ -1880,6 +1985,7 @@
    "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1246,
    "place_id": "50.4913,30.4900"
   },
   {
@@ -1897,6 +2003,7 @@
    "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1231,
    "place_id": "50.4969,30.3613"
   },
   {
@@ -1912,8 +2019,9 @@
    "lng": 30.6313015,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1219,
    "place_id": "50.4193,30.6313"
   },
   {
@@ -1929,8 +2037,9 @@
    "lng": 30.5219596,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1226,
    "place_id": "50.4119,30.5220"
   },
   {
@@ -1946,8 +2055,9 @@
    "lng": 30.6383533,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1251,
    "place_id": "50.4547,30.6384"
   },
   {
@@ -1963,8 +2073,9 @@
    "lng": 30.458355,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1155,
    "place_id": "50.3680,30.4584"
   },
   {
@@ -1980,8 +2091,9 @@
    "lng": 30.3924961,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1174,
    "place_id": "50.4177,30.3925"
   },
   {
@@ -1997,8 +2109,9 @@
    "lng": 30.4738766,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1070,
    "place_id": "50.5057,30.4739"
   },
   {
@@ -2014,8 +2127,9 @@
    "lng": 30.49952,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1315,
    "place_id": "50.4618,30.4995"
   },
   {
@@ -2031,8 +2145,9 @@
    "lng": 30.476823745365206,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1379,
    "place_id": "50.4342,30.4768"
   },
   {
@@ -2048,8 +2163,9 @@
    "lng": 30.4414631,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1426,
    "place_id": "50.4498,30.4415"
   },
   {
@@ -2065,8 +2181,9 @@
    "lng": 30.49952,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1318,
    "place_id": "50.4618,30.4995"
   },
   {
@@ -2082,8 +2199,9 @@
    "lng": 30.476823745365206,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1382,
    "place_id": "50.4342,30.4768"
   },
   {
@@ -2099,8 +2217,9 @@
    "lng": 30.4414631,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1428,
    "place_id": "50.4498,30.4415"
   },
   {
@@ -2116,8 +2235,9 @@
    "lng": 30.476823745365206,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1368,
    "place_id": "50.4342,30.4768"
   },
   {
@@ -2133,8 +2253,9 @@
    "lng": 30.4414631,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1420,
    "place_id": "50.4498,30.4415"
   },
   {
@@ -2150,8 +2271,9 @@
    "lng": 30.49952,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 1308,
    "place_id": "50.4618,30.4995"
   },
   {
@@ -2167,8 +2289,9 @@
    "lng": 30.4837696,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 514,
    "place_id": "50.4394,30.4838"
   },
   {
@@ -2184,8 +2307,9 @@
    "lng": 30.60119948459225,
    "has_pickup": true,
    "online_catalog": true,
-   "has_online_prices": false,
+   "has_online_prices": true,
    "alt_ids": [],
+   "offers_count": 549,
    "place_id": "50.5296,30.6012"
   },
   {
@@ -2203,6 +2327,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4970,30.3612"
   },
   {
@@ -2220,6 +2345,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4272,30.6392"
   },
   {
@@ -2237,6 +2363,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4621,30.4813"
   },
   {
@@ -2254,6 +2381,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5191,30.5017"
   },
   {
@@ -2271,6 +2399,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4111,30.4048"
   },
   {
@@ -2288,6 +2417,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4916,30.5833"
   },
   {
@@ -2307,6 +2437,7 @@
    "alt_ids": [
     "silpo:1eee2a8c-3aae-667a-8da9-9bd8e81dfe33"
    ],
+   "offers_count": 2,
    "place_id": "50.4117,30.4127"
   },
   {
@@ -2324,6 +2455,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4847,30.6044"
   },
   {
@@ -2343,6 +2475,7 @@
    "alt_ids": [
     "silpo:1edb7339-fb2f-62c2-9dcf-73524574f50b"
    ],
+   "offers_count": 0,
    "place_id": "50.4526,30.5079"
   },
   {
@@ -2360,6 +2493,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4460,30.5253"
   },
   {
@@ -2377,6 +2511,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4607,30.6426"
   },
   {
@@ -2394,6 +2529,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4314,30.4737"
   },
   {
@@ -2411,6 +2547,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3730,30.4435"
   },
   {
@@ -2428,6 +2565,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3814,30.4816"
   },
   {
@@ -2445,6 +2583,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5202,30.4656"
   },
   {
@@ -2464,6 +2603,7 @@
    "alt_ids": [
     "silpo:1f1add4f-ef8d-6684-9012-758430c6b8db"
    ],
+   "offers_count": 0,
    "place_id": "50.3966,30.5075"
   },
   {
@@ -2481,6 +2621,7 @@
    "online_catalog": true,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4284,30.5908"
   },
   {
@@ -2498,6 +2639,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5122,30.4123"
   },
   {
@@ -2515,6 +2657,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4017,30.6364"
   },
   {
@@ -2532,6 +2675,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5025,30.5918"
   },
   {
@@ -2549,6 +2693,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4330,30.6015"
   },
   {
@@ -2566,6 +2711,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4271,30.5933"
   },
   {
@@ -2583,6 +2729,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4388,30.4397"
   },
   {
@@ -2600,6 +2747,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5223,30.6180"
   },
   {
@@ -2617,6 +2765,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4854,30.4672"
   },
   {
@@ -2634,6 +2783,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4578,30.6121"
   },
   {
@@ -2651,6 +2801,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3780,30.7053"
   },
   {
@@ -2668,6 +2819,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3867,30.4696"
   },
   {
@@ -2685,6 +2837,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4242,30.4778"
   },
   {
@@ -2702,6 +2855,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4312,30.4546"
   },
   {
@@ -2719,6 +2873,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4654,30.5106"
   },
   {
@@ -2736,6 +2891,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4310,30.4724"
   },
   {
@@ -2753,6 +2909,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4937,30.4622"
   },
   {
@@ -2770,6 +2927,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4240,30.3682"
   },
   {
@@ -2787,6 +2945,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3996,30.5193"
   },
   {
@@ -2804,6 +2963,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4795,30.4463"
   },
   {
@@ -2821,6 +2981,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4415,30.6253"
   },
   {
@@ -2838,6 +2999,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4181,30.5499"
   },
   {
@@ -2855,6 +3017,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4340,30.6465"
   },
   {
@@ -2872,6 +3035,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5074,30.6077"
   },
   {
@@ -2889,6 +3053,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4550,30.6109"
   },
   {
@@ -2906,6 +3071,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4718,30.5072"
   },
   {
@@ -2923,6 +3089,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4699,30.4460"
   },
   {
@@ -2940,6 +3107,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4919,30.6012"
   },
   {
@@ -2957,6 +3125,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5001,30.6107"
   },
   {
@@ -2974,6 +3143,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5139,30.6098"
   },
   {
@@ -2991,6 +3161,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4261,30.5151"
   },
   {
@@ -3008,6 +3179,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3826,30.4580"
   },
   {
@@ -3025,6 +3197,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4936,30.5221"
   },
   {
@@ -3042,6 +3215,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4711,30.4749"
   },
   {
@@ -3059,6 +3233,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4215,30.5299"
   },
   {
@@ -3076,6 +3251,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3475,30.4485"
   },
   {
@@ -3093,6 +3269,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3825,30.4768"
   },
   {
@@ -3110,6 +3287,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4156,30.5266"
   },
   {
@@ -3127,6 +3305,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4565,30.3632"
   },
   {
@@ -3144,6 +3323,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4555,30.5069"
   },
   {
@@ -3161,6 +3341,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4527,30.5024"
   },
   {
@@ -3178,6 +3359,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4710,30.3994"
   },
   {
@@ -3195,6 +3377,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3898,30.4631"
   },
   {
@@ -3212,6 +3395,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5034,30.4193"
   },
   {
@@ -3229,6 +3413,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4407,30.5499"
   },
   {
@@ -3246,6 +3431,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5161,30.4978"
   },
   {
@@ -3263,6 +3449,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4328,30.4480"
   },
   {
@@ -3280,6 +3467,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4476,30.4327"
   },
   {
@@ -3297,6 +3485,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4531,30.4868"
   },
   {
@@ -3314,6 +3503,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4726,30.3320"
   },
   {
@@ -3331,6 +3521,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5155,30.5161"
   },
   {
@@ -3348,6 +3539,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3985,30.6147"
   },
   {
@@ -3365,6 +3557,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4409,30.5143"
   },
   {
@@ -3382,6 +3575,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4668,30.4611"
   },
   {
@@ -3399,6 +3593,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4972,30.4655"
   },
   {
@@ -3416,6 +3611,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4618,30.3555"
   },
   {
@@ -3433,6 +3629,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4333,30.5158"
   },
   {
@@ -3450,6 +3647,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3960,30.6245"
   },
   {
@@ -3467,6 +3665,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3963,30.6330"
   },
   {
@@ -3484,6 +3683,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4866,30.5168"
   },
   {
@@ -3501,6 +3701,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4403,30.4410"
   },
   {
@@ -3518,6 +3719,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4147,30.6456"
   },
   {
@@ -3535,6 +3737,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4553,30.3883"
   },
   {
@@ -3552,6 +3755,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4337,30.4830"
   },
   {
@@ -3569,6 +3773,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4532,30.5939"
   },
   {
@@ -3586,6 +3791,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4046,30.6153"
   },
   {
@@ -3603,6 +3809,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4222,30.4554"
   },
   {
@@ -3620,6 +3827,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4429,30.4918"
   },
   {
@@ -3637,6 +3845,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4426,30.4880"
   },
   {
@@ -3654,6 +3863,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3936,30.6116"
   },
   {
@@ -3671,6 +3881,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4365,30.3579"
   },
   {
@@ -3688,6 +3899,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4380,30.6217"
   },
   {
@@ -3705,6 +3917,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4976,30.3669"
   },
   {
@@ -3722,6 +3935,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4587,30.6323"
   },
   {
@@ -3739,6 +3953,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4141,30.5387"
   },
   {
@@ -3756,6 +3971,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4289,30.3553"
   },
   {
@@ -3773,6 +3989,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4376,30.4462"
   },
   {
@@ -3790,6 +4007,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4096,30.6202"
   },
   {
@@ -3807,6 +4025,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4108,30.6258"
   },
   {
@@ -3824,6 +4043,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4071,30.6106"
   },
   {
@@ -3841,6 +4061,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3896,30.6258"
   },
   {
@@ -3858,6 +4079,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4473,30.6026"
   },
   {
@@ -3875,6 +4097,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4955,30.4258"
   },
   {
@@ -3892,6 +4115,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4372,30.4862"
   },
   {
@@ -3909,6 +4133,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4028,30.6252"
   },
   {
@@ -3926,6 +4151,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5147,30.4924"
   },
   {
@@ -3943,6 +4169,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4667,30.6549"
   },
   {
@@ -3960,6 +4187,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5029,30.4276"
   },
   {
@@ -3977,6 +4205,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4291,30.6473"
   },
   {
@@ -3994,6 +4223,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4376,30.3702"
   },
   {
@@ -4011,6 +4241,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4129,30.4627"
   },
   {
@@ -4028,6 +4259,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4424,30.3113"
   },
   {
@@ -4045,6 +4277,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.3497,30.4777"
   },
   {
@@ -4062,6 +4295,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.5420,30.4869"
   },
   {
@@ -4079,6 +4313,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4946,30.5881"
   },
   {
@@ -4096,6 +4331,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4878,30.6126"
   },
   {
@@ -4113,6 +4349,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4510,30.5223"
   },
   {
@@ -4130,6 +4367,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4497,30.5256"
   },
   {
@@ -4147,6 +4385,7 @@
    "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
+   "offers_count": 0,
    "place_id": "50.4425,30.5211"
   }
  ]

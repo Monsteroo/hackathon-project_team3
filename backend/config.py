@@ -23,6 +23,11 @@ CITY_BBOX: dict[str, tuple[float, float, float, float]] = {
 DEFAULT_SERVICE_CITIES = "Київ"  # рішення команди 21.11: демо лише по Києву
 
 
+def priced_min_offers() -> int:
+    """Скільки товарів у каталозі Учасниці 2 має бути в магазині, щоб вважати його «з цінами»."""
+    return int(os.environ.get("PRICED_MIN_OFFERS", "50"))
+
+
 def service_cities() -> list[str]:
     raw = os.environ.get("SERVICE_CITIES", DEFAULT_SERVICE_CITIES)
     return [c.strip() for c in raw.split(",") if c.strip()]

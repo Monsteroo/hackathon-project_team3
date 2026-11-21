@@ -58,7 +58,7 @@ def test_offers_sample_matches_directory():
     assert len(ids) == 5
     known = {i for s in load_stores() for i in [s["id"], *s["alt_ids"]]}
     assert ids <= known
-    assert sum(s["has_online_prices"] for s in load_stores()) >= 4  # 5 ID, частина може бути alt_ids
+    # ціни в довіднику тепер з каталогу Учасниці 2 (див. test_catalog.py), CSV — запасне джерело
 
 
 def test_dedup_same_address_prefers_pickup():

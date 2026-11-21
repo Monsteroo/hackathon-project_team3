@@ -176,6 +176,16 @@ def stores_from_osm(elements: Iterable[dict]) -> list[dict]:
     return out
 
 
+def apply_catalog(stores: list[dict], offer_counts: dict[str, int], min_offers: int) -> int:
+    """has_online_prices = offers_count (з каталогу Учасниці 2, по id або alt_ids) >= min_offers."""
+    n = 0
+    for s in stores:
+        s["offers_count"] = max((offer_counts.get(i, 0) for i in (s["id"], *s["alt_ids"])), default=0)
+        s["has_online_prices"] = s["offers_count"] >= min_offers
+        n += s["has_online_prices"]
+    return n
+
+
 def apply_offers(stores: list[dict], offer_store_ids: set[str]) -> int:
     """has_online_prices = для магазину (або його alt_ids) є рядки OFFERS з in_stock=true."""
     n = 0
@@ -223,8 +233,12 @@ def assign_places(stores: list[dict]) -> list[dict]:
 
 def build_directory(csv_rows: Iterable[dict], osm_elements: Iterable[dict],
                     offer_store_ids: set[str] | None = None,
-                    cities: Iterable[str] | None = None) -> tuple[list[dict], dict]:
-    """cities=None — усі міста; інакше лише магазини цих міст (за полем city)."""
+                    cities: Iterable[str] | None = None,
+                    offer_counts: dict[str, int] | None = None, min_offers: int = 50) -> tuple[list[dict], dict]:
+    """cities=None — усі міста; інакше лише магазини цих міст (за полем city).
+
+    Ціни: offer_counts з каталогу Учасниці 2 (основне джерело) або offer_store_ids з OFFERS CSV (запасне).
+    """
     listed = dedup_same_address(stores_from_csv(csv_rows))
     stores, stats = merge_osm(listed, stores_from_osm(osm_elements))
     stats["listed"] = len(listed)
@@ -233,7 +247,12 @@ def build_directory(csv_rows: Iterable[dict], osm_elements: Iterable[dict],
         stats["dropped_other_cities"] = sum(s["city"].lower() not in keep for s in stores)
         stores = [s for s in stores if s["city"].lower() in keep]
     stats["total"] = len(stores)
-    stats["with_offers"] = apply_offers(stores, offer_store_ids or set())
+    if offer_counts is not None:
+        stats["with_offers"] = apply_catalog(stores, offer_counts, min_offers)
+    else:
+        stats["with_offers"] = apply_offers(stores, offer_store_ids or set())
+        for s in stores:
+            s.setdefault("offers_count", None)
     return assign_places(stores), stats
 
 

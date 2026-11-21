@@ -18,9 +18,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from backend.config import service_cities  # noqa: E402
+from backend.config import priced_min_offers, service_cities  # noqa: E402
+from backend.geo.catalog import load_offer_counts  # noqa: E402
 from backend.geo.directory import STORES_JSON, build_directory  # noqa: E402
-from backend.geo.offers import OFFERS_CSV, load_offer_store_ids  # noqa: E402
+from backend.geo.offers import load_offer_store_ids  # noqa: E402
 
 RAW = ROOT / "backend" / "data" / "raw"
 CSV_PATH = RAW / "stores.csv"
@@ -99,27 +100,38 @@ def main() -> None:
                     help="дозаповнити адреси OSM-магазинів через Nominatim (~1 с на магазин)")
     ap.add_argument("--all-cities", action="store_true",
                     help="усі міста з даних (за замовчуванням — SERVICE_CITIES, зараз Київ)")
-    ap.add_argument("--offers", type=Path, default=OFFERS_CSV,
-                    help="вивантаження OFFERS (CSV): has_online_prices лише для магазинів з in_stock=true")
+    ap.add_argument("--catalog", action="append", default=[],
+                    help="URL або JSON /catalog/stores Учасниці 2 (можна кілька — об'єднуються). "
+                         "За замовчуванням backend/data/raw/01_stores_kyiv.json і 02_stores_kyiv_silpo.json. "
+                         "Напр.: --catalog 'http://localhost:8000/catalog/stores?city=Київ'")
+    ap.add_argument("--offers-csv", type=Path,
+                    help="запасне джерело: вивантаження OFFERS (CSV), ціни там, де є in_stock=true")
     args = ap.parse_args()
     if args.refresh_osm or not OSM_PATH.exists():
         refresh_osm()
 
     rows = list(csv.DictReader(CSV_PATH.open(encoding="utf-8")))
     osm = json.loads(OSM_PATH.read_text(encoding="utf-8"))["elements"]
-    offer_ids = load_offer_store_ids(args.offers)
     cities = None if args.all_cities else service_cities()
-    stores, stats = build_directory(rows, osm, offer_ids, cities)
+    if args.offers_csv:
+        offer_ids, counts = load_offer_store_ids(args.offers_csv), None
+        priced_source = args.offers_csv.name
+    else:
+        counts = load_offer_counts(args.catalog or None)
+        offer_ids = {i for i, n in counts.items() if n >= priced_min_offers()}
+        priced_source = ", ".join(str(c) for c in args.catalog) if args.catalog else "raw/01_*.json + raw/02_*.json"
+    stores, stats = build_directory(rows, osm, offer_ids, cities, counts, priced_min_offers())
     stats["cities"] = cities or "all"
-    missing = offer_ids - {i for s in stores for i in [s["id"], *s["alt_ids"]]}
+    stats["priced_rule"] = f"offers_count >= {priced_min_offers()}" if counts is not None else "OFFERS in_stock"
+    missing = (set(counts) if counts is not None else offer_ids) - {i for s in stores for i in [s["id"], *s["alt_ids"]]}
     if missing:
-        print("⚠️ магазини з OFFERS, яких немає в довіднику:", sorted(missing))
+        print("⚠️ магазини з цінами, яких немає в довіднику:", sorted(missing))
     stats["osm_address_filled"] = fill_addresses(stores, fetch=args.fetch_addresses)
 
     STORES_JSON.write_text(json.dumps({
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "sources": {"listed": "stores.csv (Учасник 2: Zakaz.ua + Сільпо)", "osm": "OpenStreetMap © contributors, ODbL",
-                    "offers": args.offers.name},
+                    "prices": priced_source},
         "stats": stats,
         "stores": stores,
     }, ensure_ascii=False, indent=1), encoding="utf-8")
