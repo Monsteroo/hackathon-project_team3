@@ -9,8 +9,8 @@
 flowchart LR
   U[Користувач] -- голос / текст --> FE[Фронт команди<br/>хуки й api.js з tools/geo-voice-testbench]
   U -- GPS / адреса --> FE
-  FE -- POST /api/transcribe --> API[FastAPI на Vercel<br/>api/index.py → backend/]
-  FE -- GET /api/stores/nearby, /api/route, /api/geocode --> API
+  FE -- POST /voice/transcribe + X-API-Key --> API[Спільний FastAPI backend/<br/>app/voice · app/geo · app/catalog]
+  FE -- GET /geo/stores/nearby, /geo/route, /geo/geocode --> API
   API -- аудіо --> W[Groq Whisper large-v3<br/>language=uk]
   API -- текст --> L[Groq qwen3.8-27b<br/>fallback gpt-oss-120b]
   API -- адреса --> N[Nominatim → Photon]
@@ -20,39 +20,43 @@ flowchart LR
   AG -- store_ids з цінами --> FE
 ```
 
-**Шлях запиту.** Мікрофон (MediaRecorder, до 60 с) → `/api/transcribe` → Whisper → LLM-чистка
+**Шлях запиту.** Мікрофон (MediaRecorder, до 60 с) → `/voice/transcribe` → Whisper → LLM-чистка
 (`{text, mode, radius_km}`) → захист від галюцинацій → фронт віддає `text` агенту. Паралельно GPS
-або адреса → `/api/stores/nearby` → карта й список → клік на магазин → `/api/route` → лінія маршруту
+або адреса → `/geo/stores/nearby` → карта й список → клік на магазин → `/geo/route` → лінія маршруту (GeoJSON)
 і посилання Google Maps (пішки / авто / громадський транспорт).
 
 ## API
 
+Модулі спільного бекенду (`backend/app/geo/`, `backend/app/voice/`), підключені в `app/main.py` за
+`X-API-Key`, як і каталог. Агент може викликати `app.geo.service` / `app.voice.service` напряму, без HTTP.
+
 | Endpoint | Що робить |
 |---|---|
-| `POST /api/transcribe` (multipart `audio`) | Whisper + чистка → `{text, raw_text, mode, radius_km, duration_s, cleanup}` |
-| `POST /api/parse-text` `{text, source}` | Та сама чистка для ручного вводу й Web Speech |
-| `GET /api/stores/nearby?lat&lng&mode=walk\|car&radius_km&store_ids=` | Усі магазини в радіусі + до 5 найближчих із цінами поза ним, за часом у дорозі, + `recommended_id` |
-| `GET /api/route?lat&lng&store_id&mode` | Лінія маршруту (Valhalla) + посилання Google Maps |
-| `GET /api/geocode?q&suggest` / `GET /api/reverse?lat&lng` | Адреса ↔ координати (лише Київ, українською) |
-| `GET /api/stores` | Увесь довідник для оглядової карти |
+| `POST /voice/transcribe` (multipart `audio`) | Whisper + чистка → `{text, raw_text, mode, radius_km, duration_s, cleanup}` |
+| `POST /voice/parse-text` `{text, source}` | Та сама чистка для ручного вводу й Web Speech |
+| `GET /geo/stores/nearby?lat&lng&mode=walk\|car&radius_km&store_ids=` | Усі магазини в радіусі + до 5 найближчих із цінами поза ним, за часом у дорозі, + `recommended_store_id` |
+| `GET /geo/route?lat&lng&store_id&mode` | Лінія маршруту (Valhalla) як GeoJSON `[lng, lat]` + посилання Google Maps |
+| `GET /geo/geocode?q&suggest` / `GET /geo/reverse?lat&lng` | Адреса ↔ координати (лише Київ, українською) |
+| `GET /geo/stores` | Увесь довідник для оглядової карти |
 
-Помилки голосу повертаються як `{"error": {"code", "message", "fallback"}}`. Якщо `fallback: true`, фронт
+Помилки повертаються як `{"detail": {"code", "message"[, "fallback"]}}` (`message` англійською, текст для
+людини UI бере за `code` — таблиця в HANDOFF). Якщо `fallback: true`, фронт
 пропонує розпізнавання в браузері (Web Speech), а ручний ввід доступний завжди.
 
 **Контракт з Учасником 5 (агент):** отримує `text` (очищений) і `raw_text`; `mode`/`radius_km` уже
 витягнуті нами. Агент віддає `store_ids` магазинів, де є кошик із підтвердженою ціною й наявністю
-(ID у форматі `zakaz:<store_id>` / `silpo:<branchId>`, як у STORES Учасника 2). `recommended_id` тоді
+(сирі `store_id` з `/catalog` — `"482010105"` / uuid; приймаються й `zakaz:`/`silpo:`). `recommended_store_id` тоді
 дорівнює найближчому за часом із них, навіть якщо він поза радіусом.
 
 Повні контракти з прикладами відповідей і що брати у фронт — [tools/geo-voice-testbench/HANDOFF.md](../tools/geo-voice-testbench/HANDOFF.md).
 
-**Обсяг демо — лише Київ** (`SERVICE_CITIES` у `.env`, межі в `CITY_BBOX` у `backend/config.py`). Точки
+**Обсяг демо — лише Київ** (`SERVICE_CITIES` у `backend/.env`, межі в `CITY_BBOX` у `app/geo/area.py`). Точки
 поза Києвом → 422 «Поки працюємо лише по Києву». Щоб повернути інші міста: додати межі в `CITY_BBOX`, місто в
-`SERVICE_CITIES` і перезібрати `scripts/build_stores.py` (або `--all-cities`).
+`SERVICE_CITIES` і перезібрати `uv run python -m app.geo.build_stores` (або `--all-cities`).
 
 ## Дані магазинів
 
-`scripts/build_stores.py` → `backend/data/stores.json`: **238 магазинів Києва** (Сільпо 113, NOVUS 70,
+`python -m app.geo.build_stores` → `app/geo/data/stores.json`: **238 магазинів Києва** (Сільпо 113, NOVUS 70,
 ЕКО маркет 25, Auchan 16, METRO 4, Megamarket / Ultramarket / За Раз по 3, Епіцентр 1). Без фільтра міст —
 567 магазинів у 84 містах.
 
@@ -67,7 +71,11 @@ flowchart LR
 - **OFFERS Учасника 2** — `has_online_prices: true` лише для магазинів, де є товари з `in_stock=true`
   (ціни й наявність прив'язані до пари «магазин × товар»). Поки джерело — `offers_sample.csv`
   (5 київських магазинів, категорія «молоко»); з доступом до БД `load_offer_store_ids()` у
-  `backend/geo/offers.py` замінюється запитом до таблиці OFFERS.
+  `app/geo/offers.py` замінюється запитом до таблиці OFFERS.
+- **Каталог Учасниці 2** (основне джерело цін) — `has_online_prices = offers_count >= PRICED_MIN_OFFERS` (50) з
+  `/catalog/stores?city=Київ`: `--catalog URL|JSON` (кілька джерел об'єднуються). Зараз 62 магазини з цінами.
+- **ID у відповідях — за контрактом команди:** `store_id` + `chain` + `source`; лише для OSM-магазинів без цін
+  `store_id` внутрішній (`"osm:n123"`).
 
 ## Ключові компроміси
 
@@ -103,18 +111,19 @@ flowchart LR
 
 ## Evals
 
-25 кейсів (`evals/voice_cases.json`): списки, страви, бюджет, обмеження складу, слова-паразити,
+25 кейсів (`app/voice/evals/cases.json`): списки, страви, бюджет, обмеження складу, слова-паразити,
 самовиправлення, числа словами, режим і радіус. Кейс пройдено, лише якщо **водночас** збережено всі
 продукти й числа, прибрано паразити і правильно визначено mode та radius_km.
-Скрипт: `scripts/eval_voice.py`, звіти: `evals/results/`.
+Скрипт: `uv run python -m app.voice.evals`, звіти: `app/voice/evals/results/`.
 
 | Набір | Пройдено | Mode | Радіус | Продукти збережено | WER | Затримка p50 |
 |---|---|---|---|---|---|---|
-| Текст → LLM-чистка | **23/25** | 100% | 100% | 96% | — | 0.35 с |
+| Текст → LLM-чистка (суворий захист після QA) | **24/25** | 100% | 100% | 100% | — | 0.33 с |
 | Синтетичне аудіо (голос macOS «Lesya») → Whisper → чистка | **21/25** | 100% | 100% | 88% | 12% | 0.67 с |
 | Справжні записи людей | очікуємо записів | | | | | |
 
-Захист від галюцинацій: 0 хибних спрацювань на 75 прогонах (в одному з прогонів обидві LLM
+Захист від галюцинацій: 0 хибних відхилень на 100 прогонах справжньої LLM (останній — із суворішим
+захистом після QA, який ловить додані продукти, вигадані числа й загублені «без/не/тільки») (в одному з прогонів обидві LLM
 упирались у ліміт і повертали сирий текст без збою; запасна модель спрацювала 1–16 разів залежно від
 частоти запитів).
 
@@ -134,30 +143,32 @@ flowchart LR
   і правилами як запасним шляхом.
 - **У розробці:** Claude Code — дослідження API (Zakaz.ua, Сільпо, Valhalla, Nominatim: ліміти перевірено
   живими запитами), вибір моделі чистки за тестом трьох LLM на українських фразах, генерація коду й тестів
-  (pytest, 50+ тестів), браузерна перевірка сценарію. Рішення про продукт (радіуси, мережі, «недалеко» =
+  (pytest: 110 тестів модулів у спільному наборі зі 170), браузерна перевірка сценарію. Рішення про продукт (радіуси, мережі, «недалеко» =
   1 км, довжина запису) ухвалювала людина.
 
-## Запуск локально
+## Запуск локально (з `backend/`, як увесь бекенд команди)
 
 ```bash
-python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
-cp .env.example .env   # вписати GROQ_API_KEY
-.venv/bin/uvicorn backend.app:app --reload --port 8000
-cd tools/geo-voice-testbench && npm ci && npm run dev    # тестовий стенд, http://localhost:5173
-.venv/bin/python -m pytest -q
-.venv/bin/python scripts/build_stores.py            # перебудувати довідник магазинів
-.venv/bin/python scripts/eval_voice.py --text --delay 7
+uv sync
+cp .env.example .env      # вписати API_KEYS і GROQ_API_KEY (DATABASE_URL потрібен лише каталогу)
+uv run uvicorn app.main:app --reload             # http://localhost:8000/docs
+uv run pytest && uv run ruff check .
+uv run python -m app.geo.build_stores            # перебудувати довідник (--catalog 'http://…/catalog/stores?city=Київ')
+uv run python -m app.voice.evals --text --delay 7
 ```
 
-**Vercel:** `vercel.json` піднімає лише `api/index.py` (FastAPI). Збірку продуктового фронту додає його
-автор; `tools/` у `.vercelignore`. Змінні середовища з `.env.example` додати в Project Settings →
-Environment Variables.
+Тестовий стенд для мікрофона й GPS: `tools/geo-voice-testbench` (див. HANDOFF), http://localhost:5174.
+
+**Vercel:** у `main` конфігурації немає; наш старий `vercel.json` прибрано разом з окремим застосунком.
+Залишилось вирішити команді, як деплоїти спільний бекенд (Python + БД + планувальник ETL у процесі) і фронт.
+Увага: якщо деплоїти на Vercel без збірки, пресет «Other» роздає корінь репозиторію як статику — потрібен
+`outputDirectory` (наприклад, `frontend/dist`).
 
 ## Що чекаємо від команди
 
 - **Учасник 2:** доступ до БД — STORES замість `stores.csv`, OFFERS замість `offers_sample.csv`
   (`load_offer_store_ids()`); топ брендів з PRODUCTS для словника Whisper
-  (`backend/data/stt_vocabulary.txt`); функція «магазини, де є кошик» → `store_ids`. У `stores.csv` три
+  (`app/voice/data/stt_vocabulary.txt`); функція «магазини, де є кошик» → `store_ids`. У `stores.csv` три
   записи Сільпо мають биті координати (`1.0, 1.0` тощо) — варто виправити в джерелі.
 - **Фронтенд команди:** забрати хуки й `api.js` за [HANDOFF.md](../tools/geo-voice-testbench/HANDOFF.md).
 - **Учасник 5:** підтвердити контракт `text`/`raw_text` → `store_ids`.
