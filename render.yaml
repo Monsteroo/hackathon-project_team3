@@ -1,0 +1,36 @@
+# Render Blueprint: бекенд VoiceCart як безкоштовний Docker web service у Франкфурті.
+# Render → New → Blueprint → вибрати цей репо. Значення з `sync: false` Render попросить ввести під час створення;
+# у цьому файлі секретів немає й не має бути.
+services:
+  - type: web
+    name: voicecart-backend
+    runtime: docker
+    plan: free
+    region: frankfurt          # найближче до Supabase (eu-west-1); змінити після створення не можна
+    branch: main
+    rootDir: backend           # автодеплой лише на зміни в backend/
+    dockerfilePath: ./backend/Dockerfile   # шляхи рахуються від кореня репо
+    dockerContext: ./backend
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: DATABASE_URL       # Supabase → Connect → Session pooler (порт 5432), user postgres.<project-ref>
+        sync: false
+      - key: DB_SSL
+        value: "true"
+      - key: DB_POOL_SIZE
+        value: "3"
+      - key: API_KEYS           # окремий продакшен-ключ (кілька — через кому), не той, що в локальному .env
+        sync: false
+      - key: CORS_ORIGINS       # JSON-список, напр. ["https://<frontend>.onrender.com"]
+        sync: false
+      - key: SCHEDULER_ENABLED
+        value: "true"
+      - key: SCHEDULER_TIMEZONE
+        value: Europe/Kyiv
+      - key: ETL_CRON
+        value: "0 3 * * *"
+      - key: ETL_CITY
+        value: Київ

@@ -1,0 +1,21 @@
+# Секрети не мають потрапити в образ: на платформі їх задають змінними оточення
+.env
+.env.*
+!.env.example
+
+# Локальне оточення й кеші
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+data/
+
+# Тести й документація образу не потрібні
+tests/
+app/**/tests/
+conftest.py
+README.md
+Dockerfile
+.dockerignore
