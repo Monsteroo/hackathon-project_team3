@@ -8,7 +8,7 @@ from math import asin, cos, radians, sin, sqrt
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.agent.optimizer import SMALLER_PACK, Candidate, build_baskets
+from app.agent.optimizer import SMALLER_PACK, Candidate, build_baskets, store_options
 from app.agent.parser import parse_request
 from app.agent.schemas import Basket, BasketIn, BasketOut, Constraints, ParsedRequest, RequestedItem, StoreNearby
 from app.catalog import service as catalog
@@ -294,6 +294,7 @@ async def build(session: AsyncSession, req: BasketIn) -> BasketOut:
 
     candidates, reasons = await find_candidates(session, parsed.items, stores, list(c.exclude))
     baskets = build_baskets(stores, parsed.items, candidates, c, reasons, s.agent_smart_split_min_saving)
+    options = store_options(stores, parsed.items, candidates, c, reasons)
     if baskets and not any(b.within_budget for b in baskets):
         warnings.append(f"Жоден кошик не вкладається в бюджет {c.budget_uah:g} грн")
     return BasketOut(
@@ -301,6 +302,7 @@ async def build(session: AsyncSession, req: BasketIn) -> BasketOut:
         parser=parser,
         stores_considered=len(stores),
         baskets=baskets,
+        stores=options,
         explanation=explain(baskets, parsed),
         warnings=warnings,
     )

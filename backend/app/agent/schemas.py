@@ -137,6 +137,19 @@ class Basket(BaseModel):
     missing: list[MissingItem] = Field(default_factory=list)
 
 
+class StoreOption(BaseModel):
+    """Один магазин у радіусі: що в ньому є з кошика і за скільки. Для списку «усі магазини»."""
+
+    store: StoreNearby
+    lines: list[BasketLine]
+    total: Money = Field(description="Сума знайдених позицій у цьому магазині")
+    found: int = Field(description="Скільки позицій кошика знайдено")
+    missing: list[MissingItem] = Field(default_factory=list)
+    within_budget: bool
+    cheapest: bool = Field(description="Найдешевший серед магазинів з найповнішим кошиком — підсвітити в UI")
+    nearest: bool = Field(description="Найближчий за часом у дорозі")
+
+
 class BasketOut(BaseModel):
     parsed: ParsedRequest = Field(description="Як агент зрозумів запит: для екрана «Я зрозумів так»")
     parser: Literal["llm", "rules", "items"] = Field(
@@ -144,5 +157,9 @@ class BasketOut(BaseModel):
     )
     stores_considered: int
     baskets: list[Basket] = Field(max_length=3)
+    stores: list[StoreOption] = Field(
+        default_factory=list,
+        description="Усі магазини в радіусі, де знайшлася хоч одна позиція: від найповнішого й найдешевшого",
+    )
     explanation: str
     warnings: list[str] = Field(default_factory=list)

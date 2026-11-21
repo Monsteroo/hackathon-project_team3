@@ -5,7 +5,7 @@ from decimal import Decimal
 from itertools import combinations
 from math import ceil
 
-from app.agent.schemas import Basket, BasketLine, Constraints, MissingItem, RequestedItem, StoreNearby
+from app.agent.schemas import Basket, BasketLine, Constraints, MissingItem, RequestedItem, StoreNearby, StoreOption
 from app.catalog.schemas import PriceOut, ProductPricesOut
 
 # «Літр молока» = 1 пачка 950 мл: пачки до 15 % меншої ваги рахуємо як одну
@@ -134,3 +134,45 @@ def build_baskets(
 
     worst = max(b.total for b in singles if len(b.missing) == len(cheapest.missing))
     return [b.model_copy(update={"saving": max(Decimal("0"), worst - b.total)}) for b in result]
+
+
+def store_options(
+    stores: list[StoreNearby],
+    items: list[RequestedItem],
+    candidates: dict[str, list[Candidate]],
+    constraints: Constraints,
+    missing_reasons: dict[str, str],
+) -> list[StoreOption]:
+    """Кожен магазин у радіусі з його кошиком. Сортування: повніший кошик, дешевший, ближчий.
+
+    `cheapest` — перший у цьому порядку (найдешевший серед найповніших), `nearest` — найменший час у дорозі.
+    """
+    budget = Decimal(str(constraints.budget_uah)) if constraints.budget_uah is not None else None
+    options = []
+    for s in stores:
+        lines = _best_lines({s.store_id}, items, candidates)
+        if not lines:
+            continue
+        total = sum((line.line_total for line in lines.values()), Decimal("0"))
+        missing = [
+            MissingItem(name=i.name, reason=missing_reasons.get(i.name, "not_found"))
+            for i in items
+            if i.name not in lines
+        ]
+        options.append(
+            StoreOption(
+                store=s,
+                lines=list(lines.values()),
+                total=total,
+                found=len(lines),
+                missing=missing,
+                within_budget=budget is None or total <= budget,
+                cheapest=False,
+                nearest=False,
+            )
+        )
+    if not options:
+        return []
+    options.sort(key=lambda o: (len(o.missing), o.total, o.store.duration_min))
+    nearest = min(options, key=lambda o: o.store.duration_min)
+    return [o.model_copy(update={"cheapest": i == 0, "nearest": o is nearest}) for i, o in enumerate(options)]

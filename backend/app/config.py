@@ -62,7 +62,7 @@ class Settings(BaseSettings):
     # Запасний пошук магазинів поруч (якщо модуль geo недоступний)
     agent_radius_walk_km: float = 1.5
     agent_radius_car_km: float = 5.0
-    agent_stores_per_chain: int = 2
+    agent_stores_per_chain: int = 20  # скільки найближчих магазинів кожної мережі розглядати
     # Smart Split показуємо, лише якщо він заощаджує щонайменше стільки гривень
     agent_smart_split_min_saving: float = 30.0
 

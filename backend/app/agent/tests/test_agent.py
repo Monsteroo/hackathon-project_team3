@@ -202,3 +202,16 @@ def test_duplicate_labels_get_unique_names():
         items=[{"label": "Молоко", "category": "milk", "need": 1, "unit": "pcs"}] * 2, lat=USER_LAT, lng=USER_LNG
     )
     assert [i.name for i in service.parsed_from_items(body).items] == ["Молоко", "Молоко (2)"]
+
+
+# ---------- Усі магазини в радіусі ----------
+async def test_all_stores_listed_with_cheapest_highlighted():
+    out = await service.build(None, BasketIn(text="кава", lat=USER_LAT, lng=USER_LNG, mode="car", radius_km=10))
+    assert len(out.stores) > 2, "має бути більше, ніж 3 варіанти кошика"
+    assert sum(o.cheapest for o in out.stores) == 1 and out.stores[0].cheapest
+    assert sum(o.nearest for o in out.stores) == 1
+    totals = [o.total for o in out.stores if not o.missing]
+    assert totals == sorted(totals)
+    cheapest_basket = next(b for b in out.baskets if b.type in ("cheapest", "nearest") and not b.missing)
+    assert out.stores[0].total <= cheapest_basket.total
+    assert all(o.found >= 1 and o.lines for o in out.stores)
