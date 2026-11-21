@@ -1,0 +1,167 @@
+/* DESIGN.md §4.3, «Десктоп (≥ 1024px): таблиця». */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--basket-row-divider);
+  border-radius: var(--radius-lg);
+  background: var(--basket-row-bg);
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  padding: var(--space-ms) var(--basket-row-padding-x);
+  border-bottom: 1px solid var(--basket-row-divider);
+  background: var(--basket-table-head-bg);
+  font: var(--weight-medium) var(--basket-table-head-font) var(--font-ui);
+  color: var(--basket-table-head-fg);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table thead th:first-child {
+  border-top-left-radius: var(--radius-lg);
+}
+
+.table thead th:last-child {
+  border-top-right-radius: var(--radius-lg);
+}
+
+.table td {
+  padding: var(--basket-row-padding-y) var(--basket-row-padding-x);
+  border-bottom: 1px solid var(--basket-row-divider);
+  vertical-align: top;
+}
+
+.table thead .numCol,
+.numCol {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.product {
+  width: 100%;
+}
+
+.productCell {
+  display: flex;
+  gap: var(--basket-row-gap);
+  min-width: 0;
+}
+
+.productText {
+  min-width: 0;
+}
+
+.groupRow th {
+  padding: var(--space-md) var(--basket-row-padding-x) var(--space-xs);
+  border-bottom: 1px solid var(--basket-row-divider);
+  font: var(--weight-semibold) var(--text-label) var(--font-display);
+  color: var(--color-text);
+  text-align: left;
+}
+
+.itemRow td {
+  height: var(--basket-table-row-height);
+}
+
+.itemRow:has(+ .noteRow) td,
+.itemRow:has(+ .detailsRow:not([hidden])) td {
+  border-bottom: 0;
+}
+
+.noteRow td {
+  padding-top: 0;
+  padding-left: calc(var(--basket-row-padding-x) + var(--size-chip) + var(--basket-row-gap));
+}
+
+.noteRow > td > :first-child {
+  margin-top: 0;
+}
+
+.detailsRow td {
+  padding-top: 0;
+  padding-left: calc(var(--basket-row-padding-x) + var(--size-chip) + var(--basket-row-gap));
+}
+
+.detailsRow td > :first-child {
+  margin-top: 0;
+}
+
+.detailsRow button:last-child {
+  margin-top: var(--space-xs);
+  margin-left: calc(-1 * var(--button-padding-x-sm));
+}
+
+.chevron {
+  display: inline-block;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  margin-left: var(--space-xs);
+  vertical-align: middle;
+  color: var(--color-text-3);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.sum {
+  font: var(--weight-semibold) var(--basket-price-font) var(--font-ui);
+  color: var(--basket-price-fg);
+}
+
+.compareHead {
+  color: var(--basket-table-compare-fg);
+}
+
+.compare {
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--basket-table-compare-fg);
+}
+
+/* Найнижча ціна в рядку: напівжирний + прихований текст, без оливкового (DESIGN.md §4.3). */
+.lowest,
+.lowest * {
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.block {
+  display: block;
+  margin-top: var(--space-2xs);
+}
+
+.table tfoot td,
+.table tfoot th {
+  padding: var(--space-md) var(--basket-row-padding-x);
+  border-bottom: 0;
+  background: var(--basket-table-head-bg);
+  vertical-align: top;
+}
+
+.table tfoot tr > :first-child {
+  border-bottom-left-radius: var(--radius-lg);
+}
+
+.table tfoot tr > :last-child {
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.totalLabel {
+  font: var(--weight-semibold) var(--text-body) var(--font-ui);
+  text-align: left;
+}
+
+.total {
+  font: var(--weight-semibold) var(--text-body) var(--font-ui);
+  color: var(--color-text);
+}
+
+.diff {
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--color-text-2);
+}
