@@ -48,3 +48,21 @@ export const POSITION_MESSAGES: Record<PositionFailure, string> = {
   unavailable: 'Не вдалося визначити, де ви. Вкажіть адресу, від якої шукати магазини',
   unsupported: 'Браузер не визначає місце. Вкажіть адресу, від якої шукати магазини',
 }
+
+/**
+ * Адреса для координат GPS («вулиця Хрещатик, 22, Київ»), щоб людина бачила, що ми визначили її місце правильно.
+ * Не блокує сценарій: таймаут, помилка чи точка поза зоною обслуговування → null («Ваше місце»).
+ */
+export async function addressForPosition(
+  { lat, lng }: { lat: number; lng: number },
+  reverse: (p: { lat: number; lng: number }) => Promise<{ label: string }>,
+  timeoutMs = 2_500,
+): Promise<string | null> {
+  const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), timeoutMs))
+  try {
+    const place = await Promise.race([reverse({ lat, lng }), timeout])
+    return place?.label?.trim() || null
+  } catch {
+    return null
+  }
+}

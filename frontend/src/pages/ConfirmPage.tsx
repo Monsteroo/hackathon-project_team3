@@ -24,13 +24,14 @@ import { parseItems, type ParseStatus } from '../features/basket/parseItems'
 import type { BasketItem } from '../features/basket/types'
 import { useCatalogChains } from '../features/basket/useCatalogChains'
 import {
+  addressForPosition,
   getCurrentPosition,
   POSITION_MESSAGES,
   PositionError,
   type Origin,
   type PositionFailure,
 } from '../features/location/position'
-import { localVoiceResult } from '../lib/api/client'
+import { api, localVoiceResult } from '../lib/api/client'
 import type { Place, VoiceResult } from '../lib/api/types'
 import { pluralItems } from '../lib/format'
 import { useCity } from '../lib/useCity'
@@ -155,7 +156,9 @@ export function ConfirmPage() {
     setLocating(true)
     try {
       const { lat, lng } = await getCurrentPosition()
-      goToResults({ lat, lng, label: null, source: 'gps' })
+      // Показуємо адресу, а не просто «Ваше місце»: видно, що GPS визначив правильне місто.
+      const label = await addressForPosition({ lat, lng }, (p) => api.reverse(p))
+      goToResults({ lat, lng, label, source: 'gps' })
     } catch (e) {
       setLocating(false)
       setPositionFailure(e instanceof PositionError ? e.reason : 'unavailable')
