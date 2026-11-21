@@ -25,6 +25,7 @@
    - 4.6 [AllergenBadge — бейдж алергену](#46-allergenbadge--бейдж-алергену)
    - 4.7 [CitySelect — вибір міста](#47-cityselect--вибір-міста)
    - 4.8 [AppHeader і RequestHero — шапка й екран 1](#48-appheader-і-requesthero--шапка-й-екран-1)
+   - 4.9 [BasketEditor — екран 2 «Я зрозумів так»](#49-basketeditor--екран-2-я-зрозумів-так)
 5. [Перевірка контрастів](#5-перевірка-контрастів)
 6. [Відхилення від MASTER і відкриті питання](#6-відхилення-від-master-і-відкриті-питання)
 
@@ -1351,6 +1352,110 @@ Selected виглядає як межа 2px, але ширина межі не �
 - < 1024px: VoiceButton `default` (96px) над полем, «Знайти кошик» у нижній панелі, закріпленій знизу з safe-area.
 - Порожній запит: помилка під полем «Введіть або скажіть, що купити», фокус у полі.
 - Голос дописує розпізнаний текст у поле наживо, текст, введений до запису, зберігається.
+
+---
+
+### 4.9 BasketEditor — екран 2 «Я зрозумів так»
+
+**Призначення.** Список товарів зі степпером, поле «Додати товар» з підказками й обмеження (бюджет, склад, відстань). Додано 2026-11-21 під час верстки екрана 2 за прототипом `design/mocks/sayvy-prototype.html` (02 · Я зрозумів так, `#s2d` і `#s2`). Значення взято з прототипу, лише semantic-токени.
+
+#### Component tokens
+
+```css
+/* === COMPONENT: BasketEditor (екран 2) === */
+:root {
+  /* панелі «Продукти» й «Обмеження» на десктопі */
+  --panel-bg:      var(--color-surface);
+  --panel-border:  var(--color-border);
+  --panel-radius:  var(--radius-lg);
+  --panel-padding: var(--space-lg);
+  --panel-list-min: var(--dim-100);              /* 400px */
+  --panel-list-max: var(--dim-120);              /* 480px */
+  --said-fg:       var(--color-text-2);
+  --panel-loading-min-height: var(--dim-80);     /* 320px: стан «Розбираю запит…» */
+
+  /* рядок товару (десктоп) */
+  --prow-min-height: var(--dim-14);              /* 56px */
+  --prow-border:     var(--color-border);
+  --prow-meta-fg:    var(--color-text-2);
+
+  /* степпер кількості */
+  --stepper-size:     var(--size-touch);
+  --stepper-border:   var(--color-border-strong);
+  --stepper-radius:   var(--radius-md);
+  --stepper-bg-hover: var(--color-surface-2);
+
+  /* чип товару (мобільний) */
+  --pchip-height:       var(--size-chip);
+  --pchip-bg:           var(--color-surface-2);
+  --pchip-radius:       var(--radius-md);
+  --pchip-qty-fg:       var(--color-text-2);
+  --pchip-editing-ring: var(--color-accent-fg);
+
+  /* поле «Додати товар» і підказки */
+  --add-height:          var(--size-control);
+  --add-border:          var(--color-border-strong);
+  --add-border-focus:    var(--color-accent-fg);
+  --add-radius:          var(--radius-md);
+  --add-placeholder-fg:  var(--color-text-3);
+  --suggest-bg:          var(--color-surface);
+  --suggest-border:      var(--color-border);
+  --suggest-radius:      var(--radius-md);
+  --suggest-shadow:      var(--shadow-lg);
+  --suggest-active-bg:   var(--color-surface-2);
+  --suggest-meta-fg:     var(--color-text-2);
+  --suggest-max-height:  var(--dim-80);          /* 320px */
+
+  /* групи обмежень */
+  --fset-border: var(--color-border);
+  --hint-fg:     var(--color-text-2);
+  --hint-font:   var(--text-meta);
+
+  /* вибір: пресети бюджету, сегменти відстані, режим */
+  --choice-height:       var(--size-touch);
+  --choice-radius:       var(--radius-full);
+  --choice-bg:           var(--color-surface);
+  --choice-border:       var(--color-border-strong);
+  --choice-border-hover: var(--color-accent-fg);
+  --choice-on-bg:        var(--color-accent);
+  --choice-on-fg:        var(--color-on-accent);
+  --choice-on-border:    var(--color-accent-fg);
+  --seg-min-height:      var(--dim-14);
+  --seg-radius:          var(--radius-md);
+  --seg-sub-fg:          var(--color-text-2);
+  --seg-item-min:        var(--dim-16);          /* 64px */
+
+  /* поле суми бюджету */
+  --money-width:  var(--dim-42);                 /* 168px */
+  --money-border: var(--color-border-strong);
+
+  /* чекбокс складу */
+  --check-size:      var(--dim-5);               /* 20px */
+  --check-radius:    var(--radius-sm);
+  --check-border:    var(--color-border-strong);
+  --check-on-bg:     var(--color-accent);
+  --check-on-border: var(--color-accent-fg);
+  --check-mark-fg:   var(--color-on-accent);
+  --check-col-min:   var(--dim-42);              /* 168px */
+
+  /* чип обмеження (мобільний) */
+  --cchip-height:   var(--size-chip);
+  --cchip-bg:       var(--color-surface);
+  --cchip-bg-hover: var(--color-surface-2);
+  --cchip-border:   var(--color-border-strong);
+}
+```
+
+#### Поведінка
+
+- ≥ 1024px: дві панелі. Ліворуч «Продукти» (рядки зі степпером і ×, поле «Додати товар»), праворуч «Обмеження» і CTA «Знайти ціни · N товарів» під ними.
+- < 1024px: товари чипами. Натискання на чип відкриває редактор зі степпером під списком, × прибирає товар. Обмеження йдуть під товарами, CTA — у нижній панелі.
+- Степпер рахує пачки (або штуки для штучних товарів), від 1 до 99. Потреба для агента = кількість × пачка.
+- «Додати товар»: ARIA combobox. Спершу канонічні категорії (локально), потім товари каталогу (`/catalog/prices`, пауза 300 мс, мінімум 2 символи), останнім — «Додати „текст“» як вільний запит. Якщо каталог недоступний, лишаються категорії й вільний текст.
+- Склад: лише фільтри, які перевіряє каталог (цукор, лактоза, пальмова олія, власні марки). Товар із невідомим складом фільтр не проходить.
+- Відстань: «Пішки / Авто» і радіус. Режим і радіус заповнюються з `VoiceResult.mode` і `radius_km`, `null` → пішки 2 км, авто 10 км. Зміна режиму повертає дефолтний радіус режиму.
+- Порожній список: «Додайте товари, які треба купити», CTA неактивна.
+- Вибраний стан пресетів, сегментів і чекбоксів — лайм + межа `accent-fg`, не лише колір (див. §5).
 
 ---
 

@@ -1,4 +1,13 @@
-import type { GeocodeResponse, Mode, NearbyResponse, Place, RouteResponse, VoiceResult } from './types'
+import type {
+  CatalogStore,
+  GeocodeResponse,
+  Mode,
+  NearbyResponse,
+  Place,
+  PriceSearchResponse,
+  RouteResponse,
+  VoiceResult,
+} from './types'
 
 /**
  * Клієнт спільного бекенду (backend/, через проксі Vite). Порт tools/geo-voice-testbench/src/api.js.
@@ -109,6 +118,19 @@ export const api = {
 
   route({ lat, lng, storeId, mode = 'walk' }: LatLng & { storeId: string; mode?: Mode }): Promise<RouteResponse> {
     return request(`/geo/route?${qs({ lat, lng, store_id: storeId, mode })}`)
+  },
+
+  /** Пошук товарів у каталозі: назва має містити всі слова запиту (мінімум 2 символи). */
+  searchProducts(
+    q: string,
+    { limit = 8, exclude, signal }: { limit?: number; exclude?: string[]; signal?: AbortSignal } = {},
+  ): Promise<PriceSearchResponse> {
+    return request(`/catalog/prices?${qs({ q, limit, exclude: exclude?.join(',') })}`, { signal })
+  },
+
+  /** Магазини з цінами в місті. */
+  catalogStores(city: string, signal?: AbortSignal): Promise<CatalogStore[]> {
+    return request(`/catalog/stores?${qs({ city, with_prices: true })}`, { signal })
   },
 }
 

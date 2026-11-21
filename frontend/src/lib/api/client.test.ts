@@ -62,4 +62,23 @@ describe('api client', () => {
     const form = fetchMock.mock.calls[0][1].body as FormData
     expect((form.get('audio') as File).name).toBe('voice.m4a')
   })
+  it('builds /catalog/prices query with exclude list', async () => {
+    const fetchMock = respond(200, { query: 'сметана', tokens: [], store_ids: [], missing_store_ids: [], products: [] })
+    vi.stubGlobal('fetch', fetchMock)
+    await api.searchProducts('сметана', { limit: 5, exclude: ['sugar', 'palm_oil'] })
+    const [path] = fetchMock.mock.calls[0]
+    const url = new URL(path, 'http://x')
+    expect(url.pathname).toBe('/catalog/prices')
+    expect(url.searchParams.get('q')).toBe('сметана')
+    expect(url.searchParams.get('limit')).toBe('5')
+    expect(url.searchParams.get('exclude')).toBe('sugar,palm_oil')
+  })
+
+  it('maps FastAPI 422 validation list (short query) to validation_error', async () => {
+    // mocks/08_error_422_short_query.json
+    const detail = [{ type: 'string_too_short', loc: ['query', 'q'], msg: 'String should have at least 2 characters' }]
+    vi.stubGlobal('fetch', respond(422, { detail }))
+    const err = await catchError(api.searchProducts('а'))
+    expect(err).toMatchObject({ code: 'validation_error', status: 422, fallback: false })
+  })
 })

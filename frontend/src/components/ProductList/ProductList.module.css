@@ -1,0 +1,144 @@
+/* DESIGN.md §4.9 BasketEditor: рядки (десктоп) і чипи (мобільний) */
+.list {
+  margin: var(--space-xs) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--prow-min-height);
+  border-bottom: 1px solid var(--prow-border);
+}
+
+.name {
+  min-width: 0;
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  display: block;
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--prow-meta-fg);
+}
+
+.remove {
+  display: grid;
+  place-items: center;
+  width: var(--size-touch);
+  height: var(--size-touch);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--prow-meta-fg);
+}
+
+.remove:hover {
+  background: var(--stepper-bg-hover);
+  color: var(--color-text);
+}
+
+.remove svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+/* --- мобільний: чипи --- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  height: var(--pchip-height);
+  border-radius: var(--pchip-radius);
+  background: var(--pchip-bg);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.editing {
+  box-shadow: inset 0 0 0 2px var(--pchip-editing-ring);
+}
+
+.chip button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+}
+
+/* Видимий чип 40px, зона натискання 44px. */
+.chip button::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--space-2xs)) 0;
+}
+
+.chip .chipMain {
+  min-width: 0;
+  gap: var(--space-xs);
+  padding-left: var(--space-ms);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  border-radius: var(--pchip-radius) 0 0 var(--pchip-radius);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qty {
+  color: var(--pchip-qty-fg);
+  font-weight: var(--weight-regular);
+}
+
+.chip .chipRemove {
+  justify-content: center;
+  width: var(--size-touch);
+  color: var(--pchip-qty-fg);
+  border-radius: 0 var(--pchip-radius) var(--pchip-radius) 0;
+}
+
+.chipRemove svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.editor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-ms);
+  padding: var(--space-ms) var(--space-ms) var(--space-ms) var(--space-md);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--panel-radius);
+  background: var(--panel-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.editorName {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
+}

@@ -48,3 +48,32 @@ export function formatClock(seconds: number): string {
   const total = Math.max(0, Math.floor(seconds))
   return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`
 }
+
+/** 1500 → «1 500 ₴» (цілі гривні: бюджет, пресети). */
+export function formatRoundPrice(value: number): string {
+  return `${groupThousands(String(Math.round(Math.abs(value))))}${NBSP}₴`
+}
+
+/** 1500 → «1 500» (поле суми). */
+export function formatInteger(value: number): string {
+  return groupThousands(String(Math.round(value)))
+}
+
+/** Пачка: 1000, 'ml' → «1 л»; 350, 'g' → «350 г»; 1, 'pcs' → «поштучно»; 10, 'pcs' → «10 шт». */
+export function formatPack(qty: number, unit: 'g' | 'ml' | 'pcs'): string {
+  if (unit === 'pcs') return qty === 1 ? 'поштучно' : `${formatInteger(qty)}${NBSP}шт`
+  const big = unit === 'g' ? 'кг' : 'л'
+  const small = unit === 'g' ? 'г' : 'мл'
+  if (qty < 1000) return `${formatInteger(qty)}${NBSP}${small}`
+  const v = (qty / 1000).toFixed(2).replace(/\.?0+$/, '').replace('.', ',')
+  return `${v}${NBSP}${big}`
+}
+
+/** «1 товар / 3 товари / 11 товарів». */
+export function pluralItems(n: number): string {
+  const mod10 = n % 10
+  const mod100 = n % 100
+  if (mod10 === 1 && mod100 !== 11) return `${n} товар`
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${n} товари`
+  return `${n} товарів`
+}

@@ -110,3 +110,66 @@ export interface VoiceResult {
     tokens: number
   }
 }
+
+// --- catalog (backend/app/catalog/schemas.py, mocks/01_* … 08_*) ---
+
+export interface CatalogStore {
+  store_id: string
+  source: 'zakaz' | 'silpo'
+  chain: string
+  name: string
+  city: string | null
+  address: string | null
+  lat: number | null
+  lng: number | null
+  has_pickup: boolean
+  offers_count: number
+}
+
+export interface CatalogPrice {
+  store_id: string
+  chain: string
+  store_name: string
+  city: string | null
+  address: string | null
+  /** Грн за пачку; для вагових товарів — за кг. */
+  price: number
+  old_price: number | null
+  promo_percent: number | null
+  promo_until: string | null
+  unit_price: number | null
+  unit_price_label: string
+  in_stock: boolean
+  stock: number | null
+  url: string | null
+  fetched_at: string
+}
+
+export interface CatalogProduct {
+  product_id: number
+  gtin: string | null
+  title: string
+  brand: string | null
+  /** Канонічна категорія: milk, curd, eggs, … */
+  category: string | null
+  pack_qty: number | null
+  pack_unit: 'g' | 'ml' | 'pcs' | null
+  fat_pct: number | null
+  tags: string[]
+  /** false — склад невідомий, це не те саме, що «чистий». */
+  composition_known: boolean
+  img_url: string | null
+  stores_count: number
+  min_price: number
+  max_price: number
+  min_unit_price: number | null
+  prices: CatalogPrice[]
+}
+
+export interface PriceSearchResponse {
+  query: string
+  tokens: string[]
+  store_ids: string[]
+  missing_store_ids: string[]
+  products: CatalogProduct[]
+}
