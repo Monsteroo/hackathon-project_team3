@@ -4,5 +4,4 @@
 scripts/
 tests/
 backend/data/raw/
-frontend/node_modules/
-frontend/dist/
+tools/
