@@ -11,7 +11,9 @@ from app.catalog import jobs as catalog_jobs
 from app.catalog.router import router as catalog_router
 from app.config import get_settings
 from app.db import SessionDep, engine
+from app.geo.router import router as geo_router
 from app.scheduler import shutdown_scheduler, start_scheduler
+from app.voice.router import router as voice_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -56,6 +58,8 @@ def create_app() -> FastAPI:
 
     # Модулі учасників: один рядок на модуль. Усі їхні ендпоінти вимагають X-API-Key.
     app.include_router(catalog_router, dependencies=[Depends(require_api_key)])
+    app.include_router(geo_router, dependencies=[Depends(require_api_key)])
+    app.include_router(voice_router, dependencies=[Depends(require_api_key)])
     return app
 
 

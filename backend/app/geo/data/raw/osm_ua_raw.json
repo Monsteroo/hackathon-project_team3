@@ -1,0 +1,6638 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-21T11:36:20Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 252061506,
+  "lat": 46.7730973,
+  "lon": 23.6292803,
+  "tags": {
+    "addr:city": "Cluj-Napoca",
+    "addr:country": "RO",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "level": "0",
+    "name": "Auchan",
+    "operator": "Auchan România S.A.",
+    "organic": "yes",
+    "ref": "Cluj",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/98bd9d41-4ed4-11ed-83ab-0ed168f2ce71"
+  }
+},
+{
+  "type": "node",
+  "id": 294632826,
+  "lat": 50.5122294,
+  "lon": 30.4122608,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/ua/action/single/1/?aid=194"
+  }
+},
+{
+  "type": "node",
+  "id": 308676131,
+  "lat": 50.4016718,
+  "lon": 30.6363944,
+  "tags": {
+    "alt_name": "Елтікс",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕкоМаркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 355015555,
+  "lat": 50.2521714,
+  "lon": 28.6579122,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко-маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 450654762,
+  "lat": 44.4870913,
+  "lon": 26.0790576,
+  "tags": {
+    "addr:city": "București",
+    "addr:country": "RO",
+    "addr:housenumber": "2",
+    "addr:postcode": "013692",
+    "addr:street": "Șoseaua București-Ploiești",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "operator": "OMV Petrom",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/6538c709-f375-11ef-b37f-fff364e9bc0b"
+  }
+},
+{
+  "type": "node",
+  "id": 504234958,
+  "lat": 50.5025255,
+  "lon": 30.5918447,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "check_date:opening_hours": "2025-09-16",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО-Маркет",
+    "opening_hours": "08:00-23:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket",
+    "wheelchair": "limited"
+  }
+},
+{
+  "type": "node",
+  "id": 538205745,
+  "lat": 50.4329616,
+  "lon": 30.6014532,
+  "tags": {
+    "addr:housenumber": "11",
+    "addr:street": "вулиця Івана Миколайчука",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "08:00-23:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 558124990,
+  "lat": 50.3676040,
+  "lon": 30.4582191,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "level": "1",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:ru": "Ашан",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "phone": "+380 44 496 1343",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 614120264,
+  "lat": 50.5531635,
+  "lon": 30.2136695,
+  "tags": {
+    "addr:housenumber": "12",
+    "addr:postcode": "08292",
+    "addr:street": "вулиця Героїв Майдану",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко-маркет",
+    "name:uk": "Еко-маркет",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket",
+    "toilets:wheelchair": "no",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 614120266,
+  "lat": 50.5489887,
+  "lon": 30.2168055,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко-маркет",
+    "name:uk": "Еко-маркет",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 660435318,
+  "lat": 50.4271021,
+  "lon": 30.5932832,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "08:00-21:00",
+    "operator": "ТОВ «ЕКО»",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 910360712,
+  "lat": 50.4388458,
+  "lon": 30.4397311,
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:street": "вулиця Миколи Голего",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:en": "EKO-market",
+    "name:ru": "ЭКО-маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 956060926,
+  "lat": 50.5223291,
+  "lon": 30.6179731,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "contact:website": "https://novus.ua/",
+    "name": "Новус",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 1195362438,
+  "lat": 49.2381525,
+  "lon": 28.4897797,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "contact:facebook": "61568321954685",
+    "email": "pr@varus.ua",
+    "name": "VARUS маркет",
+    "name:uk": "VARUS",
+    "opening_hours": "08:00-23:00",
+    "phone": "0800307080",
+    "shop": "supermarket",
+    "website": "https://varus.ua"
+  }
+},
+{
+  "type": "node",
+  "id": 1230771660,
+  "lat": 51.5070981,
+  "lon": 31.3322590,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Екомаркет",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 1360792839,
+  "lat": 50.5216387,
+  "lon": 30.2401550,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко-маркет",
+    "name:uk": "Еко-маркет",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 1398399370,
+  "lat": 51.7867890,
+  "lon": 39.2038370,
+  "tags": {
+    "brand": "Auchan",
+    "brand:en": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "name:en": "Auchan",
+    "opening_hours": "Mo-Su 08:30-22:00",
+    "operator": "Groupe Auchan SA",
+    "payment:credit_cards": "yes",
+    "phone": "+7 800 7005800",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ru/"
+  }
+},
+{
+  "type": "node",
+  "id": 1399795787,
+  "lat": 47.2900683,
+  "lon": 39.8454426,
+  "tags": {
+    "branch": "Аксай",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:ru": "Ашан",
+    "brand:wikidata": "Q110053013",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:ru": "Ашан",
+    "opening_hours": "Mo-Su 08:30-22:00; Fr,Sa 08:30-23:00",
+    "operator": "Ашан",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "+7-800-7005800",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ru/ru/Auchan+Askay"
+  }
+},
+{
+  "type": "node",
+  "id": 1578779976,
+  "lat": 50.3273971,
+  "lon": 26.5252759,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Екомаркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 1609871890,
+  "lat": 48.5088710,
+  "lon": 37.6746203,
+  "tags": {
+    "addr:housenumber": "55",
+    "air_conditioning": "yes",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "currency:UAH": "yes",
+    "description": "09.08.2024 об 11:04 росія нанесла ракетний удар по гіпермаркету, внаслідок якого загибло 14 і ще 44 поранені серед загиблих 3 дітей. 9 серпня день жалоби",
+    "email": "info@eko.com.ua",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "off",
+    "payment:apple_pay": "yes",
+    "payment:cash": "yes",
+    "payment:google_pay": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0800 302 055",
+    "shop": "supermarket",
+    "start_date": "30.12.2008",
+    "stroller": "yes",
+    "website": "https://www.eko.com.ua/",
+    "wikidata": "Q128797716",
+    "wikipedia": "ru:Ракетный удар по гипермаркету в Константиновке"
+  }
+},
+{
+  "type": "node",
+  "id": 1614249478,
+  "lat": 48.4256927,
+  "lon": 35.0221348,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "ru:Auchan",
+    "internet_access": "wlan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 1660042315,
+  "lat": 47.2035571,
+  "lon": 39.7236247,
+  "tags": {
+    "addr:city": "Ростов-на-Дону",
+    "addr:country": "RU",
+    "addr:housenumber": "1",
+    "addr:street": "Пойменная улица",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:fr": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "ru:Auchan",
+    "level": "1",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:fr": "Auchan",
+    "opening_hours": "Mo-Su 08:30-23:00",
+    "operator": "Ашан",
+    "payment:android_pay": "yes",
+    "payment:apple_pay": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:mir": "yes",
+    "payment:money_order": "yes",
+    "payment:samsung_pay": "yes",
+    "payment:visa": "yes",
+    "payment:visa_electron": "yes",
+    "phone": "+7 800 7005800",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ru/ru/megamag-info"
+  }
+},
+{
+  "type": "node",
+  "id": 1674350059,
+  "lat": 50.4854238,
+  "lon": 30.4671520,
+  "tags": {
+    "addr:housenumber": "12",
+    "addr:street": "Петропавлівська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "phone": "+380800601729",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 1761530269,
+  "lat": 50.4063416,
+  "lon": 30.3981814,
+  "tags": {
+    "addr:housenumber": "12",
+    "addr:street": "Кільцева дорога",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2025-10-25",
+    "level": "0",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 1842626576,
+  "lat": 51.2659682,
+  "lon": 22.5598500,
+  "tags": {
+    "addr:city": "Lublin",
+    "addr:country": "PL",
+    "addr:housenumber": "14",
+    "addr:postcode": "20-093",
+    "addr:street": "Doktora Witolda Chodźki",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "opening_hours": "Mo-Sa 07:30-22:00",
+    "operator": "Auchan Polska Sp. z o.o.",
+    "phone": "+48814431600",
+    "shop": "supermarket",
+    "website": "https://www.auchan.pl/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 1913210408,
+  "lat": 49.9001380,
+  "lon": 28.5855392,
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:street": "вулиця Грушевського",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:ru": "Экомаркет",
+    "name:uk": "Екомаркет",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "phone": "0800302055",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 1933445237,
+  "lat": 50.5051848,
+  "lon": 30.4732011,
+  "tags": {
+    "addr:housenumber": "12",
+    "addr:street": "Лугова вулиця",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "uk:Auchan",
+    "check_date": "2025-11-04",
+    "currency:UAH": "yes",
+    "level": "0",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "organic": "yes",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "second_hand": "no",
+    "self_checkout": "yes",
+    "shop": "supermarket",
+    "toilets": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2149436468,
+  "lat": 50.4577833,
+  "lon": 30.6120956,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:ru": "Ашан",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 2274256838,
+  "lat": 50.1457251,
+  "lon": 30.7495142,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО-маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 2319487702,
+  "lat": 50.3780476,
+  "lon": 30.7052717,
+  "tags": {
+    "addr:housenumber": "65",
+    "addr:postcode": "02088",
+    "addr:street": "вулиця Євгена Харченка",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:en": "Eko Market",
+    "name:ru": "ЭКО маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2375564893,
+  "lat": 51.4911407,
+  "lon": 31.3005473,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:pl": "Eko Market",
+    "name:uk": "ЕКО Маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 2426995388,
+  "lat": 50.3867092,
+  "lon": 30.4696263,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date:opening_hours": "2026-07-17",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2442917636,
+  "lat": 44.4421300,
+  "lon": 26.1062769,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "7",
+    "addr:street": "Strada Maria Rosetti",
+    "branch": "Rosetti",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "operator": "Auchan",
+    "shop": "convenience",
+    "source": "survey",
+    "website": "https://www.auchan.ro/magazin/b6905e2c-9c79-4c12-b894-ae317e7f50a9",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2509362925,
+  "lat": 50.0703272,
+  "lon": 31.4444207,
+  "tags": {
+    "addr:housenumber": "42",
+    "addr:street": "Шкільна вулиця",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "bulk_purchase": "yes",
+    "name": "ЕКО маркет",
+    "name:uk": "Екомаркет",
+    "organic": "yes",
+    "payment:cash": "yes",
+    "payment:coins": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2587704327,
+  "lat": 50.4242473,
+  "lon": 30.4777816,
+  "tags": {
+    "addr:housenumber": "16-Б",
+    "addr:postcode": "03110",
+    "addr:street": "Соломʼянська вулиця",
+    "air_conditioning": "yes",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "currency:UAH": "yes",
+    "image": "https://lh3.ggpht.com/p/AF1QipPAnbGG_V_5P2U6eT1no5k_TH6st9Q8kQ_vCGxx=s1024",
+    "level": "1",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2591288069,
+  "lat": 50.4311531,
+  "lon": 30.4546480,
+  "tags": {
+    "addr:housenumber": "19",
+    "addr:postcode": "03186",
+    "addr:street": "Чоколівський бульвар",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "level": "0",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "Mo-Fr 07:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "website": "https://novus.ua/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2624548376,
+  "lat": 50.4654054,
+  "lon": 30.5105934,
+  "tags": {
+    "addr:housenumber": "6/17",
+    "addr:street": "вулиця Нижній Вал",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2026-03-17",
+    "check_date:opening_hours": "2026-03-17",
+    "level": "-1",
+    "name": "NOVUS",
+    "name:en": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "organic": "yes",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "+380 50 358 5889",
+    "self_checkout": "yes",
+    "self_checkout:handheld": "no",
+    "self_checkout:self_scan": "yes",
+    "shop": "supermarket",
+    "website": "https://novus.ua",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 2631039417,
+  "lat": 50.4309874,
+  "lon": 30.4724427,
+  "tags": {
+    "addr:housenumber": "45",
+    "addr:street": "вулиця Митрополита Василя Липківського",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "08:00-22:00",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 2894309901,
+  "lat": 51.2323187,
+  "lon": 22.6118180,
+  "tags": {
+    "addr:city": "Lublin",
+    "addr:country": "PL",
+    "addr:housename": "Atrium Felicity",
+    "addr:housenumber": "32",
+    "addr:postcode": "20-315",
+    "addr:street": "Aleja Wincentego Witosa",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "level": "0",
+    "name": "Auchan",
+    "opening_hours": "Mo-Sa 07:30-22:00; Su 09:00-20:00",
+    "shop": "supermarket",
+    "website": "https://www.auchan.pl/"
+  }
+},
+{
+  "type": "node",
+  "id": 3026706692,
+  "lat": 49.5861612,
+  "lon": 34.4915547,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "check_date": "2022-11-21",
+    "check_date:opening_hours": "2023-10-05",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО-маркет",
+    "opening_hours": "08:00-23:00",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 3040773153,
+  "lat": 50.4936532,
+  "lon": 30.4621850,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 09:00-23:00",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 3080707070,
+  "lat": 50.4396577,
+  "lon": 30.4836710,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "check_date": "2026-07-21",
+    "name": "ЕКО маркет",
+    "name:en": "EKO-Market",
+    "name:uk": "Еко-маркет",
+    "opening_hours": "08:00-23:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 3190251357,
+  "lat": 50.4239779,
+  "lon": 30.3681524,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 3276572597,
+  "lat": 50.3995744,
+  "lon": 30.5193385,
+  "tags": {
+    "addr:housenumber": "13-А",
+    "addr:street": "Голосіївська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 3341464216,
+  "lat": 50.4795022,
+  "lon": 30.4462770,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко-маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 3608534808,
+  "lat": 45.8623424,
+  "lon": 22.9292487,
+  "tags": {
+    "addr:city": "Deva",
+    "addr:housenumber": "87",
+    "addr:postcode": "330182",
+    "addr:street": "Calea Zarandului",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "operator": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/d6c489c6-5370-11ed-83ab-1689cc2884b3"
+  }
+},
+{
+  "type": "node",
+  "id": 3684454426,
+  "lat": 45.1751826,
+  "lon": 26.7639922,
+  "tags": {
+    "addr:city": "Buzău",
+    "addr:housenumber": "441A",
+    "addr:postcode": "120168",
+    "addr:street": "Transilvaniei",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "name": "METRO",
+    "opening_hours": "Mo-Fr 06:00-21:00; Sa-Su 08:00-16:00",
+    "phone": "0314234590",
+    "shop": "wholesale",
+    "website": "https://www.metro.ro/magazinele-noastre/buzau"
+  }
+},
+{
+  "type": "node",
+  "id": 3703190200,
+  "lat": 45.6738565,
+  "lon": 25.6168490,
+  "tags": {
+    "addr:city": "Brașov",
+    "addr:housenumber": "1",
+    "addr:postcode": "500167",
+    "addr:street": "Strada Zaharia Stancu",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "opening_hours": "08:00-23:00",
+    "operator": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/02de5105-4ed3-11ed-83ab-0e0d5a5f0b73"
+  }
+},
+{
+  "type": "node",
+  "id": 3727361006,
+  "lat": 49.5446910,
+  "lon": 25.5989154,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Новус",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 3738934420,
+  "lat": 49.8124160,
+  "lon": 23.9864521,
+  "tags": {
+    "addr:housenumber": "58",
+    "addr:street": "вулиця Володимира Великого",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "en:Auchan",
+    "internet_access": "wlan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su, PH 07:30-22:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 3790024959,
+  "lat": 47.0649902,
+  "lon": 28.8536069,
+  "tags": {
+    "addr:city": "Stăuceni",
+    "addr:country": "MD",
+    "addr:housenumber": "5",
+    "addr:postcode": "MD-4839",
+    "addr:street": "Strada Chișinău",
+    "branch": "1",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "name": "Metro",
+    "name:ru": "Метро-1",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-21:00",
+    "operator": "METRO Cash & Carry Moldova SRL",
+    "phone": "+373 22 101 131",
+    "shop": "wholesale",
+    "website": "https://www.metro.md/"
+  }
+},
+{
+  "type": "node",
+  "id": 3797151533,
+  "lat": 46.5641618,
+  "lon": 30.8353364,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "en:Auchan",
+    "level": "0",
+    "name": "Auchan",
+    "name:en": "Auchan",
+    "name:uk": "Auchan",
+    "opening_hours": "Mo-Su 08:30-22:00",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 3896602396,
+  "lat": 50.4415482,
+  "lon": 30.6253133,
+  "tags": {
+    "addr:street": "Дарницька площа",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4013486469,
+  "lat": 50.4181142,
+  "lon": 30.5498524,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "level": "0",
+    "name": "ЕКО маркет",
+    "name:ru": "ЭКО-Маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 4013486470,
+  "lat": 50.4340231,
+  "lon": 30.6465158,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "08:00-23:00",
+    "operator": "NOVUS",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4013486471,
+  "lat": 50.5074444,
+  "lon": 30.6077212,
+  "tags": {
+    "addr:housenumber": "22",
+    "addr:street": "проспект Червоної Калини",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "08:00-23:00",
+    "operator": "Еко-Маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4208071990,
+  "lat": 44.4310912,
+  "lon": 26.0503873,
+  "tags": {
+    "addr:city": "București",
+    "addr:country": "RO",
+    "addr:housenumber": "4",
+    "addr:postcode": "061346",
+    "addr:street": "Bulevardul General Paul Teodorescu",
+    "alt_name": "Auchan Cotroceni",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "level": "0",
+    "name": "Auchan",
+    "opening_hours": "Mo-Th 07:00-22:00; Fr-Sa 07:00-23:00; Su 07:00-22:00",
+    "shop": "supermarket",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "website": "https://www.auchan.ro/magazin/74e1b5f9-4edb-11ed-83ab-0a004f76ccd1"
+  }
+},
+{
+  "type": "node",
+  "id": 4223360793,
+  "lat": 46.7966548,
+  "lon": 33.4712468,
+  "tags": {
+    "addr:housenumber": "1",
+    "addr:street": "Будівельників проспект",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4241151389,
+  "lat": 50.4549673,
+  "lon": 30.6108648,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Новус",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "07:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4321709260,
+  "lat": 44.5810145,
+  "lon": 26.0707117,
+  "tags": {
+    "addr:city": "Otopeni",
+    "addr:street": "Calea Bucureștilor",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "06:00-22:00",
+    "operator": "Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/45d1cd34-9a14-41aa-a6a2-ad2795ec3e29"
+  }
+},
+{
+  "type": "node",
+  "id": 4326087105,
+  "lat": 50.4718021,
+  "lon": 30.5072364,
+  "tags": {
+    "addr:housenumber": "20/55",
+    "addr:street": "Юрківська вулиця",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "check_date": "2025-07-27",
+    "currency:UAH": "yes",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко-Маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "second_hand": "no",
+    "shop": "supermarket",
+    "source": "Kaart Ground Survey 2017",
+    "stroller": "limited",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 4361390789,
+  "lat": 46.6655854,
+  "lon": 32.6026084,
+  "tags": {
+    "addr:housenumber": "9",
+    "addr:street": "200-річчя Херсона проспект",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:ru": "Экомаркет",
+    "name:uk": "Еко маркет",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4433209390,
+  "lat": 50.4698944,
+  "lon": 30.4460124,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко-маркет",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4526207190,
+  "lat": 50.4919494,
+  "lon": 30.6011932,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4533908691,
+  "lat": 50.5001160,
+  "lon": 30.6106836,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:en": "ECO Market",
+    "name:ru": "ЭКО Маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "Mo-Su 09:00-23:00",
+    "phone:UA": "0 800 502 055",
+    "shop": "supermarket",
+    "website": "http://eco.com.ua"
+  }
+},
+{
+  "type": "node",
+  "id": 4551299849,
+  "lat": 44.3885253,
+  "lon": 26.1095318,
+  "tags": {
+    "addr:city": "București",
+    "addr:street": "Bulevardul Constantin Brâncoveanu",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "Mo-Su,PH 00:00-00:00",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 4613657290,
+  "lat": 50.3807222,
+  "lon": 30.3819697,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4853674923,
+  "lat": 47.6587089,
+  "lon": 26.2731680,
+  "tags": {
+    "addr:city": "Suceava",
+    "addr:housenumber": "22",
+    "addr:street": "Calea Unirii",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "operator": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/037779ba-536e-11ed-83ab-164ae3191a95"
+  }
+},
+{
+  "type": "node",
+  "id": 4872868824,
+  "lat": 50.5139079,
+  "lon": 30.6097974,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 00:00-24:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 4889740148,
+  "lat": 46.6802412,
+  "lon": 32.6022952,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:en": "Strumok",
+    "name:uk": "Еко маркет",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 5303420242,
+  "lat": 50.4261012,
+  "lon": 30.5151218,
+  "tags": {
+    "addr:housenumber": "81",
+    "addr:postcode": "03150",
+    "addr:street": "вулиця Антоновича",
+    "brand": "Новус",
+    "check_date": "2025-09-10",
+    "name": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 5323629481,
+  "lat": 50.3825765,
+  "lon": 30.4579623,
+  "tags": {
+    "brand": "Новус",
+    "contact:instagram": "novus_ukraine",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket",
+    "website": "https://novus.ua/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 5383301823,
+  "lat": 50.6420562,
+  "lon": 36.5717877,
+  "tags": {
+    "addr:postcode": "308000",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:ru": "Ашан",
+    "brand:wikidata": "Q110053013",
+    "internet_access": "wlan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:ru": "Ашан",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 5527703201,
+  "lat": 45.0712551,
+  "lon": 38.9843470,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "ru:Auchan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 5611113819,
+  "lat": 50.4936015,
+  "lon": 30.5221150,
+  "tags": {
+    "addr:housenumber": "4-А",
+    "addr:street": "проспект Володимира Івасюка",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2026-09-13",
+    "level": "0",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "second_hand": "no",
+    "self_checkout": "yes",
+    "shop": "supermarket",
+    "stroller": "yes",
+    "toilets": "no",
+    "toilets:menstrual_products": "no",
+    "toilets:wheelchair": "no",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 6137489626,
+  "lat": 49.8555394,
+  "lon": 24.0237549,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "ru:Auchan",
+    "email": "service@auchan.ua",
+    "name": "Auchan",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "08:00-23:00",
+    "payment:coins": "yes",
+    "payment:maestro": "yes",
+    "payment:mastercard": "yes",
+    "payment:notes": "yes",
+    "payment:visa": "yes",
+    "payment:visa_debit": "yes",
+    "payment:visa_electron": "yes",
+    "phone:UA": "0 800 300 551",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ua/ua/store/chornovola",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 6158943007,
+  "lat": 50.4711066,
+  "lon": 30.4748536,
+  "tags": {
+    "addr:housenumber": "17-21",
+    "addr:postcode": "04107",
+    "addr:street": "Загорівська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2026-09-27",
+    "name": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 601 729",
+    "shop": "supermarket",
+    "website": "https://novus.ua"
+  }
+},
+{
+  "type": "node",
+  "id": 6184878771,
+  "lat": 50.4214554,
+  "lon": 30.5299019,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "level": "0",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 6306391668,
+  "lat": 46.7742641,
+  "lon": 23.6204765,
+  "tags": {
+    "addr:city": "Cluj-Napoca",
+    "addr:housenumber": "16",
+    "addr:street": "Strada Alexandru Vaida Voevod",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "Mo-Su 07:30-22:00",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/e3b424a1-ba12-4e4f-bcb9-f3ef0852c824",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 6342810165,
+  "lat": 46.5609629,
+  "lon": 23.8470257,
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "name": "METRO",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "node",
+  "id": 6419521253,
+  "lat": 44.3179444,
+  "lon": 23.8011723,
+  "tags": {
+    "addr:city": "Craiova",
+    "addr:housenumber": "16 C",
+    "addr:street": "Strada Alexandru Ioan Cuza",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "operator": "Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/beeab1d0-cc5d-41dc-b751-bcbc2da0e347"
+  }
+},
+{
+  "type": "node",
+  "id": 6459460173,
+  "lat": 50.3639953,
+  "lon": 30.9207926,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "operator": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 6510757187,
+  "lat": 44.3766541,
+  "lon": 26.1060919,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "164-168",
+    "addr:postcode": "077120",
+    "addr:street": "Strada Luică",
+    "alt_name": "MyAuchan Luică",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "Mo-Su,PH 07:00-22:00",
+    "shop": "convenience",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "website": "https://www.auchan.ro/magazin/607e8908-d831-42bd-b6ac-0d31f5850fe3"
+  }
+},
+{
+  "type": "node",
+  "id": 6712449285,
+  "lat": 50.5114505,
+  "lon": 30.2321256,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "contact:instagram": "novus_ukraine",
+    "name": "Новус",
+    "name:en": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-21:00",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 6779726961,
+  "lat": 44.4165627,
+  "lon": 26.0358438,
+  "tags": {
+    "addr:city": "București",
+    "addr:country": "RO",
+    "addr:housenumber": "25",
+    "addr:postcode": "061444",
+    "addr:street": "Strada Brașov",
+    "alt_name": "Auchan Drumul Taberei",
+    "branch": "Drumul Taberei",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "operator": "Auchan Romania SA",
+    "phone": "+40 21 9141",
+    "shop": "supermarket",
+    "source": "survey",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "website": "https://www.auchan.ro/magazin/8c1a3cda-536f-11ed-83ab-0a1ad8cd4c37"
+  }
+},
+{
+  "type": "node",
+  "id": 6857256666,
+  "lat": 47.7845335,
+  "lon": 22.8438360,
+  "tags": {
+    "brand": "Metro",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "name": "Metro",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "node",
+  "id": 6886106532,
+  "lat": 50.4546924,
+  "lon": 30.6384957,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "ru:Auchan",
+    "check_date": "2025-11-02",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 7073073980,
+  "lat": 50.4932769,
+  "lon": 30.5602622,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 7124669210,
+  "lat": 44.1988233,
+  "lon": 28.6106065,
+  "tags": {
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/133f3be8-6a2f-11ed-83ab-0e99effad661"
+  }
+},
+{
+  "type": "node",
+  "id": 7177532386,
+  "lat": 51.7640479,
+  "lon": 25.5106857,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко Маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 7231498155,
+  "lat": 50.4188288,
+  "lon": 30.6309967,
+  "tags": {
+    "addr:housenumber": "17",
+    "addr:postcode": "02081",
+    "addr:street": "Здолбунівська вулиця",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "name:ru": "Ашан",
+    "name:uk": "Auchan",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "+380 44 593 2305",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 7431145326,
+  "lat": 50.2660471,
+  "lon": 28.6864419,
+  "tags": {
+    "addr:housenumber": "77",
+    "addr:street": "Київська вулиця",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "ru:Auchan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 7512870526,
+  "lat": 44.4529796,
+  "lon": 26.0732419,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "1",
+    "addr:postcode": "011145",
+    "addr:street": "Bulevardul Banu Manta",
+    "branch": "Banu Manta",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/8d0d91b2-b2e8-4716-a015-79b1d19ad014"
+  }
+},
+{
+  "type": "node",
+  "id": 7589903924,
+  "lat": 50.3474933,
+  "lon": 30.4485230,
+  "tags": {
+    "addr:housenumber": "1В",
+    "addr:postcode": "03027",
+    "addr:street": "Олександрівська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 8006902355,
+  "lat": 51.6785610,
+  "lon": 39.2843061,
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "contact:email": "icontrol.store25@metro-cc.ru",
+    "contact:phone": "+7 473 2397500;+7 800 7001077",
+    "contact:website": "https://online.metro-cc.ru",
+    "name": "METRO",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "node",
+  "id": 8196748076,
+  "lat": 48.9328767,
+  "lon": 24.7460929,
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "вулиця Івана Миколайчука",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 8599498268,
+  "lat": 50.0275171,
+  "lon": 22.0352113,
+  "tags": {
+    "addr:city": "Rzeszów",
+    "addr:housenumber": "35",
+    "addr:postcode": "35-330",
+    "addr:street": "Ignacego Paderewskiego",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "check_date": "2026-03-22",
+    "name": "Auchan",
+    "opening_hours": "Mo-Sa 06:00-23:30; Su 10:00-21:00",
+    "operator": "Reszka Sp. z o.o.",
+    "payment:blik": "yes",
+    "payment:cash": "yes",
+    "payment:maestro": "yes",
+    "payment:mastercard": "yes",
+    "payment:sodexo": "yes",
+    "payment:visa": "yes",
+    "phone": "+48 22 444 02 22",
+    "shop": "supermarket",
+    "website": "https://www.auchan.pl/pl/sklepy/supermarket-auchan-rzeszow-paderewskiego"
+  }
+},
+{
+  "type": "node",
+  "id": 8841213617,
+  "lat": 50.3825164,
+  "lon": 30.4768269,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2026-08-01",
+    "contact:website": "https://novus.ua/",
+    "level": "2",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "operator": "Novus",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "ref": "1115",
+    "shop": "supermarket",
+    "start_date": "2021-08-06",
+    "wheelchair": "limited"
+  }
+},
+{
+  "type": "node",
+  "id": 8892177364,
+  "lat": 50.3730931,
+  "lon": 30.3738961,
+  "tags": {
+    "addr:housenumber": "1-Е",
+    "addr:postcode": "08136",
+    "addr:street": "вулиця Балукова",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "NOVUS",
+    "opening_hours": "Mo-Sa 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 8912374640,
+  "lat": 50.4156134,
+  "lon": 30.5265775,
+  "tags": {
+    "brand": "Auchan",
+    "name": "Auchan pick-up point",
+    "name:en": "Auchan pick-up point",
+    "opening_hours": "mo-su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 8933093826,
+  "lat": 44.9850629,
+  "lon": 34.0865916,
+  "tags": {
+    "addr:housenumber": "189",
+    "addr:street": "Киевская улица",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "ru:Auchan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 8996211358,
+  "lat": 50.4565030,
+  "lon": 30.3632440,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "level": "-1",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 9208018548,
+  "lat": 46.8715877,
+  "lon": 26.4539764,
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "name": "METRO",
+    "operator": "METRO",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "node",
+  "id": 9431251622,
+  "lat": 44.2029151,
+  "lon": 28.6343051,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 9490449589,
+  "lat": 50.4912937,
+  "lon": 30.4899162,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "contact:phone": "+380 44 585 9535",
+    "contact:website": "https://www.auchan.ua/",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 9575576343,
+  "lat": 44.9677493,
+  "lon": 25.9628328,
+  "tags": {
+    "addr:city": "Ploiești",
+    "addr:street": "Centura de Vest",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 9677192980,
+  "lat": 50.4555371,
+  "lon": 30.5068714,
+  "tags": {
+    "addr:housenumber": "8-Б",
+    "addr:street": "Львівська площа",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2025-11-16",
+    "level": "-1",
+    "name": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 9680230313,
+  "lat": 50.4526948,
+  "lon": 30.5024048,
+  "tags": {
+    "addr:housenumber": "17Д",
+    "addr:street": "Бульварно-Кудрявська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2023-03-10",
+    "level": "-1",
+    "name": "Novus",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 9734419305,
+  "lat": 44.4496459,
+  "lon": 26.1258734,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "2",
+    "addr:postcode": "021301",
+    "addr:street": "Șoseaua Colentina",
+    "branch": "Bucur Obor",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/13f64c78-18fb-11f0-b37f-b59ad958f4e2"
+  }
+},
+{
+  "type": "node",
+  "id": 9736766963,
+  "lat": 44.4031427,
+  "lon": 26.0562415,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "88",
+    "addr:street": "Șoseaua Alexandria",
+    "alt_name": "MyAuchan Alexandriei 88",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "operator": "Auchan",
+    "shop": "convenience",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 9767675128,
+  "lat": 50.4710466,
+  "lon": 30.3993747,
+  "tags": {
+    "addr:housenumber": "2к1",
+    "addr:postcode": "04111",
+    "addr:street": "Салютна вулиця",
+    "branch": "Pick up Point",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 9866642516,
+  "lat": 47.1489749,
+  "lon": 27.5787501,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/f9818365-9d04-4305-a83f-17533b03ed5f"
+  }
+},
+{
+  "type": "node",
+  "id": 9892677617,
+  "lat": 50.3897608,
+  "lon": 30.4630759,
+  "tags": {
+    "brand": "Мій Ашан",
+    "brand:en": "My Auchan",
+    "brand:uk": "Мій Ашан",
+    "brand:wikidata": "Q4073419",
+    "name": "Мій Ашан",
+    "name:en": "My Auchan",
+    "name:uk": "Мій Ашан",
+    "opening_hours": "08:00-22:00",
+    "shop": "convenience",
+    "website": "https://auchan.ua/ua/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 9905797338,
+  "lat": 47.1457663,
+  "lon": 27.5284734,
+  "tags": {
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/8e3e049b-5375-11ed-83ab-0e91e8c48195"
+  }
+},
+{
+  "type": "node",
+  "id": 9906933500,
+  "lat": 50.5034098,
+  "lon": 30.4192901,
+  "tags": {
+    "addr:housenumber": "47",
+    "addr:postcode": "04203",
+    "addr:street": "проспект Європейського Союзу",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2023-03-23",
+    "name": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 9998321990,
+  "lat": 50.4406952,
+  "lon": 30.5498518,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "layer": "-1",
+    "level": "-1",
+    "name": "Novus",
+    "name:uk": "Новус",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 10223852564,
+  "lat": 47.1313552,
+  "lon": 27.6122579,
+  "tags": {
+    "addr:housenumber": "39",
+    "addr:street": "Șoseaua Bucium",
+    "branch": "Bucium",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/92412930-7640-11ed-83ab-0afe9683dc37"
+  }
+},
+{
+  "type": "node",
+  "id": 10684954514,
+  "lat": 49.7862621,
+  "lon": 30.1497996,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 10839474373,
+  "lat": 50.5161431,
+  "lon": 30.4977656,
+  "tags": {
+    "addr:housenumber": "29",
+    "addr:street": "Оболонський проспект",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 10846089824,
+  "lat": 46.6506289,
+  "lon": 32.5956795,
+  "tags": {
+    "addr:housenumber": "19",
+    "addr:street": "Миколаївське шосе",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО Маркет",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0800 302 055",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/"
+  }
+},
+{
+  "type": "node",
+  "id": 10852934819,
+  "lat": 49.6569452,
+  "lon": 30.9808928,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 10957623607,
+  "lat": 44.3833852,
+  "lon": 26.1104247,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "Mo-Su,PH 00:00-00:00",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 11030501453,
+  "lat": 50.4328155,
+  "lon": 30.4480293,
+  "tags": {
+    "addr:housenumber": "14-А",
+    "addr:street": "вулиця Ушинського",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "operator": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 11063204625,
+  "lat": 44.4933371,
+  "lon": 26.0631509,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "69A",
+    "addr:postcode": "013337",
+    "addr:street": "Șoseaua Străulești",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "check_date": "2025-08-26",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "operator": "Petrom",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/3a2788e5-6078-4583-bb69-e4577c52aa65",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11079124001,
+  "lat": 44.4597620,
+  "lon": 26.1071297,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "78",
+    "addr:street": "Strada Barbu Văcărescu",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/19d4f855-3bc3-4c5d-94a5-0c4754f4f743"
+  }
+},
+{
+  "type": "node",
+  "id": 11091238865,
+  "lat": 45.7754496,
+  "lon": 24.1689359,
+  "tags": {
+    "addr:city": "Șelimbăr",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "level": "0",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/ed522dc3-5372-11ed-83ab-1629c0828503"
+  }
+},
+{
+  "type": "node",
+  "id": 11132670256,
+  "lat": 49.4312622,
+  "lon": 31.3039932,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 11274843175,
+  "lat": 44.4129875,
+  "lon": 26.1023323,
+  "tags": {
+    "addr:city": "București",
+    "addr:street": "Calea Șerban Vodă",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/9bb732f4-6ccc-11ee-83ab-120680cbd1e5"
+  }
+},
+{
+  "type": "node",
+  "id": 11284351996,
+  "lat": 50.4476150,
+  "lon": 30.4326709,
+  "tags": {
+    "addr:housenumber": "26/2",
+    "addr:street": "Гарматна вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "Mo-Su 08:00-20:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 11482834179,
+  "lat": 44.2043241,
+  "lon": 25.7915457,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "payment:cash": "yes",
+    "payment:debit_cards": "yes",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 11508265552,
+  "lat": 51.5013027,
+  "lon": 31.2612995,
+  "tags": {
+    "addr:housenumber": "77",
+    "addr:postcode": "14021",
+    "addr:street": "Старобілоуська вулиця",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "name": "Metro",
+    "opening_hours": "08:00-20:00",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/store-locator/beri-vezi-4",
+    "wholesale": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11928526452,
+  "lat": 50.5276261,
+  "lon": 30.2308593,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 12053659645,
+  "lat": 50.4530913,
+  "lon": 30.4867843,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date:opening_hours": "2021-09-29",
+    "name": "Novus Експрес",
+    "name:en": "Novus Express",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket",
+    "survey:date": "2020-08-28"
+  }
+},
+{
+  "type": "node",
+  "id": 12145701970,
+  "lat": 50.4726099,
+  "lon": 30.3319712,
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 12167807368,
+  "lat": 44.4263249,
+  "lon": 26.0589680,
+  "tags": {
+    "addr:city": "București",
+    "brand": "MyAuchan",
+    "operator": "MyAuchan",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 12442516415,
+  "lat": 44.3605199,
+  "lon": 26.1514306,
+  "tags": {
+    "addr:city": "Popești-Leordeni",
+    "addr:postcode": "077160",
+    "addr:street": "Strada Popești Vest",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "check_date": "2025-05-18",
+    "check_date:opening_hours": "2025-05-18",
+    "level": "0",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "phone": "+40219141",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/4434c49b-f27d-11ef-b37f-8633a0accc6a",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 12466759077,
+  "lat": 50.5155175,
+  "lon": 30.5161240,
+  "tags": {
+    "addr:housenumber": "11",
+    "addr:street": "Прирічна вулиця",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 12698219488,
+  "lat": 44.3847510,
+  "lon": 26.1413336,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/f7021d2c-7dd4-403b-857d-246fe9c3769f"
+  }
+},
+{
+  "type": "node",
+  "id": 12766916091,
+  "lat": 50.3984671,
+  "lon": 30.6147402,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 12875449630,
+  "lat": 50.4408502,
+  "lon": 30.5143036,
+  "tags": {
+    "brand": "Ашан",
+    "check_date:opening_hours": "2026-07-29",
+    "name": "Auchan pick-up point",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 12878576297,
+  "lat": 44.3954712,
+  "lon": 26.1238742,
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "391",
+    "addr:postcode": "040055",
+    "addr:street": "Calea Văcărești",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "shop": "supermarket",
+    "start_date": "2026"
+  }
+},
+{
+  "type": "node",
+  "id": 12993702892,
+  "lat": 50.4667534,
+  "lon": 30.4610869,
+  "tags": {
+    "addr:housenumber": "3 B14",
+    "addr:postcode": "03150",
+    "addr:street": "Дорогожицька вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2025-12-02",
+    "level": "0",
+    "name": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Sa 08:00-20:00",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 13137954946,
+  "lat": 45.6610246,
+  "lon": 25.5709593,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/4b8910c9-2b71-4198-a962-2e24770ac696"
+  }
+},
+{
+  "type": "node",
+  "id": 13144545529,
+  "lat": 50.4971864,
+  "lon": 30.4654662,
+  "tags": {
+    "addr:housenumber": "23",
+    "addr:postcode": "04120",
+    "addr:street": "Балтійський провулок",
+    "air_conditioning": "yes",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2025-11-08",
+    "currency:UAH": "yes",
+    "name": "Novus",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "second_hand": "no",
+    "shop": "supermarket",
+    "stroller": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 13275199117,
+  "lat": 50.4618375,
+  "lon": 30.3555204,
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:street": "проспект Академіка Палладіна",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 13476520051,
+  "lat": 50.4611271,
+  "lon": 23.4169699,
+  "tags": {
+    "addr:city": "Tomaszów Lubelski",
+    "addr:city:simc": "0988075",
+    "addr:housenumber": "95",
+    "addr:postcode": "22-600",
+    "addr:street": "Generała Władysława Sikorskiego",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 13736797383,
+  "lat": 45.4451564,
+  "lon": 28.0281932,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "operator": "Simply by Auchan",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 13758764239,
+  "lat": 47.1551345,
+  "lon": 27.5884684,
+  "tags": {
+    "addr:city": "Iași",
+    "addr:country": "RO",
+    "addr:housename": "Palas Mall",
+    "addr:housenumber": "5C",
+    "addr:postcode": "700051",
+    "addr:street": "Strada Palas",
+    "alt_name": "Auchan City",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "retail",
+    "level": "0",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/af18a0ae-536e-11ed-83ab-1258c5c1cadb"
+  }
+},
+{
+  "type": "node",
+  "id": 13826917974,
+  "lat": 50.4333329,
+  "lon": 30.5158014,
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "check_date": "2026-05-14",
+    "level": "0",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 13904375280,
+  "lat": 45.1521397,
+  "lon": 23.7896818,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "node",
+  "id": 13914070386,
+  "lat": 44.6241408,
+  "lon": 22.6312838,
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 13947466085,
+  "lat": 51.4952989,
+  "lon": 31.2939126,
+  "tags": {
+    "addr:housenumber": "35",
+    "addr:postcode": "14000",
+    "addr:street": "проспект Миру",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "name": "ЕКО маркет",
+    "opening_hours": "08:00-22:00",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "phone": "+380 800 302 055",
+    "shop": "supermarket",
+    "website": "https://eko.com.ua"
+  }
+},
+{
+  "type": "node",
+  "id": 13957474886,
+  "lat": 50.3959999,
+  "lon": 30.6245214,
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "name": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 14114089109,
+  "lat": 44.9670043,
+  "lon": 25.9746810,
+  "tags": {
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 14133809095,
+  "lat": 50.5049266,
+  "lon": 30.8286993,
+  "tags": {
+    "addr:housenumber": "16-Г/8",
+    "addr:street": "вулиця Сергія Москаленка",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "height": "3",
+    "name": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "node",
+  "id": 14214449004,
+  "lat": 46.5100047,
+  "lon": 26.9294802,
+  "tags": {
+    "addr:city": "Bacău",
+    "addr:housenumber": "181",
+    "addr:postcode": "600303",
+    "addr:street": "Calea Republicii",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/45bbbe9b-4eca-11ed-83ab-0ebba77d4217"
+  }
+},
+{
+  "type": "way",
+  "id": 13296268,
+  "center": {
+    "lat": 45.4841069,
+    "lon": 28.0293206
+  },
+  "tags": {
+    "addr:city": "Vânători",
+    "addr:housenumber": "Km5",
+    "addr:street": "DN26",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "retail",
+    "name": "Metro",
+    "opening_hours": "Mo-Sa 06:00-21:00",
+    "operator": "METRO",
+    "shop": "wholesale",
+    "wholesale": "general"
+  }
+},
+{
+  "type": "way",
+  "id": 13860273,
+  "center": {
+    "lat": 44.4079344,
+    "lon": 26.1395179
+  },
+  "tags": {
+    "CLC:details": "This item has been retagged to make it invisible in renderings, but still available for edits.",
+    "CLC:explanation": "See http://wiki.openstreetmap.org/wiki/Romania_CLC_Import.",
+    "addr:city": "București",
+    "addr:country": "RO",
+    "addr:housenumber": "236",
+    "addr:postcode": "031303",
+    "addr:street": "Calea Vitan",
+    "alt_name": "Auchan Vitan",
+    "branch": "Vitan",
+    "brand": "Auchan",
+    "brand:website": "https://www.auchan.ro/",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "ro:Auchan",
+    "building": "retail",
+    "building:levels": "2",
+    "height": "12",
+    "name": "Auchan",
+    "old_name": "Real Vitan",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "pre-CLC:landuse": "retail",
+    "shop": "supermarket",
+    "start_date": "2007",
+    "website": "https://www.auchan.ro/magazin/1bd4428f-5370-11ed-83ab-0a058b243963"
+  }
+},
+{
+  "type": "way",
+  "id": 23113339,
+  "center": {
+    "lat": 46.5099967,
+    "lon": 24.5127571
+  },
+  "tags": {
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "yes",
+    "email": "contacttgm@auchan.ro",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "phone": "+40-750-106000",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/fc509318-536c-11ed-83ab-0ae96a46b0bd",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 23730534,
+  "center": {
+    "lat": 44.5119346,
+    "lon": 26.0850375
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:country": "RO",
+    "addr:housenumber": "44D",
+    "addr:postcode": "013696",
+    "addr:street": "Șoseaua București-Ploiești",
+    "alt_name": "Metro Băneasa",
+    "branch": "Baneasa",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "retail",
+    "height": "10",
+    "name": "METRO",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "operator": "Metro Cash & Carry Romania SRL",
+    "phone": "+40 21 200 31 14",
+    "shop": "wholesale",
+    "start_date": "2005",
+    "wholesale": "general"
+  }
+},
+{
+  "type": "way",
+  "id": 23786189,
+  "center": {
+    "lat": 44.4370133,
+    "lon": 25.9862350
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "500",
+    "addr:postcode": "061128",
+    "addr:postcode:source": "Date de la Poșta Română, publicate sub Licența pentru Guvernare Deschisă v1.0 la http://date.gov.ro/organization/posta-romana",
+    "addr:street": "Bulevardul Iuliu Maniu",
+    "alt_name": "Metro Militari",
+    "brand": "METRO",
+    "brand:facebook": "METRO.Romania96",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "height": "8",
+    "name": "Metro",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "operator": "Metro Romania SA",
+    "phone": "+40 771 364 837",
+    "shop": "wholesale",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "start_date": "1997",
+    "website": "https://www.metro.ro/",
+    "wholesale": "general"
+  }
+},
+{
+  "type": "way",
+  "id": 23866121,
+  "center": {
+    "lat": 46.5129547,
+    "lon": 24.5190335
+  },
+  "tags": {
+    "addr:housenumber": "233",
+    "addr:postcode": "540236",
+    "addr:street": "Strada Gheorghe Doja",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash and Carry",
+    "building": "yes",
+    "name": "METRO",
+    "opening_hours": "Mo-Sa 06:00-22:00; Su 08:00-18:00",
+    "phone": "+40-374-115555",
+    "shop": "wholesale",
+    "website": "https://www.metro.ro/"
+  }
+},
+{
+  "type": "way",
+  "id": 24612553,
+  "center": {
+    "lat": 44.4929776,
+    "lon": 26.2000860
+  },
+  "tags": {
+    "CLC:details": "This item has been retagged to make it invisible in renderings, but still available for edits.",
+    "CLC:explanation": "See http://wiki.openstreetmap.org/wiki/Romania_CLC_Import.",
+    "addr:city": "Voluntari",
+    "addr:housenumber": "104",
+    "addr:postcode": "077190",
+    "addr:street": "Bulevardul Voluntari",
+    "alt_name": "Metro Voluntari",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "height": "8",
+    "name": "METRO",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "pre-CLC:landuse": "retail",
+    "shop": "wholesale",
+    "start_date": "2000",
+    "wholesale": "general"
+  }
+},
+{
+  "type": "way",
+  "id": 24872136,
+  "center": {
+    "lat": 46.9666401,
+    "lon": 28.8900187
+  },
+  "tags": {
+    "addr:city": "Chișinău",
+    "addr:country": "MD",
+    "addr:district": "Municipiul Chișinău",
+    "addr:housenumber": "61",
+    "addr:postcode": "MD-2072",
+    "addr:street": "Bulevardul Dacia",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "email": "info.chisinau2@metro.md",
+    "height": "10",
+    "name": "Metro",
+    "name:bg": "Метро",
+    "name:ru": "Метро",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-21:00",
+    "phone": "+373 22 400 113",
+    "roof:colour": "#D9D0C5",
+    "roof:shape": "flat",
+    "shop": "wholesale",
+    "wholesale": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 24943160,
+  "center": {
+    "lat": 50.3904266,
+    "lon": 30.6410355
+  },
+  "tags": {
+    "addr:housenumber": "43",
+    "addr:postcode": "02140",
+    "addr:street": "проспект Петра Григоренка",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "building:levels": "1",
+    "email": "contactcenter@metro.ua",
+    "internet_access": "wlan",
+    "name": "Metro",
+    "name:en": "METRO Cash&Carry",
+    "name:uk": "METRO Київ",
+    "opening_hours": "Mo-Su 07:00-21:30",
+    "operator": "METRO ТЦ N°10",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/kiev-pozniaku-tz10",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 26832923,
+  "center": {
+    "lat": 50.5835709,
+    "lon": 30.4855245
+  },
+  "tags": {
+    "addr:housenumber": "1-А",
+    "addr:street": "проспект Мазепи",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "supermarket",
+    "building:levels": "2",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "+380 44 364 1568",
+    "shop": "supermarket",
+    "website": "https://www.billa.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 28221268,
+  "center": {
+    "lat": 50.3963069,
+    "lon": 30.6329670
+  },
+  "tags": {
+    "addr:housenumber": "3",
+    "addr:postcode": "02141",
+    "addr:street": "вулиця Михайла Гришка",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket",
+    "website": "https://novus.ua/",
+    "wheelchair": "yes",
+    "wikipedia": "uk:Вулиця Михайла Гришка (Київ)"
+  }
+},
+{
+  "type": "way",
+  "id": 28478917,
+  "center": {
+    "lat": 50.4866397,
+    "lon": 30.5168278
+  },
+  "tags": {
+    "addr:housenumber": "26-В",
+    "addr:postcode": "04073",
+    "addr:street": "проспект Степана Бандери",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "retail",
+    "building:levels": "1",
+    "check_date": "2026-09-13",
+    "email": "contactcenter@metro.ua",
+    "internet_access": "wlan",
+    "internet_access:fee": "customers",
+    "name": "METRO",
+    "name:en": "METRO Cash&Carry",
+    "name:uk": "METRO Київ",
+    "opening_hours": "Mo-Su 08:00-21:30",
+    "operator": "METRO ТЦ N°16",
+    "payment:cash": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "ref": "16",
+    "shop": "wholesale",
+    "toilets:wheelchair": "yes",
+    "website": "https://www.metro.ua/stores/kiev-petrivka-tz16",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 37383049,
+  "center": {
+    "lat": 45.0340580,
+    "lon": 39.0500646
+  },
+  "tags": {
+    "addr:city": "Краснодар",
+    "addr:country": "RU",
+    "addr:housenumber": "79",
+    "addr:postcode": "350059",
+    "addr:street": "Уральская улица",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "ru:Auchan",
+    "building": "retail",
+    "building:levels": "1",
+    "contact:facebook": "https://www.facebook.com/AuchanRussia",
+    "contact:instagram": "https://www.instagram.com/auchan.ru/",
+    "contact:twitter": "https://twitter.com/Auchan_ru",
+    "contact:vk": "https://vk.com/auchan",
+    "contact:website": "https://www.auchan.ru",
+    "contact:youtube": "https://www.youtube.com/channel/UCoPpvvMHzIpZ7EcNZBEWhFg",
+    "fire_rank": "3",
+    "int_name": "Auchan",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:ru": "Ашан",
+    "opening_hours": "08:00-22:00",
+    "operator": "RU-KDA-12-3",
+    "operator:wikidata": "Q758603",
+    "operator:wikipedia": "ru:Auchan",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 39909427,
+  "center": {
+    "lat": 49.2366680,
+    "lon": 28.3989415
+  },
+  "tags": {
+    "addr:housenumber": "1",
+    "addr:postcode": "23223",
+    "addr:street": "Хмельницьке шосе",
+    "addr:suburb": "Зарванці",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "retail",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:en": "METRO",
+    "name:uk": "METRO Вінниця",
+    "official_name": "МЕТРО Вінниця, ТЦ № 21",
+    "opening_hours": "Mo-Su 08:00-21:00",
+    "operator": "METRO ТЦ21",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/vinnutsia-tz21"
+  }
+},
+{
+  "type": "way",
+  "id": 40247455,
+  "center": {
+    "lat": 45.7913461,
+    "lon": 24.1097053
+  },
+  "tags": {
+    "CLC:details": "This item has been retagged to make it invisible in renderings, but still available for edits.",
+    "CLC:explanation": "See http://wiki.openstreetmap.org/wiki/Romania_CLC_Import.",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "building:levels": "1",
+    "is_in:country": "Romania",
+    "is_in:country_code": "RO",
+    "is_in:county": "Sibiu",
+    "name": "METRO",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "pre-CLC:landuse": "retail",
+    "roof:shape": "flat",
+    "shop": "wholesale",
+    "wheelchair": "yes",
+    "wholesale": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 40421237,
+  "center": {
+    "lat": 45.0980097,
+    "lon": 38.9958522
+  },
+  "tags": {
+    "addr:housenumber": "30",
+    "addr:street": "Ростовское шоссе",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "building:levels": "1",
+    "contact:email": "Entry.Store26@metro-cc.ru",
+    "contact:phone": "+7 800 7001077;+7 861 2101700",
+    "contact:website": "https://online.metro-cc.ru",
+    "fire_operator": "RU-KDA-12-4",
+    "fire_rank": "3",
+    "name": "METRO",
+    "name:en": "Metro Cash&Carry",
+    "opening_hours": "Mo 00:00-01:00,05:00-01:00;Sa 05:00-24:00;Tu-Fr,Su 05:00-01:00",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 41336917,
+  "center": {
+    "lat": 44.4796840,
+    "lon": 26.0986383
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:postcode": "014253",
+    "addr:street": "Șoseaua Pipera",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "yes",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/c9e20418-0176-4ee3-916c-39f61a113d49"
+  }
+},
+{
+  "type": "way",
+  "id": 41430605,
+  "center": {
+    "lat": 51.6787546,
+    "lon": 39.2842225
+  },
+  "tags": {
+    "addr:housenumber": "56",
+    "addr:street": "улица Остужева",
+    "branch": "C&C",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "building:levels": "1",
+    "name": "METRO",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 42714884,
+  "center": {
+    "lat": 45.4050105,
+    "lon": 28.0206384
+  },
+  "tags": {
+    "addr:city": "Galați",
+    "addr:housenumber": "3A",
+    "addr:postcode": "800650",
+    "addr:postcode:source": "Date de la Poșta Română, publicate sub Licența pentru Guvernare Deschisă v1.0 la http://date.gov.ro/organization/posta-romana",
+    "addr:street": "Bulevardul Galați",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "commercial",
+    "building:colour": "#f3f2f2",
+    "building:levels": "1",
+    "name": "ATAC",
+    "opening_hours": "Mo-Su 08:00-21:00",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "roof:colour": "#b3968f",
+    "roof:levels": "0",
+    "roof:shape": "flat",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/00c0be96-5371-11ed-83ab-0e0d909c4fd1"
+  }
+},
+{
+  "type": "way",
+  "id": 42968206,
+  "center": {
+    "lat": 47.1799693,
+    "lon": 27.4692679
+  },
+  "tags": {
+    "addr:housenumber": "km63",
+    "addr:street": "DN28",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash and Carry",
+    "building": "yes",
+    "name": "Metro",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 47087984,
+  "center": {
+    "lat": 45.8642838,
+    "lon": 22.9280725
+  },
+  "tags": {
+    "addr:city": "Deva",
+    "addr:housenumber": "85B",
+    "addr:postcode": "330182",
+    "addr:street": "Calea Zarandului",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "name": "Metro",
+    "opening_hours": "Mo-Sa 06:00-22:00; Su 08:00-20:00",
+    "shop": "wholesale",
+    "website": "https://www.metro.ro/public/Deva"
+  }
+},
+{
+  "type": "way",
+  "id": 51364030,
+  "center": {
+    "lat": 44.4189363,
+    "lon": 26.0350533
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "23",
+    "addr:postcode": "061444",
+    "addr:street": "Strada Brașov",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "website": "https://www.auchan.ro/magazin/b55858ee-65fa-4507-b5f7-98433be5104a"
+  }
+},
+{
+  "type": "way",
+  "id": 52723487,
+  "center": {
+    "lat": 50.5114144,
+    "lon": 30.6240413
+  },
+  "tags": {
+    "addr:housenumber": "2-А",
+    "addr:postcode": "02222",
+    "addr:street": "вулиця Сержа Лифаря",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "Metro",
+    "name:en": "METRO Cash&Carry",
+    "name:uk": "METRO Київ",
+    "opening_hours": "Mo-Sa 08:00-21:30",
+    "operator": "METRO ТЦ N°33",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "+380 80 050 1401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/kiev-troeshuna-tz33"
+  }
+},
+{
+  "type": "way",
+  "id": 53746347,
+  "center": {
+    "lat": 50.4402717,
+    "lon": 30.4409612
+  },
+  "tags": {
+    "addr:housenumber": "2/6",
+    "addr:postcode": "03058",
+    "addr:street": "вулиця Миколи Голего",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "retail",
+    "building:levels": "1",
+    "check_date": "2024-05-19",
+    "internet_access": "no",
+    "name": "ЕКО маркет",
+    "name:en": "EKO-Market",
+    "name:ru": "Эко-маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "Mo-Su 08:00-21:30",
+    "operator": "Еко-Маркет",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "shop": "supermarket",
+    "wheelchair": "limited"
+  }
+},
+{
+  "type": "way",
+  "id": 60858561,
+  "center": {
+    "lat": 51.5167927,
+    "lon": 31.3109356
+  },
+  "tags": {
+    "addr:housenumber": "165",
+    "addr:street": "проспект Михайла Грушевського",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "yes",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко-маркет",
+    "name:uk": "Еко-маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 68705629,
+  "center": {
+    "lat": 49.8235068,
+    "lon": 23.9161407
+  },
+  "tags": {
+    "addr:housenumber": "300",
+    "addr:postcode": "79040",
+    "addr:street": "Городоцька вулиця",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "email": "contactcenter@metro.ua",
+    "name": "Metro",
+    "name:uk": "METRO Львів",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "operator": "METRO ТЦ N°17",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/lviv1-tz17",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 72926177,
+  "center": {
+    "lat": 51.4909312,
+    "lon": 31.2907334
+  },
+  "tags": {
+    "addr:housenumber": "67",
+    "addr:postcode": "14000",
+    "addr:street": "проспект Перемоги",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "ЕКО маркет",
+    "opening_hours": "08:00-22:00",
+    "phone": "+380 800 302 055",
+    "shop": "supermarket",
+    "website": "https://eko.com.ua",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 77669098,
+  "center": {
+    "lat": 44.8133275,
+    "lon": 24.9444186
+  },
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "name": "METRO",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 80390977,
+  "center": {
+    "lat": 46.9653367,
+    "lon": 32.0774691
+  },
+  "tags": {
+    "addr:housenumber": "83-А",
+    "addr:street": "вулиця Космонавтів",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "supermarket",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Novus",
+    "name:uk": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 82489525,
+  "center": {
+    "lat": 44.9449769,
+    "lon": 25.9649066
+  },
+  "tags": {
+    "addr:city": "Blejoi",
+    "addr:housenumber": "1200",
+    "addr:place": "Blejoi",
+    "addr:postcode": "107070",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "building": "yes",
+    "name": "ATAC",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/cd0d11d5-5371-11ed-83ab-0a5ab510402b"
+  }
+},
+{
+  "type": "way",
+  "id": 85897558,
+  "center": {
+    "lat": 50.0668009,
+    "lon": 36.1974854
+  },
+  "tags": {
+    "addr:housenumber": "8",
+    "addr:street": "Кільцевий шлях",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:uk": "METRO",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "operator": "METRO Cash & Carry",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/harkiv-oleksiivka-tz32"
+  }
+},
+{
+  "type": "way",
+  "id": 89839545,
+  "center": {
+    "lat": 46.7510162,
+    "lon": 23.5264426
+  },
+  "tags": {
+    "addr:city": "Florești",
+    "addr:country": "RO",
+    "addr:housenumber": "488-490",
+    "addr:postcode": "407280",
+    "addr:street": "Strada Avram Iancu",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "currency:RON": "yes",
+    "name": "Metro",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "payment:coins": "yes",
+    "payment:contactless": "yes",
+    "payment:credit_cards": "yes",
+    "phone": "031-4234000",
+    "ref:vatin": "RO8119423",
+    "shop": "wholesale",
+    "source": "Bing",
+    "toilets": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 91323393,
+  "center": {
+    "lat": 49.9330486,
+    "lon": 36.2650587
+  },
+  "tags": {
+    "addr:housenumber": "187/1",
+    "addr:postcode": "61080",
+    "addr:street": "Аерокосмічний проспект",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:uk": "METRO",
+    "opening_hours": "Mo-Su 06:00-23:00",
+    "operator": "METRO Cash & Carry",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/harkiv-tz13"
+  }
+},
+{
+  "type": "way",
+  "id": 94450210,
+  "center": {
+    "lat": 50.4146640,
+    "lon": 30.6456230
+  },
+  "tags": {
+    "addr:housenumber": "1-А",
+    "addr:street": "Тростянецька вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 97936531,
+  "center": {
+    "lat": 48.4002383,
+    "lon": 35.0394811
+  },
+  "tags": {
+    "addr:housenumber": "63",
+    "addr:postcode": "49041",
+    "addr:street": "Запорізьке шосе",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "building:levels": "1",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:uk": "METRO Дніпро",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "operator": "METRO ТЦ N°14",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 501 401",
+    "roof:levels": "0",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/dnipro-tz14"
+  }
+},
+{
+  "type": "way",
+  "id": 99020986,
+  "center": {
+    "lat": 50.3787287,
+    "lon": 30.4420047
+  },
+  "tags": {
+    "addr:housenumber": "1-В",
+    "addr:postcode": "03134",
+    "addr:street": "Кільцева дорога",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Київ",
+    "building": "retail",
+    "building:levels": "1",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:en": "METRO",
+    "name:uk": "METRO",
+    "opening_hours": "Mo-Su 07:00-21:30",
+    "operator": "METRO ТЦ N°11",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/kiev-teremku-tz11",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 100739117,
+  "center": {
+    "lat": 50.4552553,
+    "lon": 30.3882588
+  },
+  "tags": {
+    "addr:housenumber": "3",
+    "addr:street": "Святошинська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:levels": "1",
+    "check_date": "2024-10-14",
+    "currency:UAH": "yes",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "second_hand": "no",
+    "shop": "supermarket",
+    "toilets": "yes",
+    "toilets:menstrual_products": "no",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 103460303,
+  "center": {
+    "lat": 50.4177533,
+    "lon": 30.3925833
+  },
+  "tags": {
+    "addr:housenumber": "17",
+    "addr:street": "вулиця Івана Дзюби",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "building": "retail",
+    "building:levels": "2",
+    "name": "Auchan",
+    "name:en": "Auchan",
+    "name:uk": "Auchan",
+    "operator": "Ашан",
+    "payment:apple_pay": "yes",
+    "payment:cash": "yes",
+    "payment:google_pay": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 105591780,
+  "center": {
+    "lat": 51.5403471,
+    "lon": 31.2663348
+  },
+  "tags": {
+    "addr:housenumber": "253А",
+    "addr:postcode": "14007",
+    "addr:street": "проспект Миру",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "ЕКО маркет",
+    "opening_hours": "08:00-22:00",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 105837953,
+  "center": {
+    "lat": 48.3203792,
+    "lon": 25.9043365
+  },
+  "tags": {
+    "addr:housenumber": "1-Д",
+    "addr:postcode": "58007",
+    "addr:street": "вулиця Остапа Вільшини",
+    "brand": "Metro",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "building:levels": "1",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO Чернівці",
+    "name:uk": "МЕТРО Чернівці",
+    "opening_hours": "Mo-Su 08:00-21:30",
+    "operator": "METRO ТЦ N°28",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/chernivtsi-tz28"
+  }
+},
+{
+  "type": "way",
+  "id": 107425508,
+  "center": {
+    "lat": 44.1353788,
+    "lon": 28.6229426
+  },
+  "tags": {
+    "addr:city": "Constanța",
+    "addr:housenumber": "211",
+    "addr:street": "Șoseaua Mangaliei",
+    "branch": "Metro 2",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "name": "METRO",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 107425514,
+  "center": {
+    "lat": 44.1976951,
+    "lon": 28.6027274
+  },
+  "tags": {
+    "addr:city": "Constanța",
+    "addr:housenumber": "237",
+    "addr:postcode": "900498",
+    "addr:street": "Bulevardul Aurel Vlaicu",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "name": "METRO",
+    "phone": "+40 374 115 555",
+    "shop": "wholesale",
+    "website": "https://www.metro.ro"
+  }
+},
+{
+  "type": "way",
+  "id": 111186556,
+  "center": {
+    "lat": 50.4336943,
+    "lon": 30.4829996
+  },
+  "tags": {
+    "addr:housenumber": "22",
+    "addr:street": "вулиця Митрополита Василя Липківського",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:levels": "1",
+    "check_date": "2026-07-21",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 112092109,
+  "center": {
+    "lat": 50.4531615,
+    "lon": 30.5939264
+  },
+  "tags": {
+    "addr:housenumber": "17",
+    "addr:street": "Броварський проспект",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "check_date:opening_hours": "2021-07-27",
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 114128275,
+  "center": {
+    "lat": 44.9704980,
+    "lon": 25.9611435
+  },
+  "tags": {
+    "addr:city": "Ploiești",
+    "addr:housename": "METRO Ploiești",
+    "addr:postcode": "100537",
+    "addr:street": "DN1",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "name": "METRO",
+    "shop": "wholesale",
+    "website": "https://www.metro.ro/"
+  }
+},
+{
+  "type": "way",
+  "id": 127094287,
+  "center": {
+    "lat": 46.9459111,
+    "lon": 32.0514587
+  },
+  "tags": {
+    "addr:housenumber": "40",
+    "addr:street": "проспект Миру",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "24/7",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 130760706,
+  "center": {
+    "lat": 50.4045607,
+    "lon": 30.6152700
+  },
+  "tags": {
+    "addr:housenumber": "49",
+    "addr:street": "вулиця Анни Ахматової",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:levels": "1",
+    "check_date": "2025-02-18",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "08:00-23:00",
+    "phone": "+380 50 417 5413",
+    "roof:shape": "flat",
+    "shop": "supermarket",
+    "website": "https://novus.ua/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 133600668,
+  "center": {
+    "lat": 46.5048898,
+    "lon": 26.9283795
+  },
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "name": "Metro",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 134764752,
+  "center": {
+    "lat": 50.5184256,
+    "lon": 30.2383670
+  },
+  "tags": {
+    "addr:housenumber": "105-А",
+    "addr:postcode": "08200",
+    "addr:street": "Соборна вулиця",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "retail",
+    "building:levels": "2",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "phone": "+380800502055",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 135171867,
+  "center": {
+    "lat": 50.4970262,
+    "lon": 30.3610788
+  },
+  "tags": {
+    "addr:housenumber": "6",
+    "addr:postcode": "04128",
+    "addr:street": "Берковецька вулиця",
+    "branch": "Біличі",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "building": "retail",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:ru": "Ашан Беличи",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:30-22:00",
+    "phone": "+380 44 393 2070",
+    "roof:shape": "flat",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ua/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 136052993,
+  "center": {
+    "lat": 44.1341463,
+    "lon": 28.6226525
+  },
+  "tags": {
+    "addr:city": "Constanța",
+    "addr:housenumber": "195A",
+    "addr:street": "Șoseaua Mangaliei",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "yes",
+    "name": "Auchan",
+    "old_name": "Real Constanța Sud",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/f1de133a-4ed4-11ed-83ab-12202f3b7baf"
+  }
+},
+{
+  "type": "way",
+  "id": 140234563,
+  "center": {
+    "lat": 50.4222344,
+    "lon": 30.4554357
+  },
+  "tags": {
+    "addr:housenumber": "56-А",
+    "addr:street": "проспект Повітряних Сил",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "name": "Novus",
+    "name:en": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 146605301,
+  "center": {
+    "lat": 50.4429283,
+    "lon": 30.4917936
+  },
+  "tags": {
+    "addr:housenumber": "107",
+    "addr:street": "Жилянська вулиця",
+    "brand": "ЕКО маркет",
+    "brand:en": "EKO-Market",
+    "brand:wikidata": "Q12103350",
+    "brand:wikipedia": "uk:ЕКО-маркет",
+    "building": "commercial",
+    "name": "ЕКО маркет",
+    "name:en": "EKO-Market",
+    "name:ru": "ЭКО-Маркет",
+    "name:uk": "ЕКО-Маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 146807379,
+  "center": {
+    "lat": 47.1551312,
+    "lon": 27.5887671
+  },
+  "tags": {
+    "addr:city": "Iași",
+    "addr:country": "RO",
+    "addr:housename": "Palas Mall",
+    "addr:housenumber": "5C",
+    "addr:postcode": "700051",
+    "addr:street": "Strada Palas",
+    "alt_name": "Auchan City",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "retail",
+    "building:levels": "3",
+    "layer": "1",
+    "name": "centrul comercial Auchan",
+    "shop": "mall",
+    "website": "https://www.auchan.ro/magazin/af18a0ae-536e-11ed-83ab-1258c5c1cadb"
+  }
+},
+{
+  "type": "way",
+  "id": 152245991,
+  "center": {
+    "lat": 49.8134085,
+    "lon": 24.0736923
+  },
+  "tags": {
+    "addr:housenumber": "8-Г",
+    "addr:postcode": "79032",
+    "addr:street": "вулиця Джорджа Вашингтона",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "building:levels": "1",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:uk": "METRO",
+    "opening_hours": "Mo-Su 07:00-21:30",
+    "operator": "METRO ТЦ N°37",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/lviv2-tz37",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 155046023,
+  "center": {
+    "lat": 46.7995188,
+    "lon": 23.6114217
+  },
+  "tags": {
+    "addr:city": "Cluj-Napoca",
+    "addr:country": "RO",
+    "addr:housenumber": "1-15",
+    "addr:postcode": "400641",
+    "addr:postcode:source": "Date de la Poșta Română, publicate sub Licența pentru Guvernare Deschisă v1.0 la http://date.gov.ro/organization/posta-romana",
+    "addr:street": "Bulevardul Muncii",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "yes",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "operator": "Auchan",
+    "phone": "+40219141",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/381a5af2-4ed4-11ed-83ab-16e19828cf29",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 164734772,
+  "center": {
+    "lat": 50.4425764,
+    "lon": 30.4879626
+  },
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "yes",
+    "building:levels": "3",
+    "level": "0",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО-Маркет",
+    "opening_hours": "24/7",
+    "phone:UA": "0 800 502 055",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 165285561,
+  "center": {
+    "lat": 50.1817897,
+    "lon": 30.3127081
+  },
+  "tags": {
+    "addr:housenumber": "6",
+    "addr:postcode": "08600",
+    "addr:street": "проспект Київський шлях",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко маркет",
+    "name:uk": "Еко маркет",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 171530698,
+  "center": {
+    "lat": 50.3936293,
+    "lon": 30.6115677
+  },
+  "tags": {
+    "addr:housenumber": "8",
+    "addr:street": "проспект Миколи Бажана",
+    "air_conditioning": "yes",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "check_date": "2025-02-07",
+    "currency:UAH": "yes",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "roof:shape": "flat",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 173074109,
+  "center": {
+    "lat": 50.4365064,
+    "lon": 30.3578871
+  },
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "Петропавлівська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "contact:website": "https://www.novus.ua/",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 173566256,
+  "center": {
+    "lat": 44.4090027,
+    "lon": 26.2014685
+  },
+  "tags": {
+    "access": "customers",
+    "addr:city": "București",
+    "addr:housenumber": "51",
+    "addr:postcode": "032258",
+    "addr:street": "Bulevardul Theodor Pallady",
+    "alt_name": "Metro Pallady",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "name": "METRO",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "shop": "wholesale",
+    "start_date": "2010",
+    "wholesale": "general"
+  }
+},
+{
+  "type": "way",
+  "id": 173566263,
+  "center": {
+    "lat": 44.4085596,
+    "lon": 26.2032218
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "51",
+    "addr:postcode": "032258",
+    "addr:street": "Bulevardul Theodor Pallady",
+    "alt_name": "Auchan Pallady",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "retail",
+    "height": "8",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket",
+    "source": "survey",
+    "start_date": "2010",
+    "website": "https://www.auchan.ro/magazin/e798d1bd-536f-11ed-83ab-02ca865e6983"
+  }
+},
+{
+  "type": "way",
+  "id": 174309416,
+  "center": {
+    "lat": 50.4380433,
+    "lon": 30.6217172
+  },
+  "tags": {
+    "addr:housenumber": "4-А",
+    "addr:postcode": "02160",
+    "addr:street": "Регенераторна вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:colour": "yellow",
+    "building:levels": "2",
+    "check_date:opening_hours": "2023-04-27",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:visa": "yes",
+    "roof:colour": "yellow",
+    "shop": "supermarket",
+    "website": "http://www.novus.com.ua"
+  }
+},
+{
+  "type": "way",
+  "id": 180182640,
+  "center": {
+    "lat": 44.3277761,
+    "lon": 23.7751046
+  },
+  "tags": {
+    "addr:city": "Craiova",
+    "addr:country": "RO",
+    "addr:housenumber": "5A",
+    "addr:postcode": "200233",
+    "addr:street": "Calea Severinului",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "yes",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/8933ba3b-5370-11ed-83ab-0a5ee08f0ea1"
+  }
+},
+{
+  "type": "way",
+  "id": 181155299,
+  "center": {
+    "lat": 45.6643344,
+    "lon": 25.5193427
+  },
+  "tags": {
+    "addr:city": "Ghimbav",
+    "addr:country": "RO",
+    "addr:housenumber": "9",
+    "addr:postcode": "507075",
+    "addr:street": "Calea Brașovului",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro AG",
+    "building": "retail",
+    "building:levels": "2",
+    "is_in:city": "Brașov",
+    "name": "METRO",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "operator": "METRO Cash & Carry Romania SRL",
+    "phone": "+40 374 115 555",
+    "shop": "wholesale",
+    "start_date": "1998-08-27",
+    "wholesale": "general"
+  }
+},
+{
+  "type": "way",
+  "id": 183077430,
+  "center": {
+    "lat": 46.4484747,
+    "lon": 30.6613660
+  },
+  "tags": {
+    "addr:housenumber": "29",
+    "addr:postcode": "65033",
+    "addr:street": "Аеропортівська вулиця",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "commercial",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:uk": "METRO",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/odesa1-tz12",
+    "wholesale": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 183423873,
+  "center": {
+    "lat": 50.4975993,
+    "lon": 30.3668521
+  },
+  "tags": {
+    "addr:housenumber": "1",
+    "addr:postcode": "04128",
+    "addr:street": "Гостомельська площа",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "check_date": "2023-03-23",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-20:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "website": "http://www.novus.com.ua/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 190072594,
+  "center": {
+    "lat": 44.3113653,
+    "lon": 23.8862603
+  },
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash and Carry",
+    "building": "yes",
+    "name": "METRO",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 191158292,
+  "center": {
+    "lat": 50.0379967,
+    "lon": 22.0688973
+  },
+  "tags": {
+    "brand": "Auchan",
+    "building": "retail",
+    "building:levels": "1",
+    "internet_access": "yes",
+    "name": "Centrum Handlowe Auchan Krasne",
+    "opening_hours": "Mo-Sa 07:30-22:00; Su 09:00-21:00",
+    "operator:wikidata": "Q758603",
+    "operator:wikipedia": "pl:Auchan",
+    "phone": "+48502446783",
+    "shop": "mall",
+    "source": "www.geoportal.gov.pl",
+    "toilets": "yes",
+    "website": "https://www.auchan.pl/"
+  }
+},
+{
+  "type": "way",
+  "id": 192050632,
+  "center": {
+    "lat": 46.3862677,
+    "lon": 30.7062102
+  },
+  "tags": {
+    "addr:housenumber": "101м",
+    "addr:postcode": "65037",
+    "addr:street": "проспект Полковника Гуляєва",
+    "branch": "Одеса",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:uk": "МЕТРО Одеса",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "operator": "METRO ТЦ N°31",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/odesa2-tz31"
+  }
+},
+{
+  "type": "way",
+  "id": 205226790,
+  "center": {
+    "lat": 44.4166012,
+    "lon": 26.1354033
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "321",
+    "addr:postcode": "030331",
+    "addr:street": "Șoseaua Mihai Bravu",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "roof:levels": "0",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/8c0c4fa8-94cd-4b7d-a8dd-ad582b855a40"
+  }
+},
+{
+  "type": "way",
+  "id": 219736222,
+  "center": {
+    "lat": 44.3608823,
+    "lon": 26.1223477
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "67-109",
+    "addr:postcode": "042157",
+    "addr:street": "Drumul Dealul Bisericii",
+    "branch": "Berceni",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "building": "retail",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "operator": "Auchan Romania SA",
+    "phone": "021 9141",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/b40bb9a8-4ed2-11ed-83ab-0a9ff4b88ed1"
+  }
+},
+{
+  "type": "way",
+  "id": 219736225,
+  "center": {
+    "lat": 44.3629297,
+    "lon": 26.1262190
+  },
+  "tags": {
+    "access": "customers",
+    "addr:city": "București",
+    "addr:housenumber": "130A",
+    "addr:postcode": "041837",
+    "addr:street": "Bulevardul Metalurgiei",
+    "alt_name": "Metro Berceni",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "height": "8",
+    "name": "METRO",
+    "opening_hours": "Mo-Sa 06:00-21:00; Su 08:00-18:00",
+    "operator": "Metro Romania SA",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "payment:visa_electron": "yes",
+    "shop": "wholesale",
+    "start_date": "2003",
+    "wholesale": "general"
+  }
+},
+{
+  "type": "way",
+  "id": 222011432,
+  "center": {
+    "lat": 45.6246678,
+    "lon": 25.6469574
+  },
+  "tags": {
+    "addr:city": "Brașov",
+    "addr:housenumber": "233",
+    "addr:postcode": "500299",
+    "addr:street": "Calea București",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "is_in:city": "Brașov",
+    "layer": "1",
+    "name": "METRO",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 224914613,
+  "center": {
+    "lat": 44.8227680,
+    "lon": 24.9103035
+  },
+  "tags": {
+    "addr:city": "Pitești",
+    "branch": "Pitești Bradu",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "yes",
+    "name": "Auchan",
+    "phone": "+40 219141",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/5683250f-536d-11ed-83ab-16b11c59cddd"
+  }
+},
+{
+  "type": "way",
+  "id": 225985480,
+  "center": {
+    "lat": 51.4963398,
+    "lon": 31.2983518
+  },
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building:levels": "1",
+    "building:part": "supermarket",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО Маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 227019639,
+  "center": {
+    "lat": 50.5300281,
+    "lon": 30.6010059
+  },
+  "tags": {
+    "addr:housenumber": "40",
+    "addr:street": "Радунська вулиця",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "PH,Mo-Su 08:00-23:00",
+    "roof:shape": "flat",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 231945289,
+  "center": {
+    "lat": 50.4587418,
+    "lon": 30.6323050
+  },
+  "tags": {
+    "addr:housenumber": "1-А",
+    "addr:street": "вулиця Гната Хоткевича",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "1",
+    "check_date:opening_hours": "2021-09-04",
+    "contact:website": "https://novus.ua/",
+    "internet_access": "wlan",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00; 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket",
+    "website": "http://www.novus.com.ua"
+  }
+},
+{
+  "type": "way",
+  "id": 240410555,
+  "center": {
+    "lat": 44.4285791,
+    "lon": 26.0459214
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:country": "RO",
+    "addr:housenumber": "8C",
+    "addr:postcode": "061328",
+    "addr:street": "Bulevardul Timișoara",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "building:levels": "1",
+    "height": "3",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "website": "https://www.auchan.ro/magazin/421d93dd-b84d-496f-9fba-1f2164ca668d"
+  }
+},
+{
+  "type": "way",
+  "id": 243156698,
+  "center": {
+    "lat": 44.8867234,
+    "lon": 24.8303770
+  },
+  "tags": {
+    "addr:city": "Pitești",
+    "addr:housenumber": "1",
+    "addr:postcode": "110104",
+    "addr:street": "Strada Constantin Dobrogeanu Geherea",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "commercial",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/83628205-5371-11ed-83ab-0a7b588756eb"
+  }
+},
+{
+  "type": "way",
+  "id": 243773035,
+  "center": {
+    "lat": 44.4660832,
+    "lon": 26.1473850
+  },
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "way",
+  "id": 249530931,
+  "center": {
+    "lat": 47.6532548,
+    "lon": 23.5139267
+  },
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "is_in": "Baia Mare; Maramureș; România",
+    "name": "METRO",
+    "operator": "Metro",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 249953937,
+  "center": {
+    "lat": 47.6446595,
+    "lon": 23.5247089
+  },
+  "tags": {
+    "addr:city": "Baia Mare",
+    "addr:housenumber": "144",
+    "addr:postcode": "430013",
+    "addr:postcode:source": "Date de la Poșta Română, publicate sub Licența pentru Guvernare Deschisă v1.0 la http://date.gov.ro/organization/posta-romana",
+    "addr:street": "Bulevardul București",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "retail",
+    "is_in:city": "Baia Mare",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/1a0e90a6-4ed2-11ed-83ab-023cdc612039"
+  }
+},
+{
+  "type": "way",
+  "id": 251384882,
+  "center": {
+    "lat": 44.4349699,
+    "lon": 25.9885568
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "486",
+    "addr:postcode": "061127",
+    "addr:street": "Bulevardul Iuliu Maniu",
+    "alt_name": "MyAuchan PETROM Militari",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "building:levels": "1",
+    "height": "3",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "operator": "Petrom",
+    "shop": "convenience",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "website": "https://www.auchan.ro/magazin/ec2b4e94-fce1-4094-a625-022544024290"
+  }
+},
+{
+  "type": "way",
+  "id": 264107402,
+  "center": {
+    "lat": 46.9570124,
+    "lon": 32.0524429
+  },
+  "tags": {
+    "addr:housenumber": "38-А",
+    "addr:street": "Херсонське шосе",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "yes",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 275798681,
+  "center": {
+    "lat": 50.4141343,
+    "lon": 30.5387202
+  },
+  "tags": {
+    "addr:housenumber": "16-А",
+    "addr:street": "бульвар Миколи Міхновського",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "supermarket",
+    "building:colour": "green",
+    "building:levels": "1",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "operator": "ТОВ «Новус Україна»",
+    "roof:shape": "flat",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 279534018,
+  "center": {
+    "lat": 44.3978167,
+    "lon": 26.0423612
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "166",
+    "addr:postcode": "051543",
+    "addr:street": "Șoseaua Alexandria",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "yes",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey"
+  }
+},
+{
+  "type": "way",
+  "id": 289170997,
+  "center": {
+    "lat": 44.4577498,
+    "lon": 26.0403629
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "16A",
+    "addr:postcode": "060503",
+    "addr:street": "Bulevardul Constructorilor",
+    "branch": "Crângași",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "operator": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/57b0f253-536f-11ed-83ab-0ebdff047dc3"
+  }
+},
+{
+  "type": "way",
+  "id": 291005573,
+  "center": {
+    "lat": 50.4128423,
+    "lon": 30.3689229
+  },
+  "tags": {
+    "addr:housenumber": "28",
+    "addr:street": "вулиця Леоніда Каденюка",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "commercial",
+    "name": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 291438492,
+  "center": {
+    "lat": 45.0120239,
+    "lon": 39.1272623
+  },
+  "tags": {
+    "addr:city": "Краснодар",
+    "addr:country": "RU",
+    "addr:housenumber": "2/1",
+    "addr:street": "Крылатая улица",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "building:levels": "1",
+    "contact:email": "entry.store1342@metro-cc.ru",
+    "contact:phone": "+7 800 7001077;+7 861 2938200",
+    "contact:website": "https://online.metro-cc.ru",
+    "name": "METRO",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 299167602,
+  "center": {
+    "lat": 50.4289045,
+    "lon": 30.3552940
+  },
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "08:30-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 303509304,
+  "center": {
+    "lat": 46.7967316,
+    "lon": 33.4710939
+  },
+  "tags": {
+    "addr:housenumber": "1",
+    "addr:street": "Будівельників проспект",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "commercial",
+    "name": "ЕКО маркет",
+    "name:uk": "Екомаркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 308499481,
+  "center": {
+    "lat": 50.4376323,
+    "lon": 30.4461619
+  },
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "check_date": "2024-05-25",
+    "contact:facebook": "https://www.facebook.com/ekomarketua",
+    "contact:instagram": "https://www.instagram.com/eko___market/",
+    "contact:website": "https://www.eko.com.ua",
+    "internet_access": "no",
+    "name": "ЕКО маркет",
+    "name:en": "Eko-market",
+    "name:ru": "Эко-маркет",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "operator": "Еко-Маркет",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "phone:UA": "0 800 302 055",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 309556600,
+  "center": {
+    "lat": 47.7932822,
+    "lon": 35.2378175
+  },
+  "tags": {
+    "abandoned": "yes",
+    "access": "private",
+    "addr:housenumber": "7-А",
+    "addr:postcode": "69050",
+    "addr:street": "Оріхівське шосе",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "building:levels": "1",
+    "email": "contactcenter@metro.ua",
+    "height": "12",
+    "name": "Metro",
+    "name:uk": "METRO Запоріжжя",
+    "operator": "METRO ТЦ N°18",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/zaporizhia-tz18"
+  }
+},
+{
+  "type": "way",
+  "id": 313099557,
+  "center": {
+    "lat": 50.5553714,
+    "lon": 30.2156824
+  },
+  "tags": {
+    "addr:housenumber": "104-Д",
+    "addr:street": "Києво-Мироцька вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "supermarket",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket",
+    "toilets:wheelchair": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 315558777,
+  "center": {
+    "lat": 46.5572360,
+    "lon": 30.7676576
+  },
+  "tags": {
+    "addr:housenumber": "307/1",
+    "addr:postcode": "65069",
+    "addr:street": "Миколаївська дорога",
+    "branch": "Одеса",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "retail",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:ru": "МЕТРО",
+    "name:uk": "МЕТRО",
+    "opening_hours": "Mo-Su 06:00-22:00",
+    "operator": "METRO ТЦ N°42",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "0-800-501-401",
+    "phone:UA": "0 800 501 401",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/stores/odesa3-tz42"
+  }
+},
+{
+  "type": "way",
+  "id": 328065774,
+  "center": {
+    "lat": 48.5293987,
+    "lon": 35.0315468
+  },
+  "tags": {
+    "addr:housenumber": "17",
+    "addr:postcode": "52005",
+    "addr:street": "Нижньодніпровська вулиця",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "ru:Auchan",
+    "diet:gluten_free": "yes",
+    "diet:halal": "yes",
+    "diet:kosher": "yes",
+    "diet:vegetarian": "yes",
+    "level": "0",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "PH,Mo-Su 08:00-23:00",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 330241501,
+  "center": {
+    "lat": 51.6533844,
+    "lon": 39.0620136
+  },
+  "tags": {
+    "addr:housenumber": "52М",
+    "addr:street": "2-я Заречная улица",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "contact:email": "entry.store1310@metro-cc.ru",
+    "contact:phone": "+7 473 2065750;+7 473 2067900;+7 800 7001077",
+    "contact:website": "https://online.metro-cc.ru",
+    "name": "METRO",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 333438864,
+  "center": {
+    "lat": 49.7736134,
+    "lon": 24.0094108
+  },
+  "tags": {
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "en:Auchan",
+    "level": "1",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:30-23:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 336650156,
+  "center": {
+    "lat": 50.4095592,
+    "lon": 30.6201560
+  },
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "Тальнівська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "1",
+    "height": "8",
+    "name": "Novus",
+    "name:en": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 336650215,
+  "center": {
+    "lat": 50.4107639,
+    "lon": 30.6257986
+  },
+  "tags": {
+    "addr:housenumber": "18",
+    "addr:postcode": "02068",
+    "addr:street": "проспект Петра Григоренка",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:levels": "2",
+    "height": "15",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 357228685,
+  "center": {
+    "lat": 50.4106377,
+    "lon": 30.6055958
+  },
+  "tags": {
+    "addr:housenumber": "7-Г",
+    "addr:street": "Здолбунівська вулиця",
+    "air_conditioning": "yes",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "check_date": "2023-09-11",
+    "currency:UAH": "yes",
+    "height": "15",
+    "internet_access": "wlan",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "organic": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "second_hand": "no",
+    "shop": "supermarket",
+    "stroller": "yes",
+    "toilets": "yes",
+    "toilets:wheelchair": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 357229122,
+  "center": {
+    "lat": 50.4070875,
+    "lon": 30.6105941
+  },
+  "tags": {
+    "addr:housenumber": "17-А",
+    "addr:postcode": "02081",
+    "addr:street": "Дніпровська набережна",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "1",
+    "check_date": "2023-03-04",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "phone:UA": "0 800 601 729",
+    "roof:levels": "0",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 370350229,
+  "center": {
+    "lat": 46.8576924,
+    "lon": 32.0215881
+  },
+  "tags": {
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "ЕКО маркет",
+    "name:ru": "Эко маркет",
+    "name:uk": "ЕКО маркет",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 371877633,
+  "center": {
+    "lat": 48.7358383,
+    "lon": 37.5749900
+  },
+  "tags": {
+    "addr:housenumber": "28а",
+    "addr:street": "Машинобудівників бульвар",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "yes",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко-маркет",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 393886897,
+  "center": {
+    "lat": 50.3895803,
+    "lon": 30.6257717
+  },
+  "tags": {
+    "addr:housenumber": "1-А",
+    "addr:postcode": "02140",
+    "addr:street": "вулиця Софії Русової",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "check_date:opening_hours": "2021-06-18",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "08:00-23:00",
+    "payment:apple_pay": "yes",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:google_pay": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 402836190,
+  "center": {
+    "lat": 50.5530431,
+    "lon": 36.5743490
+  },
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "Придорожная улица",
+    "branch": "Cash & Carry",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "supermarket",
+    "building:levels": "1",
+    "contact:email": "entry.store1337@metro-cc.ru",
+    "contact:phone": "+7 472 2789400;+7 800 7001077",
+    "contact:website": "https://online.metro-cc.ru",
+    "name": "Metro",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 421294998,
+  "center": {
+    "lat": 44.4078615,
+    "lon": 26.0779174
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:postcode": "051856",
+    "addr:street": "Calea Ferentari",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/0265b342-f81e-4da5-b3b1-67c698c508cc"
+  }
+},
+{
+  "type": "way",
+  "id": 424387971,
+  "center": {
+    "lat": 44.7720534,
+    "lon": 37.6988877
+  },
+  "tags": {
+    "addr:city": "Новороссийск",
+    "addr:housenumber": "37",
+    "addr:place": "Гайдук",
+    "addr:postcode": "353991",
+    "addr:street": "Новороссийское шоссе",
+    "addr:suburb": "Гайдук",
+    "branch": "Cash & Carry",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "commercial",
+    "building:levels": "2",
+    "contact:email": "entry.store1094@metro-cc.ru",
+    "contact:phone": "+7 800 7001077;+7 861 7309400;+7 861 7309410",
+    "contact:website": "https://online.metro-cc.ru",
+    "height": "10",
+    "name": "Metro",
+    "name:en": "Metro",
+    "name:ru": "Метро",
+    "opening_hours": "Mo-Su 06:00-23:00",
+    "roof:levels": "0",
+    "roof:shape": "flat",
+    "shop": "supermarket",
+    "start_date": "2016"
+  }
+},
+{
+  "type": "way",
+  "id": 438288914,
+  "center": {
+    "lat": 50.4473437,
+    "lon": 30.6026131
+  },
+  "tags": {
+    "addr:housenumber": "4",
+    "addr:street": "вулиця Євгена Сверстюка",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "roof:shape": "flat",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 438911191,
+  "center": {
+    "lat": 50.4955198,
+    "lon": 30.4257981
+  },
+  "tags": {
+    "addr:housenumber": "1-А",
+    "addr:street": "вулиця Івана Кавалерідзе",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "NOVUS",
+    "name:uk": "NOVUS",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "phone": "+380 50 417 0500",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 449176123,
+  "center": {
+    "lat": 50.4372028,
+    "lon": 30.4861646
+  },
+  "tags": {
+    "addr:housenumber": "5",
+    "addr:street": "вулиця Георгія Кірпи",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "08:00-23:00",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone:UA": "0 800 601 729",
+    "shop": "supermarket",
+    "website": "http://www.novus.com.ua/ru/kiev-ulica-georgiya-kirpy-5"
+  }
+},
+{
+  "type": "way",
+  "id": 461937211,
+  "center": {
+    "lat": 50.4028455,
+    "lon": 30.6251548
+  },
+  "tags": {
+    "addr:housenumber": "4",
+    "addr:street": "Урлівська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "roof:levels": "0",
+    "shop": "supermarket",
+    "toilets": "yes",
+    "toilets:access": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 474190016,
+  "center": {
+    "lat": 50.5147271,
+    "lon": 30.4924182
+  },
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "вулиця Зої Гайдай",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "retail",
+    "building:levels": "1",
+    "check_date": "2025-11-18",
+    "name": "ЕКО маркет",
+    "name:uk": "ЕКО-Маркет Плюс",
+    "opening_hours": "08:00-23:00",
+    "roof:shape": "flat",
+    "shop": "supermarket",
+    "website": "https://www.eko.com.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 479082678,
+  "center": {
+    "lat": 50.3907368,
+    "lon": 30.3696345
+  },
+  "tags": {
+    "addr:housenumber": "28-А",
+    "addr:postcode": "08132",
+    "addr:street": "Європейська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "internet_access": "wlan",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 493751976,
+  "center": {
+    "lat": 50.4666668,
+    "lon": 30.6549181
+  },
+  "tags": {
+    "addr:housenumber": "18-Д",
+    "addr:street": "Броварський проспект",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket",
+    "website": "http://novus.com.ua",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 633873132,
+  "center": {
+    "lat": 47.8569575,
+    "lon": 26.3094785
+  },
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "name": "My Auchan",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "way",
+  "id": 676653822,
+  "center": {
+    "lat": 44.4401796,
+    "lon": 25.9812481
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "546-560",
+    "addr:postcode": "061129",
+    "addr:street": "Bulevardul Iuliu Maniu",
+    "branch": "Militari",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "indoor": "area",
+    "level": "0",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket",
+    "start_date": "2008",
+    "website": "https://www.auchan.ro/magazin/77cfaeb2-536e-11ed-83ab-0a900c85d0e5",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 690176959,
+  "center": {
+    "lat": 50.5175904,
+    "lon": 30.2479540
+  },
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "Центральна вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "PH,Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 717258499,
+  "center": {
+    "lat": 44.9179934,
+    "lon": 25.4700511
+  },
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "name": "METRO",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 753281525,
+  "center": {
+    "lat": 50.5028513,
+    "lon": 30.4275751
+  },
+  "tags": {
+    "addr:housenumber": "41",
+    "addr:postcode": "04203",
+    "addr:street": "проспект Європейського Союзу",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:levels": "1",
+    "name": "Novus",
+    "name:uk": "Novus",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 775242095,
+  "center": {
+    "lat": 50.4291153,
+    "lon": 30.6472709
+  },
+  "tags": {
+    "addr:housenumber": "4",
+    "addr:street": "вулиця Павла Чубинського",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "yes",
+    "building:levels": "1",
+    "name": "ЕКО маркет",
+    "name:en": "Eco-Market",
+    "name:uk": "Еко-Маркет",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 781810770,
+  "center": {
+    "lat": 44.4259561,
+    "lon": 26.0478177
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "5A",
+    "addr:postcode": "061533",
+    "addr:street": "Strada Sibiu",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "building:levels": "1",
+    "height": "3",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "operator": "OMV Petrom",
+    "shop": "convenience",
+    "source:addr:housenumber": "survey",
+    "source:addr:street": "survey",
+    "website": "https://www.auchan.ro/magazin/17af76b5-a10e-452a-8751-421398673301"
+  }
+},
+{
+  "type": "way",
+  "id": 782042607,
+  "center": {
+    "lat": 50.6036509,
+    "lon": 30.4543390
+  },
+  "tags": {
+    "addr:housenumber": "1",
+    "addr:street": "вулиця Героїв Майдану",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Sa 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 815640939,
+  "center": {
+    "lat": 44.4462015,
+    "lon": 25.9883356
+  },
+  "tags": {
+    "addr:city": "Roșu",
+    "addr:country": "RO",
+    "addr:housenumber": "59",
+    "addr:postcode": "077042",
+    "addr:street": "Strada Rezervelor",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "retail",
+    "building:levels": "1",
+    "height": "5",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "start_date": "2018",
+    "website": "https://www.auchan.ro/magazin/08ad18a3-18f5-11f0-b37f-9d34075b27b7"
+  }
+},
+{
+  "type": "way",
+  "id": 829371722,
+  "center": {
+    "lat": 46.5645526,
+    "lon": 23.7859124
+  },
+  "tags": {
+    "addr:city": "Turda",
+    "addr:housenumber": "19",
+    "addr:street": "Strada Ștefan cel Mare",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "building": "yes",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/5bde34d2-5375-11ed-83ab-16de79fa5733"
+  }
+},
+{
+  "type": "way",
+  "id": 863609111,
+  "center": {
+    "lat": 50.4376200,
+    "lon": 30.3701737
+  },
+  "tags": {
+    "addr:housenumber": "10",
+    "addr:street": "вулиця Академіка Біляшівського",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "building:levels": "1",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 877312085,
+  "center": {
+    "lat": 44.4835517,
+    "lon": 26.0453640
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "10a",
+    "addr:postcode": "013219",
+    "addr:street": "Strada Jiului",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "yes",
+    "check_date": "2022-11-11",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/7848ef03-ead8-4090-87df-6feec1581ec5",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 901396137,
+  "center": {
+    "lat": 50.4129448,
+    "lon": 30.4626742
+  },
+  "tags": {
+    "addr:housenumber": "8-А",
+    "addr:street": "вулиця Івана Пулюя",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "08:00-22:00",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 915862148,
+  "center": {
+    "lat": 44.9410628,
+    "lon": 25.9906082
+  },
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "yes",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/eb8f9e02-049e-448a-997e-770b7f114140"
+  }
+},
+{
+  "type": "way",
+  "id": 925276876,
+  "center": {
+    "lat": 44.3114156,
+    "lon": 23.8325948
+  },
+  "tags": {
+    "addr:city": "Craiova",
+    "addr:housenumber": "80",
+    "addr:street": "Calea București",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "indoor": "room",
+    "level": "0",
+    "name": "Auchan",
+    "opening_hours": "08:00-22:00",
+    "shop": "supermarket",
+    "website": "https://www.auchan.ro/magazin/0e488ef8-536f-11ed-83ab-0e727a557a87"
+  }
+},
+{
+  "type": "way",
+  "id": 931484671,
+  "center": {
+    "lat": 46.6741932,
+    "lon": 32.6100588
+  },
+  "tags": {
+    "addr:housenumber": "10-А",
+    "addr:street": "вулиця Покришева",
+    "brand": "ЕКО маркет",
+    "brand:wikidata": "Q12103350",
+    "building": "yes",
+    "name": "ЕКО маркет",
+    "name:uk": "Еко маркет",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 945461980,
+  "center": {
+    "lat": 50.4055266,
+    "lon": 30.3381845
+  },
+  "tags": {
+    "addr:housenumber": "120",
+    "addr:street": "Соборна вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "contact:instagram": "novus_ukraine",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "operator": "Novus",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 951303654,
+  "center": {
+    "lat": 50.4424159,
+    "lon": 30.3113097
+  },
+  "tags": {
+    "addr:street": "вулиця Авіаконструктора Антонова",
+    "air_conditioning": "yes",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "08:00-23:00",
+    "shop": "supermarket",
+    "website": "http://novus.com.ua"
+  }
+},
+{
+  "type": "way",
+  "id": 974288807,
+  "center": {
+    "lat": 50.3496699,
+    "lon": 30.4777450
+  },
+  "tags": {
+    "addr:housenumber": "19",
+    "addr:street": "Метрологічна вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "2",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 984373197,
+  "center": {
+    "lat": 50.5394333,
+    "lon": 30.2317940
+  },
+  "tags": {
+    "addr:housenumber": "2-Г",
+    "addr:street": "Вокзальна вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 985525140,
+  "center": {
+    "lat": 44.5922902,
+    "lon": 25.9210309
+  },
+  "tags": {
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "yes",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/d2f0f911-07ca-4621-b39a-23b35c2e71e8"
+  }
+},
+{
+  "type": "way",
+  "id": 1000447631,
+  "center": {
+    "lat": 49.5300074,
+    "lon": 25.6092694
+  },
+  "tags": {
+    "addr:housenumber": "32",
+    "addr:postcode": "46027",
+    "addr:street": "Обʼїзна вулиця",
+    "branch": "Cash&Carry",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "supermarket",
+    "email": "contactcenter@metro.ua",
+    "name": "METRO",
+    "name:uk": "METRO",
+    "opening_hours": "Mo-Su 08:30-20:30",
+    "operator": "METRO ТЦ 64",
+    "phone": "+380 800 501 401",
+    "phone:UA": "0 800 501 401",
+    "ref": "64",
+    "shop": "wholesale",
+    "website": "https://www.metro.ua/store-locator/Ternopil-tz64",
+    "wholesale": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1008804501,
+  "center": {
+    "lat": 50.5419646,
+    "lon": 30.4868755
+  },
+  "tags": {
+    "addr:housenumber": "30-А",
+    "addr:postcode": "04209",
+    "addr:street": "Богатирська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "name": "Novus",
+    "name:en": "Novus",
+    "opening_hours": "08:00-23:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 1106157994,
+  "center": {
+    "lat": 46.7600314,
+    "lon": 24.7134779
+  },
+  "tags": {
+    "addr:city": "Reghin",
+    "addr:housenumber": "160",
+    "addr:postcode": "545300",
+    "addr:street": "Strada Iernuțeni",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "yes",
+    "name": "My Auchan",
+    "shop": "convenience",
+    "website": "https://www.auchan.ro/magazin/b1d5fd9a-8599-4b71-a2d0-7266e5cd0aa2"
+  }
+},
+{
+  "type": "way",
+  "id": 1112288815,
+  "center": {
+    "lat": 50.4945574,
+    "lon": 30.5881152
+  },
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:postcode": "02000",
+    "addr:street": "Керченська площа",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "yes",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 1155261199,
+  "center": {
+    "lat": 44.4084970,
+    "lon": 26.0760462
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "124",
+    "addr:postcode": "051856",
+    "addr:street": "Șoseaua Sălaj",
+    "brand": "My Auchan",
+    "brand:wikidata": "Q115800307",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "My Auchan",
+    "opening_hours": "24/7",
+    "shop": "convenience"
+  }
+},
+{
+  "type": "way",
+  "id": 1158753715,
+  "center": {
+    "lat": 50.4878486,
+    "lon": 30.6126218
+  },
+  "tags": {
+    "addr:housenumber": "48А",
+    "addr:street": "Братиславська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 1167914973,
+  "center": {
+    "lat": 50.3699176,
+    "lon": 30.3806380
+  },
+  "tags": {
+    "addr:housenumber": "20-А",
+    "addr:street": "Одеська вулиця",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "building": "retail",
+    "fixme": "`opening_hours:covid19` змінено на `opening_hours`, необхідно перевірити поточні години; `opening_hours:covid19` was changed to `opening_hours`, need to check the current hours",
+    "name": "Novus",
+    "name:en": "Novus",
+    "name:ru": "Новус",
+    "name:uk": "Новус",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "operator": "Novus",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "phone:UA": "0 800 601 729",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 1194767699,
+  "center": {
+    "lat": 44.4203064,
+    "lon": 26.1801959
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "33A",
+    "addr:postcode": "032455",
+    "addr:street": "Bulevardul 1 Decembrie 1918",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "indoor": "room",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket",
+    "source:addr:housenumber": "survey",
+    "start_date": "2006",
+    "website": "https://www.auchan.ro/magazin/715d9423-3f31-11ed-83ab-12ea70552275"
+  }
+},
+{
+  "type": "way",
+  "id": 1244744693,
+  "center": {
+    "lat": 51.1502876,
+    "lon": 22.5849812
+  },
+  "tags": {
+    "addr:city:simc": "0381083",
+    "addr:housenumber": "196",
+    "addr:place": "Mętów",
+    "addr:postcode": "20-388",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "building": "retail",
+    "building:levels": "1",
+    "name": "Auchan",
+    "shop": "supermarket",
+    "source:addr": "gugik.gov.pl",
+    "source:building": "BDOT"
+  }
+},
+{
+  "type": "way",
+  "id": 1314138055,
+  "center": {
+    "lat": 44.4287243,
+    "lon": 26.0418876
+  },
+  "tags": {
+    "addr:city": "București",
+    "addr:housenumber": "14A",
+    "addr:postcode": "061329",
+    "addr:street": "Bulevardul Timișoara",
+    "alt_name": "Auchan Plaza Residence",
+    "branch": "Exigent Plaza",
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "building": "retail",
+    "building:levels": "1",
+    "height": "4",
+    "name": "Auchan",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "operator": "Auchan Romania",
+    "shop": "supermarket",
+    "start_date": "2024",
+    "website": "https://www.auchan.ro/magazin/9f7898b7-6b4b-11ef-b37f-d8b4319f42df"
+  }
+},
+{
+  "type": "way",
+  "id": 1389934276,
+  "center": {
+    "lat": 50.0077837,
+    "lon": 22.6747234
+  },
+  "tags": {
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "check_date": "2025-05-24",
+    "indoor": "room",
+    "level": "0",
+    "level:ref": "0",
+    "name": "Auchan",
+    "opening_hours": "Mo-Sa 07:00-21:00; Su 09:00-17:00 \"dotyczy Niedziel handlowych\"",
+    "shop": "supermarket",
+    "website": "https://www.auchan.pl/pl/sklepy/auchan-supermarket-jaroslaw",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1413756762,
+  "center": {
+    "lat": 47.7659189,
+    "lon": 27.9447621
+  },
+  "tags": {
+    "addr:city": "Bălţi",
+    "addr:country": "MD",
+    "addr:district": "Municipiul Bălți",
+    "brand": "Metro",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "name": "Metro",
+    "name:ru": "Метро",
+    "shop": "wholesale",
+    "source": "AGCC, Geodata.gov.md",
+    "website": "https://www.metro.md/"
+  }
+},
+{
+  "type": "way",
+  "id": 1417188320,
+  "center": {
+    "lat": 50.4119599,
+    "lon": 30.5219196
+  },
+  "tags": {
+    "addr:housenumber": "176",
+    "addr:postcode": "03150",
+    "addr:street": "вулиця Антоновича",
+    "atm": "yes",
+    "brand": "Auchan",
+    "brand:en": "Auchan",
+    "brand:wikidata": "Q758603",
+    "brand:wikipedia": "en:Auchan",
+    "indoor": "area",
+    "layer": "-1",
+    "level": "-1",
+    "name": "Auchan",
+    "name:en": "Auchan",
+    "name:fr": "Auchan",
+    "name:ru": "Ашан",
+    "name:uk": "Ашан",
+    "opening_hours": "Mo-Su 08:30-21:00",
+    "phone": "+380 44 393 0093",
+    "shop": "supermarket",
+    "url": "http://auchan.ua/uk/shops/auchan-libidska/",
+    "website": "https://www.auchan.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 1420181775,
+  "center": {
+    "lat": 50.4509898,
+    "lon": 30.5222726
+  },
+  "tags": {
+    "addr:housenumber": "1",
+    "addr:postcode": "01001",
+    "addr:street": "майдан Незалежності",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2025-11-16",
+    "description": "ТЦ Глобус, сектор В",
+    "indoor": "area",
+    "layer": "-1",
+    "level": "-1",
+    "level:ref": "2",
+    "name": "NOVUS",
+    "opening_hours": "Mo-Su 08:00-20:00",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "phone": "+380 50 417 4396",
+    "shop": "supermarket",
+    "website": "https://novus.ua/"
+  }
+},
+{
+  "type": "way",
+  "id": 1422017597,
+  "center": {
+    "lat": 50.4496939,
+    "lon": 30.5255938
+  },
+  "tags": {
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "indoor": "room",
+    "level": "-1",
+    "name": "Novus",
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 1426887952,
+  "center": {
+    "lat": 47.6342995,
+    "lon": 26.2361332
+  },
+  "tags": {
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "METRO",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "shop": "wholesale"
+  }
+},
+{
+  "type": "way",
+  "id": 1432738964,
+  "center": {
+    "lat": 50.0378556,
+    "lon": 22.0686822
+  },
+  "tags": {
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "name": "Auchan",
+    "opening_hours": "Mo-Sa 07:30-22:00; Su 09:00-20:00",
+    "payment:apple_pay": "yes",
+    "payment:blik": "yes",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:google_pay": "yes",
+    "phone": "+48224440222",
+    "shop": "supermarket"
+  }
+},
+{
+  "type": "way",
+  "id": 1456335417,
+  "center": {
+    "lat": 51.4382083,
+    "lon": 22.6214766
+  },
+  "tags": {
+    "brand": "Auchan",
+    "brand:wikidata": "Q758603",
+    "indoor": "room",
+    "level": "0",
+    "name": "Auchan",
+    "note": "Auchan",
+    "shop": "supermarket",
+    "start_date": "2025-10-28"
+  }
+},
+{
+  "type": "way",
+  "id": 1504535627,
+  "center": {
+    "lat": 50.4424659,
+    "lon": 30.5211434
+  },
+  "tags": {
+    "addr:housenumber": "2",
+    "addr:street": "Бессарабська площа",
+    "brand": "Novus",
+    "brand:wikidata": "Q116748340",
+    "check_date": "2026-02-21",
+    "indoor": "room",
+    "level": "0",
+    "name": "Novus",
+    "opening_hours": "08:00-22:00",
+    "shop": "supermarket",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "relation",
+  "id": 6213470,
+  "center": {
+    "lat": 44.5693603,
+    "lon": 33.4590235
+  },
+  "tags": {
+    "addr:city": "Севастополь",
+    "addr:housenumber": "61",
+    "addr:street": "улица Тараса Шевченко",
+    "brand": "METRO",
+    "brand:wikidata": "Q13610282",
+    "brand:wikipedia": "en:Metro Cash & Carry",
+    "building": "yes",
+    "name": "Metro",
+    "name:en": "Metro",
+    "name:ru": "Метро",
+    "name:uk": "METRO",
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "shop": "wholesale",
+    "type": "multipolygon",
+    "wheelchair": "yes",
+    "wikidata": "Q169167",
+    "wikipedia": "ru:Metro AG"
+  }
+},
+{
+  "type": "relation",
+  "id": 12895029,
+  "center": {
+    "lat": 49.9842821,
+    "lon": 36.2653250
+  },
+  "tags": {
+    "addr:housenumber": "3",
+    "addr:postcode": "61068",
+    "addr:street": "Тарасівська вулиця",
+    "brand": "Ашан",
+    "brand:en": "Auchan",
+    "brand:uk": "Ашан",
+    "brand:wikidata": "Q4073419",
+    "brand:wikipedia": "en:Auchan",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "Ашан",
+    "name:en": "Auchan",
+    "name:uk": "Ашан",
+    "opening_hours": "24/7 closed",
+    "shop": "supermarket",
+    "type": "multipolygon"
+  }
+}
+
+  ]
+}

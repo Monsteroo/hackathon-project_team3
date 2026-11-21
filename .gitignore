@@ -32,3 +32,8 @@ _test_socks/
 
 # Local raw API dumps (snapshots that we commit live elsewhere)
 backend/data/raw/
+
+# Voice/Geo: build outputs, Vercel, eval audio
+dist/
+.vercel/
+backend/app/voice/evals/audio/

@@ -1,0 +1,18 @@
+{
+  "_description": "Адреса → координати (лише Київ). Для підказок під час набору — suggest=true.",
+  "_request": "curl --location 'http://localhost:8000/geo/geocode?q=%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA+22' --header 'X-API-Key: <API_KEY>'",
+  "_request_readable": "GET http://localhost:8000/geo/geocode?q=Хрещатик 22",
+  "_status": 200,
+  "_saved_at": "2026-11-21T12:45:31+00:00",
+  "response": {
+    "results": [
+      {
+        "label": "вулиця Хрещатик, 22, Київ",
+        "full": "22, вулиця Хрещатик, Центр, Шевченківський район, Київ, 01001, Україна",
+        "lat": 50.4498465,
+        "lng": 30.5230925,
+        "source": "nominatim"
+      }
+    ]
+  }
+}
