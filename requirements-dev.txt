@@ -1,2 +1,0 @@
-pytest==9.2.0
-uvicorn==0.54.0

@@ -36,4 +36,4 @@ backend/data/raw/
 # Voice/Geo: build outputs, Vercel, eval audio
 dist/
 .vercel/
-evals/audio/
+backend/app/voice/evals/audio/
