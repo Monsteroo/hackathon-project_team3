@@ -29,6 +29,21 @@ class Settings(BaseSettings):
     etl_zakaz_store_limit: int | None = None
     etl_silpo_branch_limit: int | None = None
 
+    # Модуль geo (Учасник 1): магазини поруч, маршрути, геокодинг
+    service_cities: str = "Київ"  # міста демо через кому; межі — app/geo/area.py
+    priced_min_offers: int = 50  # «є ціни» = offers_count у каталозі >= порогу
+    geo_user_agent: str = "voicecart-hackathon/0.1"  # Nominatim вимагає контакт у User-Agent
+    nominatim_url: str = "https://nominatim.openstreetmap.org"
+    photon_url: str = "https://photon.komoot.io"
+    valhalla_url: str = "https://valhalla1.openstreetmap.de"
+
+    # Модуль voice (Учасник 1): голос → текст (Groq)
+    groq_api_key: str = ""
+    groq_stt_model: str = "whisper-large-v3"
+    groq_cleanup_model: str = "qwen/qwen3.8-27b"
+    groq_cleanup_fallback_model: str = "openai/gpt-oss-120b"
+    voice_rate_limit_per_min: int = 10  # запитів на IP до /voice/*
+
     @property
     def api_key_list(self) -> list[str]:
         return [key.strip() for key in self.api_keys.split(",") if key.strip()]

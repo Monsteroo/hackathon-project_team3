@@ -1,0 +1,22 @@
+{
+  "_description": "Голосовий запис (multipart audio, до 60 с / 1.5 MB) → Whisper → чистка. Помилки: detail {code, message, fallback}.",
+  "_request": "curl --location --request POST 'http://localhost:8000/voice/transcribe' --header 'X-API-Key: <API_KEY>' --form 'audio=@voice.m4a'",
+  "_request_readable": "POST http://localhost:8000/voice/transcribe",
+  "_status": 200,
+  "_saved_at": "2026-11-21T12:45:32+00:00",
+  "response": {
+    "text": "сирники на сніданок без цукру і без пальмової олії, на 4 людини",
+    "raw_text": "Хочу зробити сирники на сніданок без цукру і без пальмової олії, на 4 людини, щоб недалеко йти.",
+    "mode": "walk",
+    "radius_km": 1.0,
+    "duration_s": 7.6949376,
+    "source": "groq_whisper",
+    "cleanup": {
+      "model": "qwen/qwen3.8-27b",
+      "guard": "ok",
+      "new_words": [],
+      "issues": {},
+      "tokens": 522
+    }
+  }
+}
