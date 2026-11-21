@@ -1,0 +1,125 @@
+/* DESIGN.md §4.9 BasketEditor: «Додати товар» */
+.root {
+  position: relative;
+  margin-top: var(--space-md);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  height: var(--add-height);
+  padding: 0 var(--space-ms);
+  border: 1px dashed var(--add-border);
+  border-radius: var(--add-radius);
+  background: var(--panel-bg);
+  color: var(--suggest-meta-fg);
+}
+
+.field:focus-within {
+  border-style: solid;
+  border-color: var(--add-border-focus);
+  outline: var(--focus-width) solid var(--color-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.field > svg {
+  flex: none;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: var(--weight-regular) var(--text-body) var(--font-ui);
+  color: var(--color-text);
+}
+
+.field input::placeholder {
+  color: var(--add-placeholder-fg);
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.popover {
+  position: absolute;
+  z-index: var(--z-popover);
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+  padding: var(--space-xs);
+  border: 1px solid var(--suggest-border);
+  border-radius: var(--suggest-radius);
+  background: var(--suggest-bg);
+  box-shadow: var(--suggest-shadow);
+}
+
+.popover[hidden] {
+  display: none;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: var(--suggest-max-height);
+  overflow-y: auto;
+}
+
+.option {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--space-sm);
+  align-items: center;
+  min-height: var(--size-touch);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.option > svg {
+  grid-row: span 2;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  color: var(--suggest-meta-fg);
+}
+
+.active {
+  background: var(--suggest-active-bg);
+}
+
+.name {
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--suggest-meta-fg);
+}
+
+.note {
+  margin: var(--space-xs) var(--space-sm);
+  font: var(--weight-regular) var(--hint-font) var(--font-ui);
+  color: var(--hint-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+}

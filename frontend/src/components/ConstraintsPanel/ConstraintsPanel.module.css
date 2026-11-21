@@ -1,0 +1,217 @@
+/* DESIGN.md §4.9 BasketEditor: обмеження */
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.fset {
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-md) 0;
+  border: 0;
+  border-bottom: 1px solid var(--fset-border);
+}
+
+.fset legend {
+  float: left;
+  width: 100%;
+  margin-bottom: var(--space-ms);
+  padding: 0;
+  font: var(--weight-semibold) var(--text-label) var(--font-ui);
+}
+
+.fset legend + * {
+  clear: both;
+}
+
+.hint {
+  margin: var(--space-sm) 0 0;
+  font: var(--weight-regular) var(--hint-font) var(--font-ui);
+  color: var(--hint-fg);
+}
+
+/* --- бюджет --- */
+.budgetRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-ms);
+}
+
+.money {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: var(--money-width);
+  height: var(--size-control);
+  padding: 0 var(--space-ms);
+  border: 1px solid var(--money-border);
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  font: var(--weight-semibold) var(--text-body) var(--font-ui);
+}
+
+.money:focus-within {
+  border-color: var(--choice-on-border);
+  outline: var(--focus-width) solid var(--color-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.money input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  color: var(--color-text);
+}
+
+.money input::placeholder {
+  font-weight: var(--weight-regular);
+  color: var(--add-placeholder-fg);
+}
+
+/* --- вибір: пресети, режим (нативні radio, оформлені як пігулки) --- */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.choice,
+.segItem {
+  position: relative;
+  display: inline-flex;
+}
+
+.choice input,
+.segItem input,
+.box input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.choice > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--choice-height);
+  padding: 0 var(--space-ms);
+  border: 1px solid var(--choice-border);
+  border-radius: var(--choice-radius);
+  background: var(--choice-bg);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.choice svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.choice:hover > span,
+.segItem:hover > span {
+  border-color: var(--choice-border-hover);
+}
+
+.choice input:checked + span,
+.segItem input:checked + span {
+  background: var(--choice-on-bg);
+  color: var(--choice-on-fg);
+  border-color: var(--choice-on-border);
+  box-shadow: inset 0 0 0 1px var(--choice-on-border);
+}
+
+.choice input:focus-visible + span,
+.segItem input:focus-visible + span,
+.box input:focus-visible + svg {
+  outline: var(--focus-width) solid var(--color-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* --- сегменти радіуса --- */
+.seg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--seg-item-min), 1fr));
+  gap: var(--space-xs);
+  margin-top: var(--space-ms);
+}
+
+.segItem > span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--seg-min-height);
+  border: 1px solid var(--choice-border);
+  border-radius: var(--seg-radius);
+  background: var(--choice-bg);
+  font: var(--weight-semibold) var(--text-label) var(--font-ui);
+}
+
+.segItem small {
+  font: var(--weight-regular) var(--text-caption) var(--font-ui);
+  color: var(--seg-sub-fg);
+}
+
+.segItem input:checked + span small {
+  color: inherit;
+}
+
+/* --- чекбокси складу --- */
+.checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--check-col-min), 1fr));
+  column-gap: var(--space-md);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--size-touch);
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  cursor: pointer;
+}
+
+.box {
+  position: relative;
+  flex: none;
+  width: var(--check-size);
+  height: var(--check-size);
+}
+
+.box svg {
+  width: 100%;
+  height: 100%;
+  padding: var(--space-2xs);
+  border: 1.5px solid var(--check-border);
+  border-radius: var(--check-radius);
+  background: var(--panel-bg);
+  color: transparent;
+  pointer-events: none;
+}
+
+.box input:checked + svg {
+  background: var(--check-on-bg);
+  border-color: var(--check-on-border);
+  color: var(--check-mark-fg);
+}
+
+.check:has(input:checked) > span:last-child {
+  font-weight: var(--weight-medium);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice > span {
+    transition: none;
+  }
+}

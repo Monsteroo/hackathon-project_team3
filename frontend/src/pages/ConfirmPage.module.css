@@ -1,0 +1,188 @@
+/* Екран 2 «Я зрозумів так». Токени — DESIGN.md §4.9 BasketEditor. Desktop-first. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.head {
+  min-width: 0;
+}
+
+.title {
+  font: var(--weight-bold) var(--text-h1) var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.said {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--said-fg);
+}
+
+.saidLabel {
+  flex: none;
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+}
+
+.said q {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: minmax(var(--panel-list-min), var(--panel-list-max)) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.panel {
+  min-width: 0;
+  padding: var(--panel-padding);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--panel-radius);
+  background: var(--panel-bg);
+}
+
+.blockHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-ms);
+}
+
+.sectionLabel {
+  font: var(--weight-semibold) var(--text-body-lg) var(--font-ui);
+}
+
+.meta {
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--said-fg);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: var(--space-md) 0;
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--said-fg);
+}
+
+.empty strong {
+  font: var(--weight-semibold) var(--text-body) var(--font-ui);
+  color: var(--color-text);
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--size-touch);
+  margin-bottom: var(--space-xs);
+  border-radius: var(--radius-sm);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  color: var(--said-fg);
+  text-decoration: none;
+}
+
+.back svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: var(--panel-loading-min-height);
+  font: var(--weight-medium) var(--text-body) var(--font-ui);
+  color: var(--said-fg);
+}
+
+.spin {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1023px) {
+  .page {
+    gap: var(--space-md);
+    padding-bottom: calc(var(--bottombar-height) + env(safe-area-inset-bottom));
+  }
+
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+  }
+
+  .said {
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-ms);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-md);
+    background: var(--panel-bg);
+  }
+
+  .said q {
+    white-space: normal;
+  }
+
+  .panel {
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  .cta {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-sticky);
+    padding: var(--space-ms) var(--gutter) calc(var(--space-ms) + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--bottombar-border);
+    background: var(--bottombar-bg);
+  }
+
+  .cta .meta {
+    display: none;
+  }
+
+  .ctaButton {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+}

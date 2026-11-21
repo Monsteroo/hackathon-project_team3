@@ -1,5 +1,6 @@
 /**
  * Міста, де Sayvy має ціни (DESIGN.md §4.7, відкрите питання 3: список для MVP ще не підтверджено).
+ * Демо: лише Київ — бекенд geo обслуговує тільки його (SERVICE_CITIES), решта → 422 outside_service_area.
  */
 export type City = {
   id: string
@@ -14,10 +15,6 @@ export type City = {
 
 export const CITIES: City[] = [
   { id: 'kyiv', name: 'Київ', region: 'Київська обл.', chains: 6, aliases: ['kyiv', 'kiev', 'kyjiv'], lat: 50.4501, lng: 30.5234 },
-  { id: 'lviv', name: 'Львів', region: 'Львівська обл.', chains: 5, aliases: ['lviv', 'lvov', 'lwow'], lat: 49.8397, lng: 24.0297 },
-  { id: 'odesa', name: 'Одеса', region: 'Одеська обл.', chains: 5, aliases: ['odesa', 'odessa'], lat: 46.4825, lng: 30.7233 },
-  { id: 'dnipro', name: 'Дніпро', region: 'Дніпропетровська обл.', chains: 5, aliases: ['dnipro', 'dnepr'], lat: 48.4647, lng: 35.0462 },
-  { id: 'kharkiv', name: 'Харків', region: 'Харківська обл.', chains: 4, aliases: ['kharkiv', 'kharkov'], lat: 49.9935, lng: 36.2304 },
 ]
 
 export const DEFAULT_CITY = CITIES[0]

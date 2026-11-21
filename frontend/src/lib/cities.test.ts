@@ -10,14 +10,15 @@ describe('cities', () => {
   it('finds cities by Cyrillic prefix and Latin aliases', () => {
     expect(filterCities('ки').map((c) => c.id)).toEqual(['kyiv'])
     expect(filterCities('kiev').map((c) => c.id)).toEqual(['kyiv'])
-    expect(filterCities('lviv').map((c) => c.id)).toEqual(['lviv'])
+    // Демо: лише Київ (бекенд geo обслуговує тільки його).
+    expect(filterCities('lviv')).toEqual([])
     expect(filterCities('Ужгород')).toEqual([])
-    expect(filterCities('')).toHaveLength(5)
+    expect(filterCities('')).toHaveLength(1)
   })
 
   it('picks nearest city within 60 km', () => {
     expect(nearestCity(50.43, 30.6)?.id).toBe('kyiv') // Лівий берег
-    expect(nearestCity(49.84, 24.03)?.id).toBe('lviv')
+    expect(nearestCity(49.84, 24.03)).toBeNull() // Львів: поза демо
     expect(nearestCity(48.62, 22.29)).toBeNull() // Ужгород
   })
 

@@ -1,0 +1,48 @@
+/* DESIGN.md §4.9 BasketEditor: степпер */
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--stepper-border);
+  border-radius: var(--stepper-radius);
+}
+
+.stepper button {
+  display: grid;
+  place-items: center;
+  width: var(--stepper-size);
+  height: var(--stepper-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--stepper-radius);
+  background: transparent;
+  color: var(--color-text);
+}
+
+.stepper button svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.stepper button:hover:not(:disabled) {
+  background: var(--stepper-bg-hover);
+}
+
+.stepper button:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.stepper output {
+  min-width: var(--space-xl);
+  text-align: center;
+  font: var(--weight-semibold) var(--text-body) var(--font-ui);
+}
+
+.sm {
+  border-color: transparent;
+}
+
+.sm output {
+  min-width: var(--space-lg);
+  font: var(--weight-semibold) var(--text-label) var(--font-ui);
+}

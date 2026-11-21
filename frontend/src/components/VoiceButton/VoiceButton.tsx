@@ -1,6 +1,7 @@
 import { CircleAlert, LoaderCircle, Mic, MicOff, Square } from 'lucide-react'
 import type { KeyboardEvent, Ref } from 'react'
 import type { VoiceState } from '../../features/voice/useSpeechRecognition'
+import { formatClock } from '../../lib/format'
 import styles from './VoiceButton.module.css'
 
 type ButtonProps = {
@@ -75,6 +76,8 @@ type StatusProps = {
   /** Підказка до помилки «не почув» (лише мобільний, де кнопка велика). */
   hint?: string
   align?: 'center' | 'start'
+  /** Секунди запису: «Слухаю… · 0:12». Лічильник прихований від скрінрідера, щоб не зачитувався щосекунди. */
+  elapsed?: number | null
 }
 
 const STATUS: Partial<Record<VoiceState, string>> = {
@@ -83,12 +86,18 @@ const STATUS: Partial<Record<VoiceState, string>> = {
 }
 
 /** Статус (aria-live) і помилки голосу. Окремо від кнопки, бо на десктопі кнопка всередині поля. */
-export function VoiceStatus({ state, error, errorId, hint, align = 'center' }: StatusProps) {
+export function VoiceStatus({ state, error, errorId, hint, align = 'center', elapsed }: StatusProps) {
   const showError = (state === 'error' || state === 'blocked') && error
   return (
     <div className={[styles.messages, align === 'start' && styles.start].filter(Boolean).join(' ')}>
       <p className={styles.status} aria-live="polite">
         {STATUS[state] ?? ''}
+        {state === 'listening' && elapsed != null && (
+          <span className="num" aria-hidden="true">
+            {' · '}
+            {formatClock(elapsed)}
+          </span>
+        )}
       </p>
       {showError && (
         <p className={styles.error} id={errorId} role="alert">
