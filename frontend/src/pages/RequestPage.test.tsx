@@ -51,10 +51,10 @@ describe('RequestPage', () => {
     expect(router.state.location.pathname).toBe('/')
   })
 
-  it('fills the field from an example and submits it to /confirm without a backend call', async () => {
+  it('submits typed text to /confirm without a backend call', async () => {
     const router = renderPage()
-    fireEvent.click(screen.getByRole('button', { name: 'Борщ на 4 людини' }))
-    expect(screen.getByLabelText('Введіть або вставте список')).toHaveValue('Борщ на 4 людини')
+    expect(screen.queryByRole('list', { name: 'Приклади запитів' })).toBeNull()
+    fireEvent.change(screen.getByLabelText('Введіть або вставте список'), { target: { value: 'Борщ на 4 людини' } })
     fireEvent.click(screen.getByRole('button', { name: 'Знайти кошик' }))
     await waitFor(() => expect(router.state.location.pathname).toBe('/confirm'))
 
