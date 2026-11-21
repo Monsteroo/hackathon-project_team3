@@ -37,6 +37,13 @@ def llm_reply(content: dict, status=200):
     ("в радіусі 2,5 км", None, 2.5),
     ("кава і 1 л молока за 200 гривень", None, None),
     ("поруч, але не далі півтора кілометра", "walk", 1.5),
+    # QA H2: «близько» без «до дому» — не відстань; «м'ясного» — не метри; число з «м» без контексту — не радіус
+    ("близько 2 кг цукру", None, None),
+    ("300 м'ясного фаршу", None, None),
+    ("2 м ковбаси і в радіусі 500 м", None, 0.5),
+    ("не хочу їхати на машині, піду пішки", "walk", None),
+    ("близько до дому", "walk", 1.0),
+    ("в радіусі п'ятисот метрів", None, 0.5),
 ])
 def test_rule_constraints(text, mode, radius):
     assert cleanup.rule_constraints(text) == {"mode": mode, "radius_km": radius}
@@ -46,7 +53,40 @@ def test_rule_constraints(text, mode, radius):
 
 def test_guard_allows_numbers_units_and_case_changes():
     raw = "ееее молоко галичина літр і два десятки яєць бюджет двісті п'ятдесят гривень"
-    assert cleanup.new_content_words(raw, "Молоко Галичина 1 л, 20 яйця, бюджет 250 грн.") == []
+    assert cleanup.guard_issues(raw, "Молоко Галичина 1 л, 20 яєць, бюджет 250 грн.") == {}
+
+
+@pytest.mark.parametrize("raw,cleaned,issue", [
+    ("купи хліб і молоко", "купи хліб, молоко і масло", "new_words"),
+    ("купи хліб і молоко", "хліб, молоко, пиво", "new_words"),
+    ("кава і молоко", "кава, молоко і какао", "new_words"),
+    ("сир і хліб", "сир, хліб і сирок", "new_words"),
+    ("два кіло картоплі", "5 кг картоплі", "new_numbers"),
+    ("молоко без лактози і хліб", "молоко і хліб", "lost_restrictions"),
+    ("молоко і хліб, тільки свіжий", "молоко і хліб, свіжий", "lost_restrictions"),
+    ("сметана, гречка і кефір", "сметана і кефір", "lost_words"),
+])
+def test_guard_catches_qa_cases(raw, cleaned, issue):
+    assert issue in cleanup.guard_issues(raw, cleaned)
+
+
+@pytest.mark.parametrize("raw,cleaned", [
+    ("два кіло картоплі", "2 кг картоплі"),
+    ("хочу сирники без цукру на чотири людини, щоб недалеко йти", "сирники без цукру на 4 людини"),
+    ("продукти на вечерю для двох до трьохсот гривень, поруч з домом", "продукти на вечерю для 2 до 300 грн"),
+    ("дитяче пюре, пішки не більше одного кілометра", "дитяче пюре"),
+    ("яблука, банани, ой ні, апельсини", "апельсини"),
+    ("ну мені каву і сиру", "кава і сир"),
+    ("риба сто п'ятдесят грам і пів літра молока", "риба 150 г і 0,5 л молока"),
+])
+def test_guard_accepts_legit_cleanup(raw, cleaned):
+    assert cleanup.guard_issues(raw, cleaned) == {}
+
+
+def test_llm_radius_wins_over_rules():
+    r = cleanup.clean_text("хліб в радіусі 2 км", client=client(lambda req: llm_reply(
+        {"text": "хліб", "mode": None, "radius_km": 3})))
+    assert r["radius_km"] == 3.0
 
 
 def test_guard_catches_added_product():

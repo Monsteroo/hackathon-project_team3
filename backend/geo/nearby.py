@@ -15,9 +15,8 @@ import httpx
 
 from backend.geo.directory import load_stores
 from backend.geo.distance import haversine_km
-from backend.geo.routing import DEFAULT_RADIUS_KM, Mode, maps_urls, travel_matrix
+from backend.geo.routing import DEFAULT_RADIUS_KM, MAX_RADIUS_KM, Mode, maps_urls, travel_matrix
 
-MAX_RADIUS_KM = 50.0
 MAX_EXPANSIONS = 3
 CONFIRMED_OUTSIDE_RADIUS = 5  # скільки найближчих підтверджених магазинів поза радіусом теж рахувати
 

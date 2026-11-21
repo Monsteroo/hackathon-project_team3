@@ -26,6 +26,7 @@ FALLBACK_SPEED_KMH: dict[str, float] = {"walk": 4.8, "car": 25.0}
 FALLBACK_DETOUR: dict[str, float] = {"walk": 1.3, "car": 1.4}
 
 DEFAULT_RADIUS_KM: dict[str, float] = {"walk": 2.0, "car": 10.0}  # рішення команди 21.11
+MAX_RADIUS_KM = 50.0  # спільна межа для запитів і витягу радіуса з голосу
 MATRIX_BATCH = 99      # 1 джерело + 99 цілей = ліміт 100 точок публічного Valhalla
 TIMEOUT_S = 5.0
 
