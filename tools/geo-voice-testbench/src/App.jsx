@@ -75,18 +75,18 @@ export default function App() {
       {nearby && (
         <>
           <h2>3. Магазини ({nearby.count}, радіус {nearby.radius_km} км, routing: {nearby.routing})</h2>
-          <p>Рекомендовано: {nearby.recommended_id ?? "—"} ({nearby.recommended_reason ?? "—"})</p>
+          <p>Рекомендовано: {nearby.recommended_store_id ?? "—"} ({nearby.recommended_reason ?? "—"})</p>
           <table>
             <tbody>
               {nearby.stores.map((s) => (
-                <tr key={s.id} style={{ fontWeight: s.id === nearby.recommended_id ? 700 : 400 }}>
+                <tr key={s.store_id} style={{ fontWeight: s.store_id === nearby.recommended_store_id ? 700 : 400 }}>
                   <td>{s.chain_name}</td>
                   <td>{s.address}</td>
                   <td>{s.duration_min} хв</td>
                   <td>{s.distance_km} км{s.estimated && " ≈"}</td>
                   <td>{s.has_online_prices ? "ціни ✓" : ""}{!s.in_radius && " (поза радіусом)"}</td>
                   <td>
-                    <button onClick={() => run(api.route({ ...origin, storeId: s.id, mode }).then(setRoute))}>/api/route</button>{" "}
+                    <button onClick={() => run(api.route({ ...origin, storeId: s.store_id, mode }).then(setRoute))}>/geo/route</button>{" "}
                     <a href={s.maps_urls[mode === "car" ? "driving" : "walking"]} target="_blank" rel="noreferrer">Google</a>{" "}
                     <a href={s.maps_urls.transit} target="_blank" rel="noreferrer">транспорт</a>
                   </td>
@@ -96,7 +96,7 @@ export default function App() {
           </table>
         </>
       )}
-      {route && show({ ...route, coordinates: `${route.coordinates.length} точок` })}
+      {route && show({ ...route, geometry: `${route.geometry.type}, ${route.geometry.coordinates.length} точок [lng, lat]` })}
     </main>
   );
 }
