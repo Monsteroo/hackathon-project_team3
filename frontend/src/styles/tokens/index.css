@@ -1,0 +1,4 @@
+/* Порядок важливий: primitive → semantic → component. */
+@import './primitives.css';
+@import './semantic.css';
+@import './components.css';
