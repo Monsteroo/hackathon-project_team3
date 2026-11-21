@@ -1,4 +1,4 @@
-import type { AgentBasket, AgentStore, Mode } from '../../lib/api/types'
+import type { AgentBasket, AgentStore, Mode, StoreOption } from '../../lib/api/types'
 import { formatDistance, formatPrice, formatRoundPrice, formatSavings, pluralItems } from '../../lib/format'
 import type { Origin } from '../location/position'
 
@@ -12,6 +12,23 @@ export const OPTION_TITLE: Record<OptionType, string> = {
   nearest: 'Найближчий',
   cheapest: 'Найвигідніший',
   smart_split: 'Smart Split',
+  store: 'Магазин поруч',
+}
+
+/** Префікс `optionId` екрана 4 для кошика одного магазину: `/basket/store-<store_id>`. */
+export const STORE_OPTION_PREFIX = 'store-'
+
+/** Кошик одного магазину зі списку «усі магазини» у формі варіанту: ті самі картка, маршрут і деталі. */
+export function storeBasket(o: StoreOption): AgentBasket {
+  return {
+    type: 'store',
+    stores: [o.store],
+    lines: o.lines,
+    total: o.total,
+    saving: 0,
+    within_budget: o.within_budget,
+    missing: o.missing,
+  }
 }
 
 const NBSP = ' '

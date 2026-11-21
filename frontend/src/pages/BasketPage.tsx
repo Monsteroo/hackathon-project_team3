@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { ArrowLeft, ArrowRight, CircleAlert, ExternalLink, Info, PackageX, RotateCcw } from 'lucide-react'
+import { ArrowLeft, CircleAlert, ExternalLink, Info, PackageX, RotateCcw } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { BasketRow } from '../components/BasketRow/BasketRow'
@@ -31,6 +31,8 @@ import {
   monogram,
   OPTION_TITLE,
   routeUrl,
+  STORE_OPTION_PREFIX,
+  storeBasket,
   tradeoff,
   type OptionType,
 } from '../features/results/options'
@@ -122,7 +124,13 @@ export function BasketPage() {
   const wide = useMediaQuery(MQ_TABLE)
   const saved = loadResult()
   const result = saved?.result ?? null
-  const basket = isOption(optionId) ? (result?.baskets.find((b) => b.type === optionId) ?? null) : null
+  const storeId = optionId?.startsWith(STORE_OPTION_PREFIX) ? optionId.slice(STORE_OPTION_PREFIX.length) : null
+  const storeOption = storeId ? result?.stores?.find((o) => o.store.store_id === storeId) : undefined
+  const basket = isOption(optionId)
+    ? (result?.baskets.find((b) => b.type === optionId) ?? null)
+    : storeOption
+      ? storeBasket(storeOption)
+      : null
   const [removed, setRemoved] = useState<Set<string>>(() => new Set())
 
   const etl = useQuery({
@@ -157,6 +165,8 @@ export function BasketPage() {
   }
 
   const totals = new Map(result.baskets.map((b) => [b.type, basketTotal(b, removed)]))
+  // Кошик магазину зі списку «усі магазини» не входить у baskets: його суму рахуємо окремо.
+  totals.set(basket.type, basketTotal(basket, removed))
   const total = totals.get(basket.type) ?? basket.total
   const view = result.baskets.map((b) => ({ ...b, total: totals.get(b.type) ?? b.total }))
   const trade = tradeoff({ ...basket, total }, view)
@@ -266,7 +276,7 @@ export function BasketPage() {
         <div className={styles.actions}>
           {route && (
             <a
-              className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+              className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.grow}`}
               href={route}
               target="_blank"
               rel="noopener noreferrer"
@@ -278,15 +288,6 @@ export function BasketPage() {
               Маршрут
             </a>
           )}
-          <Link
-            to={`/store/${basket.type}`}
-            className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.grow}`}
-          >
-            Почати покупки
-            <span className={buttonStyles.icon} aria-hidden="true">
-              <ArrowRight strokeWidth={1.75} />
-            </span>
-          </Link>
         </div>
       </aside>
 

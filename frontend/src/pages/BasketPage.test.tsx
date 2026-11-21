@@ -87,7 +87,6 @@ function renderPage(path = '/basket/cheapest') {
     [
       { path: '/basket/:optionId', element: <BasketPage /> },
       { path: '/results', element: <p>results</p> },
-      { path: '/store/:optionId', element: <p>store</p> },
     ],
     { initialEntries: [path] },
   )
@@ -127,7 +126,7 @@ describe('BasketPage', () => {
     expect(screen.getByText('900 г')).toBeInTheDocument()
     expect(screen.getAllByRole('button', { name: /Склад перевірено: без цукру/ }).length).toBe(2)
     expect(screen.getByText('пастернак')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Почати покупки/ })).toHaveAttribute('href', '/store/cheapest')
+    expect(screen.queryByRole('link', { name: /Почати покупки/ })).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Маршрут/ })).toHaveAttribute('href', 'https://maps.example/auchan')
   })
 
@@ -152,5 +151,34 @@ describe('BasketPage', () => {
   it('offers to go back when the option is unknown', () => {
     renderPage('/basket/smart_split')
     expect(screen.getByRole('heading', { name: 'Такого варіанту немає' })).toBeInTheDocument()
+  })
+
+  it('opens the basket of a store from the all-stores list', () => {
+    saveResult({
+      key: 'k',
+      origin: { lat: 50.4, lng: 30.6, label: 'Позняки', source: 'address' },
+      request: { text: '', lat: 50.4, lng: 30.6, mode: 'walk' },
+      result: {
+        ...RESULT,
+        stores: [
+          {
+            store: store('novus', 'Novus', 2.1),
+            lines: [line({ store_id: 'novus', price: 52, line_total: 52 })],
+            total: 52,
+            found: 1,
+            missing: [{ name: 'гречка', reason: 'not_found' }],
+            within_budget: true,
+            cheapest: false,
+            nearest: false,
+          },
+        ],
+      },
+      savedAt: '2026-11-21T15:00:00Z',
+    })
+    renderPage('/basket/store-novus')
+    expect(screen.getByText('Магазин поруч')).toBeInTheDocument()
+    expect(screen.getAllByText('Novus').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('52,00 ₴').length).toBeGreaterThan(0)
+    expect(screen.getByRole('link', { name: /Маршрут/ })).toHaveAttribute('href', 'https://maps.example/novus')
   })
 })

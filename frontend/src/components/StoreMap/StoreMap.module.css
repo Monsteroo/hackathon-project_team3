@@ -81,3 +81,39 @@
     transform: none;
   }
 }
+
+/* Сума кошика в магазині — чип під піном. Маркер MapLibre уже position: absolute — не перебивати. */
+.price {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, calc(-1 * var(--space-xs)));
+  padding: 0 var(--space-xs);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+  font: var(--weight-semibold) var(--text-caption) var(--font-ui);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cheapest .price {
+  background: var(--color-savings-solid);
+  color: var(--color-on-savings-solid);
+}
+
+/* Магазин поза варіантами кошика: світліший, під пінами варіантів. */
+.muted {
+  z-index: 0;
+}
+
+.muted .pinBody {
+  background: var(--color-text-3);
+  opacity: 0.75;
+}
+
+.selected .price {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}

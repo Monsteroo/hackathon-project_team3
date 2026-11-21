@@ -183,6 +183,34 @@ describe('ResultsPage', () => {
     expect(screen.getByRole('link', { name: /Деталі кошика/ })).toHaveAttribute('href', '/basket/nearest')
   })
 
+  it('lists every store in the radius and selects one outside the options', async () => {
+    const novus = {
+      ...RESULT.baskets[0].stores[0],
+      store_id: '482010105',
+      chain: 'novus',
+      chain_name: 'Novus',
+      address: 'Здолбунівська, 7Д',
+      maps_url: 'https://maps.example/novus',
+    }
+    const withStores: BasketOut = {
+      ...RESULT,
+      stores: [
+        { store: RESULT.baskets[1].stores[0], lines: [], total: 288.3, found: 2, missing: [], within_budget: true, cheapest: true, nearest: false },
+        { store: novus, lines: [], total: 301.5, found: 1, missing: [{ name: 'гречка', reason: 'not_found' }], within_budget: true, cheapest: false, nearest: false },
+      ],
+    }
+    respond(() => new Response(JSON.stringify(withStores), { status: 200 }))
+    renderAt({ origin: ORIGIN })
+    const row = await screen.findByRole('button', { name: /Novus/ })
+    expect(row).toHaveTextContent('1 з 2')
+    fireEvent.click(row)
+    expect(row).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('radio', { name: /Найвигідніший/ })).not.toBeChecked()
+    expect(screen.getByText('Не знайшли в цьому магазині')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Маршрут/ })).toHaveAttribute('href', 'https://maps.example/novus')
+    expect(screen.getByRole('link', { name: /Деталі кошика/ })).toHaveAttribute('href', '/basket/store-482010105')
+  })
+
   it('offers a retry when the agent fails', async () => {
     let fail = true
     const fetchMock = respond(() =>

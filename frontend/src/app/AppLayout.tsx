@@ -8,7 +8,6 @@ const STEPS = [
   { label: 'Список', match: (p: string) => p.startsWith('/confirm') },
   { label: 'Варіанти', match: (p: string) => p.startsWith('/results') },
   { label: 'Кошик', match: (p: string) => p.startsWith('/basket') },
-  { label: 'У магазині', match: (p: string) => p.startsWith('/store') },
 ]
 
 /** Поки немає акаунта й бекенду — усі 3 безкоштовні кошики доступні. */
