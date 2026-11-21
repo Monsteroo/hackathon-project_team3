@@ -1,0 +1,466 @@
+{
+  "campaign_name": "sayvy_ua_launch_v1",
+  "brand": {
+    "name": "SAYVY",
+    "accent_color": "#C6F432",
+    "accent_text": "#111114"
+  },
+  "formats": [
+    { "id": "square_1080x1080", "width": 1080, "height": 1080 },
+    { "id": "story_1080x1920", "width": 1080, "height": 1920 },
+    { "id": "banner_1200x628", "width": 1200, "height": 628 }
+  ],
+  "locales": ["uk"],
+  "scenes": [
+    {
+      "id": "s01_h1_two_baskets",
+      "hypothesis": "H1_price_spread",
+      "theme": "dark_overlay",
+      "prompt": "Editorial commercial product photography of two identical wire grocery shopping baskets filled with milk, eggs, cheese, coffee, and fresh apples side by side on a clean dark slate countertop, dramatic studio lighting, generous clean dark uncluttered space in the upper half for typography, ultra sharp, no text, no letters, no logos, no watermark",
+      "seed": 1001,
+      "copy": {
+        "uk": {
+          "badge": "ЕКОНОМІЯ ДО 32%",
+          "headline": "Ті самі продукти. Різниця в чеку — до 100 грн",
+          "subheadline": "Sayvy за 10 секунд порівнює кошик у найближчих супермаркетах",
+          "cta": "Спробувати безкоштовно"
+        }
+      }
+    },
+    {
+      "id": "s02_h1_receipt_shock",
+      "hypothesis": "H1_price_spread",
+      "theme": "dark_overlay",
+      "prompt": "Minimalist overhead flat-lay photography of a bright green reusable grocery tote bag overflowing with fresh everyday groceries, vegetables, dairy and bread on a dark charcoal stone kitchen table, moody soft directional lighting, generous clean empty space at top, no text, no letters, no logos, no watermark",
+      "seed": 1002,
+      "copy": {
+        "uk": {
+          "badge": "ЧЕКИ БЕЗ ПЕРЕПЛАТ",
+          "headline": "Досить переплачувати за звичний магазин",
+          "subheadline": "Один голосовий запит — і ти знаєш, де твій кошик дешевший прямо зараз",
+          "cta": "Порівняти ціни"
+        }
+      }
+    },
+    {
+      "id": "s03_h1_loss_leader",
+      "hypothesis": "H1_price_spread",
+      "theme": "dark_overlay",
+      "prompt": "Sleek commercial studio photography of a bright supermarket aisle shelf with neatly arranged glass milk bottles and minimalist packaging in warm focus at the bottom, soft dark blurred background at the top for copy, modern retail aesthetic, no text, no letters, no logos, no watermark",
+      "seed": 1003,
+      "copy": {
+        "uk": {
+          "badge": "АНТИ-ПАСТКА",
+          "headline": "Знижка на молоко не рятує весь чек",
+          "subheadline": "Sayvy рахує вигоду всього кошика, а не одного акційного товару",
+          "cta": "Перевірити кошик"
+        }
+      }
+    },
+    {
+      "id": "s04_h1_ten_items",
+      "hypothesis": "H1_price_spread",
+      "theme": "dark_overlay",
+      "prompt": "Clean studio product photography of ten everyday grocery staples arranged neatly on a dark walnut kitchen island: milk bottle, eggs carton, butter, coffee bag, pasta, olive oil, apples, tomatoes, bread, cheese, moody lighting, clean empty upper frame, no text, no letters, no logos, no watermark",
+      "seed": 1004,
+      "copy": {
+        "uk": {
+          "badge": "ЖИВИЙ ЗАМІР",
+          "headline": "10 базових продуктів — і 97 грн різниці",
+          "subheadline": "Не звіряй ціни в 4 додатках вручну — довір це ШІ-помічнику",
+          "cta": "Зібрати кошик"
+        }
+      }
+    },
+    {
+      "id": "s05_h1_offline_shop",
+      "hypothesis": "H1_price_spread",
+      "theme": "dark_overlay",
+      "prompt": "Stylish lifestyle photography of a modern supermarket shopping cart filled with fresh groceries parked in front of softly lit store aisles, deep atmospheric shadows in upper third, warm commercial lighting, crisp detail, no text, no letters, no logos, no watermark",
+      "seed": 1005,
+      "copy": {
+        "uk": {
+          "badge": "ОФЛАЙН ПОКУПКИ",
+          "headline": "Купуй поруч із домом, але за чесною ціною",
+          "subheadline": "Актуальні ціни супермаркетів твого району в одному голосовому запиті",
+          "cta": "Знайти вигоду"
+        }
+      }
+    },
+    {
+      "id": "s06_h2_milk_870_950",
+      "hypothesis": "H2_shrinkflation",
+      "theme": "dark_overlay",
+      "prompt": "Macro studio product photography of two sleek minimalist milk bottles of slightly different sizes standing side by side on a dark matte slate surface, dramatic rim light highlighting the subtle height difference, clean dark background at top, no text, no letters, no logos, no watermark",
+      "seed": 2001,
+      "copy": {
+        "uk": {
+          "badge": "ЗАХИСТ ВІД ШРІНКФЛЯЦІЇ",
+          "headline": "870 г чи 950 г? Цінник обманює",
+          "subheadline": "Sayvy автоматично перераховує кожен товар у чесну ціну за 1 кг",
+          "cta": "Рахувати чесно"
+        }
+      }
+    },
+    {
+      "id": "s07_h2_scale_weight",
+      "hypothesis": "H2_shrinkflation",
+      "theme": "dark_overlay",
+      "prompt": "Minimalist commercial photography of a modern matte black digital kitchen scale with a pack of coffee beans and a glass jar of oats on a dark stone counter, soft studio lighting, ample dark space above for headline, no text, no letters, no logos, no watermark",
+      "seed": 2002,
+      "copy": {
+        "uk": {
+          "badge": "ЦІНА ЗА 1 КГ",
+          "headline": "Менша пачка — вища ціна за кілограм",
+          "subheadline": "Бачиш реальну вартість грама, а не маркетингову ілюзію на полиці",
+          "cta": "Перевірити ціни"
+        }
+      }
+    },
+    {
+      "id": "s08_h2_cereal_packs",
+      "hypothesis": "H2_shrinkflation",
+      "theme": "dark_overlay",
+      "prompt": "Clean editorial product shot of kraft paper grocery pouches of grains, pasta, and coffee standing neatly in a row on a dark oak table, warm accent lighting, dark uncluttered wall background in top half, no text, no letters, no logos, no watermark",
+      "seed": 2003,
+      "copy": {
+        "uk": {
+          "badge": "ЧЕСНА ВАГА",
+          "headline": "Не плати +8% за «повітря» в упаковці",
+          "subheadline": "ШІ нормалізує вагу всіх пачок і показує, що справді вигідніше",
+          "cta": "Заощадити зараз"
+        }
+      }
+    },
+    {
+      "id": "s09_h2_butter_cheese",
+      "hypothesis": "H2_shrinkflation",
+      "theme": "dark_overlay",
+      "prompt": "High-end commercial food photography of fresh dairy products, butter blocks, cottage cheese bowl, and glass milk pitcher on dark slate, soft cinematic lighting, clean dark upper space, no text, no letters, no logos, no watermark",
+      "seed": 2004,
+      "copy": {
+        "uk": {
+          "badge": "БЕЗ ХИТРОЩІВ",
+          "headline": "180 г замість 200 г? Ми це бачимо",
+          "subheadline": "Автоматичний перерахунок ціни за 100 г і 1 кг по всіх супермаркетах",
+          "cta": "Спробувати Sayvy"
+        }
+      }
+    },
+    {
+      "id": "s10_h2_loupe_price",
+      "hypothesis": "H2_shrinkflation",
+      "theme": "dark_overlay",
+      "prompt": "Dramatic studio still life of a sleek glass magnifying lens resting next to minimalist unbranded grocery jars and bottles on a dark textured background, emerald green subtle rim light, generous empty upper space, no text, no letters, no logos, no watermark",
+      "seed": 2005,
+      "copy": {
+        "uk": {
+          "badge": "ШРІНКФЛЯЦІЯ-ГАРД",
+          "headline": "Зовні дешевше. За кілограм — дорожче",
+          "subheadline": "Sayvy миттєво знаходить приховану переплату через зменшену вагу",
+          "cta": "Дізнатися більше"
+        }
+      }
+    },
+    {
+      "id": "s11_h3_syrnyky_voice",
+      "hypothesis": "H3_voice_intent",
+      "theme": "dark_overlay",
+      "prompt": "Warm appetizing food photography of golden Ukrainian syrnyky cottage cheese pancakes with sour cream and berries on a dark ceramic plate, beside a sleek modern smartphone on a dark kitchen table, cozy morning light, empty dark space at top, no text, no letters, no logos, no watermark",
+      "seed": 3001,
+      "copy": {
+        "uk": {
+          "badge": "ГОЛОСОВИЙ ЗАПИТ",
+          "headline": "Скажи: «Хочу все на сирники» — кошик готовий",
+          "subheadline": "За 10 секунд ШІ збере інгредієнти і знайде найвигідніший магазин поруч",
+          "cta": "Надиктувати кошик"
+        }
+      }
+    },
+    {
+      "id": "s12_h3_borscht_basket",
+      "hypothesis": "H3_voice_intent",
+      "theme": "dark_overlay",
+      "prompt": "Vibrant commercial food photography of fresh borscht ingredients: beets, cabbage, carrots, tomatoes, herbs, and garlic arranged artfully on a dark wooden board, soft studio lighting, generous clean dark upper space, no text, no letters, no logos, no watermark",
+      "seed": 3002,
+      "copy": {
+        "uk": {
+          "badge": "РОЗУМНІ РЕЦЕПТИ",
+          "headline": "«Борщ на 4 людей» одним голосовим",
+          "subheadline": "Sayvy розкладе страву на продукти і порахує, де купити дешевше",
+          "cta": "Спробувати зараз"
+        }
+      }
+    },
+    {
+      "id": "s13_h3_coffee_morning",
+      "hypothesis": "H3_voice_intent",
+      "theme": "dark_overlay",
+      "prompt": "Sleek lifestyle photography of a modern smartphone glowing softly on a dark marble kitchen counter next to a steaming cup of espresso and croissant, dark atmospheric upper background for headline, ultra crisp, no text, no letters, no logos, no watermark",
+      "seed": 3003,
+      "copy": {
+        "uk": {
+          "badge": "ЗА 10 СЕКУНД",
+          "headline": "Швидше, ніж завариться ранкова кава",
+          "subheadline": "Просто продиктуй список голосом — без ручного пошуку по каталогах",
+          "cta": "Почати безкоштовно"
+        }
+      }
+    },
+    {
+      "id": "s14_h3_voice_wave",
+      "hypothesis": "H3_voice_intent",
+      "theme": "dark_overlay",
+      "prompt": "Futuristic minimalist product photography of a sleek matte black smartphone floating slightly above fresh colorful vegetables and grocery bag on a dark emerald-tinted background, subtle glowing green soundwave aura, empty top space, no text, no letters, no logos, no watermark",
+      "seed": 3004,
+      "copy": {
+        "uk": {
+          "badge": "VOICE-TO-CART",
+          "headline": "Голос → Готовий кошик у супермаркеті",
+          "subheadline": "ШІ розуміє твої побажання, бюджет та обмеження з першого слова",
+          "cta": "Протестувати"
+        }
+      }
+    },
+    {
+      "id": "s15_h3_dinner_fast",
+      "hypothesis": "H3_voice_intent",
+      "theme": "dark_overlay",
+      "prompt": "Editorial food and lifestyle photography of pasta, cherry tomatoes, basil, parmesan, and olive oil on a dark stone kitchen island with a sleek smartphone beside them, moody warm light, generous dark top area, no text, no letters, no logos, no watermark",
+      "seed": 3005,
+      "copy": {
+        "uk": {
+          "badge": "ІДЕЯ ВЕЧЕРІ",
+          "headline": "Знаєш страву — отримай найвигідніший кошик",
+          "subheadline": "Sayvy сам підбере продукти і підкаже, в який супермаркет зайти",
+          "cta": "Зібрати вечерю"
+        }
+      }
+    },
+    {
+      "id": "s16_h4_smart_swap",
+      "hypothesis": "H4_private_labels",
+      "theme": "dark_overlay",
+      "prompt": "Clean minimalist studio product photography of two minimalist unbranded ceramic-style dairy bottles and a paper bag of oats on a dark slate podium, soft emerald rim lighting, clean dark upper half, no text, no letters, no logos, no watermark",
+      "seed": 4001,
+      "copy": {
+        "uk": {
+          "badge": "РОЗУМНІ АНАЛОГИ",
+          "headline": "Та сама якість — без переплати за бренд",
+          "subheadline": "ШІ підбирає вигідні аналоги та власні торгові марки мереж",
+          "cta": "Знайти аналоги"
+        }
+      }
+    },
+    {
+      "id": "s17_h4_private_label_shelf",
+      "hypothesis": "H4_private_labels",
+      "theme": "dark_overlay",
+      "prompt": "Aesthetic minimalist photography of neat rows of clean kraft and glass grocery containers with pasta, rice, and olive oil in warm studio light against a dark background, clean empty top space, no text, no letters, no logos, no watermark",
+      "seed": 4002,
+      "copy": {
+        "uk": {
+          "badge": "PRIVATE LABELS",
+          "headline": "Економія без втрати у звичних продуктах",
+          "subheadline": "Sayvy автоматично знаходить еквівалентні товари за кращою ціною",
+          "cta": "Порівняти зараз"
+        }
+      }
+    },
+    {
+      "id": "s18_h4_coffee_swap",
+      "hypothesis": "H4_private_labels",
+      "theme": "dark_overlay",
+      "prompt": "Luxury dark studio photography of roasted coffee beans spilling from a minimalist matte kraft pouch beside a ceramic cup on dark basalt stone, warm dramatic lighting, empty dark upper frame, no text, no letters, no logos, no watermark",
+      "seed": 4003,
+      "copy": {
+        "uk": {
+          "badge": "СЕМАНТИЧНИЙ ПІДБІР",
+          "headline": "Немає улюбленої марки? ШІ знайде заміну",
+          "subheadline": "Точний підбір аналогів по наявності в конкретному магазині поруч",
+          "cta": "Спробувати Sayvy"
+        }
+      }
+    },
+    {
+      "id": "s19_h4_budget_limit",
+      "hypothesis": "H4_private_labels",
+      "theme": "dark_overlay",
+      "prompt": "Commercial lifestyle flat-lay of a balanced healthy grocery haul—avocados, eggs, yogurt, chicken breast, greens—in a minimalist dark woven basket on dark granite, crisp studio light, empty top space, no text, no letters, no logos, no watermark",
+      "seed": 4004,
+      "copy": {
+        "uk": {
+          "badge": "КОНТРОЛЬ БЮДЖЕТУ",
+          "headline": "«Бюджет до 400 грн» — і жодної гривні зверху",
+          "subheadline": "Вкладайся в ліміт завдяки автоматичному підбору вигідних позицій",
+          "cta": "Перевірити ліміт"
+        }
+      }
+    },
+    {
+      "id": "s20_h4_protein_value",
+      "hypothesis": "H4_private_labels",
+      "theme": "dark_overlay",
+      "prompt": "Clean high-contrast studio photography of Greek yogurt jars, eggs, almonds, and cottage cheese on a dark slate surface, crisp fitness lifestyle aesthetic, dark empty space at top for headline, no text, no letters, no logos, no watermark",
+      "seed": 4005,
+      "copy": {
+        "uk": {
+          "badge": "МАКСИМУМ КОРИСТІ",
+          "headline": "Більше корисних продуктів за той самий чек",
+          "subheadline": "ШІ оптимізує кошик під твій запит без переплати за гучну етикетку",
+          "cta": "Зібрати кошик"
+        }
+      }
+    },
+    {
+      "id": "s21_h5_nearby_walk",
+      "hypothesis": "H5_geo_smart_split",
+      "theme": "dark_overlay",
+      "prompt": "Urban evening lifestyle photography of a stylish reusable grocery bag resting on a modern city bench with softly blurred warm city lights and a supermarket storefront in the far background, dark atmospheric top half, no text, no letters, no logos, no watermark",
+      "seed": 5001,
+      "copy": {
+        "uk": {
+          "badge": "ГЕО-ОПТИМІЗАЦІЯ",
+          "headline": "5 хвилин пішки або максимальна економія",
+          "subheadline": "Обирай між найближчим магазином і найвигіднішим поруч із тобою",
+          "cta": "Знайти магазини"
+        }
+      }
+    },
+    {
+      "id": "s22_h5_three_options",
+      "hypothesis": "H5_geo_smart_split",
+      "theme": "dark_overlay",
+      "prompt": "Minimalist studio photography of three sleek paper grocery bags neatly lined up on a dark concrete podium, soft emerald and warm studio lighting, clean uncluttered dark upper space, no text, no letters, no logos, no watermark",
+      "seed": 5002,
+      "copy": {
+        "uk": {
+          "badge": "3 ГОТОВІ ВАРІАНТИ",
+          "headline": "Найближчий, найвигідніший або Smart Split",
+          "subheadline": "Sayvy одразу дає 3 оптимальні сценарії покупки під твою геолокацію",
+          "cta": "Обрати свій"
+        }
+      }
+    },
+    {
+      "id": "s23_h5_smart_split",
+      "hypothesis": "H5_geo_smart_split",
+      "theme": "dark_overlay",
+      "prompt": "Clean commercial photography of two modern eco-friendly kraft grocery bags filled with fresh produce sitting side by side on a dark wooden kitchen floor, soft directional light, ample dark negative space at top, no text, no letters, no logos, no watermark",
+      "seed": 5003,
+      "copy": {
+        "uk": {
+          "badge": "SMART SPLIT",
+          "headline": "Розділи кошик на 2 магазини — заощадь до 116 грн",
+          "subheadline": "ШІ пропонує Smart Split тільки тоді, коли вигода реально того варта",
+          "cta": "Побачити вигоду"
+        }
+      }
+    },
+    {
+      "id": "s24_h5_no_long_trip",
+      "hypothesis": "H5_geo_smart_split",
+      "theme": "dark_overlay",
+      "prompt": "Moody urban photography of a sleek modern smartphone in a car phone mount or on a dark dashboard overlooking evening city street lights, subtle emerald glow, dark upper area for text, no text, no letters, no logos, no watermark",
+      "seed": 5004,
+      "copy": {
+        "uk": {
+          "badge": "ЦІНА VS ВІДСТАНЬ",
+          "headline": "Не їдь за 5 км заради 15 гривень знижки",
+          "subheadline": "Sayvy рахує чисту вигоду з урахуванням часу та дороги до супермаркету",
+          "cta": "Прокласти маршрут"
+        }
+      }
+    },
+    {
+      "id": "s25_h5_one_click_map",
+      "hypothesis": "H5_geo_smart_split",
+      "theme": "dark_overlay",
+      "prompt": "Sleek overhead product photography of a matte black smartphone next to a fresh baguette, olive oil bottle, and cloth tote bag on a dark stone table, soft studio lighting, empty top space, no text, no letters, no logos, no watermark",
+      "seed": 5005,
+      "copy": {
+        "uk": {
+          "badge": "1 КЛІК ДО МАРШРУТУ",
+          "headline": "Зібрав кошик — і одразу маршрут на мапі",
+          "subheadline": "Сільпо, Auchan, NOVUS, METRO, Ultramarket поруч в одному екрані",
+          "cta": "Відкрити Sayvy"
+        }
+      }
+    },
+    {
+      "id": "s26_h6_payback_one_trip",
+      "hypothesis": "H6_unit_economics_offer",
+      "theme": "dark_overlay",
+      "prompt": "Minimalist commercial photography of a sleek metallic green wallet or cardholder resting beside a fresh overflowing bag of groceries on a dark slate counter, crisp lighting, generous empty dark space at top, no text, no letters, no logos, no watermark",
+      "seed": 6001,
+      "copy": {
+        "uk": {
+          "badge": "ОКУПАЄТЬСЯ ОДРАЗУ",
+          "headline": "Підписка окупається за 1–2 походи в магазин",
+          "subheadline": "Перші 4 дні безкоштовно, далі — лише ~165 грн/міс при економії ~100 грн за чек",
+          "cta": "4 дні безкоштовно"
+        }
+      }
+    },
+    {
+      "id": "s27_h6_family_budget",
+      "hypothesis": "H6_unit_economics_offer",
+      "theme": "dark_overlay",
+      "prompt": "Warm editorial photography of a large wooden kitchen table filled with fresh family groceries: milk, bread, fruits, vegetables, eggs, cheese, cozy moody lighting with clean dark space in top third, no text, no letters, no logos, no watermark",
+      "seed": 6002,
+      "copy": {
+        "uk": {
+          "badge": "40% БЮДЖЕТУ ПІД КОНТРОЛЕМ",
+          "headline": "Залишай більше грошей у сімейному бюджеті",
+          "subheadline": "Їжа забирає до 40% витрат — оптимізуй кожну закупку за 10 секунд",
+          "cta": "Почати економити"
+        }
+      }
+    },
+    {
+      "id": "s28_h6_three_free",
+      "hypothesis": "H6_unit_economics_offer",
+      "theme": "dark_overlay",
+      "prompt": "Clean modern studio photography of a vibrant emerald green reusable shopping bag illuminated on a dark minimalist pedestal with fresh citrus and greens peeking out, ample dark space at top, no text, no letters, no logos, no watermark",
+      "seed": 6003,
+      "copy": {
+        "uk": {
+          "badge": "БЕЗ РИЗИКУ",
+          "headline": "Тестуй Sayvy 4 дні безкоштовно",
+          "subheadline": "Побач реальну економію в гривнях ще до оформлення підписки",
+          "cta": "Спробувати 4 дні"
+        }
+      }
+    },
+    {
+      "id": "s29_h6_monthly_savings",
+      "hypothesis": "H6_unit_economics_offer",
+      "theme": "dark_overlay",
+      "prompt": "Stylized commercial still life of fresh everyday groceries arranged neatly in a crisp grid on dark charcoal stone, soft overhead studio light, clean dark upper margin for bold headline, no text, no letters, no logos, no watermark",
+      "seed": 6004,
+      "copy": {
+        "uk": {
+          "badge": "РОЗУМНІ ПОКУПКИ",
+          "headline": "Економія до 1000+ грн щомісяця на звичній їжі",
+          "subheadline": "Sayvy працює за тебе перед кожним походом у супермаркет",
+          "cta": "Спробувати Sayvy"
+        }
+      }
+    },
+    {
+      "id": "s30_h6_ai_assistant",
+      "hypothesis": "H6_unit_economics_offer",
+      "theme": "dark_overlay",
+      "prompt": "Sleek minimalist hero photography of a smartphone resting against a fresh crate of organic vegetables and dairy bottles on a dark kitchen counter, subtle green ambient light, clean dark top half for typography, no text, no letters, no logos, no watermark",
+      "seed": 6005,
+      "copy": {
+        "uk": {
+          "badge": "ТВІЙ AI-ШОПЕР",
+          "headline": "Sayvy: купуй розумно, плати менше",
+          "subheadline": "Голосовий AI-помічник для найвигідніших покупок у супермаркетах України",
+          "cta": "Запустити зараз"
+        }
+      }
+    }
+  ]
+}
