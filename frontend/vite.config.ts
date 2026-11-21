@@ -2,6 +2,9 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
+/** Адреса бекенду для проксі. Інший порт — `BACKEND_URL=http://localhost:8010 npm run dev`. */
+const backend = process.env.BACKEND_URL ?? 'http://localhost:8000'
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -18,9 +21,10 @@ export default defineConfig({
     port: 5173,
     // Бекенд FastAPI (backend/, порт 8000): модулі без префікса /api.
     proxy: {
-      '/catalog': { target: 'http://localhost:8000', changeOrigin: true },
-      '/geo': { target: 'http://localhost:8000', changeOrigin: true },
-      '/voice': { target: 'http://localhost:8000', changeOrigin: true },
+      '/catalog': { target: backend, changeOrigin: true },
+      '/geo': { target: backend, changeOrigin: true },
+      '/voice': { target: backend, changeOrigin: true },
+      '/agent': { target: backend, changeOrigin: true },
     },
   },
   test: {

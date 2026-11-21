@@ -5,3 +5,79 @@
   overflow: hidden;
   background: var(--color-surface-2);
 }
+
+/* MASTER, Map: позиція людини — лаймове коло з чорною обводкою. */
+.me {
+  width: var(--space-md);
+  height: var(--space-md);
+  border: 3px solid var(--color-accent-fg);
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 var(--space-sm) var(--color-accent-subtle);
+}
+
+/* Пін: неактивний — графіт, вибраний — лайм з обводкою accent-fg і більшим логотипом. */
+.pin {
+  display: grid;
+  place-items: center;
+  width: var(--size-touch);
+  height: var(--size-touch);
+  cursor: pointer;
+}
+
+.pinBody {
+  display: grid;
+  place-items: center;
+  width: var(--dim-8);
+  height: var(--dim-8);
+  border-radius: var(--radius-full);
+  background: var(--color-text-2);
+  box-shadow: 0 0 0 2px var(--color-surface), var(--shadow-md);
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    width var(--dur-fast) var(--ease-out),
+    height var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  border-radius: var(--store-logo-radius);
+  background: var(--color-logo-plate);
+  color: var(--color-text);
+  font: var(--weight-bold) var(--text-caption) var(--font-display);
+}
+
+.selected {
+  z-index: 2;
+}
+
+.selected .pinBody {
+  width: var(--dim-10);
+  height: var(--dim-10);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-fg), var(--shadow-md);
+}
+
+.selected .logo {
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+}
+
+.hover .pinBody {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px var(--color-accent-fg), var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pinBody {
+    transition: none;
+  }
+
+  .hover .pinBody {
+    transform: none;
+  }
+}

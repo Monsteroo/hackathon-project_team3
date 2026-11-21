@@ -92,6 +92,30 @@
   padding-top: var(--space-lg);
 }
 
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-ms);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--fset-border);
+}
+
+.locationNote {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin: 0;
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--said-fg);
+}
+
+.locationNote svg {
+  flex: none;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
 .back {
   display: inline-flex;
   align-items: center;

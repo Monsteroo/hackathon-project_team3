@@ -1,9 +1,12 @@
 import type {
+  BasketOut,
+  BasketRequest,
   CatalogStore,
   GeocodeResponse,
   Mode,
   NearbyResponse,
   Place,
+  ParsedRequest,
   PriceSearchResponse,
   RouteResponse,
   VoiceResult,
@@ -21,6 +24,9 @@ export const hasApiKey = API_KEY.length > 0
 
 /** Максимум тексту для /voice/parse-text (backend/app/voice/schemas.py). */
 export const MAX_TEXT_LENGTH = 2000
+
+/** Максимум тексту для /agent/* (backend/app/agent/schemas.py, ParseIn). */
+export const MAX_AGENT_TEXT_LENGTH = 1000
 
 export class ApiError extends Error {
   readonly code: string
@@ -126,6 +132,26 @@ export const api = {
     { limit = 8, exclude, signal }: { limit?: number; exclude?: string[]; signal?: AbortSignal } = {},
   ): Promise<PriceSearchResponse> {
     return request(`/catalog/prices?${qs({ q, limit, exclude: exclude?.join(',') })}`, { signal })
+  },
+
+  /** Розбір запиту агентом: позиції з категоріями й обмеження. Для екрана «Я зрозумів так». */
+  parseRequest(text: string, signal?: AbortSignal): Promise<ParsedRequest> {
+    return request('/agent/parse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text.slice(0, MAX_AGENT_TEXT_LENGTH) }),
+      signal,
+    })
+  },
+
+  /** До 3 кошиків (nearest, cheapest, smart_split). Поля VoiceResult передавайте як є. */
+  buildBasket(body: BasketRequest, signal?: AbortSignal): Promise<BasketOut> {
+    return request('/agent/basket', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...body, text: body.text.slice(0, MAX_AGENT_TEXT_LENGTH) }),
+      signal,
+    })
   },
 
   /** Магазини з цінами в місті. */
