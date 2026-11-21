@@ -1,0 +1,6 @@
+.venv/
+.env
+.idea/
+scripts/
+tests/
+backend/data/raw/
