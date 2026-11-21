@@ -103,3 +103,78 @@ def parse_number(s: str) -> float | None:
     if parts and all(p in NUM_WORDS for p in parts):
         return sum(NUM_WORDS[p] for p in parts)
     return None
+
+
+# --- Нормалізація чисел у сирому тексті (коли чистку LLM відкинуто або вона недоступна) -------------
+
+_UNIT_ABBR = (
+    (("гривень", "гривні", "гривня", "гривню", "гривен", "гривнях", "грн"), "грн"),
+    (("кілограм", "кілограма", "кілограми", "кілограмів", "кіло", "кг"), "кг"),
+    (("грам", "грама", "грами", "грамів", "г"), "г"),
+    (("літр", "літра", "літри", "літрів", "л"), "л"),
+    (("мілілітр", "мілілітра", "мілілітри", "мілілітрів", "мл"), "мл"),
+    (("штука", "штуки", "штук", "шт"), "шт"),
+    (("відсоток", "відсотки", "відсотків", "відсотка"), "%"),
+)
+UNIT_OF = {form: abbr for forms, abbr in _UNIT_ABBR for form in forms}
+_UNIT_ALT = "|".join(sorted(UNIT_OF))
+_DOZEN_ALT = "|".join(sorted(DOZEN))
+_WRITTEN_NUMBER_ALT = NUMBER_WORD_ALT.replace("'", "['’ʼ]")
+_QUANTITY_RE = re.compile(
+    rf"(?<![\w'’ʼ])(?:"
+    rf"(?P<number>{DIGITS_RE.pattern}|(?:{_WRITTEN_NUMBER_ALT})(?:\s+(?:{_WRITTEN_NUMBER_ALT}))*)"
+    rf"(?:\s+(?P<dozen>{_DOZEN_ALT}))?(?:\s+(?P<unit>{_UNIT_ALT}))?"
+    rf"|(?P<bare_dozen>десяток|десятка)|(?P<bare_unit>кілограм|кіло|літр)"
+    rf")(?![\w'’ʼ])",
+    re.IGNORECASE,
+)
+
+
+def _spoken_quantity(number: str) -> float | None:
+    """Read a cardinal phrase, preserving adjacent quantities such as «два три»."""
+    values = [NUM_WORDS[word] for word in number.split()]
+    if len(values) == 1:
+        return values[0]
+    if any(not float(value).is_integer() for value in values) or values.count(1000) > 1:
+        return None
+    if 1000 in values:
+        split = values.index(1000)
+        groups = (values[:split], values[split + 1 :])
+    else:
+        groups = (values,)
+    for group in groups:
+        # A hundred can be followed by tens or units. A teen already includes the units.
+        ranks = [100 if v >= 100 else 10 if v >= 10 else 1 for v in group]
+        if ranks != sorted(set(ranks), reverse=True) or any(10 < v < 20 for v in group[:-1]):
+            return None
+    if len(groups) == 2:
+        return (sum(groups[0]) or 1) * 1000 + sum(groups[1])
+    return sum(values)
+
+
+def normalize_numbers(text: str) -> str:
+    """«Кілограм гречки, півтора кіло філе і десяток яєць, до трьохсот гривень» →
+    «1 кг гречки, 1,5 кг філе і 10 яєць, до 300 грн». Решта тексту зберігається."""
+
+    def replace(match: re.Match[str]) -> str:
+        if match["bare_dozen"]:
+            return "10"
+        if match["bare_unit"]:
+            return f"1 {UNIT_OF[norm(match['bare_unit'])]}"
+        number = norm(match["number"])
+        unit = UNIT_OF[norm(match["unit"])] if match["unit"] else ""
+        if not unit and not match["dozen"] and number in {"ста", "пів"}:
+            return match[0]
+        if DIGITS_RE.fullmatch(number) and not match["dozen"]:
+            value = number
+        else:
+            quantity = to_float(number) if DIGITS_RE.fullmatch(number) else _spoken_quantity(number)
+            if quantity is None:
+                return match[0]
+            if match["dozen"]:
+                quantity *= 10
+            value = str(int(quantity)) if float(quantity).is_integer() else str(quantity).replace(".", ",")
+        return f"{value} {unit}" if unit and unit != "%" else value + unit
+
+    # Recognize curly apostrophes in numerals without altering them elsewhere in the transcript.
+    return _QUANTITY_RE.sub(replace, text)

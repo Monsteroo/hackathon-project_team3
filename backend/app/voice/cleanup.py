@@ -3,13 +3,14 @@
 1. LLM (Groq `qwen/qwen3.8-27b`, запасна `openai/gpt-oss-120b`, temperature 0, JSON-режим):
    прибирає «ееее/ну/типу», числа → цифри з одиницями, повертає {text, mode, radius_km}.
 2. Захист від галюцинацій (`guard_issues`): очищений текст відхиляється і повертається сирий
+   із нормалізованими числами та валідними mode/radius від LLM
    (`guard: "rejected"`), якщо LLM
      * додала змістовне слово, якого не було (новий продукт/бренд: «+ масло», «+ сирок»);
      * написала число, якого не казали ні цифрою, ні словом («два кіло» → «5 кг»);
      * загубила «без / не / тільки / лише / крім» («молоко без лактози» → «молоко»);
      * викинула змістовне слово сирого тексту (крім слів-паразитів, фраз про транспорт/відстань
        і продуктів, скасованих самовиправленням «ой ні / точніше»).
-3. Якщо LLM недоступна — правила (regex) для mode/radius, текст сирий.
+3. Якщо LLM недоступна — правила для чисел і mode/radius.
 
 Правила для режиму/радіуса (рішення команди 21.11):
   «пішки» → walk; «на машині/авто» → car (крім «не хочу їхати на машині»);
@@ -22,13 +23,26 @@ import json
 import logging
 import re
 from difflib import SequenceMatcher
+from functools import lru_cache
 
 import httpx
 
 from app.config import get_settings
 from app.geo.service import MAX_RADIUS_KM
+from app.voice import vocabulary
 from app.voice.errors import err_summary
-from app.voice.numbers import DIGITS_RE, NUM_WORDS, NUMBER_WORD_ALT, norm, parse_number, spoken_values, to_float
+from app.voice.numbers import (
+    DIGITS_RE,
+    DOZEN,
+    NUM_WORDS,
+    NUMBER_WORD_ALT,
+    UNIT_OF,
+    norm,
+    normalize_numbers,
+    parse_number,
+    spoken_values,
+    to_float,
+)
 
 log = logging.getLogger(__name__)
 
@@ -44,10 +58,11 @@ text — очищений запит:
 - числа пиши цифрами з одиницями: грн, г, кг, л, мл, шт («двісті п'ятдесят гривень» → «250 грн», «півтора кіло» → «1,5 кг», «два десятки яєць» → «20 яєць»);
 - прибери з text фрази про відстань і транспорт (вони йдуть у mode/radius_km);
 - зберігай «без», «не», «тільки», «лише», «крім» разом зі словами після них;
+- явно спотворену розпізнаванням назву виправляй лише на схожу назву продукту чи бренду («ярчиця» → «гірчиця»);
 - НЕ додавай продуктів, брендів, кількостей чи обмежень, яких не було; НЕ перекладай і НЕ транслітеруй назви; не змінюй відмінки слів без потреби; не відповідай на запит.
 
-mode: "walk" — якщо пішки або хочуть недалеко/поруч; "car" — на машині/авто/автомобілем/доїду (але не «не хочу на машині»); інакше null.
-radius_km: явний радіус у км («в радіусі 3 км» → 3, «до 500 метрів» → 0.5); якщо лише «недалеко/поруч/далеко не хочу» → 1; інакше null."""  # noqa: E501
+mode: "car" — якщо на машині/авто/автомобілем/доїду (але не «не хочу на машині»); "walk" — якщо пішки або хочуть недалеко/поруч; інакше null.
+radius_km: явна межа в км («до 500 метрів» → 0.5, «не більше, щоб було одного кілометра» → 1) має пріоритет. Якщо межі немає, «недалеко/поруч/далеко не хочу/десь в районі, щоб був магазин» → 1; інакше null."""  # noqa: E501
 
 UNITS = {
     "грн",
@@ -140,10 +155,12 @@ KEEP_WORDS = ("без", "не", "тільки", "лише", "крім", "окр�
 CORRECTION_RE = re.compile(r"(ой,?\s*ні|а\s+ні|ні,|точніше|вірніше|тобто|краще)", re.IGNORECASE)
 WORD_RE = re.compile(r"[\w']+", re.UNICODE)
 
-_UNIT = r"(км|кілометр\w*|метр\w*|м(?![\w']))"
+_UNIT = r"(км|кілометр\w*|метр\w*|м)(?![\w'])"
 _NUM = r"(\d+(?:[.,]\d+)?|(?:(?:" + NUMBER_WORD_ALT + r")\s+)?(?:" + NUMBER_WORD_ALT + r"))"
 RADIUS_RE = re.compile(
-    r"(?:радіус\w*|меж(?:ах|і)|(?:не\s+)?далі|(?:не\s+)?більше|до|максимум)\s+(?:за\s+)?" + _NUM + r"\s*" + _UNIT,
+    r"\b(?:радіус\w*|меж(?:ах|і)|(?:не\s+(?:було\s+)?)?далі|більше|до|максимум|"
+    r"не\s+більше(?:[\s,]+(?:щоб|було|була|це|там|десь|приблизно|відстань|складала|до|як))*)"
+    r"[\s,]+(?:за\s+)?" + _NUM + r"\s*" + _UNIT,
     re.IGNORECASE,
 )
 CAR_RE = re.compile(
@@ -152,9 +169,11 @@ CAR_RE = re.compile(
 NEGATION_RE = re.compile(r"\bне\b[^,.;!?]{0,25}$", re.IGNORECASE)
 WALK_RE = re.compile(r"(пішки|пішочки|піду|прогул\w*)", re.IGNORECASE)
 NEAR_RE = re.compile(
-    r"((?:щоб\s+)?(?:недалеко|неподалік|поруч|поряд)(?:\s+(?:з|із|від)\s+(?:дом\w*|робот\w*|мною))?"
+    r"\b(?:щоб\s+(?:було\s+)?)?(?:(?:недалеко|неподалік|поруч|поряд)"
+    r"(?:\s+(?:з|із|від)\s+(?:(?:моїм|мого|моєї)\s+)?(?:дом\w*|робот\w*|мною))?"
     r"(?:\s+(?:йти|іти|ходити|піти))?|біля\s+(?:дому|роботи)|близько\s+(?:до|від)\s+(?:дому|роботи|мене)|"
-    r"далеко\s+(?:йти\s+|іти\s+|ходити\s+)?не\s+хочу|не\s+хочу\s+(?:йти\s+|іти\s+|ходити\s+)?далеко)",
+    r"далеко\s+(?:йти\s+|іти\s+|ходити\s+)?не\s+хочу|не\s+хочу\s+(?:йти\s+|іти\s+|ходити\s+)?далеко|"
+    r"(?:десь\s+)?[ву]\s+районі[\s,]+щоб\s+був\s+магазин)\b",
     re.IGNORECASE,
 )
 
@@ -184,6 +203,8 @@ def rule_constraints(text: str) -> dict:
 
 
 def _valid_radius(v) -> float | None:
+    if isinstance(v, bool):
+        return None
     try:
         v = float(v)
     except (TypeError, ValueError):
@@ -195,35 +216,79 @@ def _tokens(s: str) -> list[str]:
     return WORD_RE.findall(norm(s))
 
 
-def _similar(a: str, b: str) -> bool:
-    """Та сама лексема з іншим закінченням: «каву/кава», «сиру/сир», але не «сирок/сир», «какао/кава»."""
-    if a == b:
-        return True
-    prefix = 0
-    for x, y in zip(a, b, strict=False):
-        if x != y:
-            break
-        prefix += 1
-    return prefix >= min(4, max(len(a), len(b)) - 1) or SequenceMatcher(None, a, b).ratio() >= 0.8
+_ENDINGS = sorted(
+    "ями ами ові еві ого ому ими іми ою ею их іх ах ях ам ям ів їв ей ий ій ої а я о е є и і ї у ю ь".split(),
+    key=len,
+    reverse=True,
+)
+# Чергування залежить від лексеми. Глобальна заміна голосних ототожнює різні слова.
+_EGG_FORMS = frozenset("яйце яйця яйцю яйцем яйці яєць яйцям яйцями яйцях".split())
 
 
-UNIT_STEMS = ("літр", "кілограм", "грам", "гривн", "гривень", "штук", "відсот", "кіло", "метр", "кілометр", "пачк")
+def _stem(word: str) -> str:
+    if word in _EGG_FORMS:
+        return "яйц"
+    for ending in _ENDINGS:
+        if word.endswith(ending) and len(word) - len(ending) >= 3:
+            return word[: -len(ending)]
+    return word
+
+
+UNIT_STEMS = ("літр", "грам", "гривн", "метр", "кілометр", "пачк")
 
 
 def _is_number_or_unit(w: str) -> bool:
-    return w in UNITS or w in NUM_WORDS or w.startswith(("десят",) + UNIT_STEMS) or DIGITS_RE.fullmatch(w) is not None
+    return w in UNITS or w in UNIT_OF or w in NUM_WORDS or w in DOZEN or w.startswith(UNIT_STEMS) or w.isdecimal()
+
+
+VOCAB_FIX_RATIO = 0.65
+
+
+@lru_cache
+def _vocabulary_stems() -> frozenset[str]:
+    return frozenset(_stem(word) for word in vocabulary.words())
+
+
+def _unmatched_words(
+    raw: list[str], cleaned: list[str], core: list[str], corrected: set[str]
+) -> tuple[list[str], list[str]]:
+    raw_stems = {_stem(word) for word in raw}
+    clean_stems = {_stem(word) for word in cleaned}
+    added = [
+        w
+        for w in cleaned
+        if len(w) >= 3 and not w.isdecimal() and w not in UNITS and w not in UNIT_OF and _stem(w) not in raw_stems
+    ]
+    lost = [
+        w
+        for w in core
+        if w not in FILLERS
+        and w not in KEEP_WORDS
+        and w not in corrected
+        and not _is_number_or_unit(w)
+        and _stem(w) not in clean_stems
+    ]
+    vocab = _vocabulary_stems()
+    # A correction consumes one missing, unrecognised word. Known products cannot be replaced.
+    unknown = {w for w in lost if _stem(w) not in vocab and len(w) >= 4 and w.isalpha()}
+    fixes = sorted(
+        (SequenceMatcher(None, source, target).ratio(), source, target)
+        for target in set(added)
+        if _stem(target) in vocab
+        for source in unknown
+    )
+    fixed_sources, fixed_targets = set(), set()
+    for score, source, target in reversed(fixes):
+        if score >= VOCAB_FIX_RATIO and source not in fixed_sources and target not in fixed_targets:
+            fixed_sources.add(source)
+            fixed_targets.add(target)
+    return [w for w in added if w not in fixed_targets], [w for w in lost if w not in fixed_sources]
 
 
 def new_content_words(raw: str, cleaned: str) -> list[str]:
-    """Змістовні слова очищеного тексту, яких немає в сирому (з урахуванням відмінків)."""
-    raw_tokens = _tokens(raw)
-    out = []
-    for w in _tokens(cleaned):
-        if len(w) < 3 or any(c.isdigit() for c in w) or w in UNITS:
-            continue
-        if not any(_similar(r, w) for r in raw_tokens):
-            out.append(w)
-    return out
+    """Змістовні слова очищеного тексту, яких немає в сирому."""
+    tokens = _tokens(raw)
+    return _unmatched_words(tokens, _tokens(cleaned), tokens, set())[0]
 
 
 def _strip_transport_phrases(t: str) -> str:
@@ -236,9 +301,6 @@ def _strip_transport_phrases(t: str) -> str:
 def guard_issues(raw: str, cleaned: str) -> dict[str, list]:
     """Порожній словник = очищений текст безпечний."""
     issues: dict[str, list] = {}
-    if added := new_content_words(raw, cleaned):
-        issues["new_words"] = added
-
     spoken = spoken_values(raw)
     extra_nums = [n for n in DIGITS_RE.findall(norm(cleaned)) if not any(abs(to_float(n) - v) < 1e-6 for v in spoken)]
     if extra_nums:
@@ -254,15 +316,9 @@ def guard_issues(raw: str, cleaned: str) -> dict[str, list]:
     corrected: set[str] = set()
     for m in CORRECTION_RE.finditer(raw_core):
         corrected.update(_tokens(raw_core[: m.start()])[-3:])
-    lost = [
-        w
-        for w in raw_t
-        if w not in FILLERS
-        and w not in KEEP_WORDS
-        and w not in corrected
-        and not _is_number_or_unit(w)
-        and not any(_similar(w, c) for c in clean_t)
-    ]
+    added, lost = _unmatched_words(_tokens(raw), clean_t, raw_t, corrected)
+    if added:
+        issues["new_words"] = added
     if lost:
         issues["lost_words"] = lost
     return issues
@@ -295,7 +351,7 @@ async def clean_text(raw: str, client: httpx.AsyncClient | None = None) -> dict:
     raw = " ".join(raw.split())
     rules = rule_constraints(raw)
     result = {
-        "text": raw,
+        "text": normalize_numbers(raw),
         "raw_text": raw,
         **rules,
         "cleanup": {"model": None, "guard": "skipped", "new_words": [], "issues": {}, "tokens": 0},
@@ -332,11 +388,10 @@ async def clean_text(raw: str, client: httpx.AsyncClient | None = None) -> dict:
         "issues": issues,
         "tokens": data["_usage"].get("total_tokens", 0),
     }
-    if issues:
-        return result  # LLM щось додала чи загубила → віддаємо сирий текст і правила
-    result["text"] = cleaned
     mode = data.get("mode") if data.get("mode") in ("walk", "car") else None
     radius = _valid_radius(data.get("radius_km"))
     result["mode"] = mode or rules["mode"]
     result["radius_km"] = radius if radius is not None else rules["radius_km"]
+    if not issues:
+        result["text"] = cleaned
     return result
