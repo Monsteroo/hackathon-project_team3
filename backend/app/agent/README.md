@@ -24,7 +24,8 @@
 - `POST /agent/basket` — два режими:
   - **текст** `{"text", "lat", "lng", "raw_text"?, "mode"?, "radius_km"?, "city"?}` (поля з `VoiceResult` передавайте як є): агент розбирає текст через Claude;
   - **список з екрана 2** `{"items": [{label?, category? | gtin? | query?, need, unit, exclude}], "budget_uah"?, "lat", "lng", "mode"?, "radius_km"?}`: уже підтверджений і відредагований людиною список, **без виклику LLM** (`parser: "items"`). `exclude` — на рівні позиції (`sugar`, `palm_oil`, `lactose`, `private_label`); `gtin` — точний товар, вибраний з каталогу.
-  - Відповідь однакова: `parsed`, `parser` (`llm` | `rules` | `items`), `baskets` (до 3: `nearest`, `cheapest`, `smart_split`), `explanation`, `warnings`. Без `text` і без `items` — 422; БД недоступна — 503.
+  - Відповідь однакова: `parsed`, `parser` (`llm` | `rules` | `items`), `baskets` (до 3: `nearest`, `cheapest`, `smart_split`), `explanation`, `warnings`.
+  - `stores` — **усі магазини в радіусі**, де знайшлася хоч одна позиція: `store`, `lines`, `total`, `found`, `missing`, `within_budget`. Відсортовано: повніший кошик → дешевший → ближчий. `cheapest: true` — перший у списку (підсвітити), `nearest: true` — найменший час у дорозі. Розглядається до 20 найближчих магазинів кожної мережі (`AGENT_STORES_PER_CHAIN`). Без `text` і без `items` — 422; БД недоступна — 503.
 
 Приклади відповідей: [`mocks/16_agent_parse.json`](../../../mocks/16_agent_parse.json), [`mocks/17_agent_basket.json`](../../../mocks/17_agent_basket.json).
 
