@@ -1,4 +1,5 @@
 from functools import lru_cache
+from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -20,7 +21,7 @@ class Settings(BaseSettings):
 
     # Які модулі підключати (через кому). За замовчуванням усі; для окремого деплою одного модуля,
     # напр. каталогу, — ENABLED_MODULES=catalog. Список модулів — MODULES у app/main.py.
-    enabled_modules: str = "catalog,geo,voice"
+    enabled_modules: str = "catalog,geo,voice,agent"
 
     # Планувальник фонових задач у процесі FastAPI
     scheduler_enabled: bool = True
@@ -47,6 +48,23 @@ class Settings(BaseSettings):
     groq_cleanup_model: str = "qwen/qwen3.8-27b"
     groq_cleanup_fallback_model: str = "openai/gpt-oss-120b"
     voice_rate_limit_per_min: int = 10  # запитів на IP до /voice/*
+    # Агент (Учасник 5): LLM для розбору запиту. Без ключа обраного провайдера працює парсер на правилах.
+    llm_provider: Literal["anthropic", "openai_compat"] = "anthropic"
+    anthropic_api_key: str = ""
+    anthropic_model: str = "claude-sonnet-5-5"
+    anthropic_effort: Literal["low", "medium", "high"] = "low"
+    # OpenAI-сумісні провайдери (Gemini, Groq, Grok): LLM_PROVIDER=openai_compat
+    llm_base_url: str = "https://generativelanguage.googleapis.com/v1beta/openai/"
+    llm_api_key: str = ""
+    llm_model: str = ""
+    llm_reasoning_effort: str = "low"
+    llm_timeout_s: float = 15.0
+    # Запасний пошук магазинів поруч (якщо модуль geo недоступний)
+    agent_radius_walk_km: float = 1.5
+    agent_radius_car_km: float = 5.0
+    agent_stores_per_chain: int = 2
+    # Smart Split показуємо, лише якщо він заощаджує щонайменше стільки гривень
+    agent_smart_split_min_saving: float = 30.0
 
     @property
     def api_key_list(self) -> list[str]:

@@ -1,0 +1,270 @@
+{
+  "_description": "Реальна відповідь /agent/basket (Позняки, на авто): розбір Claude Sonnet 5.5, магазини й маршрути з модуля geo, ціни з Supabase. Вхід — поля VoiceResult (text, raw_text, mode, radius_km) + GPS.",
+  "_request": "curl --location 'http://localhost:8000/agent/basket' --header 'X-API-Key: <API_KEY>' --header 'Content-Type: application/json' --data '{\"text\": \"молоко Галичина літр, десяток яєць, гречка і банани, до 400 грн\", \"raw_text\": \"молоко галичина літр десяток яєць гречка і банани до чотирьохсот гривень\", \"lat\": 50.398, \"lng\": 30.634, \"mode\": \"car\", \"radius_km\": null}'",
+  "_status": 200,
+  "_saved_at": "2026-11-21T13:51:55+00:00",
+  "response": {
+    "parsed": {
+      "items": [
+        {
+          "name": "молоко",
+          "search_query": "молоко",
+          "category": "milk",
+          "quantity": 1000.0,
+          "unit": "ml",
+          "brand": "Галичина",
+          "optional": false
+        },
+        {
+          "name": "яйця курячі",
+          "search_query": "яйця курячі",
+          "category": "eggs",
+          "quantity": 10.0,
+          "unit": "pcs",
+          "brand": null,
+          "optional": false
+        },
+        {
+          "name": "гречка",
+          "search_query": "гречка",
+          "category": "buckwheat",
+          "quantity": 1000.0,
+          "unit": "g",
+          "brand": null,
+          "optional": false
+        },
+        {
+          "name": "банани",
+          "search_query": "банани",
+          "category": "bananas",
+          "quantity": 1000.0,
+          "unit": "g",
+          "brand": null,
+          "optional": false
+        }
+      ],
+      "constraints": {
+        "budget_uah": 400.0,
+        "exclude": [],
+        "travel_mode": "car",
+        "radius_km": null,
+        "preferred_chains": []
+      },
+      "servings": null
+    },
+    "parser": "llm",
+    "stores_considered": 6,
+    "baskets": [
+      {
+        "type": "nearest",
+        "stores": [
+          {
+            "store_id": "48215610",
+            "alt_store_ids": [],
+            "chain": "metro",
+            "chain_name": "METRO",
+            "name": "METRO Позняки DRIVE",
+            "address": "Григоренка, 43",
+            "lat": 50.39051,
+            "lng": 30.64142,
+            "distance_km": 1.68,
+            "duration_min": 5.3,
+            "estimated": false,
+            "maps_url": "https://www.google.com/maps/dir/?api=1&origin=50.398000%2C30.634000&destination=50.390510%2C30.641420&travelmode=driving"
+          }
+        ],
+        "lines": [
+          {
+            "requested": "молоко",
+            "product_id": 1,
+            "title": "Молоко Галичина ультрапастеризоване 2,5% 950г",
+            "brand": "Галичина",
+            "img_url": "https://img2.zakaz.ua/aa004a7689c241db9af22e36614f07f1/1759332972-s350x350.jpg",
+            "store_id": "48215610",
+            "pack_qty": 950.0,
+            "pack_unit": "g",
+            "packs": 1,
+            "price": 72.28,
+            "old_price": null,
+            "promo_percent": null,
+            "unit_price": 76.08,
+            "unit_price_label": "₴/кг",
+            "line_total": 72.28,
+            "tags": [
+              "lactose"
+            ],
+            "note": "Менша пачка: 950 г замість 1000 мл"
+          },
+          {
+            "requested": "яйця курячі",
+            "product_id": 290,
+            "title": "Яйця курячі Ясенсвіт С1 10шт",
+            "brand": "Ясенсвіт",
+            "img_url": "https://img2.zakaz.ua/578f169efa8d460b9dd4d1172755431c/1773751615-s350x350.jpg",
+            "store_id": "48215610",
+            "pack_qty": 10.0,
+            "pack_unit": "pcs",
+            "packs": 1,
+            "price": 75.0,
+            "old_price": null,
+            "promo_percent": null,
+            "unit_price": 7.5,
+            "unit_price_label": "₴/шт",
+            "line_total": 75.0,
+            "tags": [],
+            "note": null
+          },
+          {
+            "requested": "гречка",
+            "product_id": 350,
+            "title": "Крупа гречана Хуторок 800г",
+            "brand": "Хуторок",
+            "img_url": "https://img3.zakaz.ua/ef6c600e0dd140b2b6eabe89d9ee25f4/1776234859-s350x350.jpg",
+            "store_id": "48215610",
+            "pack_qty": 800.0,
+            "pack_unit": "g",
+            "packs": 2,
+            "price": 94.34,
+            "old_price": null,
+            "promo_percent": null,
+            "unit_price": 117.93,
+            "unit_price_label": "₴/кг",
+            "line_total": 188.68,
+            "tags": [],
+            "note": null
+          },
+          {
+            "requested": "банани",
+            "product_id": 9797,
+            "title": "Банан",
+            "brand": "без тм",
+            "img_url": "https://img2.zakaz.ua/9145c481e2b14605a6ffd3c3dfbc4edc/1747639401-s350x350.jpg",
+            "store_id": "48215610",
+            "pack_qty": 1000.0,
+            "pack_unit": "g",
+            "packs": 1,
+            "price": 79.9,
+            "old_price": null,
+            "promo_percent": null,
+            "unit_price": 79.9,
+            "unit_price_label": "₴/кг",
+            "line_total": 79.9,
+            "tags": [],
+            "note": null
+          }
+        ],
+        "total": 415.86,
+        "saving": 0.0,
+        "within_budget": false,
+        "missing": []
+      },
+      {
+        "type": "cheapest",
+        "stores": [
+          {
+            "store_id": "48246418",
+            "alt_store_ids": [],
+            "chain": "auchan",
+            "chain_name": "Auchan",
+            "name": "Auchan Чернігівська DRIVE",
+            "address": "Гната Хоткевича, 1Б",
+            "lat": 50.4546712,
+            "lng": 30.6383533,
+            "distance_km": 9.47,
+            "duration_min": 21.4,
+            "estimated": false,
+            "maps_url": "https://www.google.com/maps/dir/?api=1&origin=50.398000%2C30.634000&destination=50.454671%2C30.638353&travelmode=driving"
+          }
+        ],
+        "lines": [
+          {
+            "requested": "молоко",
+            "product_id": 5,
+            "title": "Молоко Галичина ультрапастеризоване 2,5% 900г",
+            "brand": "Галичина",
+            "img_url": "https://img2.zakaz.ua/310a2f2c540842259f02b555d772cf53/1770036706-s350x350.jpg",
+            "store_id": "48246418",
+            "pack_qty": 900.0,
+            "pack_unit": "g",
+            "packs": 1,
+            "price": 44.9,
+            "old_price": 60.9,
+            "promo_percent": 26,
+            "unit_price": 49.89,
+            "unit_price_label": "₴/кг",
+            "line_total": 44.9,
+            "tags": [
+              "lactose"
+            ],
+            "note": "Менша пачка: 900 г замість 1000 мл; Акція −26%"
+          },
+          {
+            "requested": "яйця курячі",
+            "product_id": 290,
+            "title": "Яйця курячі Ясенсвіт С1 10шт",
+            "brand": "Ясенсвіт",
+            "img_url": "https://img2.zakaz.ua/578f169efa8d460b9dd4d1172755431c/1773751615-s350x350.jpg",
+            "store_id": "48246418",
+            "pack_qty": 10.0,
+            "pack_unit": "pcs",
+            "packs": 1,
+            "price": 75.9,
+            "old_price": null,
+            "promo_percent": null,
+            "unit_price": 7.59,
+            "unit_price_label": "₴/шт",
+            "line_total": 75.9,
+            "tags": [],
+            "note": null
+          },
+          {
+            "requested": "гречка",
+            "product_id": 13364,
+            "title": "Крупа гречана Auchan ядриця швидкорозварювана 1кг",
+            "brand": "Auchan",
+            "img_url": "https://img2.zakaz.ua/bc5b5722245a4628a21f136ab6c6819d/1752683488-s350x350.jpg",
+            "store_id": "48246418",
+            "pack_qty": 1000.0,
+            "pack_unit": "g",
+            "packs": 1,
+            "price": 85.9,
+            "old_price": null,
+            "promo_percent": null,
+            "unit_price": 85.9,
+            "unit_price_label": "₴/кг",
+            "line_total": 85.9,
+            "tags": [
+              "private_label"
+            ],
+            "note": null
+          },
+          {
+            "requested": "банани",
+            "product_id": 14295,
+            "title": "Банан",
+            "brand": "без тм",
+            "img_url": "https://img3.zakaz.ua/8d475ecdeb744df0ab0088503851ea13/1716563376-s350x350.jpg",
+            "store_id": "48246418",
+            "pack_qty": 1000.0,
+            "pack_unit": "g",
+            "packs": 1,
+            "price": 81.6,
+            "old_price": null,
+            "promo_percent": null,
+            "unit_price": 81.6,
+            "unit_price_label": "₴/кг",
+            "line_total": 81.6,
+            "tags": [],
+            "note": null
+          }
+        ],
+        "total": 288.3,
+        "saving": 127.56,
+        "within_budget": true,
+        "missing": []
+      }
+    ],
+    "explanation": "Найвигідніше: Auchan — 288.30 грн, економія 127.56 грн. Пачки трохи менші, ніж просили: молоко — порівнюйте ціну за кг.",
+    "warnings": []
+  }
+}

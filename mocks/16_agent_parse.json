@@ -1,0 +1,56 @@
+{
+  "_description": "Розбір запиту агентом (Claude Sonnet 5.5): чипи для екрана «Я зрозумів так». category і exclude — у термінах каталогу.",
+  "_request": "curl --location 'http://localhost:8000/agent/parse' --header 'X-API-Key: <API_KEY>' --header 'Content-Type: application/json' --data '{\"text\": \"молоко Галичина, кисломолочний сир, десяток яєць і кава Jacobs, без цукру, до 500 грн, поїду на авто в радіусі 10 км\"}'",
+  "_status": 200,
+  "_saved_at": "2026-11-21T12:45:06+00:00",
+  "response": {
+    "items": [
+      {
+        "name": "молоко",
+        "search_query": "молоко",
+        "category": "milk",
+        "quantity": 1000.0,
+        "unit": "ml",
+        "brand": "Галичина",
+        "optional": false
+      },
+      {
+        "name": "сир кисломолочний",
+        "search_query": "сир кисломолочний",
+        "category": "curd",
+        "quantity": 400.0,
+        "unit": "g",
+        "brand": null,
+        "optional": false
+      },
+      {
+        "name": "яйця",
+        "search_query": "яйця курячі",
+        "category": "eggs",
+        "quantity": 10.0,
+        "unit": "pcs",
+        "brand": null,
+        "optional": false
+      },
+      {
+        "name": "кава",
+        "search_query": "кава мелена",
+        "category": "coffee_ground",
+        "quantity": 1.0,
+        "unit": "pcs",
+        "brand": "Jacobs",
+        "optional": false
+      }
+    ],
+    "constraints": {
+      "budget_uah": 500.0,
+      "exclude": [
+        "sugar"
+      ],
+      "travel_mode": "car",
+      "radius_km": 10.0,
+      "preferred_chains": []
+    },
+    "servings": null
+  }
+}

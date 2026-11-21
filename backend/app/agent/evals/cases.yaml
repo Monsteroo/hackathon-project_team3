@@ -1,0 +1,399 @@
+# Набір евалів для кроку Parse модуля agent (текст → ParsedRequest).
+# Запуск з backend/: uv run python -m app.agent.evals.run_eval --help
+#
+# Формат expect:
+#   items:        позиції, які МАЮТЬ бути. any — варіанти назви (досить збігу одного),
+#                 qty — [min, max] у вказаній unit, brand — очікуваний бренд.
+#   exact_count:  true → зайвих позицій бути не повинно (для простих списків).
+#   forbid:       назви, яких у позиціях бути НЕ повинно.
+#   category:     (у позиції) очікувана канонічна категорія каталогу.
+#   budget_uah / travel_mode / radius_km / servings / preferred_chains / exclude (теги sugar, palm_oil):
+#                 очікувані обмеження. Якщо поле не вказане, перевіряється значення за замовчуванням
+#                 (немає бюджету, walk, без радіуса, без мереж, без виключень, без брендів).
+#
+# Свідомо НЕ входять: алергени (лактоза, глютен, горіхи), неоднозначні запити («щось на сніданок»),
+# помилки розпізнавання голосу.
+
+# ---------- A. Прості списки ----------
+- id: list-01
+  category: прості списки
+  text: купи молоко, хліб і яйця
+  expect:
+    exact_count: true
+    items:
+      - any: [молоко]
+        category: milk
+      - any: [хліб, батон]
+      - any: [яйця]
+        category: eggs
+
+- id: list-02
+  category: прості списки
+  text: візьми кефір і два батони
+  expect:
+    exact_count: true
+    items:
+      - any: [кефір]
+        category: kefir
+      - any: [батон, хліб]
+        qty: [2, 2]
+        unit: pcs
+
+- id: list-03
+  category: прості списки
+  text: мені треба кава, цукор і вершки
+  expect:
+    exact_count: true
+    items:
+      - any: [кава]
+        category: coffee_ground
+      - any: [цукор]
+      - any: [вершки]
+
+- id: list-04
+  category: прості списки
+  text: бананів кілограм і два лимони
+  expect:
+    exact_count: true
+    items:
+      - any: [банан]
+        qty: [1000, 1000]
+        unit: g
+      - any: [лимон]
+        qty: [2, 2]
+        unit: pcs
+
+- id: list-05
+  category: прості списки
+  text: десяток яєць
+  expect:
+    exact_count: true
+    items:
+      - any: [яйця, яйце]
+        category: eggs
+        qty: [10, 10]
+        unit: pcs
+
+- id: list-06
+  category: прості списки
+  text: пачку вершкового масла і сметану
+  expect:
+    exact_count: true
+    items:
+      - any: [масло]
+      - any: [сметана]
+
+# ---------- B. Одиниці та вага (пастки шрінкфляції) ----------
+- id: unit-01
+  category: одиниці та вага
+  text: літр молока
+  expect:
+    exact_count: true
+    items:
+      - any: [молоко]
+        category: milk
+        qty: [1000, 1000]
+        unit: ml
+
+- id: unit-02
+  category: одиниці та вага
+  text: півлітра вершків
+  expect:
+    exact_count: true
+    items:
+      - any: [вершки]
+        qty: [500, 500]
+        unit: ml
+
+- id: unit-03
+  category: одиниці та вага
+  text: два кілограми картоплі
+  expect:
+    exact_count: true
+    items:
+      - any: [картопля]
+        qty: [2000, 2000]
+        unit: g
+
+- id: unit-04
+  category: одиниці та вага
+  text: півкіло кисломолочного сиру
+  expect:
+    exact_count: true
+    items:
+      - any: [сир]
+        qty: [500, 500]
+        unit: g
+
+- id: unit-05
+  category: одиниці та вага
+  text: три літри води
+  expect:
+    exact_count: true
+    items:
+      - any: [вода]
+        qty: [3000, 3000]
+        unit: ml
+
+# ---------- C. Бренди ----------
+- id: brand-01
+  category: бренди
+  text: молоко Галичина літр
+  expect:
+    exact_count: true
+    items:
+      - any: [молоко]
+        category: milk
+        qty: [1000, 1000]
+        unit: ml
+        brand: Галичина
+
+- id: brand-02
+  category: бренди
+  text: кава Jacobs Monarch
+  expect:
+    exact_count: true
+    items:
+      - any: [кава]
+        category: coffee_ground
+        brand: Jacobs
+
+- id: brand-03
+  category: бренди
+  text: кетчуп Торчин і майонез Торчин
+  expect:
+    exact_count: true
+    items:
+      - any: [кетчуп]
+        brand: Торчин
+      - any: [майонез]
+        brand: Торчин
+
+- id: brand-04
+  category: бренди
+  text: вода Моршинська півтора літра
+  expect:
+    exact_count: true
+    items:
+      - any: [вода]
+        qty: [1500, 1500]
+        unit: ml
+        brand: Моршинська
+
+- id: brand-05
+  category: бренди
+  text: шоколадку Roshen і молоко
+  expect:
+    exact_count: true
+    items:
+      - any: [шоколад]
+        brand: Roshen
+      - any: [молоко]
+        category: milk
+
+# ---------- D. Рецепти ----------
+- id: recipe-01
+  category: рецепти
+  text: хочу зробити сирники на 4 людей
+  expect:
+    servings: 4
+    items:
+      - any: [сир]
+        qty: [400, 1000]
+        unit: g
+      - any: [яйця, яйце]
+        category: eggs
+      - any: [борошно]
+        category: flour
+
+- id: recipe-02
+  category: рецепти
+  text: продукти для борщу на 6 порцій
+  expect:
+    servings: 6
+    items:
+      - any: [буряк]
+      - any: [капуста]
+      - any: [картопля]
+      - any: [морква]
+      - any: [цибуля]
+
+- id: recipe-03
+  category: рецепти
+  text: олів'є на новий рік на 8 людей
+  expect:
+    servings: 8
+    items:
+      - any: [картопля]
+      - any: [морква]
+      - any: [яйця, яйце]
+        category: eggs
+      - any: [горошок]
+      - any: [майонез]
+      - any: [ковбаса, курка, куряче, м'ясо, яловичина]
+      - any: [огірки, огірок]
+
+- id: recipe-04
+  category: рецепти
+  text: млинці на сніданок для двох
+  expect:
+    servings: 2
+    items:
+      - any: [молоко]
+        category: milk
+      - any: [яйця, яйце]
+        category: eggs
+      - any: [борошно]
+        category: flour
+
+- id: recipe-05
+  category: рецепти
+  text: все для грецького салату
+  expect:
+    items:
+      - any: [огірки, огірок]
+      - any: [помідори, томати, помідор]
+      - any: [фета, бринза, сир]
+      - any: [оливки, маслини]
+
+- id: recipe-06
+  category: рецепти
+  text: паста карбонара на трьох
+  expect:
+    servings: 3
+    items:
+      - any: [спагеті, макарони, паста]
+      - any: [бекон, гуанчале, грудинка, панчета]
+      - any: [яйця, яйце]
+        category: eggs
+      - any: [пармезан, сир]
+
+# ---------- E. Бюджет, транспорт, радіус ----------
+- id: limit-01
+  category: бюджет і відстань
+  text: молоко і хліб до 100 грн
+  expect:
+    exact_count: true
+    budget_uah: 100
+    items:
+      - any: [молоко]
+        category: milk
+      - any: [хліб, батон]
+
+- id: limit-02
+  category: бюджет і відстань
+  text: кава й печиво, маю 250 гривень
+  expect:
+    exact_count: true
+    budget_uah: 250
+    items:
+      - any: [кава]
+        category: coffee_ground
+      - any: [печиво]
+
+- id: limit-03
+  category: бюджет і відстань
+  text: яблука, поїду на машині
+  expect:
+    exact_count: true
+    travel_mode: car
+    items:
+      - any: [яблука, яблуко]
+
+- id: limit-04
+  category: бюджет і відстань
+  text: хліб, тільки десь поруч, далеко не піду
+  expect:
+    exact_count: true
+    radius_km: 1
+    items:
+      - any: [хліб, батон]
+
+- id: limit-05
+  category: бюджет і відстань
+  text: сир твердий у радіусі 3 км
+  expect:
+    exact_count: true
+    radius_km: 3
+    items:
+      - any: [сир]
+
+# ---------- F. Мережі ----------
+- id: chain-01
+  category: мережі
+  text: купи в Сільпо молоко і хліб
+  expect:
+    exact_count: true
+    preferred_chains: [silpo]
+    items:
+      - any: [молоко]
+        category: milk
+      - any: [хліб, батон]
+
+- id: chain-02
+  category: мережі
+  text: кава в Сільпо або в Novus
+  expect:
+    exact_count: true
+    preferred_chains: [silpo, novus]
+    items:
+      - any: [кава]
+        category: coffee_ground
+
+# ---------- G. Виключення складу (не алергени) ----------
+- id: excl-01
+  category: виключення
+  text: сирники на двох без цукру
+  expect:
+    servings: 2
+    exclude: [sugar]
+    forbid: [цукор]
+    items:
+      - any: [сир]
+      - any: [яйця, яйце]
+        category: eggs
+      - any: [борошно]
+        category: flour
+
+- id: excl-02
+  category: виключення
+  text: печиво без пальмової олії
+  expect:
+    exact_count: true
+    exclude: [palm_oil]
+    items:
+      - any: [печиво]
+
+# ---------- H. Комбіновані ----------
+- id: combo-01
+  category: комбіновані
+  text: борщ на 4 і хліб, бюджет 300 грн, поїду на авто
+  expect:
+    servings: 4
+    budget_uah: 300
+    travel_mode: car
+    items:
+      - any: [буряк]
+      - any: [капуста]
+      - any: [картопля]
+      - any: [хліб, батон]
+
+- id: combo-02
+  category: комбіновані
+  text: молоко Галичина літр, десяток яєць і кава, до 400 грн, далеко не хочу
+  expect:
+    exact_count: true
+    budget_uah: 400
+    radius_km: 1
+    items:
+      - any: [молоко]
+        category: milk
+        qty: [1000, 1000]
+        unit: ml
+        brand: Галичина
+      - any: [яйця, яйце]
+        category: eggs
+        qty: [10, 10]
+        unit: pcs
+      - any: [кава]
+        category: coffee_ground
