@@ -8,6 +8,7 @@ from app.config import get_settings
 from app.main import app
 from app.voice import cleanup, stt
 from app.voice.errors import VoiceError
+from app.voice.numbers import normalize_numbers
 
 
 @pytest.fixture(autouse=True)
@@ -56,6 +57,13 @@ def llm_reply(content: dict, status=200):
         ("не хочу їхати на машині, піду пішки", "walk", None),
         ("близько до дому", "walk", 1.0),
         ("в радіусі п'ятисот метрів", None, 0.5),
+        ("підгузки, пішки, не більше, щоб було одного кілометра", "walk", 1.0),
+        ("пішки, не більше, щоб відстань складала 2 кілометри", "walk", 2.0),
+        ("сирники, ну десь в районі, щоб був магазин", "walk", 1.0),
+        ("на авто в районі, щоб не було далі 10 кілометрів", "car", 10.0),
+        ("на авто в районі, щоб був магазин, не далі 10 кілометрів", "car", 10.0),
+        ("куплю чай в районі театру", None, None),
+        ("не більше двох кілограмів картоплі", None, None),
     ],
 )
 def test_rule_constraints(text, mode, radius):
@@ -80,7 +88,12 @@ def test_guard_allows_numbers_units_and_case_changes():
         ("два кіло картоплі", "5 кг картоплі", "new_numbers"),
         ("молоко без лактози і хліб", "молоко і хліб", "lost_restrictions"),
         ("молоко і хліб, тільки свіжий", "молоко і хліб, свіжий", "lost_restrictions"),
+        ("молоко і не солодкий чай", "молоко і солодкий чай", "lost_restrictions"),
         ("сметана, гречка і кефір", "сметана і кефір", "lost_words"),
+        ("кава і молоко", "какао і молоко", "new_words"),
+        ("пиво і хліб", "печиво і хліб", "new_words"),
+        ("ярчиця і батон", "ярчиця, гірчиця і батон", "new_words"),
+        ("ярчиця і батон", "гірчиця, морозиво і батон", "new_words"),
     ],
 )
 def test_guard_catches_qa_cases(raw, cleaned, issue):
@@ -97,6 +110,10 @@ def test_guard_catches_qa_cases(raw, cleaned, issue):
         ("яблука, банани, ой ні, апельсини", "апельсини"),
         ("ну мені каву і сиру", "кава і сир"),
         ("риба сто п'ятдесят грам і пів літра молока", "риба 150 г і 0,5 л молока"),
+        ("кілограм гречки, півтора кіло курячого філе і десяток яйця", "1 кг гречки, 1,5 кг курячого філе і 10 яєць"),
+        ("сосиски, ярчиця і батон", "сосиски, гірчиця і батон"),
+        ("вода морщинська", "вода Моршинська"),
+        ("сирники, ну десь в районі, щоб був магазин", "сирники"),
     ],
 )
 def test_guard_accepts_legit_cleanup(raw, cleaned):
@@ -108,6 +125,39 @@ async def test_llm_radius_wins_over_rules():
         "хліб в радіусі 2 км", client=client(lambda req: llm_reply({"text": "хліб", "mode": None, "radius_km": 3}))
     )
     assert r["radius_km"] == 3.0
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        "короче кава розчинна і шоколад рошен з фундуком, пішки",  # v06
+        "молоко без лактози і хліб, не хочу їхати на машині, піду пішки",  # x03
+        "кетчуп і майонез, поїду на машині",
+    ],
+)
+async def test_llm_radius_ignored_without_distance_cue(raw):
+    """Регресія v06/x03: на «пішки» без відстані LLM ставила 1 км → пошук вужчий за типові 2 км."""
+    r = await cleanup.clean_text(
+        raw, client=client(lambda req: llm_reply({"text": "x", "mode": "walk", "radius_km": 1}))
+    )
+    assert r["radius_km"] is None
+
+
+@pytest.mark.parametrize(
+    "raw,expected",
+    [
+        ("хліб, щоб недалеко", 1.0),
+        ("хліб, ну десь в районі, щоб був магазин", 1.0),
+        ("хліб, пішки не більше, щоб було одного кілометра", 1.0),
+        ("хліб у радіусі трьох кілометрів", 1.0),  # явна межа є → беремо відповідь LLM
+        ("молоко, на авто до десяти кілометрів", 1.0),
+    ],
+)
+async def test_llm_radius_kept_with_distance_cue(raw, expected):
+    r = await cleanup.clean_text(
+        raw, client=client(lambda req: llm_reply({"text": "хліб", "mode": None, "radius_km": 1}))
+    )
+    assert r["radius_km"] == expected
 
 
 def test_guard_catches_added_product():
@@ -132,6 +182,41 @@ async def test_clean_text_rejects_hallucination_returns_raw():
     )
     assert r["text"] == "молоко і хліб" and r["cleanup"]["guard"] == "rejected"
     assert r["cleanup"]["new_words"] == ["ковбаса"]
+
+
+async def test_clean_text_rejection_normalizes_numbers_and_retains_valid_llm_constraints():
+    raw = "десяток яєць і півтора кіло борошна, до трьохсот гривень"
+    r = await cleanup.clean_text(
+        raw, client=client(lambda req: llm_reply({"text": "яйця, борошно й масло", "mode": "car", "radius_km": 3}))
+    )
+    assert r["cleanup"]["guard"] == "rejected"
+    assert r["raw_text"] == raw and r["text"] == "10 яєць і 1,5 кг борошна, до 300 грн"
+    # mode від LLM зберігаємо; радіус — ні, бо людина не згадувала відстань («до 300 грн» — це бюджет)
+    assert (r["mode"], r["radius_km"]) == ("car", None)
+
+
+async def test_clean_text_rejection_uses_rules_for_invalid_llm_constraints():
+    r = await cleanup.clean_text(
+        "хліб, пішки до 2 км",
+        client=client(lambda req: llm_reply({"text": "хліб і масло", "mode": "bike", "radius_km": True})),
+    )
+    assert r["cleanup"]["guard"] == "rejected"
+    assert (r["mode"], r["radius_km"]) == ("walk", 2.0)
+
+
+@pytest.mark.parametrize(
+    "raw,expected",
+    [
+        ("Кілограм гречки, два десятки яєць", "1 кг гречки, 20 яєць"),
+        ("Півтора кіло, до трьохсот гривень", "1,5 кг, до 300 грн"),
+        ("Молоко 2,5 відсотка і 1 літр води", "Молоко 2,5% і 1 л води"),
+        ("2 десятки яєць і дві тисячі п’ятсот гривень", "20 яєць і 2500 грн"),
+        ("Дві, три штуки м’яса", "2, 3 шт м’яса"),
+        ("дві три штуки і пів яблука", "дві три штуки і пів яблука"),
+    ],
+)
+def test_normalize_numbers(raw, expected):
+    assert normalize_numbers(raw) == expected
 
 
 async def test_clean_text_falls_back_to_second_model_then_rules():
