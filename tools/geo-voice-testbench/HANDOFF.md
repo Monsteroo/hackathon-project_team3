@@ -26,13 +26,13 @@
 
 | Файл | Що дає |
 |---|---|
-| `src/api.js` | `api.transcribe(blob)`, `api.parseText(text, source)`, `api.geocode(q, {suggest, near})`, `api.reverse({lat,lng})`, `api.nearby({lat,lng,mode,radiusKm,storeIds})`, `api.route({lat,lng,storeId,mode})`; заголовок ключа; помилки → `ApiError {code, message, status, fallback}` |
+| `src/api.js` | `api.transcribe(blob)`, `api.geocode(q, {suggest, near})`, `api.reverse({lat,lng})`, `api.nearby({lat,lng,mode,radiusKm,storeIds})`, `api.route({lat,lng,storeId,mode})`; заголовок ключа; помилки → `ApiError {code, message, status, fallback}` |
 | `src/hooks/useVoiceRecorder.js` | Мікрофон: `{start, stop, status, elapsed, error, supported, maxSeconds}`, автостоп 60 с, webm/opus (Chrome) або mp4 (Safari), українські тексти помилок доступу |
 | `src/hooks/useWebSpeech.js` | Запасне розпізнавання в браузері (`uk-UA`), коли `/voice/transcribe` повернув `fallback: true` |
 | `src/hooks/useGeolocation.js` | `locate()` → `Promise<{lat,lng,accuracy}>`, українські помилки; далі `api.reverse()` для підпису адреси |
 
-Ланцюжок для голосу: `/voice/transcribe` → якщо `detail.fallback` → Web Speech → ручне поле (`/voice/parse-text`,
-`source: "manual"`). Поле ручного вводу має бути завжди. Мікрофон і GPS працюють лише на `localhost` або HTTPS.
+Ланцюжок для голосу: `/voice/transcribe` → якщо `detail.fallback` → Web Speech → ручне поле (текст іде агенту як є,
+`/voice/parse-text` прибрано). Поле ручного вводу має бути завжди. Мікрофон і GPS працюють лише на `localhost` або HTTPS.
 
 **Перенесення хуків у TS:** перейменувати `.js` → `.ts`, додати типи з розділу нижче; у `useVoiceRecorder` —
 `useRef<MediaRecorder | null>`, `useRef<MediaStream | null>`, `onStop?: (blob: Blob) => void`; у `useWebSpeech` —
@@ -145,7 +145,6 @@ export type ApiErrorBody =
 | `GET /geo/reverse` | `lat, lng` | `Place` |
 | `GET /geo/stores` | — | `{count, stores: Store[]}` — усі 238 магазинів Києва для оглядової карти |
 | `POST /voice/transcribe` | multipart `audio` (≤ 60 с, ≤ 1.5 MB) | `VoiceResult` (мок 15) |
-| `POST /voice/parse-text` | JSON `{text, source: "manual"\|"web_speech"}` | `VoiceResult` (мок 14) |
 
 Лише Київ: точка або адреса поза Києвом → 422 `outside_service_area` (мок 13).
 

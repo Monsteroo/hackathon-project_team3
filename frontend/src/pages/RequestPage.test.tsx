@@ -51,20 +51,18 @@ describe('RequestPage', () => {
     expect(router.state.location.pathname).toBe('/')
   })
 
-  it('fills the field from an example, parses it on the backend and submits to /confirm', async () => {
+  it('fills the field from an example and submits it to /confirm without a backend call', async () => {
     const router = renderPage()
     fireEvent.click(screen.getByRole('button', { name: 'Борщ на 4 людини' }))
     expect(screen.getByLabelText('Введіть або вставте список')).toHaveValue('Борщ на 4 людини')
     fireEvent.click(screen.getByRole('button', { name: 'Знайти кошик' }))
     await waitFor(() => expect(router.state.location.pathname).toBe('/confirm'))
 
-    const [path, init] = fetchMock.mock.calls[0]
-    expect(path).toBe('/voice/parse-text')
-    expect(JSON.parse(init.body)).toEqual({ text: 'Борщ на 4 людини', source: 'manual' })
+    expect(fetchMock.mock.calls.some(([path]) => String(path).startsWith('/voice/'))).toBe(false)
     expect(router.state.location.state).toMatchObject({
       query: 'Борщ на 4 людини',
       cityId: 'kyiv',
-      voice: { mode: 'walk', radius_km: 1 },
+      voice: { text: 'Борщ на 4 людини', mode: null, radius_km: null, source: 'manual' },
     })
   })
 
@@ -76,8 +74,7 @@ describe('RequestPage', () => {
     await waitFor(() => expect(router.state.location.pathname).toBe('/confirm'))
   })
 
-  it('still submits when /voice/parse-text is rate limited', async () => {
-    vi.stubGlobal('fetch', respond(429, { detail: { code: 'rate_limited', message: 'x', fallback: false } }))
+  it('trims typed text into a local VoiceResult', async () => {
     const router = renderPage()
     fireEvent.change(screen.getByLabelText('Введіть або вставте список'), { target: { value: '  молоко  ' } })
     fireEvent.click(screen.getByRole('button', { name: 'Знайти кошик' }))

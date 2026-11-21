@@ -30,7 +30,7 @@ import {
   type Origin,
   type PositionFailure,
 } from '../features/location/position'
-import { api, localVoiceResult } from '../lib/api/client'
+import { localVoiceResult } from '../lib/api/client'
 import type { Place, VoiceResult } from '../lib/api/types'
 import { pluralItems } from '../lib/format'
 import { useCity } from '../lib/useCity'
@@ -81,7 +81,7 @@ export function ConfirmPage() {
   const compact = useMediaQuery(MQ_COMPACT)
   const chains = useCatalogChains(city.name)
 
-  /** Агент розбирає запит (LLM — 2–4 с). Рядок без VoiceResult (старий формат state) — спершу /voice/parse-text. */
+  /** Агент розбирає запит (LLM — 2–4 с). Рядок без VoiceResult (старий формат state) — VoiceResult збираємо локально. */
   const [parsing, setParsing] = useState(() => (state?.voice ? needsParse(state.voice) : !!state?.query))
   const [announce, setAnnounce] = useState('')
   const [parseStatus, setParseStatus] = useState<ParseStatus | null>(null)
@@ -103,10 +103,7 @@ export function ConfirmPage() {
         .finally(() => setParsing(false))
     } else if (state?.query) {
       const query = state.query
-      api
-        .parseText(query)
-        .catch(() => localVoiceResult(query))
-        .then((voice) => startFrom(voice))
+      void startFrom(localVoiceResult(query))
         .then(setParseStatus)
         .finally(() => setParsing(false))
     } else if (!getBasketDraft()) {

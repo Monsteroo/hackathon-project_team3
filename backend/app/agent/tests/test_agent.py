@@ -155,3 +155,50 @@ async def test_alt_store_ids_prices_go_to_primary_store(monkeypatch):
     item = RequestedItem(name="кава", search_query="кава", category="coffee_ground", quantity=1, unit="pcs")
     candidates, _ = await service.find_candidates(None, [item], [store], [])
     assert candidates["кава"] and {c.price.store_id for c in candidates["кава"]} == {"primary-id"}
+
+
+def test_search_without_category_requires_title_to_start_with_query():
+    """«зелень (кріп, петрушка)» не має знаходити «Сир … з зеленою цибулею»."""
+    assert not service.title_starts_with("Сир Piatnica сметанковий з зеленою цибулею 150г", "зелень (кріп, петрушка)")
+    assert not service.title_starts_with("Чіпси Lay's зі смаком картоплі", "картопля")
+    assert service.title_starts_with("Картопля молода, кг", "картопля")
+    assert service.title_starts_with("Банан", "банани")
+    assert service.title_starts_with("Яйця курячі Квочка С1 10шт", "яйця курячі")
+
+
+# ---------- Список з екрана 2 (items) ----------
+async def test_basket_from_confirmed_items_skips_llm():
+    body = BasketIn(
+        items=[
+            {"category": "milk", "need": 1000, "unit": "ml", "exclude": ["sugar"]},
+            {"label": "Кава Jacobs", "query": "кава jacobs", "need": 1, "unit": "pcs"},
+            {"category": "eggs", "need": 10, "unit": "pcs"},
+        ],
+        budget_uah=500,
+        lat=USER_LAT,
+        lng=USER_LNG,
+        mode="car",
+        radius_km=10,
+    )
+    out = await service.build(None, body)
+    assert out.parser == "items"
+    assert [i.name for i in out.parsed.items] == ["молоко", "Кава Jacobs", "яйця"]
+    assert out.parsed.constraints.budget_uah == 500
+    assert out.parsed.constraints.travel_mode == "car"
+    assert out.baskets and any(not b.missing for b in out.baskets)
+
+
+def test_basket_needs_text_or_items():
+    import pytest
+    from pydantic import ValidationError
+
+    with pytest.raises(ValidationError):
+        BasketIn(lat=USER_LAT, lng=USER_LNG)
+    assert BasketIn(text="молоко", lat=USER_LAT, lng=USER_LNG).items is None
+
+
+def test_duplicate_labels_get_unique_names():
+    body = BasketIn(
+        items=[{"label": "Молоко", "category": "milk", "need": 1, "unit": "pcs"}] * 2, lat=USER_LAT, lng=USER_LNG
+    )
+    assert [i.name for i in service.parsed_from_items(body).items] == ["Молоко", "Молоко (2)"]

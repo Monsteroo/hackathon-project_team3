@@ -5,7 +5,7 @@ import { Button } from '../components/Button/Button'
 import { VoiceButton, VoiceStatus } from '../components/VoiceButton/VoiceButton'
 import { VOICE_MESSAGES } from '../features/voice/useSpeechRecognition'
 import { useVoiceInput } from '../features/voice/useVoiceInput'
-import { api, localVoiceResult, MAX_TEXT_LENGTH } from '../lib/api/client'
+import { localVoiceResult, MAX_TEXT_LENGTH } from '../lib/api/client'
 import type { VoiceResult } from '../lib/api/types'
 import { formatDistance, formatPrice, formatSavings } from '../lib/format'
 import { useCity } from '../lib/useCity'
@@ -48,7 +48,7 @@ export function RequestPage() {
   const baseRef = useRef('')
   /** Останній результат Whisper і текст поля з ним: якщо поле не правили, сабміт не робить ще один запит. */
   const lastVoiceRef = useRef<{ result: VoiceResult; field: string } | null>(null)
-  /** Текст поля, яке заповнив Web Speech: тоді в /voice/parse-text іде source=web_speech. */
+  /** Текст поля, яке заповнив Web Speech: тоді VoiceResult має source=web_speech. */
   const webSpeechFieldRef = useRef<string | null>(null)
   const id = useId()
   const errorId = `${id}-error`
@@ -84,17 +84,13 @@ export function RequestPage() {
     voice.toggle()
   }
 
-  /** VoiceResult для /confirm. Помилка /voice/parse-text (ліміт, мережа) сабміт не блокує. */
+  /** VoiceResult для /confirm. Набраний текст не йде на бекенд тут: його розбирає агент на екрані 2. */
   async function resolveVoice(text: string): Promise<VoiceResult> {
     const last = lastVoiceRef.current
     // Поле = лише результат Whisper без правок → готовий VoiceResult без нового запиту.
     if (last && last.field.trim() === text && last.result.raw_text.trim() === text) return last.result
     const source = webSpeechFieldRef.current?.trim() === text ? 'web_speech' : 'manual'
-    try {
-      return await api.parseText(text, source)
-    } catch {
-      return localVoiceResult(text, source)
-    }
+    return localVoiceResult(text, source)
   }
 
   async function submit(e?: FormEvent) {

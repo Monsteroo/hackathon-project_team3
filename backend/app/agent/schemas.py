@@ -5,7 +5,7 @@
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from app.types import Money
 
@@ -28,6 +28,8 @@ class RequestedItem(BaseModel):
     unit: Unit
     brand: str | None = Field(None, description="Лише якщо користувач сам назвав бренд")
     optional: bool = Field(False, description="Можна прибрати, якщо не вкладаємося в бюджет")
+    gtin: str | None = Field(None, description="Не заповнюй. Лише для товару, вибраного з каталогу на екрані 2")
+    exclude: list[str] = Field(default_factory=list, description="Не заповнюй. Фільтри складу цієї позиції з екрана 2")
 
 
 class Constraints(BaseModel):
@@ -49,15 +51,39 @@ class ParseIn(BaseModel):
     text: str = Field(min_length=1, max_length=1000, description="Розпізнаний або введений текст запиту")
 
 
-class BasketIn(ParseIn):
-    """Поля text, raw_text, mode, radius_km — рівно ті, що повертає /voice/transcribe і /voice/parse-text."""
+class AgentItem(BaseModel):
+    """Позиція кошика з екрана 2 (контракт «Позиція кошика» в CLAUDE.md) + назва для показу."""
 
+    label: str | None = Field(None, max_length=200, description="Назва для людини / назва товару з каталогу")
+    category: Category | None = None
+    gtin: str | None = None
+    query: str | None = Field(None, max_length=200)
+    need: float = Field(gt=0, description="Скільки потрібно в unit")
+    unit: Unit
+    exclude: list[str] = Field(default_factory=list, description="sugar, palm_oil, lactose, private_label")
+
+
+class BasketIn(BaseModel):
+    """Або text (агент розбирає сам), або items — уже підтверджений список з екрана 2 (без виклику LLM).
+
+    text, raw_text, mode, radius_km — рівно ті поля, що повертає /voice/transcribe.
+    """
+
+    text: str = Field("", max_length=1000, description="Розпізнаний або введений текст запиту")
+    items: list[AgentItem] | None = Field(None, max_length=50, description="Відредагований список з екрана 2")
+    budget_uah: float | None = Field(None, gt=0, description="Бюджет з екрана 2 (для items)")
     raw_text: str | None = Field(None, description="Сира розшифровка STT — для логів і евалів")
     lat: float = Field(ge=-90, le=90)
     lng: float = Field(ge=-180, le=180)
     mode: TravelMode | None = Field(None, description="З VoiceResult або перемикача в UI; головніше за розбір тексту")
     radius_km: float | None = Field(None, gt=0, le=50, description="З VoiceResult; None — дефолт модуля geo")
     city: str = "Київ"
+
+    @model_validator(mode="after")
+    def _text_or_items(self) -> "BasketIn":
+        if not self.items and not self.text.strip():
+            raise ValueError("either text or items is required")
+        return self
 
 
 # ---------- Вихід: кошики ----------
@@ -113,7 +139,9 @@ class Basket(BaseModel):
 
 class BasketOut(BaseModel):
     parsed: ParsedRequest = Field(description="Як агент зрозумів запит: для екрана «Я зрозумів так»")
-    parser: Literal["llm", "rules"] = Field(description="rules = LLM недоступна, рецепти не розкладаються")
+    parser: Literal["llm", "rules", "items"] = Field(
+        description="llm — розбір Claude; rules — LLM недоступна, рецепти не розкладаються; items — список з екрана 2"
+    )
     stores_considered: int
     baskets: list[Basket] = Field(max_length=3)
     explanation: str

@@ -1,4 +1,7 @@
-"""HTTP API модуля voice (prefix /voice): аудіо → чистий текст + mode/radius_km; те саме для набраного тексту."""
+"""HTTP API модуля voice (prefix /voice): аудіо → чистий текст + mode/radius_km.
+
+Набраний текст іде одразу агенту (/agent/parse, /agent/basket): окремий /voice/parse-text прибрано.
+"""
 
 from typing import Annotated
 
@@ -6,7 +9,7 @@ from fastapi import APIRouter, File, HTTPException, Request, UploadFile
 
 from app.voice import service
 from app.voice.ratelimit import check_voice_limit
-from app.voice.schemas import TextIn, VoiceErrorDetail, VoiceResult
+from app.voice.schemas import VoiceErrorDetail, VoiceResult
 
 router = APIRouter(prefix="/voice", tags=["voice"])
 
@@ -28,13 +31,3 @@ async def transcribe_audio(
         return await service.transcribe_and_clean(data, audio.filename or "audio.webm", audio.content_type)
     except service.VoiceError as e:
         raise _http(e) from e
-
-
-@router.post("/parse-text", response_model=VoiceResult, responses={429: ERRORS[429]})
-async def parse_text(request: Request, body: TextIn) -> dict:
-    """Для ручного вводу та fallback Web Speech: та сама чистка і витяг mode/radius_km."""
-    try:
-        check_voice_limit(request)
-    except service.VoiceError as e:
-        raise _http(e) from e
-    return await service.parse_text(body.text, body.source)

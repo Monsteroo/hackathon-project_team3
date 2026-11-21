@@ -21,7 +21,10 @@
 ## API
 
 - `POST /agent/parse` `{"text": "..."}` → `ParsedRequest`: позиції (`name`, `category`, `quantity`, `unit`, `brand`, `optional`) і обмеження (`budget_uah`, `exclude: [sugar|palm_oil|lactose]`, `travel_mode`, `radius_km`, `preferred_chains`). До БД не звертається. Для екрана «Я зрозумів так».
-- `POST /agent/basket` `{"text", "lat", "lng", "raw_text"?, "mode"?, "radius_km"?, "city"?}` (поля з `VoiceResult` передавайте як є) → `BasketOut`: `parsed`, `parser` (`llm` | `rules`), `baskets` (до 3: `nearest`, `cheapest`, `smart_split`), `explanation`, `warnings`. Якщо в запиті немає продуктів — 422; БД недоступна — 503.
+- `POST /agent/basket` — два режими:
+  - **текст** `{"text", "lat", "lng", "raw_text"?, "mode"?, "radius_km"?, "city"?}` (поля з `VoiceResult` передавайте як є): агент розбирає текст через Claude;
+  - **список з екрана 2** `{"items": [{label?, category? | gtin? | query?, need, unit, exclude}], "budget_uah"?, "lat", "lng", "mode"?, "radius_km"?}`: уже підтверджений і відредагований людиною список, **без виклику LLM** (`parser: "items"`). `exclude` — на рівні позиції (`sugar`, `palm_oil`, `lactose`, `private_label`); `gtin` — точний товар, вибраний з каталогу.
+  - Відповідь однакова: `parsed`, `parser` (`llm` | `rules` | `items`), `baskets` (до 3: `nearest`, `cheapest`, `smart_split`), `explanation`, `warnings`. Без `text` і без `items` — 422; БД недоступна — 503.
 
 Приклади відповідей: [`mocks/16_agent_parse.json`](../../../mocks/16_agent_parse.json), [`mocks/17_agent_basket.json`](../../../mocks/17_agent_basket.json).
 
@@ -42,6 +45,7 @@
 - **LLM лише розбирає мову.** Ціни, кількість пачок, бюджет і вибір магазинів рахує Python: передбачувано, тестовано, без вигаданих цифр. Пояснення — шаблон з порахованих чисел, без другого виклику LLM.
 - **Магазини поруч — з модуля geo** (Учасник 1): маршрути Valhalla, радіус команди (пішки 2 км, авто 10 км), до 2 найближчих магазинів кожної мережі з цінами. Якщо в радіусі порожньо — найближчі з цінами до 30 км з попередженням. Якщо geo впав — запасна оцінка за прямою × 1.3 з `catalog.list_stores`.
 - **`mode` і `radius_km` з голосу головніші** за те, що агент витягнув з тексту: модуль voice уже їх розібрав.
+- **Без категорії — лише товари, що так і називаються.** Пошук без категорії приймає товар, лише якщо його назва починається зі слова запиту: «зелень» не знайде «Сир … з зеленою цибулею», «картопля» — чіпси. Краще чесне «немає поруч», ніж чужий товар у кошику.
 - **Кілька ID одного магазину** (`alt_store_ids` з geo): ціни шукаються за всіма й приписуються основному.
 - **Склад фільтрує каталог** (`exclude`): невідомий склад не проходить. У `missing` видно причину: `not_found` або `filtered_by_composition`.
 - **Вартість розбору** на Sonnet 5.5: ~3.5 тис. вхідних і ~350 вихідних токенів ≈ $0.01 і 2–4 с на запит.

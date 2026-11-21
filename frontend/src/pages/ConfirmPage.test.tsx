@@ -232,19 +232,25 @@ describe('ConfirmPage', () => {
     expect(screen.getByText('Не вдалося розібрати запит автоматично')).toBeInTheDocument()
   })
 
-  it('parses a plain query (old state shape) on the backend', async () => {
+  it('parses a plain query (old state shape) with the agent, without /voice/parse-text', async () => {
+    const parsed = {
+      items: [{ name: 'кефір', search_query: 'кефір', category: 'kefir', quantity: 1000, unit: 'ml', brand: null, optional: false }],
+      constraints: { budget_uah: null, exclude: [], travel_mode: 'car', radius_km: 5, preferred_chains: [] },
+      servings: null,
+    }
     const fetchMock = vi.fn((path: string) =>
       Promise.resolve(
-        path.startsWith('/voice/parse-text')
-          ? new Response(JSON.stringify(voice({ raw_text: 'кефір', text: 'кефір', mode: 'car', radius_km: 5 })), { status: 200 })
+        path === '/agent/parse'
+          ? new Response(JSON.stringify(parsed), { status: 200 })
           : new Response('{}', { status: 500 }),
       ),
     )
     vi.stubGlobal('fetch', fetchMock)
-    renderAt({ query: 'кефір' })
+    renderAt({ query: 'кефір, на авто в радіусі 5 км' })
     expect(screen.getByText('Розбираю запит…')).toBeInTheDocument()
     expect(await screen.findByRole('radio', { name: /^5\s*км/ })).toBeChecked()
     expect(screen.getByRole('radio', { name: 'Авто' })).toBeChecked()
+    expect(fetchMock.mock.calls.some(([path]) => String(path).startsWith('/voice/'))).toBe(false)
   })
 
   it('redirects to the request screen without state or draft', async () => {

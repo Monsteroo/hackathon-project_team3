@@ -2,7 +2,7 @@
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class CleanupInfo(BaseModel):
@@ -18,14 +18,9 @@ class VoiceResult(BaseModel):
     raw_text: str  # що почули — для показу користувачу
     mode: Literal["walk", "car"] | None  # null — не згадано, лишити перемикач як є
     radius_km: float | None  # null — не згадано, береться дефолт /geo
-    duration_s: float | None  # тривалість запису; null для /voice/parse-text
+    duration_s: float | None  # тривалість запису, с
     source: str  # groq_whisper | manual | web_speech
     cleanup: CleanupInfo
-
-
-class TextIn(BaseModel):
-    text: str = Field(..., min_length=1, max_length=2000)
-    source: Literal["manual", "web_speech"] = "manual"
 
 
 class VoiceErrorDetail(BaseModel):

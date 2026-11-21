@@ -296,23 +296,3 @@ async def test_api_transcribe_error_shape(monkeypatch):
         r = await c.post("/voice/transcribe", files={"audio": ("a.webm", b"abc", "audio/webm")})
     assert r.status_code == 429
     assert r.json()["detail"] == {"code": "stt_rate_limited", "message": "quota", "fallback": True}
-
-
-async def test_api_parse_text(monkeypatch):
-    async def fake_clean(t):
-        return {
-            "text": t,
-            "raw_text": t,
-            "mode": None,
-            "radius_km": None,
-            "cleanup": {"model": None, "guard": "skipped"},
-        }
-
-    monkeypatch.setattr("app.voice.service.clean_text", fake_clean)
-    async with api() as c:
-        r = await c.post("/voice/parse-text", json={"text": "хліб", "source": "web_speech"})
-        unauth = await AsyncClient(transport=ASGITransport(app=app), base_url="http://test").post(
-            "/voice/parse-text", json={"text": "хліб"}
-        )
-    assert r.status_code == 200 and r.json()["source"] == "web_speech"
-    assert unauth.status_code == 401

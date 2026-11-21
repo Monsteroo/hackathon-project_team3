@@ -18,14 +18,23 @@ async function catchError(p: Promise<unknown>): Promise<ApiError> {
 describe('api client', () => {
   afterEach(() => vi.unstubAllGlobals())
 
-  it('sends X-API-Key and JSON body to /voice/parse-text', async () => {
-    const fetchMock = respond(200, localVoiceResult('молоко'))
+  it('sends X-API-Key and query params', async () => {
+    const fetchMock = respond(200, { results: [] })
     vi.stubGlobal('fetch', fetchMock)
-    await api.parseText('молоко', 'web_speech')
+    await api.geocode('Хрещатик 22')
     const [path, init] = fetchMock.mock.calls[0]
-    expect(path).toBe('/voice/parse-text')
+    expect(path).toMatch(/^\/geo\/geocode\?q=/)
     expect(init.headers).toHaveProperty('X-API-Key')
-    expect(JSON.parse(init.body)).toEqual({ text: 'молоко', source: 'web_speech' })
+  })
+
+  it('builds a typed-text VoiceResult locally (no /voice/parse-text)', () => {
+    expect(localVoiceResult('молоко', 'web_speech')).toMatchObject({
+      text: 'молоко',
+      raw_text: 'молоко',
+      mode: null,
+      radius_km: null,
+      source: 'web_speech',
+    })
   })
 
   it('maps module error detail to code and fallback', async () => {
@@ -37,22 +46,22 @@ describe('api client', () => {
 
   it('keeps fallback false for no_speech and rate_limited', async () => {
     vi.stubGlobal('fetch', respond(429, { detail: { code: 'rate_limited', message: 'x', fallback: false } }))
-    const err = await catchError(api.parseText('молоко'))
+    const err = await catchError(api.geocode('молоко'))
     expect(err).toMatchObject({ code: 'rate_limited', fallback: false })
     expect(messageFor(err.code)).toBe('Забагато запитів. Спробуйте за хвилину')
   })
 
   it('maps string 401 detail and validation arrays', async () => {
     vi.stubGlobal('fetch', respond(401, { detail: 'invalid or missing API key' }))
-    expect(await catchError(api.parseText('x'))).toMatchObject({ code: 'unauthorized', status: 401 })
+    expect(await catchError(api.geocode('x'))).toMatchObject({ code: 'unauthorized', status: 401 })
 
     vi.stubGlobal('fetch', respond(422, { detail: [{ type: 'string_too_short', loc: ['body', 'text'], msg: '' }] }))
-    expect(await catchError(api.parseText('x'))).toMatchObject({ code: 'validation_error', fallback: false })
+    expect(await catchError(api.geocode('x'))).toMatchObject({ code: 'validation_error', fallback: false })
   })
 
   it('turns fetch failure into network error with fallback', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('Failed to fetch')))
-    expect(await catchError(api.parseText('x'))).toMatchObject({ code: 'network', fallback: true })
+    expect(await catchError(api.geocode('x'))).toMatchObject({ code: 'network', fallback: true })
   })
 
   it('names the audio file by recorder mime type', async () => {
