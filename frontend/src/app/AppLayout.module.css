@@ -1,20 +1,108 @@
+/* DESIGN.md §4.8 AppHeader */
 .header {
   display: flex;
   align-items: center;
-  height: var(--size-control);
+  gap: var(--header-gap);
+  height: var(--header-height);
   padding: 0 var(--gutter);
   max-width: 80rem;
   margin: 0 auto;
 }
 
 .logo {
-  font: var(--weight-bold) var(--text-h2) var(--font-display);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font: var(--weight-bold) var(--logo-font) var(--font-display);
+  letter-spacing: -0.02em;
   color: var(--color-text);
   text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.dot {
+  width: var(--logo-dot-size);
+  height: var(--logo-dot-size);
+  margin-top: var(--space-xs);
+  border-radius: var(--radius-full);
+  background: var(--logo-dot-bg);
+}
+
+.stepsNav {
+  margin: 0 auto;
+}
+
+.steps {
+  display: flex;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--weight-medium) var(--steps-font) var(--font-ui);
+  color: var(--steps-fg);
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.steps li + li::before {
+  content: '→';
+  color: var(--steps-separator-fg);
+}
+
+.steps [aria-current] > span {
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  background: var(--steps-current-bg);
+  color: var(--steps-current-fg);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
+}
+
+.stepsNav + .actions {
+  margin-left: 0;
+}
+
+.freePill {
+  padding: var(--space-xs) var(--space-ms);
+  border: 1px solid var(--free-pill-border);
+  border-radius: var(--radius-full);
+  background: var(--free-pill-bg);
+  font: var(--weight-medium) var(--free-pill-font) var(--font-ui);
+  white-space: nowrap;
 }
 
 .main {
   max-width: 80rem;
   margin: 0 auto;
-  padding: var(--space-lg) var(--gutter) var(--space-2xl);
+  padding: var(--space-sm) var(--gutter) var(--space-2xl);
+}
+
+@media (max-width: 1023px) {
+  .stepsNav {
+    display: none;
+  }
+
+  .stepsNav + .actions {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    height: var(--header-height-mobile);
+    padding-right: var(--space-sm);
+  }
+
+  .freePill {
+    display: none;
+  }
 }
