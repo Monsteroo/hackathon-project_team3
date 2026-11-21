@@ -1,7 +1,8 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { StrictMode } from 'react'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { addItem, clearBasketDraft, initFromVoice, setBudget } from '../features/basket/draftStore'
+import { addItem, clearBasketDraft, initFromVoice, setBudget, toggleExclude } from '../features/basket/draftStore'
 import type { Origin } from '../features/location/position'
 import { clearResult } from '../features/results/resultsStore'
 import { localVoiceResult } from '../lib/api/client'
@@ -23,7 +24,7 @@ const RESULT: BasketOut = {
     constraints: { budget_uah: 400, exclude: [], travel_mode: 'car', radius_km: null, preferred_chains: [] },
     servings: null,
   },
-  parser: 'llm',
+  parser: 'items',
   stores_considered: 6,
   baskets: [
     {
@@ -97,7 +98,11 @@ function renderAt(state: unknown) {
     ],
     { initialEntries: [{ pathname: '/results', state }] },
   )
-  render(<RouterProvider router={router} />)
+  render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
+  )
   return router
 }
 
@@ -117,6 +122,7 @@ describe('ResultsPage', () => {
   afterEach(() => vi.unstubAllGlobals())
 
   it('sends the edited list with the location and shows the options', async () => {
+    toggleExclude('private_label')
     const fetchMock = respond(() => new Response(JSON.stringify(RESULT), { status: 200 }))
     renderAt({ origin: ORIGIN })
     expect(screen.getByRole('status')).toHaveTextContent('Шукаю ціни в магазинах поруч')
@@ -128,12 +134,18 @@ describe('ResultsPage', () => {
     expect(screen.getByText('Немає 1 товару')).toBeInTheDocument()
     expect(screen.getByText(RESULT.explanation)).toBeInTheDocument()
     expect(screen.getByText('Ціни оновлено вночі')).toBeInTheDocument()
+    expect(screen.queryByText(/фільтр .*поки не враховується/i)).not.toBeInTheDocument()
     expect(screen.getByText('вулиця Григоренка, 1, Київ')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Маршрут/ })).toHaveAttribute('href', 'https://maps.example/auchan')
 
     const [, init] = basketCalls(fetchMock)[0]
     expect(JSON.parse(init?.body as string)).toEqual({
       text: 'молоко 1 л, гречка 1 кг, до 400 грн',
+      items: [
+        { label: 'Молоко', category: 'milk', need: 1000, unit: 'ml', exclude: ['private_label'] },
+        { label: 'Гречка', category: 'buckwheat', need: 1000, unit: 'g', exclude: ['private_label'] },
+      ],
+      budget_uah: 400,
       raw_text: 'молоко і гречка',
       lat: 50.398,
       lng: 30.634,
@@ -141,6 +153,18 @@ describe('ResultsPage', () => {
       radius_km: 10,
       city: 'Київ',
     })
+  })
+
+  it('requests baskets once for GPS and uses a local label', async () => {
+    const fetchMock = respond(() => new Response(JSON.stringify(RESULT), { status: 200 }))
+    renderAt({ origin: { lat: 50.45, lng: 30.52, label: null, source: 'gps' } })
+
+    await screen.findByRole('radio', { name: /Найвигідніший/ })
+    expect(screen.getByText('Ваше місце')).toBeInTheDocument()
+    expect(fetchMock.mock.calls.map(([path]) => path)).toEqual(['/agent/basket'])
+    const [, init] = fetchMock.mock.calls[0]
+    expect(init?.method).toBe('POST')
+    expect(JSON.parse(init?.body as string)).toMatchObject({ lat: 50.45, lng: 30.52, mode: 'car' })
   })
 
   it('moves the selection with arrow keys', async () => {

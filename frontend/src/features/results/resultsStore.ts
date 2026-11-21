@@ -19,7 +19,9 @@ export interface SavedResult {
 let memory: SavedResult | null = null
 
 export function requestKey(request: BasketRequest): string {
-  return JSON.stringify([request.text, request.lat, request.lng, request.mode, request.radius_km, request.city])
+  return JSON.stringify([
+    request.items, request.budget_uah, request.text, request.lat, request.lng, request.mode, request.radius_km, request.city,
+  ])
 }
 
 export function loadResult(): SavedResult | null {

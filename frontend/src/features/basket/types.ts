@@ -47,16 +47,6 @@ export interface BasketItem {
   exclude: Tag[]
 }
 
-/** Позиція кошика для агента й каталогу (контракт із CLAUDE.md). */
-export interface AgentItem {
-  category?: Category
-  gtin?: string
-  query?: string
-  need: number
-  unit: Unit
-  exclude: Tag[]
-}
-
 export interface BasketDraft {
   /** Запит, з якого почали. null — список зібрано вручну. */
   voice: VoiceResult | null

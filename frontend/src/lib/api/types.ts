@@ -286,16 +286,28 @@ export interface AgentBasket {
 
 export interface BasketOut {
   parsed: ParsedRequest
-  /** rules — LLM недоступна, рецепти не розкладаються. */
-  parser: 'llm' | 'rules'
+  /** items — список підтверджено; rules — запит розібрано без LLM. */
+  parser: 'llm' | 'rules' | 'items'
   stores_considered: number
   baskets: AgentBasket[]
   explanation: string
   warnings: string[]
 }
 
+export interface AgentItem {
+  label?: string
+  category?: AgentCategory
+  gtin?: string
+  query?: string
+  need: number
+  unit: RequestedItem['unit']
+  exclude: (AgentExcludeTag | 'private_label')[]
+}
+
 export interface BasketRequest {
   text: string
+  items?: AgentItem[]
+  budget_uah?: number | null
   raw_text?: string | null
   lat: number
   lng: number
