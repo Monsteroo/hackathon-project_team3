@@ -23,5 +23,8 @@
   {"id": "v22", "spoken": "сосиски, гірчиця і батон, біля дому", "must_contain": ["сосиски", "гірчиц", "батон"], "must_not_contain": [], "mode": "walk", "radius_km": 1.0},
   {"id": "v23", "spoken": "огірки, помідори, зелень, у радіусі двох кілометрів пішки", "must_contain": ["огірки", "помідори", "зелень"], "must_not_contain": [], "mode": "walk", "radius_km": 2.0},
   {"id": "v24", "spoken": "риба червона сто п'ятдесят грам і авокадо", "must_contain": ["риба", "150 г", "авокадо"], "must_not_contain": [], "mode": null, "radius_km": null},
-  {"id": "v25", "spoken": "те саме що минулого разу", "must_contain": ["те саме", "минулого"], "must_not_contain": [], "mode": null, "radius_km": null}
+  {"id": "v25", "spoken": "те саме що минулого разу", "must_contain": ["те саме", "минулого"], "must_not_contain": [], "mode": null, "radius_km": null},
+  {"id": "x01", "spoken": "ну купи близько кілограма яблук і хліб", "must_contain": ["яблук", "хліб"], "must_not_contain": [], "mode": null, "radius_km": null},
+  {"id": "x02", "spoken": "купи триста грам м'ясного фаршу на машині в радіусі п'яти кілометрів", "must_contain": ["фарш", "300"], "must_not_contain": [], "mode": "car", "radius_km": 5.0},
+  {"id": "x03", "spoken": "молоко без лактози і хліб, не хочу їхати на машині, піду пішки", "must_contain": ["молоко", "без лактози", "хліб"], "must_not_contain": [], "mode": "walk", "radius_km": null}
 ]
