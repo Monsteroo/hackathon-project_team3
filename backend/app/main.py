@@ -24,6 +24,7 @@ MODULES: dict[str, dict[str, str]] = {
     "catalog": {"router": "app.catalog.router:router", "jobs": "app.catalog.jobs:register"},  # Учасник 2
     "geo": {"router": "app.geo.router:router"},  # Учасник 1
     "voice": {"router": "app.voice.router:router"},  # Учасник 1
+    "agent": {"router": "app.agent.router:router"},  # Учасник 5: потребує catalog і geo (викликає їхні service.py)
 }
 
 

@@ -37,3 +37,6 @@ backend/data/raw/
 dist/
 .vercel/
 backend/app/voice/evals/audio/
+
+# Agent evals: local run results (may contain costs and model outputs)
+backend/app/agent/evals/results/
