@@ -20,8 +20,15 @@ export class PositionError extends Error {
   }
 }
 
+/**
+ * Тимчасовий мок для демо й розробки поза Києвом: `VITE_MOCK_LOCATION=kyiv-center` у `.env.local`
+ * → центр Києва (Майдан Незалежності) замість GPS. Без змінної — справжня геолокація.
+ */
+const MOCK_POSITION = import.meta.env.VITE_MOCK_LOCATION === 'kyiv-center' ? { lat: 50.4501, lng: 30.5234 } : null
+
 /** Promise-обгортка над navigator.geolocation. Помилка — завжди PositionError. */
 export function getCurrentPosition(timeoutMs = 10_000): Promise<{ lat: number; lng: number }> {
+  if (MOCK_POSITION) return Promise.resolve(MOCK_POSITION)
   return new Promise((resolve, reject) => {
     if (typeof navigator === 'undefined' || !('geolocation' in navigator)) {
       reject(new PositionError('unsupported'))
