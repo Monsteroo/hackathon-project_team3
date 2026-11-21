@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { api, ApiError, localVoiceResult } from './client'
+import { api, ApiError, localVoiceResult, normalizeApiBase } from './client'
 import { messageFor } from './errors'
 
 function respond(status: number, body: unknown) {
@@ -89,5 +89,13 @@ describe('api client', () => {
     vi.stubGlobal('fetch', respond(422, { detail }))
     const err = await catchError(api.searchProducts('а'))
     expect(err).toMatchObject({ code: 'validation_error', status: 422, fallback: false })
+  })
+
+  it('normalizes VITE_API_BASE_URL with or without scheme', () => {
+    expect(normalizeApiBase(undefined)).toBe('')
+    expect(normalizeApiBase('  ')).toBe('')
+    expect(normalizeApiBase('sayvy-backend.onrender.com')).toBe('https://sayvy-backend.onrender.com')
+    expect(normalizeApiBase('https://sayvy-backend.onrender.com///')).toBe('https://sayvy-backend.onrender.com')
+    expect(normalizeApiBase('http://localhost:8000/')).toBe('http://localhost:8000')
   })
 })

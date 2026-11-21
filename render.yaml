@@ -1,0 +1,69 @@
+# Full-stack Render Blueprint для Sayvy (Backend FastAPI + Frontend React SPA).
+# Підключення: Render Dashboard -> New -> Blueprint -> цей репозиторій (Blueprint Path: render.yaml).
+# Попередній деплой лише каталогу збережено в backend/render.yaml.
+services:
+  - type: web
+    name: sayvy-backend
+    runtime: docker
+    plan: free
+    region: frankfurt          # найближче до Supabase (eu-west-1); змінити після створення не можна
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: ENABLED_MODULES
+        value: catalog,geo,voice,agent
+      - key: DATABASE_URL       # Supabase -> Connect -> Session pooler (порт 5432), user postgres.<project-ref>
+        sync: false
+      - key: DB_SSL
+        value: "true"
+      - key: DB_POOL_SIZE
+        value: "3"
+      - key: API_KEYS           # продакшен-ключ доступу X-API-Key (той самий впиши у VITE_API_KEY фронту)
+        sync: false
+      - key: CORS_ORIGINS       # після першого деплою можна звузити до ["https://<frontend>.onrender.com"]
+        value: '["*"]'
+      - key: SCHEDULER_ENABLED
+        value: "true"
+      - key: SCHEDULER_TIMEZONE
+        value: Europe/Kyiv
+      - key: ETL_CRON
+        value: "0 3 * * *"
+      - key: ETL_CITY
+        value: Київ
+      - key: SERVICE_CITIES
+        value: Київ
+      - key: GEO_USER_AGENT
+        value: sayvy-hackathon/0.1 (+https://github.com/Monsteroo/hackathon-project_team3)
+      - key: GROQ_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: anthropic
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-5-5
+
+  - type: web
+    name: sayvy-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeployTrigger: commit
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: sayvy-backend
+          property: host
+      - key: VITE_API_KEY
+        sync: false

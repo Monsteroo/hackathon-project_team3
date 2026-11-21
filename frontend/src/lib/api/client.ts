@@ -17,6 +17,14 @@ import type {
  * Усі помилки → ApiError з `code` від бекенду; український текст для UI — `messageFor` з ./errors.
  */
 
+/** Нормалізує базовий URL бекенду: порожній рядок локально (Vite proxy), `https://...` у продакшені. */
+export function normalizeApiBase(raw: string | undefined): string {
+  const trimmed = (raw ?? '').trim().replace(/\/+$/, '')
+  if (!trimmed) return ''
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`
+}
+
+const API_BASE = normalizeApiBase(import.meta.env.VITE_API_BASE_URL)
 const API_KEY = import.meta.env.VITE_API_KEY ?? ''
 
 /** Без ключа бекенд відповідає 401 на все: голос тоді одразу йде через Web Speech. */
@@ -61,7 +69,7 @@ function toApiError(status: number, body: unknown): ApiError {
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   let res: Response
   try {
-    res = await fetch(path, { ...init, headers: { 'X-API-Key': API_KEY, ...init.headers } })
+    res = await fetch(`${API_BASE}${path}`, { ...init, headers: { 'X-API-Key': API_KEY, ...init.headers } })
   } catch (e) {
     if ((e as Error)?.name === 'AbortError') throw e
     throw new ApiError('network', 'network error', { fallback: true })
