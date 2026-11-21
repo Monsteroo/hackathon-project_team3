@@ -1,0 +1,23 @@
+{
+  "_description": "Приклад помилки валідації: q коротший за 2 символи -> 422 з описом, яке поле не так.",
+  "_request": "curl --location 'http://localhost:8000/catalog/prices?q=%D0%B0' --header 'X-API-Key: <API_KEY>'",
+  "_request_readable": "GET http://localhost:8000/catalog/prices?q=а  (header X-API-Key: <API_KEY>)",
+  "_status": 422,
+  "_saved_at": "2026-11-21T12:16:54+00:00",
+  "response": {
+    "detail": [
+      {
+        "type": "string_too_short",
+        "loc": [
+          "query",
+          "q"
+        ],
+        "msg": "String should have at least 2 characters",
+        "input": "а",
+        "ctx": {
+          "min_length": 2
+        }
+      }
+    ]
+  }
+}

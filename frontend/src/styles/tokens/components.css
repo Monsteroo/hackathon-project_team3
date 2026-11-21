@@ -1,0 +1,297 @@
+/* Згенеровано з design/DESIGN.md. Джерело правди — DESIGN.md; змінюйте спершу там. */
+/* Розділ 4: усі блоки «Component tokens». */
+
+/* === COMPONENT: Button === */
+:root {
+  --button-height:       var(--size-control);
+  --button-height-sm:    var(--size-touch);
+  --button-padding-x:    var(--space-lg);
+  --button-padding-x-sm: var(--space-ms);
+  --button-radius:       var(--radius-md);
+  --button-gap:          var(--space-sm);
+  --button-icon-size:    var(--size-icon-md);
+
+  --button-primary-bg:       var(--color-accent);
+  --button-primary-bg-hover: var(--color-accent-hover);
+  --button-primary-fg:       var(--color-on-accent);
+
+  --button-secondary-bg:       var(--color-surface);
+  --button-secondary-bg-hover: var(--color-surface-2);
+  --button-secondary-fg:       var(--color-text);
+  --button-secondary-border:   var(--color-border-strong);
+
+  --button-ghost-bg:       transparent;
+  --button-ghost-bg-hover: var(--color-accent-subtle);
+  --button-ghost-fg:       var(--color-accent-fg);
+  --button-ghost-fg-hover: var(--color-accent-fg);
+
+  --button-transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+/* === COMPONENT: VoiceButton === */
+:root {
+  --voice-size:            var(--size-mic);
+  --voice-size-compact:    var(--size-mic-compact);
+  --voice-size-inline:     var(--dim-12);          /* 48px, RequestComposer на десктопі */
+  --voice-icon-size:       var(--dim-8);          /* 32px; у MASTER, але не в шкалі іконок */
+  --voice-icon-size-compact: var(--size-icon-lg);
+  --voice-radius:          var(--radius-full);
+
+  /* idle */
+  --voice-bg:        var(--color-accent);
+  --voice-bg-hover:  var(--color-accent-hover);
+  --voice-bg-active: var(--color-accent-hover);
+  --voice-fg:        var(--color-on-accent);
+
+  /* listening */
+  --voice-bg-listening:   var(--color-accent-hover);
+  --voice-ring-color:     var(--color-accent-fg);
+  --voice-ring-width:     var(--dim-0-5);
+  --voice-ring-gap:       var(--space-sm);        /* відстань кільця від кнопки */
+  --voice-ring-scale-min: 1;
+  --voice-ring-scale-max: 1.15;
+
+  /* processing */
+  --voice-bg-processing: var(--color-accent);
+
+  /* error: blocked (мікрофон заборонено або відсутній) */
+  --voice-bg-blocked:     var(--color-surface-2);
+  --voice-fg-blocked:     var(--color-text-2);
+  --voice-border-blocked: var(--color-border-strong);
+
+  /* статус і помилки під кнопкою */
+  --voice-status-font:  var(--text-label);
+  --voice-status-fg:    var(--color-text-2);
+  --voice-error-fg:     var(--color-danger);
+  --voice-message-gap:  var(--space-ms);
+
+  /* рівень гучності для prefers-reduced-motion */
+  --voice-level-width:  var(--size-mic);
+  --voice-level-height: var(--space-xs);
+  --voice-level-track:  var(--color-surface-2);
+  --voice-level-fill:   var(--color-accent-fg);
+
+  --voice-shadow-compact: var(--shadow-md);       /* лише плаваючий компактний варіант */
+  --voice-transition: background-color var(--dur-fast) var(--ease-out),
+                      transform var(--dur-fast) var(--ease-out);
+}
+
+/* === COMPONENT: StoreCard === */
+:root {
+  --store-card-bg:         var(--color-surface);
+  --store-card-bg-pressed: var(--color-surface-2);
+  --store-card-border:        var(--color-border);
+  --store-card-border-hover:  var(--color-border-strong);
+  --store-card-border-selected: var(--color-accent-fg);
+  --store-card-shadow-selected: 0 0 0 1px var(--color-accent-fg), var(--shadow-sm);
+  --store-card-radius:     var(--radius-lg);
+  --store-card-padding:    var(--space-md);
+  --store-card-gap:        var(--space-sm);
+  --store-card-width-mobile: var(--dim-70);       /* 280px у горизонтальному snap-скролі */
+  --store-card-min-height: var(--dim-42);         /* 168px: фіксована висота скелетона (CLS) */
+
+  --store-card-title-font:  var(--text-h2);       /* Onest 600 */
+  --store-card-title-fg:    var(--color-text);
+  --store-card-total-font:  var(--text-price-lg); /* Inter 600 tnum */
+  --store-card-total-fg:    var(--color-text);
+  --store-card-meta-font:   var(--text-meta);
+  --store-card-meta-fg:     var(--color-text-3);
+  --store-card-chain-font:  var(--text-label);
+  --store-card-chain-fg:    var(--color-text);
+
+  /* рядок компромісу */
+  --store-card-tradeoff-font:        var(--text-label);
+  --store-card-tradeoff-savings-fg:  var(--color-savings);
+  --store-card-tradeoff-fg:          var(--color-text-2);
+
+  /* логотип мережі */
+  --store-logo-size:   var(--size-icon-lg);       /* 24px */
+  --store-logo-bg:     var(--color-logo-plate);
+  --store-logo-border: var(--color-border);
+  --store-logo-radius: var(--radius-sm);
+  --store-logo-fallback-bg: var(--color-surface-2);
+  --store-logo-fallback-fg: var(--color-text-2);
+
+  --store-card-transition: border-color var(--dur-fast) var(--ease-out),
+                           box-shadow var(--dur-fast) var(--ease-out),
+                           background-color var(--dur-fast) var(--ease-out);
+}
+
+/* === COMPONENT: BasketRow === */
+:root {
+  --basket-row-bg:         var(--color-surface);
+  --basket-row-divider:    var(--color-border);
+  --basket-row-padding-y:  var(--space-ms);
+  --basket-row-padding-x:  var(--space-md);
+  --basket-row-gap:        var(--space-ms);
+  --basket-row-min-height: var(--dim-20);          /* 80px: фото 56 + 2 × 12 */
+
+  --basket-photo-size:   var(--size-touch-store);  /* 56px */
+  --basket-photo-bg:     var(--color-surface-2);
+  --basket-photo-radius: var(--radius-md);
+  --basket-photo-placeholder-fg: var(--color-text-3);
+
+  --basket-name-font:  var(--text-body);
+  --basket-name-fg:    var(--color-text);
+  --basket-brand-font: var(--text-meta);
+  --basket-brand-fg:   var(--color-text-3);
+  --basket-badges-gap: var(--space-sm);
+
+  --basket-price-font:  var(--text-label);         /* Inter 600 tnum */
+  --basket-price-fg:    var(--color-text);
+  --basket-qty-font:    var(--text-meta);
+  --basket-qty-fg:      var(--color-text-3);
+
+  /* стан not-found */
+  --basket-missing-price-fg: var(--color-text-3);
+
+  /* таблиця на десктопі */
+  --basket-table-row-height:  var(--dim-16);       /* 64px */
+  --basket-table-head-font:   var(--text-meta);
+  --basket-table-head-fg:     var(--color-text-2);
+  --basket-table-head-bg:     var(--color-bg);
+  --basket-table-compare-fg:  var(--color-text-2);
+}
+
+/* === COMPONENT: UnitPrice === */
+:root {
+  /* inline (за замовчуванням) */
+  --unit-price-font: var(--text-meta);
+  --unit-price-fg:   var(--color-text-3);
+
+  /* badge */
+  --unit-price-badge-height:  var(--size-badge);
+  --unit-price-badge-padding-x: var(--space-sm);
+  --unit-price-badge-gap:     var(--space-xs);
+  --unit-price-badge-radius:  var(--radius-sm);
+  --unit-price-badge-bg:      var(--color-surface-2);
+  --unit-price-badge-fg:      var(--color-text-2);
+  --unit-price-badge-weight:  var(--weight-medium);
+
+  /* lowest — найнижча ціна за кг серед порівнюваних */
+  --unit-price-lowest-bg: var(--color-savings-subtle);
+  --unit-price-lowest-fg: var(--color-savings-strong);
+  --unit-price-icon-size: var(--size-icon-sm);
+
+  /* нестандартна вага поруч */
+  --unit-price-weight-bg: var(--color-warning-subtle);
+  --unit-price-weight-fg: var(--color-warning);
+}
+
+/* === COMPONENT: AnalogNotice === */
+:root {
+  --analog-bg:        var(--color-warning-subtle);
+  --analog-radius:    var(--radius-md);
+  --analog-padding:   var(--space-ms);
+  --analog-gap:       var(--space-sm);
+  --analog-icon-size: var(--size-icon-sm);
+  --analog-icon-fg:   var(--color-warning);
+
+  --analog-title-font: var(--text-label);
+  --analog-title-fg:   var(--color-warning);
+  --analog-body-font:  var(--text-label);
+  --analog-body-fg:    var(--color-text);
+  --analog-meta-font:  var(--text-meta);
+  --analog-meta-fg:    var(--color-text-2);      /* не text-3: у темній темі 4.09:1 */
+
+  --analog-diff-fg:         var(--color-text-2);
+  --analog-diff-savings-fg: var(--color-savings-strong); /* savings на цьому фоні = 4.57:1, strong = 6.50:1 */
+
+  /* компактний бейдж «аналог» */
+  --analog-badge-height:    var(--size-badge);
+  --analog-badge-padding-x: var(--space-sm);
+  --analog-badge-radius:    var(--radius-sm);
+  --analog-badge-font:      var(--text-caption);
+  --analog-badge-bg:        var(--color-warning-subtle);
+  --analog-badge-fg:        var(--color-warning);
+}
+
+/* === COMPONENT: AllergenBadge === */
+:root {
+  --allergen-height:     var(--size-badge);
+  --allergen-hit-area:   var(--size-touch);    /* зона натискання через ::before */
+  --allergen-padding-x:  var(--space-sm);
+  --allergen-gap:        var(--space-xs);
+  --allergen-radius:     var(--radius-sm);
+  --allergen-font:       var(--text-caption);  /* Inter 500 */
+  --allergen-icon-size:  var(--size-icon-sm);
+
+  /* verified — склад перевірено */
+  --allergen-verified-bg: var(--color-surface-2);
+  --allergen-verified-fg: var(--color-text-2);
+
+  /* unknown — склад невідомий */
+  --allergen-unknown-bg:     var(--color-surface);
+  --allergen-unknown-fg:     var(--color-text-2);
+  --allergen-unknown-border: var(--color-border-strong);
+
+  /* traces — може містити сліди */
+  --allergen-traces-bg: var(--color-warning-subtle);
+  --allergen-traces-fg: var(--color-warning);
+
+  /* contains — містить алерген користувача */
+  --allergen-contains-bg: var(--color-danger-subtle);
+  --allergen-contains-fg: var(--color-danger-strong);
+
+  --allergen-hover-overlay: var(--color-border);  /* межа 1px на hover */
+
+  /* деталі */
+  --allergen-details-bg:      var(--color-surface);
+  --allergen-details-shadow:  var(--shadow-md);
+  --allergen-details-radius:  var(--radius-md);
+  --allergen-details-padding: var(--space-md);
+  --allergen-details-width:   var(--dim-80);    /* 320px, поповер на десктопі */
+  --allergen-details-font:    var(--text-label);
+  --allergen-details-meta-fg: var(--color-text-2);
+}
+
+/* === COMPONENT: CitySelect === */
+:root {
+  /* поле */
+  --city-label-font:  var(--text-label);
+  --city-label-fg:    var(--color-text);
+  --city-field-height:   var(--size-control);
+  --city-field-padding-x: var(--space-ms);
+  --city-field-gap:      var(--space-sm);
+  --city-field-radius:   var(--radius-md);
+  --city-field-bg:       var(--color-surface);
+  --city-field-border:   var(--color-border-strong);
+  --city-field-border-hover: var(--color-text-2);
+  --city-field-border-open:  var(--color-accent-fg);
+  --city-field-border-invalid: var(--color-danger);
+  --city-field-font:     var(--text-body);       /* 16px — без зуму в iOS */
+  --city-field-fg:       var(--color-text);
+  --city-placeholder-fg: var(--color-text-3);
+  --city-icon-size:      var(--size-icon-md);
+  --city-icon-fg:        var(--color-text-2);
+
+  /* компактний тригер у шапці */
+  --city-trigger-height: var(--size-touch);
+  --city-trigger-font:   var(--text-label);
+  --city-trigger-bg-hover: var(--color-surface-2);
+
+  /* список */
+  --city-list-bg:      var(--color-surface);
+  --city-list-border:  var(--color-border);
+  --city-list-radius:  var(--radius-md);
+  --city-list-shadow:  var(--shadow-md);
+  --city-list-max-height: var(--dim-80);         /* 320px ≈ 6,5 рядка */
+  --city-list-offset:  var(--space-xs);
+  --city-list-z:       var(--z-popover);
+
+  --city-option-height:    var(--size-control);  /* 48px */
+  --city-option-padding-x: var(--space-ms);
+  --city-option-font:      var(--text-body);
+  --city-option-meta-font: var(--text-meta);
+  --city-option-meta-fg:   var(--color-text-3);
+  --city-option-bg-active: var(--color-surface-2);       /* aria-activedescendant */
+  --city-option-bg-selected: var(--color-accent-subtle);
+  --city-option-fg-selected: var(--color-accent-fg);
+  --city-option-locate-fg:   var(--color-accent-fg);
+
+  --city-message-font: var(--text-meta);
+  --city-hint-fg:      var(--color-text-2);
+  --city-error-fg:     var(--color-danger);
+
+  --city-chevron-transition: transform var(--dur-base) var(--ease-out);
+}

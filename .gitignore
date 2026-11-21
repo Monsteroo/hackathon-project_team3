@@ -1,20 +1,39 @@
-# Secrets
-.env
-.env.local
-
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 .venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
 
-# Node / Vercel
+# Node / frontend
 node_modules/
-.vercel/
-dist/
 
-# IDE
-.idea/
+# Secrets
+.env
+.env.*
+!.env.example
+
+# OS / editors
 .DS_Store
+.idea/
+.vscode/
 
-# Аудіо для evals (синтетичні й особисті записи)
+# Claude Code local settings
+.claude/settings.local.json
+
+# Local test artifacts
+_test_socks/
+
+# MarTech creatives: generated scenes and renders (root-level only, so frontend/src/assets stays tracked)
+/assets/
+/output/
+
+# Local raw API dumps (snapshots that we commit live elsewhere)
+backend/data/raw/
+
+# Voice/Geo: build outputs, Vercel, eval audio
+dist/
+.vercel/
 evals/audio/
