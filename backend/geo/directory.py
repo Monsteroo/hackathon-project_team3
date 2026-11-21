@@ -94,8 +94,8 @@ def stores_from_csv(rows: Iterable[dict]) -> list[dict]:
             "lat": float(r["lat"]),
             "lng": float(r["lng"]),
             "has_pickup": parse_bool(r.get("pickup", "")),
-            # Припущення до відповіді Учасника 2 про is_active: усі магазини зі списку мають онлайн-каталог.
-            "has_online_prices": True,
+            "online_catalog": True,       # магазин є в Zakaz.ua / Сільпо
+            "has_online_prices": False,   # true лише якщо в OFFERS є товари in_stock (apply_offers)
             "alt_ids": [],
         })
     return out
@@ -172,10 +172,20 @@ def stores_from_osm(elements: Iterable[dict]) -> list[dict]:
             "lat": float(lat),
             "lng": float(lng),
             "has_pickup": False,
+            "online_catalog": False,
             "has_online_prices": False,
             "alt_ids": [],
         })
     return out
+
+
+def apply_offers(stores: list[dict], offer_store_ids: set[str]) -> int:
+    """has_online_prices = для магазину (або його alt_ids) є рядки OFFERS з in_stock=true."""
+    n = 0
+    for s in stores:
+        s["has_online_prices"] = s["id"] in offer_store_ids or any(a in offer_store_ids for a in s["alt_ids"])
+        n += s["has_online_prices"]
+    return n
 
 
 def merge_osm(listed: list[dict], osm: list[dict]) -> tuple[list[dict], dict]:
@@ -214,11 +224,13 @@ def assign_places(stores: list[dict]) -> list[dict]:
     return stores
 
 
-def build_directory(csv_rows: Iterable[dict], osm_elements: Iterable[dict]) -> tuple[list[dict], dict]:
+def build_directory(csv_rows: Iterable[dict], osm_elements: Iterable[dict],
+                    offer_store_ids: set[str] | None = None) -> tuple[list[dict], dict]:
     listed = dedup_same_address(stores_from_csv(csv_rows))
     stores, stats = merge_osm(listed, stores_from_osm(osm_elements))
     stats["listed"] = len(listed)
     stats["total"] = len(stores)
+    stats["with_offers"] = apply_offers(stores, offer_store_ids or set())
     return assign_places(stores), stats
 
 

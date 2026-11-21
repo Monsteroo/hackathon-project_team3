@@ -1,8 +1,9 @@
 {
- "generated_at": "2026-11-21T11:45:07+00:00",
+ "generated_at": "2026-11-21T12:04:07+00:00",
  "sources": {
   "listed": "stores.csv (Учасник 2: Zakaz.ua + Сільпо)",
-  "osm": "OpenStreetMap © contributors, ODbL"
+  "osm": "OpenStreetMap © contributors, ODbL",
+  "offers": "offers_sample.csv"
  },
  "stats": {
   "osm_in": 234,
@@ -12,6 +13,7 @@
   "osm_added": 152,
   "listed": 415,
   "total": 567,
+  "with_offers": 5,
   "osm_address_filled": 54
  },
  "stores": [
@@ -27,6 +29,7 @@
    "lat": 50.52022,
    "lng": 30.51452,
    "has_pickup": true,
+   "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [
     "silpo:1edb733e-5462-6606-9da4-51c4e9ef1e54",
@@ -46,6 +49,7 @@
    "lat": 50.51869,
    "lng": 30.45616,
    "has_pickup": true,
+   "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [
     "silpo:1eda888d-b60d-66f4-a557-03a302d993f3"
@@ -64,7 +68,8 @@
    "lat": 50.01631,
    "lng": 36.22119,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0163,36.2212"
   },
@@ -80,7 +85,8 @@
    "lat": 49.99615,
    "lng": 36.34209,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9962,36.3421"
   },
@@ -96,7 +102,8 @@
    "lat": 47.83107,
    "lng": 35.18589,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8311,35.1859"
   },
@@ -112,7 +119,8 @@
    "lat": 50.49556,
    "lng": 30.35835,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f093ba3-1c94-6692-9dd2-6d3ac06a576b"
    ],
@@ -130,7 +138,8 @@
    "lat": 49.80763,
    "lng": 23.97649,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b12-3f2d-681e-9a93-eb10f39e9fe0",
     "silpo:1ee470eb-1740-6fee-a11d-cfb943b7377c"
@@ -149,7 +158,8 @@
    "lat": 50.45669,
    "lng": 30.38344,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4567,30.3834"
   },
@@ -165,7 +175,8 @@
    "lat": 50.43131,
    "lng": 30.38365,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4313,30.3836"
   },
@@ -181,7 +192,8 @@
    "lat": 50.50304,
    "lng": 30.50649,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5030,30.5065"
   },
@@ -197,7 +209,8 @@
    "lat": 50.51741,
    "lng": 30.61665,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5174,30.6166"
   },
@@ -213,7 +226,8 @@
    "lat": 50.35022,
    "lng": 30.95257,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3502,30.9526"
   },
@@ -229,7 +243,8 @@
    "lat": 50.43975,
    "lng": 30.59239,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4397,30.5924"
   },
@@ -245,7 +260,8 @@
    "lat": 50.51315,
    "lng": 30.62302,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5132,30.6230"
   },
@@ -261,7 +277,8 @@
    "lat": 50.41653,
    "lng": 30.519,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4165,30.5190"
   },
@@ -277,7 +294,8 @@
    "lat": 50.45139,
    "lng": 30.63235,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4514,30.6323"
   },
@@ -293,7 +311,8 @@
    "lat": 50.52504,
    "lng": 30.50362,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5250,30.5036"
   },
@@ -309,7 +328,8 @@
    "lat": 50.50469,
    "lng": 30.42855,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee0f3e5-f6f3-6104-8b25-c100c3f8f734"
    ],
@@ -327,7 +347,8 @@
    "lat": 50.4727,
    "lng": 30.40623,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4727,30.4062"
   },
@@ -343,7 +364,8 @@
    "lat": 50.45594,
    "lng": 30.34575,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4559,30.3457"
   },
@@ -359,7 +381,8 @@
    "lat": 50.50723,
    "lng": 30.44086,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5072,30.4409"
   },
@@ -375,7 +398,8 @@
    "lat": 50.45316,
    "lng": 30.44726,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4532,30.4473"
   },
@@ -391,7 +415,8 @@
    "lat": 50.47203,
    "lng": 30.33759,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4720,30.3376"
   },
@@ -407,7 +432,8 @@
    "lat": 49.818335,
    "lng": 30.070045,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8183,30.0700"
   },
@@ -423,7 +449,8 @@
    "lat": 50.40539,
    "lng": 30.63185,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4054,30.6319"
   },
@@ -439,7 +466,8 @@
    "lat": 50.42794,
    "lng": 30.59345,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b40-98c2-6d92-81ab-51de6a88d469",
     "silpo:1edb6b55-e6d0-657e-9551-d54e0a9fe643",
@@ -460,7 +488,8 @@
    "lat": 50.53354,
    "lng": 30.60059,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5335,30.6006"
   },
@@ -476,7 +505,8 @@
    "lat": 50.52266,
    "lng": 30.45169,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5227,30.4517"
   },
@@ -492,7 +522,8 @@
    "lat": 50.42708,
    "lng": 30.45909,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4271,30.4591"
   },
@@ -508,7 +539,8 @@
    "lat": 50.40094,
    "lng": 30.63158,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4009,30.6316"
   },
@@ -524,7 +556,8 @@
    "lat": 50.3843,
    "lng": 30.45815,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edee42f-ece6-6e12-8d91-d3a7e392bfd1"
    ],
@@ -542,7 +575,8 @@
    "lat": 49.801,
    "lng": 30.1169,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7348-37bf-697c-8663-51c4e9ef1e54"
    ],
@@ -560,7 +594,8 @@
    "lat": 50.42152,
    "lng": 30.64994,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4215,30.6499"
   },
@@ -576,7 +611,8 @@
    "lat": 50.43225,
    "lng": 30.4553,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4323,30.4553"
   },
@@ -592,7 +628,8 @@
    "lat": 50.42467,
    "lng": 30.38308,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1eff9aa5-34b2-6dda-8133-f7b88dcc4e75"
    ],
@@ -610,7 +647,8 @@
    "lat": 50.47063,
    "lng": 30.46166,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4706,30.4617"
   },
@@ -626,7 +664,8 @@
    "lat": 50.49529,
    "lng": 30.5123,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4953,30.5123"
   },
@@ -642,7 +681,8 @@
    "lat": 50.44743,
    "lng": 30.49444,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4474,30.4944"
   },
@@ -658,7 +698,8 @@
    "lat": 50.39769,
    "lng": 30.63827,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3977,30.6383"
   },
@@ -674,7 +715,8 @@
    "lat": 50.46244,
    "lng": 30.51904,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4624,30.5190"
   },
@@ -690,7 +732,8 @@
    "lat": 50.50533,
    "lng": 30.49101,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5053,30.4910"
   },
@@ -706,7 +749,8 @@
    "lat": 50.48482,
    "lng": 30.63943,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4848,30.6394"
   },
@@ -722,7 +766,8 @@
    "lat": 50.51051,
    "lng": 30.41973,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5105,30.4197"
   },
@@ -738,7 +783,8 @@
    "lat": 50.46437,
    "lng": 30.61029,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4644,30.6103"
   },
@@ -754,7 +800,8 @@
    "lat": 50.17629,
    "lng": 30.3161,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.1763,30.3161"
   },
@@ -770,7 +817,8 @@
    "lat": 50.4452,
    "lng": 30.44404,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edee42d-e1bb-6062-b15c-85b79c775c85"
    ],
@@ -788,7 +836,8 @@
    "lat": 50.41725,
    "lng": 30.61842,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1eeec2d7-a720-61f8-8640-bd431739bb35"
    ],
@@ -806,7 +855,8 @@
    "lat": 50.44111,
    "lng": 30.52082,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b4f-69eb-64a6-82b6-15f58a999f30"
    ],
@@ -824,7 +874,8 @@
    "lat": 50.50872,
    "lng": 30.60742,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5087,30.6074"
   },
@@ -840,7 +891,8 @@
    "lat": 50.47137,
    "lng": 30.50231,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4714,30.5023"
   },
@@ -856,7 +908,8 @@
    "lat": 50.45605,
    "lng": 30.49725,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7336-73ed-600a-baf8-73524574f50b",
     "silpo:1edee431-c930-66ec-b075-bf1a8bae2e6c"
@@ -875,7 +928,8 @@
    "lat": 50.45325,
    "lng": 30.59838,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee11b9b-8e8f-63d2-aa6d-938082996c70"
    ],
@@ -893,7 +947,8 @@
    "lat": 50.4143,
    "lng": 30.65087,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4143,30.6509"
   },
@@ -909,7 +964,8 @@
    "lat": 50.49796,
    "lng": 30.51789,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4980,30.5179"
   },
@@ -925,7 +981,8 @@
    "lat": 50.41074,
    "lng": 30.54576,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4107,30.5458"
   },
@@ -941,7 +998,8 @@
    "lat": 50.41611,
    "lng": 30.53186,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edee445-2a2c-65a0-8810-0fb90e0f6d29"
    ],
@@ -959,7 +1017,8 @@
    "lat": 51.47884,
    "lng": 31.2725,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef13579-68bf-66d6-b595-7386aa59005f"
    ],
@@ -977,7 +1036,8 @@
    "lat": 51.03253,
    "lng": 31.89545,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.0325,31.8955"
   },
@@ -993,7 +1053,8 @@
    "lat": 51.51062,
    "lng": 31.3354,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.5106,31.3354"
   },
@@ -1009,7 +1070,8 @@
    "lat": 50.94903,
    "lng": 30.87635,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.9490,30.8763"
   },
@@ -1025,7 +1087,8 @@
    "lat": 50.43876,
    "lng": 30.52318,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb735c-c506-63b2-b3f9-db14c9aca538"
    ],
@@ -1043,7 +1106,8 @@
    "lat": 50.51943,
    "lng": 30.4653,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5194,30.4653"
   },
@@ -1059,7 +1123,8 @@
    "lat": 50.49664,
    "lng": 30.4626,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4966,30.4626"
   },
@@ -1075,7 +1140,8 @@
    "lat": 50.4272,
    "lng": 30.53063,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4272,30.5306"
   },
@@ -1091,7 +1157,8 @@
    "lat": 50.50471,
    "lng": 30.43729,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5047,30.4373"
   },
@@ -1107,7 +1174,8 @@
    "lat": 50.25608,
    "lng": 28.67279,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.2561,28.6728"
   },
@@ -1123,7 +1191,8 @@
    "lat": 50.50172,
    "lng": 29.242,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5017,29.2420"
   },
@@ -1139,7 +1208,8 @@
    "lat": 50.95073,
    "lng": 28.63859,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.9507,28.6386"
   },
@@ -1155,7 +1225,8 @@
    "lat": 49.44477,
    "lng": 32.05598,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.4448,32.0560"
   },
@@ -1171,7 +1242,8 @@
    "lat": 49.22028,
    "lng": 28.45099,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2203,28.4510"
   },
@@ -1187,7 +1259,8 @@
    "lat": 49.23315,
    "lng": 28.45603,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2332,28.4560"
   },
@@ -1203,7 +1276,8 @@
    "lat": 49.226554,
    "lng": 28.404307,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2266,28.4043"
   },
@@ -1219,7 +1293,8 @@
    "lat": 49.55399,
    "lng": 27.94932,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5540,27.9493"
   },
@@ -1235,7 +1310,8 @@
    "lat": 49.233753,
    "lng": 28.471029,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2338,28.4710"
   },
@@ -1251,7 +1327,8 @@
    "lat": 50.61672,
    "lng": 26.28174,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6167,26.2817"
   },
@@ -1267,7 +1344,8 @@
    "lat": 50.87729,
    "lng": 26.4572,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.8773,26.4572"
   },
@@ -1283,7 +1361,8 @@
    "lat": 50.76101,
    "lng": 25.3562,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.7610,25.3562"
   },
@@ -1299,7 +1378,8 @@
    "lat": 50.74732,
    "lng": 25.32649,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.7473,25.3265"
   },
@@ -1315,7 +1395,8 @@
    "lat": 49.8689,
    "lng": 23.95141,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8689,23.9514"
   },
@@ -1331,7 +1412,8 @@
    "lat": 49.8492,
    "lng": 24.02161,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b58-76bd-6766-ac2d-0f3d58dec197"
    ],
@@ -1349,7 +1431,8 @@
    "lat": 48.907792,
    "lng": 24.682488,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef9b801-5831-6216-99a5-fd246a208e47"
    ],
@@ -1367,7 +1450,8 @@
    "lat": 48.925556,
    "lng": 24.710684,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.9256,24.7107"
   },
@@ -1383,7 +1467,8 @@
    "lat": 48.26775,
    "lng": 25.92786,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef2ca4f-ce04-602a-b66f-91b239beca97"
    ],
@@ -1401,7 +1486,8 @@
    "lat": 49.8031,
    "lng": 23.99695,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8031,23.9969"
   },
@@ -1417,7 +1503,8 @@
    "lat": 49.81238,
    "lng": 23.97731,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8124,23.9773"
   },
@@ -1433,7 +1520,8 @@
    "lat": 49.83502,
    "lng": 23.99462,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8350,23.9946"
   },
@@ -1449,7 +1537,8 @@
    "lat": 49.356996,
    "lng": 23.534862,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.3570,23.5349"
   },
@@ -1465,7 +1554,8 @@
    "lat": 49.55566,
    "lng": 25.64149,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5557,25.6415"
   },
@@ -1481,7 +1571,8 @@
    "lat": 49.57551,
    "lng": 25.63897,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5755,25.6390"
   },
@@ -1497,7 +1588,8 @@
    "lat": 49.54561,
    "lng": 25.58969,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee3cf55-42cc-6c5e-a0f0-a950c3a85a2b"
    ],
@@ -1515,7 +1607,8 @@
    "lat": 49.54667,
    "lng": 25.56478,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5467,25.5648"
   },
@@ -1531,7 +1624,8 @@
    "lat": 49.55799,
    "lng": 25.64219,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5580,25.6422"
   },
@@ -1547,7 +1641,8 @@
    "lat": 49.25802,
    "lng": 23.85678,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2580,23.8568"
   },
@@ -1563,7 +1658,8 @@
    "lat": 49.79188,
    "lng": 24.05784,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.7919,24.0578"
   },
@@ -1579,7 +1675,8 @@
    "lat": 49.86923,
    "lng": 24.05843,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8692,24.0584"
   },
@@ -1595,7 +1692,8 @@
    "lat": 49.84128,
    "lng": 23.9631,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8413,23.9631"
   },
@@ -1611,7 +1709,8 @@
    "lat": 46.24313,
    "lng": 30.44026,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.2431,30.4403"
   },
@@ -1627,7 +1726,8 @@
    "lat": 46.39041,
    "lng": 30.71936,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.3904,30.7194"
   },
@@ -1643,7 +1743,8 @@
    "lat": 46.58612,
    "lng": 30.80062,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5861,30.8006"
   },
@@ -1659,7 +1760,8 @@
    "lat": 46.40552,
    "lng": 30.72102,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4055,30.7210"
   },
@@ -1675,7 +1777,8 @@
    "lat": 46.56788,
    "lng": 30.78956,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5679,30.7896"
   },
@@ -1691,7 +1794,8 @@
    "lat": 46.41623,
    "lng": 30.71254,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b61-6b55-678a-b334-d11f2666a570"
    ],
@@ -1709,7 +1813,8 @@
    "lat": 46.43181,
    "lng": 30.761,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4318,30.7610"
   },
@@ -1725,7 +1830,8 @@
    "lat": 46.43064,
    "lng": 30.71402,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4306,30.7140"
   },
@@ -1741,7 +1847,8 @@
    "lat": 46.96265,
    "lng": 32.00609,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.9626,32.0061"
   },
@@ -1757,7 +1864,8 @@
    "lat": 46.40934,
    "lng": 30.71034,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4093,30.7103"
   },
@@ -1773,7 +1881,8 @@
    "lat": 46.43807,
    "lng": 30.74851,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4381,30.7485"
   },
@@ -1789,7 +1898,8 @@
    "lat": 46.41494,
    "lng": 30.7144,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4149,30.7144"
   },
@@ -1805,7 +1915,8 @@
    "lat": 46.435,
    "lng": 30.74758,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4350,30.7476"
   },
@@ -1821,7 +1932,8 @@
    "lat": 46.58135,
    "lng": 30.78648,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5814,30.7865"
   },
@@ -1837,7 +1949,8 @@
    "lat": 46.57521,
    "lng": 30.79703,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee2abbc-4be6-64a6-9a19-397eebaefe26"
    ],
@@ -1855,7 +1968,8 @@
    "lat": 46.43321,
    "lng": 30.70238,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4332,30.7024"
   },
@@ -1871,7 +1985,8 @@
    "lat": 46.45642,
    "lng": 30.75663,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4564,30.7566"
   },
@@ -1887,7 +2002,8 @@
    "lat": 47.82733,
    "lng": 31.17059,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8273,31.1706"
   },
@@ -1903,7 +2019,8 @@
    "lat": 46.9666,
    "lng": 32.00189,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.9666,32.0019"
   },
@@ -1919,7 +2036,8 @@
    "lat": 46.59055,
    "lng": 30.78904,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5906,30.7890"
   },
@@ -1935,7 +2053,8 @@
    "lat": 46.50325,
    "lng": 30.32651,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5033,30.3265"
   },
@@ -1951,7 +2070,8 @@
    "lat": 46.4581,
    "lng": 30.75738,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f055a99-c4e3-6ba2-b76e-39c8829395db"
    ],
@@ -1969,7 +2089,8 @@
    "lat": 46.42977,
    "lng": 30.72756,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4298,30.7276"
   },
@@ -1985,7 +2106,8 @@
    "lat": 48.25865,
    "lng": 25.95677,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef9b809-5d42-6acc-9f8c-db1ebb85a007"
    ],
@@ -2003,7 +2125,8 @@
    "lat": 48.69754,
    "lng": 26.57351,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6975,26.5735"
   },
@@ -2019,7 +2142,8 @@
    "lat": 49.43437,
    "lng": 27.01521,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.4344,27.0152"
   },
@@ -2035,7 +2159,8 @@
    "lat": 47.869822,
    "lng": 35.0704,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8698,35.0704"
   },
@@ -2051,7 +2176,8 @@
    "lat": 47.786754,
    "lng": 35.220868,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.7868,35.2209"
   },
@@ -2067,7 +2193,8 @@
    "lat": 47.81452,
    "lng": 35.03562,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8145,35.0356"
   },
@@ -2083,7 +2210,8 @@
    "lat": 47.818767,
    "lng": 35.165495,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8188,35.1655"
   },
@@ -2099,7 +2227,8 @@
    "lat": 47.842483,
    "lng": 35.131129,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8425,35.1311"
   },
@@ -2115,7 +2244,8 @@
    "lat": 47.830422,
    "lng": 35.01611,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8304,35.0161"
   },
@@ -2131,7 +2261,8 @@
    "lat": 47.860826,
    "lng": 35.106774,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8608,35.1068"
   },
@@ -2147,7 +2278,8 @@
    "lat": 47.84347,
    "lng": 35.22823,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8435,35.2282"
   },
@@ -2163,7 +2295,8 @@
    "lat": 47.882693,
    "lng": 35.017379,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8827,35.0174"
   },
@@ -2179,7 +2312,8 @@
    "lat": 49.95644,
    "lng": 36.35992,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f07843d-cdbd-6cee-afea-f7a07e27bbd7"
    ],
@@ -2197,7 +2331,8 @@
    "lat": 50.38913,
    "lng": 24.23684,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3891,24.2368"
   },
@@ -2213,7 +2348,8 @@
    "lat": 50.42972,
    "lng": 30.61942,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edee435-04af-6882-8c3a-c70e6ed87655"
    ],
@@ -2231,7 +2367,8 @@
    "lat": 49.79798,
    "lng": 30.12184,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.7980,30.1218"
   },
@@ -2247,7 +2384,8 @@
    "lat": 49.2283,
    "lng": 28.42774,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee56cbf-071e-6c1c-a437-67a8740f8c75"
    ],
@@ -2265,7 +2403,8 @@
    "lat": 50.40195,
    "lng": 30.33393,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee11bb4-1733-643c-a02a-176a88d94e70"
    ],
@@ -2283,7 +2422,8 @@
    "lat": 49.80593,
    "lng": 24.02158,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee56cb2-afaa-60e6-8ee5-e17d00bb2c74"
    ],
@@ -2301,7 +2441,8 @@
    "lat": 49.85993,
    "lng": 24.01819,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8599,24.0182"
   },
@@ -2317,7 +2458,8 @@
    "lat": 50.53225,
    "lng": 30.60829,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5322,30.6083"
   },
@@ -2333,7 +2475,8 @@
    "lat": 50.48453,
    "lng": 30.59546,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f0bae35-69aa-6bd2-82b6-9554c10c3d4a"
    ],
@@ -2351,7 +2494,8 @@
    "lat": 50.498268,
    "lng": 30.767598,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4983,30.7676"
   },
@@ -2367,7 +2511,8 @@
    "lat": 49.75578,
    "lng": 31.46033,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.7558,31.4603"
   },
@@ -2383,7 +2528,8 @@
    "lat": 50.29631,
    "lng": 30.53192,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.2963,30.5319"
   },
@@ -2399,7 +2545,8 @@
    "lat": 50.35313,
    "lng": 30.95006,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3531,30.9501"
   },
@@ -2415,7 +2562,8 @@
    "lat": 49.22836,
    "lng": 31.86565,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2284,31.8656"
   },
@@ -2431,7 +2579,8 @@
    "lat": 48.75525,
    "lng": 30.22098,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.7552,30.2210"
   },
@@ -2447,7 +2596,8 @@
    "lat": 50.59603,
    "lng": 32.37449,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5960,32.3745"
   },
@@ -2463,7 +2613,8 @@
    "lat": 50.31295,
    "lng": 29.05417,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3130,29.0542"
   },
@@ -2479,7 +2630,8 @@
    "lat": 50.12477,
    "lng": 30.6499,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f196200-9261-6cf6-955f-8ff110235cd0"
    ],
@@ -2497,7 +2649,8 @@
    "lat": 50.41202,
    "lng": 30.64435,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4120,30.6443"
   },
@@ -2513,7 +2666,8 @@
    "lat": 50.50033,
    "lng": 30.45025,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5003,30.4503"
   },
@@ -2529,7 +2683,8 @@
    "lat": 50.46747,
    "lng": 30.62977,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4675,30.6298"
   },
@@ -2545,7 +2700,8 @@
    "lat": 50.48665,
    "lng": 30.58512,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4866,30.5851"
   },
@@ -2561,7 +2717,8 @@
    "lat": 50.45858,
    "lng": 30.39944,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee88554-aab7-6c88-9617-5f18e549a208"
    ],
@@ -2579,7 +2736,8 @@
    "lat": 50.45632,
    "lng": 30.59393,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1efff1c1-4d04-6c94-9c75-f388b811ab7b"
    ],
@@ -2597,7 +2755,8 @@
    "lat": 50.49256,
    "lng": 30.59999,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4926,30.6000"
   },
@@ -2613,7 +2772,8 @@
    "lat": 50.41526,
    "lng": 30.52234,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4153,30.5223"
   },
@@ -2629,7 +2789,8 @@
    "lat": 50.40153,
    "lng": 30.56409,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4015,30.5641"
   },
@@ -2645,7 +2806,8 @@
    "lat": 50.49339,
    "lng": 30.57647,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4934,30.5765"
   },
@@ -2661,7 +2823,8 @@
    "lat": 50.40711,
    "lng": 30.66618,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4071,30.6662"
   },
@@ -2677,7 +2840,8 @@
    "lat": 50.17915,
    "lng": 30.31281,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.1791,30.3128"
   },
@@ -2693,7 +2857,8 @@
    "lat": 50.77271,
    "lng": 29.24318,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.7727,29.2432"
   },
@@ -2709,7 +2874,8 @@
    "lat": 49.57848,
    "lng": 34.54058,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5785,34.5406"
   },
@@ -2725,7 +2891,8 @@
    "lat": 48.5023,
    "lng": 32.24755,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.5023,32.2475"
   },
@@ -2741,7 +2908,8 @@
    "lat": 48.51608,
    "lng": 34.60707,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.5161,34.6071"
   },
@@ -2757,7 +2925,8 @@
    "lat": 49.4029,
    "lng": 26.96161,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.4029,26.9616"
   },
@@ -2773,7 +2942,8 @@
    "lat": 50.33611,
    "lng": 26.66211,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3361,26.6621"
   },
@@ -2789,7 +2959,8 @@
    "lat": 48.68194,
    "lng": 26.58885,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6819,26.5889"
   },
@@ -2805,7 +2976,8 @@
    "lat": 48.67956,
    "lng": 26.58345,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6796,26.5834"
   },
@@ -2821,7 +2993,8 @@
    "lat": 49.82089,
    "lng": 24.01805,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee11baf-efb5-6cce-8116-7921cac13a23"
    ],
@@ -2839,7 +3012,8 @@
    "lat": 49.02672,
    "lng": 24.36888,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.0267,24.3689"
   },
@@ -2855,7 +3029,8 @@
    "lat": 50.37383,
    "lng": 30.4468,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb730e-fefd-6302-a06d-4ba21872bb68",
     "silpo:1edb730f-5502-65ae-9b0e-4ba21872bb68"
@@ -2874,7 +3049,8 @@
    "lat": 50.65242,
    "lng": 30.40838,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6524,30.4084"
   },
@@ -2890,7 +3066,8 @@
    "lat": 48.61226,
    "lng": 22.26688,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6123,22.2669"
   },
@@ -2906,7 +3083,8 @@
    "lat": 48.62413,
    "lng": 22.29552,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6241,22.2955"
   },
@@ -2922,7 +3100,8 @@
    "lat": 49.224337,
    "lng": 28.420734,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2243,28.4207"
   },
@@ -2938,7 +3117,8 @@
    "lat": 51.49913,
    "lng": 31.28952,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.4991,31.2895"
   },
@@ -2954,7 +3134,8 @@
    "lat": 50.38876,
    "lng": 30.77809,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7319-7123-6f1c-89fe-11a6c487168c"
    ],
@@ -2972,7 +3153,8 @@
    "lat": 49.9916,
    "lng": 36.23651,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef5ee47-d5ef-6d7e-ba0d-05e31a64fd57"
    ],
@@ -2990,7 +3172,8 @@
    "lat": 49.22637,
    "lng": 28.41134,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2264,28.4113"
   },
@@ -3006,7 +3189,8 @@
    "lat": 51.40564,
    "lng": 30.0545,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.4056,30.0545"
   },
@@ -3022,7 +3206,8 @@
    "lat": 50.283369,
    "lng": 30.345021,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.2834,30.3450"
   },
@@ -3038,7 +3223,8 @@
    "lat": 50.74236,
    "lng": 25.35324,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.7424,25.3532"
   },
@@ -3054,7 +3240,8 @@
    "lat": 50.34756,
    "lng": 30.28234,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3476,30.2823"
   },
@@ -3070,7 +3257,8 @@
    "lat": 49.81125,
    "lng": 23.99589,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8113,23.9959"
   },
@@ -3086,7 +3274,8 @@
    "lat": 50.61887,
    "lng": 26.24887,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6189,26.2489"
   },
@@ -3102,7 +3291,8 @@
    "lat": 50.50873,
    "lng": 30.22805,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5087,30.2280"
   },
@@ -3118,7 +3308,8 @@
    "lat": 46.58281,
    "lng": 30.80183,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5828,30.8018"
   },
@@ -3134,7 +3325,8 @@
    "lat": 49.47003,
    "lng": 24.14298,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.4700,24.1430"
   },
@@ -3150,7 +3342,8 @@
    "lat": 49.80787,
    "lng": 24.06423,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8079,24.0642"
   },
@@ -3166,7 +3359,8 @@
    "lat": 48.4328,
    "lng": 35.00228,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f08cb98-174e-6456-a5d5-656b169b178f"
    ],
@@ -3184,7 +3378,8 @@
    "lat": 46.61865,
    "lng": 31.10149,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.6187,31.1015"
   },
@@ -3200,7 +3395,8 @@
    "lat": 50.34094,
    "lng": 30.55068,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7337-bfd1-6268-ab8d-73524574f50b"
    ],
@@ -3218,7 +3414,8 @@
    "lat": 50.26056,
    "lng": 28.65734,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.2606,28.6573"
   },
@@ -3234,7 +3431,8 @@
    "lat": 50.4717,
    "lng": 30.47874,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f0355d2-8e9a-6776-937a-337c93638270"
    ],
@@ -3252,7 +3450,8 @@
    "lat": 49.2268,
    "lng": 28.39586,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2268,28.3959"
   },
@@ -3268,7 +3467,8 @@
    "lat": 46.96369,
    "lng": 32.02507,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb733b-f09c-6e2a-a5f9-4ba21872bb68"
    ],
@@ -3286,7 +3486,8 @@
    "lat": 50.47131,
    "lng": 30.5175,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7340-0e68-65b8-90cc-11a6c487168c",
     "silpo:1f0ad8d6-ef99-60d4-b6ed-cf102ff76665"
@@ -3305,7 +3506,8 @@
    "lat": 50.41405,
    "lng": 30.63661,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4141,30.6366"
   },
@@ -3321,7 +3523,8 @@
    "lat": 46.38233,
    "lng": 30.71182,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f087c55-ce60-69a6-ad40-d55d510e556b"
    ],
@@ -3339,7 +3542,8 @@
    "lat": 46.47883,
    "lng": 30.73401,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4788,30.7340"
   },
@@ -3355,7 +3559,8 @@
    "lat": 50.46208,
    "lng": 30.49424,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7340-62dd-6698-b082-198a97b604e9",
     "silpo:1f05d7d3-7c8c-60ae-b4b0-8bc00e7480e1"
@@ -3374,7 +3579,8 @@
    "lat": 50.43594,
    "lng": 30.48999,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee11bac-502d-6cd6-bd9d-7921cac13a23"
    ],
@@ -3392,7 +3598,8 @@
    "lat": 50.50946,
    "lng": 30.49769,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5095,30.4977"
   },
@@ -3408,7 +3615,8 @@
    "lat": 50.5192,
    "lng": 30.4985,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5192,30.4985"
   },
@@ -3424,7 +3632,8 @@
    "lat": 48.46714,
    "lng": 35.03681,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4671,35.0368"
   },
@@ -3440,7 +3649,8 @@
    "lat": 50.74436,
    "lng": 25.37849,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f0b4102-0463-651c-8770-d55bdca40b98"
    ],
@@ -3458,7 +3668,8 @@
    "lat": 49.42028,
    "lng": 26.98845,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.4203,26.9885"
   },
@@ -3474,7 +3685,8 @@
    "lat": 46.46806,
    "lng": 30.73689,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4681,30.7369"
   },
@@ -3490,7 +3702,8 @@
    "lat": 46.41537,
    "lng": 30.75211,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4154,30.7521"
   },
@@ -3506,7 +3719,8 @@
    "lat": 50.55047,
    "lng": 30.20002,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5505,30.2000"
   },
@@ -3522,7 +3736,8 @@
    "lat": 50.44758,
    "lng": 30.22845,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4476,30.2284"
   },
@@ -3538,7 +3753,8 @@
    "lat": 50.30278,
    "lng": 30.37116,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3028,30.3712"
   },
@@ -3554,7 +3770,8 @@
    "lat": 50.58358,
    "lng": 30.49606,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5836,30.4961"
   },
@@ -3570,7 +3787,8 @@
    "lat": 50.4034,
    "lng": 30.37494,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4034,30.3749"
   },
@@ -3586,7 +3804,8 @@
    "lat": 50.50464,
    "lng": 30.51187,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5046,30.5119"
   },
@@ -3602,7 +3821,8 @@
    "lat": 49.56503,
    "lng": 34.5036,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5650,34.5036"
   },
@@ -3618,7 +3838,8 @@
    "lat": 49.83857,
    "lng": 24.03428,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8386,24.0343"
   },
@@ -3634,7 +3855,8 @@
    "lat": 50.39956,
    "lng": 30.32343,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3996,30.3234"
   },
@@ -3650,7 +3872,8 @@
    "lat": 49.94964,
    "lng": 36.26079,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9496,36.2608"
   },
@@ -3666,7 +3889,8 @@
    "lat": 50.40559,
    "lng": 30.61119,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7345-bc3f-66fa-93f1-73524574f50b"
    ],
@@ -3684,7 +3908,8 @@
    "lat": 48.43982,
    "lng": 22.71898,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4398,22.7190"
   },
@@ -3700,7 +3925,8 @@
    "lat": 50.07934,
    "lng": 29.91696,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0793,29.9170"
   },
@@ -3716,7 +3942,8 @@
    "lat": 46.43509,
    "lng": 30.72564,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4351,30.7256"
   },
@@ -3732,7 +3959,8 @@
    "lat": 50.0799,
    "lng": 29.90981,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0799,29.9098"
   },
@@ -3748,7 +3976,8 @@
    "lat": 50.5127,
    "lng": 30.49687,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1eefcaf6-029a-6868-a937-c991e9e79e41"
    ],
@@ -3766,7 +3995,8 @@
    "lat": 49.84571,
    "lng": 24.00931,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8457,24.0093"
   },
@@ -3782,7 +4012,8 @@
    "lat": 50.45131,
    "lng": 30.46799,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4513,30.4680"
   },
@@ -3798,7 +4029,8 @@
    "lat": 50.50528,
    "lng": 30.45349,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5053,30.4535"
   },
@@ -3814,7 +4046,8 @@
    "lat": 50.50991,
    "lng": 30.50591,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5099,30.5059"
   },
@@ -3830,7 +4063,8 @@
    "lat": 50.75355,
    "lng": 25.3333,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.7535,25.3333"
   },
@@ -3846,7 +4080,8 @@
    "lat": 46.43554,
    "lng": 30.75837,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb735b-c659-6a80-ad7d-4ba21872bb68"
    ],
@@ -3864,7 +4099,8 @@
    "lat": 48.39123,
    "lng": 35.03113,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.3912,35.0311"
   },
@@ -3880,7 +4116,8 @@
    "lat": 46.48189,
    "lng": 30.73883,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4819,30.7388"
   },
@@ -3896,7 +4133,8 @@
    "lat": 48.48452,
    "lng": 34.92157,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4845,34.9216"
   },
@@ -3912,7 +4150,8 @@
    "lat": 48.46814,
    "lng": 35.04903,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4681,35.0490"
   },
@@ -3928,7 +4167,8 @@
    "lat": 48.46091,
    "lng": 35.05038,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b74-d870-6a5a-b5bf-e93377e6bfc8"
    ],
@@ -3946,7 +4186,8 @@
    "lat": 48.42817,
    "lng": 35.00988,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4282,35.0099"
   },
@@ -3962,7 +4203,8 @@
    "lat": 48.52415,
    "lng": 35.03553,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.5241,35.0355"
   },
@@ -3978,7 +4220,8 @@
    "lat": 47.90698,
    "lng": 33.3968,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.9070,33.3968"
   },
@@ -3994,7 +4237,8 @@
    "lat": 48.45344,
    "lng": 35.06437,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4534,35.0644"
   },
@@ -4010,7 +4254,8 @@
    "lat": 48.50552,
    "lng": 32.26369,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.5055,32.2637"
   },
@@ -4026,7 +4271,8 @@
    "lat": 48.49857,
    "lng": 35.06982,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f08cb93-a7c1-6f24-969c-bb07c4de7ab2"
    ],
@@ -4044,7 +4290,8 @@
    "lat": 48.52819,
    "lng": 35.86705,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.5282,35.8670"
   },
@@ -4060,7 +4307,8 @@
    "lat": 48.47594,
    "lng": 35.02078,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4759,35.0208"
   },
@@ -4076,7 +4324,8 @@
    "lat": 47.90423,
    "lng": 33.35728,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f190c7e-557f-6b3a-ab49-db19d0c6092d"
    ],
@@ -4094,7 +4343,8 @@
    "lat": 48.516714,
    "lng": 35.079931,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.5167,35.0799"
   },
@@ -4110,7 +4360,8 @@
    "lat": 48.477218,
    "lng": 35.016628,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4772,35.0166"
   },
@@ -4126,7 +4377,8 @@
    "lat": 48.4135,
    "lng": 35.06977,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4135,35.0698"
   },
@@ -4142,7 +4394,8 @@
    "lat": 47.90852,
    "lng": 33.34178,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.9085,33.3418"
   },
@@ -4158,7 +4411,8 @@
    "lat": 50.90482,
    "lng": 34.81916,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1efa0d6b-90a6-69ba-92aa-a5055881d217"
    ],
@@ -4176,7 +4430,8 @@
    "lat": 49.57121,
    "lng": 34.58552,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5712,34.5855"
   },
@@ -4192,7 +4447,8 @@
    "lat": 49.96585,
    "lng": 33.6101,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9659,33.6101"
   },
@@ -4208,7 +4464,8 @@
    "lat": 49.99567,
    "lng": 36.339,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9957,36.3390"
   },
@@ -4224,7 +4481,8 @@
    "lat": 49.99055,
    "lng": 36.28978,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1eee2a85-16f1-6ca2-9d5f-292109ee47d7"
    ],
@@ -4242,7 +4500,8 @@
    "lat": 48.88359,
    "lng": 36.27962,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.8836,36.2796"
   },
@@ -4258,7 +4517,8 @@
    "lat": 47.84701,
    "lng": 35.23799,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8470,35.2380"
   },
@@ -4274,7 +4534,8 @@
    "lat": 47.88498,
    "lng": 35.07531,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8850,35.0753"
   },
@@ -4290,7 +4551,8 @@
    "lat": 50.04915,
    "lng": 36.2081,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f078439-ace0-6200-abcd-1bd026447ba4"
    ],
@@ -4308,7 +4570,8 @@
    "lat": 50.39928,
    "lng": 30.6167,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b37-73a5-6540-acb1-bbad18c03843"
    ],
@@ -4326,7 +4589,8 @@
    "lat": 50.50255,
    "lng": 30.60491,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b1d-b47d-6b68-bbe1-0f4ab5c79679"
    ],
@@ -4344,7 +4608,8 @@
    "lat": 50.41416,
    "lng": 30.66181,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b36-ca5d-6e60-9135-6f0768df5f66"
    ],
@@ -4362,7 +4627,8 @@
    "lat": 46.64192,
    "lng": 32.6118,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.6419,32.6118"
   },
@@ -4378,7 +4644,8 @@
    "lat": 50.59781,
    "lng": 26.26453,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f077701-19e8-6e6a-9a7a-a70cdbaf9082"
    ],
@@ -4396,7 +4663,8 @@
    "lat": 50.3836,
    "lng": 30.38804,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1eefbd99-d922-6986-a9a1-956d6adad87e",
     "silpo:1f063c59-cae5-6ed6-b930-71ce690b4264"
@@ -4415,7 +4683,8 @@
    "lat": 50.359582,
    "lng": 30.935526,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f071d01-27ef-61e4-bd93-f981fceb620c"
    ],
@@ -4433,7 +4702,8 @@
    "lat": 50.5508,
    "lng": 30.61921,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5508,30.6192"
   },
@@ -4449,7 +4719,8 @@
    "lat": 51.51537,
    "lng": 31.30706,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b3c-6a71-6a32-864d-6f0768df5f66",
     "silpo:1edb6b58-1df3-698c-8ea4-b5ff7ea46636"
@@ -4468,7 +4739,8 @@
    "lat": 50.51662,
    "lng": 30.60192,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b28-065a-65c6-9df1-276089a8ab8c",
     "silpo:1edb6b40-f531-6952-b48f-bf2cac88bd3a",
@@ -4488,7 +4760,8 @@
    "lat": 48.64182,
    "lng": 35.25936,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6418,35.2594"
   },
@@ -4504,7 +4777,8 @@
    "lat": 46.30326,
    "lng": 30.65592,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.3033,30.6559"
   },
@@ -4520,7 +4794,8 @@
    "lat": 49.35677,
    "lng": 23.5222,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.3568,23.5222"
   },
@@ -4536,7 +4811,8 @@
    "lat": 49.28424,
    "lng": 23.51788,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2842,23.5179"
   },
@@ -4552,7 +4828,8 @@
    "lat": 49.96225,
    "lng": 36.33495,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9622,36.3349"
   },
@@ -4568,7 +4845,8 @@
    "lat": 48.94102,
    "lng": 24.73756,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ee4718d-f0b2-6492-8a6e-7f1c0c174e95"
    ],
@@ -4586,7 +4864,8 @@
    "lat": 49.82286,
    "lng": 23.98255,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8229,23.9825"
   },
@@ -4602,7 +4881,8 @@
    "lat": 50.76273,
    "lng": 25.36523,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.7627,25.3652"
   },
@@ -4618,7 +4898,8 @@
    "lat": 50.51584,
    "lng": 30.7834,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b4f-d3b9-6a4a-b6b5-d11f2666a570",
     "silpo:1edb6b56-4531-68e8-9560-15f58a999f30"
@@ -4637,7 +4918,8 @@
    "lat": 50.389,
    "lng": 30.24307,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3890,30.2431"
   },
@@ -4653,7 +4935,8 @@
    "lat": 50.39154,
    "lng": 30.3804,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3915,30.3804"
   },
@@ -4669,7 +4952,8 @@
    "lat": 50.48629,
    "lng": 30.52189,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4863,30.5219"
   },
@@ -4685,7 +4969,8 @@
    "lat": 49.94287,
    "lng": 23.38538,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9429,23.3854"
   },
@@ -4701,7 +4986,8 @@
    "lat": 46.65103,
    "lng": 32.56606,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.6510,32.5661"
   },
@@ -4717,7 +5003,8 @@
    "lat": 50.40909,
    "lng": 30.37887,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7341-953c-6ff2-a8a8-73524574f50b"
    ],
@@ -4735,7 +5022,8 @@
    "lat": 49.55144,
    "lng": 25.61174,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5514,25.6117"
   },
@@ -4751,7 +5039,8 @@
    "lat": 49.60045,
    "lng": 34.53435,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef5671c-11ba-692a-b390-0d58805ea694"
    ],
@@ -4769,7 +5058,8 @@
    "lat": 49.82727,
    "lng": 23.99216,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8273,23.9922"
   },
@@ -4785,7 +5075,8 @@
    "lat": 50.3918,
    "lng": 30.46761,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef86de6-8f78-6adc-b578-535fca796f33"
    ],
@@ -4803,7 +5094,8 @@
    "lat": 49.44116,
    "lng": 32.06609,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b51-ce1d-62f6-aa05-7b06f69434c4"
    ],
@@ -4821,7 +5113,8 @@
    "lat": 50.45862,
    "lng": 30.58308,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4586,30.5831"
   },
@@ -4837,7 +5130,8 @@
    "lat": 50.90983,
    "lng": 34.7962,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.9098,34.7962"
   },
@@ -4853,7 +5147,8 @@
    "lat": 50.53766,
    "lng": 30.23435,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1efb6e15-b171-6ba2-ba6f-e90a6eb5ec15"
    ],
@@ -4871,7 +5166,8 @@
    "lat": 50.45289,
    "lng": 30.40657,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4529,30.4066"
   },
@@ -4887,7 +5183,8 @@
    "lat": 46.4617,
    "lng": 30.74186,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb733b-94c4-6404-8e0b-d5cf071d641d"
    ],
@@ -4905,7 +5202,8 @@
    "lat": 50.4039,
    "lng": 30.39368,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4039,30.3937"
   },
@@ -4921,7 +5219,8 @@
    "lat": 49.87043,
    "lng": 24.02288,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8704,24.0229"
   },
@@ -4937,7 +5236,8 @@
    "lat": 50.40918,
    "lng": 30.5444,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f06213d-d33c-6508-836a-4b6d531d9e48"
    ],
@@ -4955,7 +5255,8 @@
    "lat": 49.81969,
    "lng": 23.98879,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb733c-6d3f-6e64-bf04-0f7f0c3d0cd0"
    ],
@@ -4973,7 +5274,8 @@
    "lat": 48.60809,
    "lng": 22.28886,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb6b59-94d5-6bda-ae1a-9d6174033d05"
    ],
@@ -4991,7 +5293,8 @@
    "lat": 51.51845,
    "lng": 31.23792,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.5185,31.2379"
   },
@@ -5007,7 +5310,8 @@
    "lat": 48.3539,
    "lng": 24.41709,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f0b89b8-e353-66f6-9767-6fb06842c14f"
    ],
@@ -5025,7 +5329,8 @@
    "lat": 50.41214,
    "lng": 30.60014,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4121,30.6001"
   },
@@ -5041,7 +5346,8 @@
    "lat": 50.52137,
    "lng": 30.20258,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5214,30.2026"
   },
@@ -5057,7 +5363,8 @@
    "lat": 50.4356,
    "lng": 30.38084,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4356,30.3808"
   },
@@ -5073,7 +5380,8 @@
    "lat": 50.51368,
    "lng": 30.42354,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5137,30.4235"
   },
@@ -5089,7 +5397,8 @@
    "lat": 50.56664,
    "lng": 30.10767,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5666,30.1077"
   },
@@ -5105,7 +5414,8 @@
    "lat": 49.86223,
    "lng": 24.01701,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8622,24.0170"
   },
@@ -5121,7 +5431,8 @@
    "lat": 49.83913,
    "lng": 24.02929,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8391,24.0293"
   },
@@ -5137,7 +5448,8 @@
    "lat": 49.82257,
    "lng": 23.95855,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8226,23.9585"
   },
@@ -5153,7 +5465,8 @@
    "lat": 46.44342,
    "lng": 30.73284,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f1b2855-a340-6b5e-a40c-c1bbaff3e8fd"
    ],
@@ -5171,7 +5484,8 @@
    "lat": 50.48998,
    "lng": 30.49693,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f1739ad-f1e7-6ba8-bd22-5bd655abd542"
    ],
@@ -5189,7 +5503,8 @@
    "lat": 50.41985,
    "lng": 30.53333,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4198,30.5333"
   },
@@ -5205,6 +5520,7 @@
    "lat": 50.4931815,
    "lng": 30.5581461,
    "has_pickup": true,
+   "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [],
    "place_id": "50.4932,30.5581"
@@ -5221,7 +5537,8 @@
    "lat": 49.81411,
    "lng": 24.06222,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8141,24.0622"
   },
@@ -5237,7 +5554,8 @@
    "lat": 50.6328208,
    "lng": 26.2776941,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6328,26.2777"
   },
@@ -5253,7 +5571,8 @@
    "lat": 50.406554,
    "lng": 30.398795,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4066,30.3988"
   },
@@ -5269,7 +5588,8 @@
    "lat": 50.5039512,
    "lng": 30.4164598,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5040,30.4165"
   },
@@ -5285,7 +5605,8 @@
    "lat": 50.4112,
    "lng": 30.6056,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4112,30.6056"
   },
@@ -5301,7 +5622,8 @@
    "lat": 50.39051,
    "lng": 30.64142,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3905,30.6414"
   },
@@ -5317,7 +5639,8 @@
    "lat": 50.378214,
    "lng": 30.441555,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3782,30.4416"
   },
@@ -5333,7 +5656,8 @@
    "lat": 46.448391,
    "lng": 30.661012,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4484,30.6610"
   },
@@ -5349,7 +5673,8 @@
    "lat": 49.933179,
    "lng": 36.264921,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9332,36.2649"
   },
@@ -5365,7 +5690,8 @@
    "lat": 48.400525,
    "lng": 35.04011,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4005,35.0401"
   },
@@ -5381,7 +5707,8 @@
    "lat": 47.930888,
    "lng": 33.421886,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.9309,33.4219"
   },
@@ -5397,7 +5724,8 @@
    "lat": 49.236091,
    "lng": 28.398571,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2361,28.3986"
   },
@@ -5413,7 +5741,8 @@
    "lat": 49.5643456,
    "lng": 34.4825617,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5643,34.4826"
   },
@@ -5429,7 +5758,8 @@
    "lat": 48.9442875,
    "lng": 24.7411757,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.9443,24.7412"
   },
@@ -5445,7 +5775,8 @@
    "lat": 48.3203485,
    "lng": 25.9042393,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.3203,25.9042"
   },
@@ -5461,7 +5792,8 @@
    "lat": 50.51111,
    "lng": 30.62352,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5111,30.6235"
   },
@@ -5477,7 +5809,8 @@
    "lat": 50.6233412,
    "lng": 26.202149,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6233,26.2021"
   },
@@ -5493,7 +5826,8 @@
    "lat": 49.81268348030165,
    "lng": 24.07327803050263,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8127,24.0733"
   },
@@ -5509,7 +5843,8 @@
    "lat": 50.27423,
    "lng": 28.67197,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.2742,28.6720"
   },
@@ -5525,7 +5860,8 @@
    "lat": 49.9767933,
    "lng": 36.2478871,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9768,36.2479"
   },
@@ -5541,7 +5877,8 @@
    "lat": 46.5994168,
    "lng": 30.8059128,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5994,30.8059"
   },
@@ -5557,7 +5894,8 @@
    "lat": 50.0095197,
    "lng": 36.2190494,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0095,36.2190"
   },
@@ -5573,7 +5911,8 @@
    "lat": 50.0095197,
    "lng": 36.2190494,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0095,36.2190"
   },
@@ -5589,7 +5928,8 @@
    "lat": 50.0073,
    "lng": 36.3173,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0073,36.3173"
   },
@@ -5605,7 +5945,8 @@
    "lat": 50.5193,
    "lng": 30.47774,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5193,30.4777"
   },
@@ -5621,6 +5962,7 @@
    "lat": 50.491319,
    "lng": 30.489957,
    "has_pickup": true,
+   "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [],
    "place_id": "50.4913,30.4900"
@@ -5637,6 +5979,7 @@
    "lat": 50.496931,
    "lng": 30.361328,
    "has_pickup": true,
+   "online_catalog": true,
    "has_online_prices": true,
    "alt_ids": [],
    "place_id": "50.4969,30.3613"
@@ -5653,7 +5996,8 @@
    "lat": 49.773817,
    "lng": 24.008604,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.7738,24.0086"
   },
@@ -5669,7 +6013,8 @@
    "lat": 50.419283,
    "lng": 30.6313015,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4193,30.6313"
   },
@@ -5685,7 +6030,8 @@
    "lat": 50.4119223,
    "lng": 30.5219596,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4119,30.5220"
   },
@@ -5701,7 +6047,8 @@
    "lat": 46.564279,
    "lng": 30.835252,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5643,30.8353"
   },
@@ -5717,7 +6064,8 @@
    "lat": 50.4546712,
    "lng": 30.6383533,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4547,30.6384"
   },
@@ -5733,7 +6081,8 @@
    "lat": 50.368031,
    "lng": 30.458355,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3680,30.4584"
   },
@@ -5749,7 +6098,8 @@
    "lat": 50.4176731,
    "lng": 30.3924961,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4177,30.3925"
   },
@@ -5765,7 +6115,8 @@
    "lat": 50.5057018,
    "lng": 30.4738766,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5057,30.4739"
   },
@@ -5781,7 +6132,8 @@
    "lat": 48.52937,
    "lng": 35.03093,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.5294,35.0309"
   },
@@ -5797,7 +6149,8 @@
    "lat": 50.26747945443415,
    "lng": 28.687988071112283,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.2675,28.6880"
   },
@@ -5813,7 +6166,8 @@
    "lat": 49.2194914,
    "lng": 28.4446358,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2195,28.4446"
   },
@@ -5829,7 +6183,8 @@
    "lat": 46.4706,
    "lng": 30.6975,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4706,30.6975"
   },
@@ -5845,7 +6200,8 @@
    "lat": 48.2518,
    "lng": 25.9574,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.2518,25.9574"
   },
@@ -5861,7 +6217,8 @@
    "lat": 50.46176,
    "lng": 30.49952,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4618,30.4995"
   },
@@ -5877,7 +6234,8 @@
    "lat": 50.43416359312588,
    "lng": 30.476823745365206,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4342,30.4768"
   },
@@ -5893,7 +6251,8 @@
    "lat": 50.4497535,
    "lng": 30.4414631,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4498,30.4415"
   },
@@ -5909,7 +6268,8 @@
    "lat": 50.46176,
    "lng": 30.49952,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4618,30.4995"
   },
@@ -5925,7 +6285,8 @@
    "lat": 50.43416359312588,
    "lng": 30.476823745365206,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4342,30.4768"
   },
@@ -5941,7 +6302,8 @@
    "lat": 50.4497535,
    "lng": 30.4414631,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4498,30.4415"
   },
@@ -5957,7 +6319,8 @@
    "lat": 50.43416359312588,
    "lng": 30.476823745365206,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4342,30.4768"
   },
@@ -5973,7 +6336,8 @@
    "lat": 50.4497535,
    "lng": 30.4414631,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4498,30.4415"
   },
@@ -5989,7 +6353,8 @@
    "lat": 50.46176,
    "lng": 30.49952,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4618,30.4995"
   },
@@ -6005,7 +6370,8 @@
    "lat": 50.4393935,
    "lng": 30.4837696,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4394,30.4838"
   },
@@ -6021,7 +6387,8 @@
    "lat": 50.5296024366428,
    "lng": 30.60119948459225,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5296,30.6012"
   },
@@ -6037,7 +6404,8 @@
    "lat": 48.260465601441425,
    "lng": 25.955584050580285,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.2605,25.9556"
   },
@@ -6053,7 +6421,8 @@
    "lat": 48.34022,
    "lng": 24.56735,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.3402,24.5674"
   },
@@ -6069,7 +6438,8 @@
    "lat": 50.6291,
    "lng": 26.2721,
    "has_pickup": true,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6291,26.2721"
   },
@@ -6085,7 +6455,8 @@
    "lat": 47.77445,
    "lng": 35.1821,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.7745,35.1821"
   },
@@ -6101,7 +6472,8 @@
    "lat": 50.49699,
    "lng": 30.36123,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4970,30.3612"
   },
@@ -6117,7 +6489,8 @@
    "lat": 50.427168,
    "lng": 30.6392,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4272,30.6392"
   },
@@ -6133,7 +6506,8 @@
    "lat": 50.4621,
    "lng": 30.48126,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4621,30.4813"
   },
@@ -6149,7 +6523,8 @@
    "lat": 50.519076,
    "lng": 30.501747,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5191,30.5017"
   },
@@ -6165,7 +6540,8 @@
    "lat": 50.411143,
    "lng": 30.40476,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4111,30.4048"
   },
@@ -6181,7 +6557,8 @@
    "lat": 50.491599,
    "lng": 30.5833,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4916,30.5833"
   },
@@ -6197,7 +6574,8 @@
    "lat": 50.41172,
    "lng": 30.41268,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1eee2a8c-3aae-667a-8da9-9bd8e81dfe33"
    ],
@@ -6215,7 +6593,8 @@
    "lat": 50.48475,
    "lng": 30.60444,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4847,30.6044"
   },
@@ -6231,7 +6610,8 @@
    "lat": 51.516416,
    "lng": 30.755182,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.5164,30.7552"
   },
@@ -6247,7 +6627,8 @@
    "lat": 50.62928,
    "lng": 26.27225,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6293,26.2722"
   },
@@ -6263,7 +6644,8 @@
    "lat": 48.618455,
    "lng": 22.297129,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6185,22.2971"
   },
@@ -6279,7 +6661,8 @@
    "lat": 48.60189,
    "lng": 22.27941,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.6019,22.2794"
   },
@@ -6295,7 +6678,8 @@
    "lat": 48.92982,
    "lng": 24.70716,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.9298,24.7072"
   },
@@ -6311,7 +6695,8 @@
    "lat": 49.87115,
    "lng": 24.03211,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8712,24.0321"
   },
@@ -6327,7 +6712,8 @@
    "lat": 49.51517,
    "lng": 23.1961,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5152,23.1961"
   },
@@ -6343,7 +6729,8 @@
    "lat": 46.579111,
    "lng": 30.790069,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5791,30.7901"
   },
@@ -6359,7 +6746,8 @@
    "lat": 46.441061,
    "lng": 30.717259,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4411,30.7173"
   },
@@ -6375,7 +6763,8 @@
    "lat": 49.42241,
    "lng": 26.99603,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.4224,26.9960"
   },
@@ -6391,7 +6780,8 @@
    "lat": 49.43313,
    "lng": 26.98343,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.4331,26.9834"
   },
@@ -6407,7 +6797,8 @@
    "lat": 50.02704,
    "lng": 36.220497,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0270,36.2205"
   },
@@ -6423,7 +6814,8 @@
    "lat": 49.561207,
    "lng": 34.527147,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5612,34.5271"
   },
@@ -6439,7 +6831,8 @@
    "lat": 49.27609,
    "lng": 23.49218,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2761,23.4922"
   },
@@ -6455,7 +6848,8 @@
    "lat": 49.837208,
    "lng": 23.904903,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8372,23.9049"
   },
@@ -6471,7 +6865,8 @@
    "lat": 50.452603,
    "lng": 30.507901,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1edb7339-fb2f-62c2-9dcf-73524574f50b"
    ],
@@ -6489,7 +6884,8 @@
    "lat": 50.446044,
    "lng": 30.525282,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4460,30.5253"
   },
@@ -6505,7 +6901,8 @@
    "lat": 50.46075,
    "lng": 30.64265,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4607,30.6426"
   },
@@ -6521,7 +6918,8 @@
    "lat": 49.87116,
    "lng": 24.02225,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8712,24.0222"
   },
@@ -6537,7 +6935,8 @@
    "lat": 50.431384,
    "lng": 30.473747,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4314,30.4737"
   },
@@ -6553,7 +6952,8 @@
    "lat": 47.93738,
    "lng": 33.434334,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.9374,33.4343"
   },
@@ -6569,7 +6969,8 @@
    "lat": 50.90453,
    "lng": 34.80533,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.9045,34.8053"
   },
@@ -6585,7 +6986,8 @@
    "lat": 49.601287,
    "lng": 34.531096,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.6013,34.5311"
   },
@@ -6601,7 +7003,8 @@
    "lat": 47.81901,
    "lng": 35.05426,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8190,35.0543"
   },
@@ -6617,7 +7020,8 @@
    "lat": 47.83601,
    "lng": 35.12244,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.8360,35.1224"
   },
@@ -6633,7 +7037,8 @@
    "lat": 50.017669,
    "lng": 36.345247,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0177,36.3452"
   },
@@ -6649,7 +7054,8 @@
    "lat": 47.94686,
    "lng": 33.4409,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.9469,33.4409"
   },
@@ -6665,7 +7071,8 @@
    "lat": 47.81806,
    "lng": 35.15699,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1ef56726-208d-61b4-8c36-9369b28177cc"
    ],
@@ -6683,7 +7090,8 @@
    "lat": 46.41549,
    "lng": 30.71071,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.4155,30.7107"
   },
@@ -6699,7 +7107,8 @@
    "lat": 50.37302,
    "lng": 30.44349,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3730,30.4435"
   },
@@ -6715,7 +7124,8 @@
    "lat": 50.38137,
    "lng": 30.48163,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3814,30.4816"
   },
@@ -6731,7 +7141,8 @@
    "lat": 49.57516,
    "lng": 25.64017,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5752,25.6402"
   },
@@ -6747,7 +7158,8 @@
    "lat": 50.52022,
    "lng": 30.46564,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5202,30.4656"
   },
@@ -6763,7 +7175,8 @@
    "lat": 49.84524,
    "lng": 24.02808,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8452,24.0281"
   },
@@ -6779,7 +7192,8 @@
    "lat": 50.39664,
    "lng": 30.50751,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [
     "silpo:1f1add4f-ef8d-6684-9012-758430c6b8db"
    ],
@@ -6797,7 +7211,8 @@
    "lat": 50.42842,
    "lng": 30.59078,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4284,30.5908"
   },
@@ -6813,7 +7228,8 @@
    "lat": 49.75212,
    "lng": 23.9387,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.7521,23.9387"
   },
@@ -6829,7 +7245,8 @@
    "lat": 48.932071,
    "lng": 24.6939412,
    "has_pickup": false,
-   "has_online_prices": true,
+   "online_catalog": true,
+   "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.9321,24.6939"
   },
@@ -6845,6 +7262,7 @@
    "lat": 50.5122294,
    "lng": 30.4122608,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5122,30.4123"
@@ -6861,6 +7279,7 @@
    "lat": 50.4016718,
    "lng": 30.6363944,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4017,30.6364"
@@ -6877,6 +7296,7 @@
    "lat": 50.2521714,
    "lng": 28.6579122,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.2522,28.6579"
@@ -6893,6 +7313,7 @@
    "lat": 50.5025255,
    "lng": 30.5918447,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5025,30.5918"
@@ -6909,6 +7330,7 @@
    "lat": 50.4329616,
    "lng": 30.6014532,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4330,30.6015"
@@ -6925,6 +7347,7 @@
    "lat": 50.5531635,
    "lng": 30.2136695,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5532,30.2137"
@@ -6941,6 +7364,7 @@
    "lat": 50.5489887,
    "lng": 30.2168055,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5490,30.2168"
@@ -6957,6 +7381,7 @@
    "lat": 50.4271021,
    "lng": 30.5932832,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4271,30.5933"
@@ -6973,6 +7398,7 @@
    "lat": 50.4388458,
    "lng": 30.4397311,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4388,30.4397"
@@ -6989,6 +7415,7 @@
    "lat": 50.5223291,
    "lng": 30.6179731,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5223,30.6180"
@@ -7005,6 +7432,7 @@
    "lat": 49.2381525,
    "lng": 28.4897797,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.2382,28.4898"
@@ -7021,6 +7449,7 @@
    "lat": 51.5070981,
    "lng": 31.332259,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.5071,31.3323"
@@ -7037,6 +7466,7 @@
    "lat": 50.5216387,
    "lng": 30.240155,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5216,30.2402"
@@ -7053,6 +7483,7 @@
    "lat": 50.3273971,
    "lng": 26.5252759,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3274,26.5253"
@@ -7069,6 +7500,7 @@
    "lat": 48.4256927,
    "lng": 35.0221348,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.4257,35.0221"
@@ -7085,6 +7517,7 @@
    "lat": 50.4854238,
    "lng": 30.467152,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4854,30.4672"
@@ -7101,6 +7534,7 @@
    "lat": 50.4577833,
    "lng": 30.6120956,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4578,30.6121"
@@ -7117,6 +7551,7 @@
    "lat": 50.1457251,
    "lng": 30.7495142,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.1457,30.7495"
@@ -7133,6 +7568,7 @@
    "lat": 50.3780476,
    "lng": 30.7052717,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3780,30.7053"
@@ -7149,6 +7585,7 @@
    "lat": 51.4911407,
    "lng": 31.3005473,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.4911,31.3005"
@@ -7165,6 +7602,7 @@
    "lat": 50.3867092,
    "lng": 30.4696263,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3867,30.4696"
@@ -7181,6 +7619,7 @@
    "lat": 50.4242473,
    "lng": 30.4777816,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4242,30.4778"
@@ -7197,6 +7636,7 @@
    "lat": 50.4311531,
    "lng": 30.454648,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4312,30.4546"
@@ -7213,6 +7653,7 @@
    "lat": 50.4654054,
    "lng": 30.5105934,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4654,30.5106"
@@ -7229,6 +7670,7 @@
    "lat": 50.4309874,
    "lng": 30.4724427,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4310,30.4724"
@@ -7245,6 +7687,7 @@
    "lat": 49.5861612,
    "lng": 34.4915547,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5862,34.4916"
@@ -7261,6 +7704,7 @@
    "lat": 50.4936532,
    "lng": 30.462185,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4937,30.4622"
@@ -7277,6 +7721,7 @@
    "lat": 50.4239779,
    "lng": 30.3681524,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4240,30.3682"
@@ -7293,6 +7738,7 @@
    "lat": 50.3995744,
    "lng": 30.5193385,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3996,30.5193"
@@ -7309,6 +7755,7 @@
    "lat": 50.4795022,
    "lng": 30.446277,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4795,30.4463"
@@ -7325,6 +7772,7 @@
    "lat": 49.544691,
    "lng": 25.5989154,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5447,25.5989"
@@ -7341,6 +7789,7 @@
    "lat": 49.812416,
    "lng": 23.9864521,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8124,23.9865"
@@ -7357,6 +7806,7 @@
    "lat": 50.4415482,
    "lng": 30.6253133,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4415,30.6253"
@@ -7373,6 +7823,7 @@
    "lat": 50.4181142,
    "lng": 30.5498524,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4181,30.5499"
@@ -7389,6 +7840,7 @@
    "lat": 50.4340231,
    "lng": 30.6465158,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4340,30.6465"
@@ -7405,6 +7857,7 @@
    "lat": 50.5074444,
    "lng": 30.6077212,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5074,30.6077"
@@ -7421,6 +7874,7 @@
    "lat": 50.4549673,
    "lng": 30.6108648,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4550,30.6109"
@@ -7437,6 +7891,7 @@
    "lat": 50.4718021,
    "lng": 30.5072364,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4718,30.5072"
@@ -7453,6 +7908,7 @@
    "lat": 46.6655854,
    "lng": 32.6026084,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.6656,32.6026"
@@ -7469,6 +7925,7 @@
    "lat": 50.4698944,
    "lng": 30.4460124,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4699,30.4460"
@@ -7485,6 +7942,7 @@
    "lat": 50.4919494,
    "lng": 30.6011932,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4919,30.6012"
@@ -7501,6 +7959,7 @@
    "lat": 50.500116,
    "lng": 30.6106836,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5001,30.6107"
@@ -7517,6 +7976,7 @@
    "lat": 50.3807222,
    "lng": 30.3819697,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3807,30.3820"
@@ -7533,6 +7993,7 @@
    "lat": 50.5139079,
    "lng": 30.6097974,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5139,30.6098"
@@ -7549,6 +8010,7 @@
    "lat": 46.6802412,
    "lng": 32.6022952,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.6802,32.6023"
@@ -7565,6 +8027,7 @@
    "lat": 50.4261012,
    "lng": 30.5151218,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4261,30.5151"
@@ -7581,6 +8044,7 @@
    "lat": 50.3825765,
    "lng": 30.4579623,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3826,30.4580"
@@ -7597,6 +8061,7 @@
    "lat": 50.4936015,
    "lng": 30.522115,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4936,30.5221"
@@ -7613,6 +8078,7 @@
    "lat": 49.8555394,
    "lng": 24.0237549,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8555,24.0238"
@@ -7629,6 +8095,7 @@
    "lat": 50.4711066,
    "lng": 30.4748536,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4711,30.4749"
@@ -7645,6 +8112,7 @@
    "lat": 50.4214554,
    "lng": 30.5299019,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4215,30.5299"
@@ -7661,6 +8129,7 @@
    "lat": 50.3639953,
    "lng": 30.9207926,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3640,30.9208"
@@ -7677,6 +8146,7 @@
    "lat": 50.5114505,
    "lng": 30.2321256,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5115,30.2321"
@@ -7693,6 +8163,7 @@
    "lat": 50.3474933,
    "lng": 30.448523,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3475,30.4485"
@@ -7709,6 +8180,7 @@
    "lat": 48.9328767,
    "lng": 24.7460929,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "48.9329,24.7461"
@@ -7725,6 +8197,7 @@
    "lat": 50.3825164,
    "lng": 30.4768269,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3825,30.4768"
@@ -7741,6 +8214,7 @@
    "lat": 50.3730931,
    "lng": 30.3738961,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3731,30.3739"
@@ -7757,6 +8231,7 @@
    "lat": 50.4156134,
    "lng": 30.5265775,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4156,30.5266"
@@ -7773,6 +8248,7 @@
    "lat": 50.456503,
    "lng": 30.363244,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4565,30.3632"
@@ -7789,6 +8265,7 @@
    "lat": 50.4555371,
    "lng": 30.5068714,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4555,30.5069"
@@ -7805,6 +8282,7 @@
    "lat": 50.4526948,
    "lng": 30.5024048,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4527,30.5024"
@@ -7821,6 +8299,7 @@
    "lat": 50.4710466,
    "lng": 30.3993747,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4710,30.3994"
@@ -7837,6 +8316,7 @@
    "lat": 50.3897608,
    "lng": 30.4630759,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3898,30.4631"
@@ -7853,6 +8333,7 @@
    "lat": 50.5034098,
    "lng": 30.4192901,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5034,30.4193"
@@ -7869,6 +8350,7 @@
    "lat": 50.4406952,
    "lng": 30.5498518,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4407,30.5499"
@@ -7885,6 +8367,7 @@
    "lat": 49.7862621,
    "lng": 30.1497996,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.7863,30.1498"
@@ -7901,6 +8384,7 @@
    "lat": 50.5161431,
    "lng": 30.4977656,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5161,30.4978"
@@ -7917,6 +8401,7 @@
    "lat": 46.6506289,
    "lng": 32.5956795,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.6506,32.5957"
@@ -7933,6 +8418,7 @@
    "lat": 50.4328155,
    "lng": 30.4480293,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4328,30.4480"
@@ -7949,6 +8435,7 @@
    "lat": 50.447615,
    "lng": 30.4326709,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4476,30.4327"
@@ -7965,6 +8452,7 @@
    "lat": 51.5013027,
    "lng": 31.2612995,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.5013,31.2613"
@@ -7981,6 +8469,7 @@
    "lat": 50.5276261,
    "lng": 30.2308593,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5276,30.2309"
@@ -7997,6 +8486,7 @@
    "lat": 50.4530913,
    "lng": 30.4867843,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4531,30.4868"
@@ -8013,6 +8503,7 @@
    "lat": 50.4726099,
    "lng": 30.3319712,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4726,30.3320"
@@ -8029,6 +8520,7 @@
    "lat": 50.5155175,
    "lng": 30.516124,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5155,30.5161"
@@ -8045,6 +8537,7 @@
    "lat": 50.3984671,
    "lng": 30.6147402,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3985,30.6147"
@@ -8061,6 +8554,7 @@
    "lat": 50.4408502,
    "lng": 30.5143036,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4409,30.5143"
@@ -8077,6 +8571,7 @@
    "lat": 50.4667534,
    "lng": 30.4610869,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4668,30.4611"
@@ -8093,6 +8588,7 @@
    "lat": 50.4971864,
    "lng": 30.4654662,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4972,30.4655"
@@ -8109,6 +8605,7 @@
    "lat": 50.4618375,
    "lng": 30.3555204,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4618,30.3555"
@@ -8125,6 +8622,7 @@
    "lat": 50.4333329,
    "lng": 30.5158014,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4333,30.5158"
@@ -8141,6 +8639,7 @@
    "lat": 51.4952989,
    "lng": 31.2939126,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.4953,31.2939"
@@ -8157,6 +8656,7 @@
    "lat": 50.3959999,
    "lng": 30.6245214,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3960,30.6245"
@@ -8173,6 +8673,7 @@
    "lat": 50.5049266,
    "lng": 30.8286993,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5049,30.8287"
@@ -8189,6 +8690,7 @@
    "lat": 50.5835709,
    "lng": 30.4855245,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5836,30.4855"
@@ -8205,6 +8707,7 @@
    "lat": 50.3963069,
    "lng": 30.632967,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3963,30.6330"
@@ -8221,6 +8724,7 @@
    "lat": 50.4866397,
    "lng": 30.5168278,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4866,30.5168"
@@ -8237,6 +8741,7 @@
    "lat": 50.4402717,
    "lng": 30.4409612,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4403,30.4410"
@@ -8253,6 +8758,7 @@
    "lat": 51.5167927,
    "lng": 31.3109356,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.5168,31.3109"
@@ -8269,6 +8775,7 @@
    "lat": 49.8235068,
    "lng": 23.9161407,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.8235,23.9161"
@@ -8285,6 +8792,7 @@
    "lat": 51.4909312,
    "lng": 31.2907334,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.4909,31.2907"
@@ -8301,6 +8809,7 @@
    "lat": 46.9653367,
    "lng": 32.0774691,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.9653,32.0775"
@@ -8317,6 +8826,7 @@
    "lat": 50.0668009,
    "lng": 36.1974854,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.0668,36.1975"
@@ -8333,6 +8843,7 @@
    "lat": 50.414664,
    "lng": 30.645623,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4147,30.6456"
@@ -8349,6 +8860,7 @@
    "lat": 50.4552553,
    "lng": 30.3882588,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4553,30.3883"
@@ -8365,6 +8877,7 @@
    "lat": 51.5403471,
    "lng": 31.2663348,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.5403,31.2663"
@@ -8381,6 +8894,7 @@
    "lat": 50.4336943,
    "lng": 30.4829996,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4337,30.4830"
@@ -8397,6 +8911,7 @@
    "lat": 50.4531615,
    "lng": 30.5939264,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4532,30.5939"
@@ -8413,6 +8928,7 @@
    "lat": 46.9459111,
    "lng": 32.0514587,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.9459,32.0515"
@@ -8429,6 +8945,7 @@
    "lat": 50.4045607,
    "lng": 30.61527,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4046,30.6153"
@@ -8445,6 +8962,7 @@
    "lat": 50.5184256,
    "lng": 30.238367,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5184,30.2384"
@@ -8461,6 +8979,7 @@
    "lat": 50.4222344,
    "lng": 30.4554357,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4222,30.4554"
@@ -8477,6 +8996,7 @@
    "lat": 50.4429283,
    "lng": 30.4917936,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4429,30.4918"
@@ -8493,6 +9013,7 @@
    "lat": 50.4425764,
    "lng": 30.4879626,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4426,30.4880"
@@ -8509,6 +9030,7 @@
    "lat": 50.1817897,
    "lng": 30.3127081,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.1818,30.3127"
@@ -8525,6 +9047,7 @@
    "lat": 50.3936293,
    "lng": 30.6115677,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3936,30.6116"
@@ -8541,6 +9064,7 @@
    "lat": 50.4365064,
    "lng": 30.3578871,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4365,30.3579"
@@ -8557,6 +9081,7 @@
    "lat": 50.4380433,
    "lng": 30.6217172,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4380,30.6217"
@@ -8573,6 +9098,7 @@
    "lat": 50.4975993,
    "lng": 30.3668521,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4976,30.3669"
@@ -8589,6 +9115,7 @@
    "lat": 46.3862677,
    "lng": 30.7062102,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.3863,30.7062"
@@ -8605,6 +9132,7 @@
    "lat": 51.4963398,
    "lng": 31.2983518,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "51.4963,31.2984"
@@ -8621,6 +9149,7 @@
    "lat": 50.4587418,
    "lng": 30.632305,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4587,30.6323"
@@ -8637,6 +9166,7 @@
    "lat": 46.9570124,
    "lng": 32.0524429,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.9570,32.0524"
@@ -8653,6 +9183,7 @@
    "lat": 50.4141343,
    "lng": 30.5387202,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4141,30.5387"
@@ -8669,6 +9200,7 @@
    "lat": 50.4128423,
    "lng": 30.3689229,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4128,30.3689"
@@ -8685,6 +9217,7 @@
    "lat": 50.4289045,
    "lng": 30.355294,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4289,30.3553"
@@ -8701,6 +9234,7 @@
    "lat": 50.4376323,
    "lng": 30.4461619,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4376,30.4462"
@@ -8717,6 +9251,7 @@
    "lat": 47.7932822,
    "lng": 35.2378175,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "47.7933,35.2378"
@@ -8733,6 +9268,7 @@
    "lat": 50.5553714,
    "lng": 30.2156824,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5554,30.2157"
@@ -8749,6 +9285,7 @@
    "lat": 46.557236,
    "lng": 30.7676576,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.5572,30.7677"
@@ -8765,6 +9302,7 @@
    "lat": 50.4095592,
    "lng": 30.620156,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4096,30.6202"
@@ -8781,6 +9319,7 @@
    "lat": 50.4107639,
    "lng": 30.6257986,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4108,30.6258"
@@ -8797,6 +9336,7 @@
    "lat": 50.4070875,
    "lng": 30.6105941,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4071,30.6106"
@@ -8813,6 +9353,7 @@
    "lat": 46.8576924,
    "lng": 32.0215881,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.8577,32.0216"
@@ -8829,6 +9370,7 @@
    "lat": 50.3895803,
    "lng": 30.6257717,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3896,30.6258"
@@ -8845,6 +9387,7 @@
    "lat": 50.4473437,
    "lng": 30.6026131,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4473,30.6026"
@@ -8861,6 +9404,7 @@
    "lat": 50.4955198,
    "lng": 30.4257981,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4955,30.4258"
@@ -8877,6 +9421,7 @@
    "lat": 50.4372028,
    "lng": 30.4861646,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4372,30.4862"
@@ -8893,6 +9438,7 @@
    "lat": 50.4028455,
    "lng": 30.6251548,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4028,30.6252"
@@ -8909,6 +9455,7 @@
    "lat": 50.5147271,
    "lng": 30.4924182,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5147,30.4924"
@@ -8925,6 +9472,7 @@
    "lat": 50.3907368,
    "lng": 30.3696345,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3907,30.3696"
@@ -8941,6 +9489,7 @@
    "lat": 50.4666668,
    "lng": 30.6549181,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4667,30.6549"
@@ -8957,6 +9506,7 @@
    "lat": 50.5175904,
    "lng": 30.247954,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5176,30.2480"
@@ -8973,6 +9523,7 @@
    "lat": 50.5028513,
    "lng": 30.4275751,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5029,30.4276"
@@ -8989,6 +9540,7 @@
    "lat": 50.4291153,
    "lng": 30.6472709,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4291,30.6473"
@@ -9005,6 +9557,7 @@
    "lat": 50.6036509,
    "lng": 30.454339,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.6037,30.4543"
@@ -9021,6 +9574,7 @@
    "lat": 50.43762,
    "lng": 30.3701737,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4376,30.3702"
@@ -9037,6 +9591,7 @@
    "lat": 50.4129448,
    "lng": 30.4626742,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4129,30.4627"
@@ -9053,6 +9608,7 @@
    "lat": 46.6741932,
    "lng": 32.6100588,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "46.6742,32.6101"
@@ -9069,6 +9625,7 @@
    "lat": 50.4055266,
    "lng": 30.3381845,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4055,30.3382"
@@ -9085,6 +9642,7 @@
    "lat": 50.4424159,
    "lng": 30.3113097,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4424,30.3113"
@@ -9101,6 +9659,7 @@
    "lat": 50.3496699,
    "lng": 30.477745,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3497,30.4777"
@@ -9117,6 +9676,7 @@
    "lat": 50.5394333,
    "lng": 30.231794,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5394,30.2318"
@@ -9133,6 +9693,7 @@
    "lat": 49.5300074,
    "lng": 25.6092694,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.5300,25.6093"
@@ -9149,6 +9710,7 @@
    "lat": 50.5419646,
    "lng": 30.4868755,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.5420,30.4869"
@@ -9165,6 +9727,7 @@
    "lat": 50.4945574,
    "lng": 30.5881152,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4946,30.5881"
@@ -9181,6 +9744,7 @@
    "lat": 50.4878486,
    "lng": 30.6126218,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4878,30.6126"
@@ -9197,6 +9761,7 @@
    "lat": 50.3699176,
    "lng": 30.380638,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.3699,30.3806"
@@ -9213,6 +9778,7 @@
    "lat": 50.4509898,
    "lng": 30.5222726,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4510,30.5223"
@@ -9229,6 +9795,7 @@
    "lat": 50.4496939,
    "lng": 30.5255938,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4497,30.5256"
@@ -9245,6 +9812,7 @@
    "lat": 50.4424659,
    "lng": 30.5211434,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "50.4425,30.5211"
@@ -9261,6 +9829,7 @@
    "lat": 49.9842821,
    "lng": 36.265325,
    "has_pickup": false,
+   "online_catalog": false,
    "has_online_prices": false,
    "alt_ids": [],
    "place_id": "49.9843,36.2653"

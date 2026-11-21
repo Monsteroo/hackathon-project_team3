@@ -6,6 +6,7 @@ from backend.geo.directory import (
     stores_from_osm,
 )
 from backend.geo.distance import haversine_km
+from backend.geo.offers import load_offer_store_ids, store_ids_in_stock
 
 
 def row(**kw):
@@ -32,8 +33,32 @@ def test_csv_ids_and_deleted_rows():
         row(source="silpo", chain="silpo", store_id="bad", lat="1.0", lng="1.0"),
     ])
     assert [s["id"] for s in stores] == ["zakaz:1"]
-    assert stores[0]["has_online_prices"] is True
+    assert stores[0]["online_catalog"] is True
+    assert stores[0]["has_online_prices"] is False  # ціни підтверджує лише OFFERS
     assert stores[0]["chain_name"] == "NOVUS"
+
+
+def test_prices_come_only_from_offers_in_stock():
+    rows = [row(store_id="1"), row(store_id="2", lat="50.47", address="Інша, 2"),
+            row(source="silpo", chain="silpo", store_id="main", lat="50.49"),
+            row(source="silpo", chain="silpo", store_id="old", lat="50.4900", pickup="False")]
+    offers = store_ids_in_stock([
+        {"source": "zakaz", "store_id": "1", "in_stock": "True"},
+        {"source": "zakaz", "store_id": "2", "in_stock": "False"},   # нема в наявності → не рахується
+        {"source": "silpo", "store_id": "old", "in_stock": "true"},  # ціни на alt_id → магазин з цінами
+    ])
+    stores, stats = build_directory(rows, [], offers)
+    priced = {s["id"]: s["has_online_prices"] for s in stores}
+    assert priced == {"zakaz:1": True, "zakaz:2": False, "silpo:main": True}
+    assert stats["with_offers"] == 2
+
+
+def test_offers_sample_matches_directory():
+    ids = load_offer_store_ids()
+    assert len(ids) == 5
+    known = {i for s in load_stores() for i in [s["id"], *s["alt_ids"]]}
+    assert ids <= known
+    assert sum(s["has_online_prices"] for s in load_stores()) >= 4  # 5 ID, частина може бути alt_ids
 
 
 def test_dedup_same_address_prefers_pickup():

@@ -72,6 +72,7 @@ def find_nearby(lat: float, lng: float, mode: Mode = "walk", radius_km: float | 
             "lng": s["lng"],
             "place_id": s["place_id"],
             "has_online_prices": s["has_online_prices"],
+            "online_catalog": s.get("online_catalog", False),
             "has_pickup": s["has_pickup"],
             "confirmed": _is_confirmed(s, confirmed_ids),
             "in_radius": straight <= radius,
