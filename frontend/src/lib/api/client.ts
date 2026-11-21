@@ -2,6 +2,7 @@ import type {
   BasketOut,
   BasketRequest,
   CatalogStore,
+  EtlStatus,
   GeocodeResponse,
   Mode,
   NearbyResponse,
@@ -143,6 +144,11 @@ export const api = {
       body: JSON.stringify({ ...body, text: body.text.slice(0, MAX_AGENT_TEXT_LENGTH) }),
       signal,
     })
+  },
+
+  /** Стан нічного ETL: `prices_updated_at` — коли востаннє оновили ціни. */
+  etlStatus(signal?: AbortSignal): Promise<EtlStatus> {
+    return request('/catalog/etl/status', { signal })
   },
 
   /** Магазини з цінами в місті. */

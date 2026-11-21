@@ -174,6 +174,16 @@ export interface PriceSearchResponse {
   products: CatalogProduct[]
 }
 
+/** GET /catalog/etl/status (mocks/07_etl_status.json). */
+export interface EtlStatus {
+  schedule: string
+  timezone: string
+  scheduler_running: boolean
+  next_run_at: string | null
+  /** ISO-час останнього успішного оновлення цін; null — ще не оновлювали. */
+  prices_updated_at: string | null
+}
+
 // --- agent (backend/app/agent/schemas.py, mocks/16_*, mocks/17_*) ---
 
 export type AgentCategory =
@@ -213,6 +223,10 @@ export interface RequestedItem {
   brand: string | null
   /** Можна прибрати, якщо не вкладаємося в бюджет. */
   optional: boolean
+  /** Товар, вибраний з каталогу на екрані 2. */
+  gtin?: string | null
+  /** Фільтри складу цієї позиції з екрана 2 (sugar, palm_oil, lactose, private_label). */
+  exclude?: string[]
 }
 
 export interface AgentConstraints {

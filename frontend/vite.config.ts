@@ -30,6 +30,8 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
+    // Тести перевіряють справжню геолокацію, навіть якщо в .env.local увімкнено мок.
+    env: { VITE_MOCK_LOCATION: '' },
     css: { modules: { classNameStrategy: 'non-scoped' } },
   },
 })

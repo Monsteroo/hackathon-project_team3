@@ -1,0 +1,355 @@
+/* Екран 4 «Деталі кошика». DESIGN_PROMPT §Екран 4, DESIGN.md §4.3–4.6. Desktop-first. */
+.page {
+  display: grid;
+  grid-template-columns: minmax(var(--dim-80), var(--dim-100)) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.summaryCol {
+  position: sticky;
+  top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--space-xs);
+  min-height: var(--size-touch);
+  border-radius: var(--radius-sm);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  color: var(--said-fg);
+  text-decoration: none;
+}
+
+.back svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.back:hover {
+  color: var(--color-text);
+}
+
+.summary {
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.summary p {
+  margin: 0;
+}
+
+.overline {
+  font: var(--weight-medium) var(--text-meta) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.title {
+  margin: var(--space-2xs) 0 0;
+  font: var(--weight-bold) var(--text-h1) var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.store {
+  margin-top: var(--space-ms);
+}
+
+.chainRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+}
+
+.chain {
+  flex: none;
+}
+
+.address {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.meta {
+  margin: var(--space-2xs) 0 0;
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.total {
+  margin-top: var(--space-ms) !important;
+  font: var(--weight-semibold) var(--text-price-lg) var(--font-ui);
+  letter-spacing: -0.01em;
+}
+
+.trade {
+  margin-top: var(--space-2xs) !important;
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.save {
+  font-weight: var(--weight-semibold);
+  color: var(--color-savings);
+}
+
+.danger {
+  display: flex;
+  gap: var(--space-ms);
+  padding: var(--space-ms);
+  border-radius: var(--radius-md);
+  background: var(--color-danger-subtle);
+}
+
+.danger > svg {
+  flex: none;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  margin-top: var(--space-2xs);
+  color: var(--color-danger-strong);
+}
+
+.danger p {
+  margin: 0;
+}
+
+.dangerTitle {
+  font: var(--weight-semibold) var(--text-label) var(--font-ui);
+  color: var(--color-danger-strong);
+}
+
+.dangerText {
+  margin-top: var(--space-2xs) !important;
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.trim {
+  display: flex;
+  flex-direction: column;
+  margin: var(--space-xs) 0 0 calc(-1 * var(--button-padding-x-sm));
+  padding: 0;
+  list-style: none;
+}
+
+.trimName {
+  color: var(--color-text);
+}
+
+/* Зменшення витрат, а не економія на ціні: не оливковий (DESIGN.md §4.3, budget-trim). */
+.trimSum {
+  color: var(--color-text-2);
+}
+
+.fresh {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  margin: 0;
+  font: var(--weight-regular) var(--text-meta) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.fresh svg,
+.whole svg {
+  flex: none;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  margin-top: var(--space-2xs);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.actions a {
+  text-decoration: none;
+}
+
+.grow {
+  flex: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+  padding-top: var(--space-sm);
+}
+
+.whole {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  margin: 0;
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--color-text-2);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.groupTitle {
+  margin: 0;
+  font: var(--weight-semibold) var(--text-label) var(--font-display);
+  color: var(--color-text);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border: 1px solid var(--basket-row-divider);
+  border-radius: var(--radius-lg);
+  background: var(--basket-row-bg);
+}
+
+.missingRow,
+.removedRow {
+  display: grid;
+  align-items: start;
+  column-gap: var(--basket-row-gap);
+  padding: var(--basket-row-padding-y) var(--basket-row-padding-x);
+  border-bottom: 1px solid var(--basket-row-divider);
+}
+
+.missingRow {
+  grid-template-columns: var(--basket-photo-size) minmax(0, 1fr) auto;
+}
+
+.removedRow {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+}
+
+.missingRow:last-child,
+.removedRow:last-child {
+  border-bottom: 0;
+}
+
+.missingIcon {
+  display: grid;
+  place-items: center;
+  width: var(--basket-photo-size);
+  aspect-ratio: 1;
+  border-radius: var(--basket-photo-radius);
+  background: var(--basket-photo-bg);
+  color: var(--basket-photo-placeholder-fg);
+}
+
+.missingIcon svg {
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+}
+
+.missingName {
+  margin: 0 0 var(--space-sm);
+  font: var(--weight-medium) var(--basket-name-font) var(--font-ui);
+}
+
+.badgeDanger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  height: var(--size-badge);
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: var(--color-danger-subtle);
+  color: var(--color-danger-strong);
+  font: var(--weight-medium) var(--text-caption) var(--font-ui);
+}
+
+.badgeDanger svg {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.missingPrice {
+  font: var(--weight-medium) var(--basket-price-font) var(--font-ui);
+  color: var(--basket-missing-price-fg);
+}
+
+.removedName {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: var(--weight-regular) var(--text-label) var(--font-ui);
+  color: var(--color-text-3);
+  text-decoration: line-through;
+}
+
+.changeList {
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  max-width: var(--dim-120);
+}
+
+.empty a {
+  text-decoration: none;
+}
+
+/* < 1024px: підсумок зверху, список під ним, дії — у нижній панелі. */
+@media (max-width: 1023px) {
+  .page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+    padding-bottom: calc(var(--bottombar-height) + env(safe-area-inset-bottom));
+  }
+
+  .summaryCol {
+    position: static;
+  }
+
+  .content {
+    padding-top: 0;
+  }
+
+  .actions {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-sticky);
+    padding: var(--space-ms) var(--gutter) calc(var(--space-ms) + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--bottombar-border);
+    background: var(--bottombar-bg);
+  }
+}
+
+@media (max-width: 767px) {
+  .list {
+    margin: 0 calc(-1 * var(--gutter));
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+}
