@@ -1,0 +1,2575 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sayvy — прототип MVP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Onest:wght@600;700&subset=cyrillic,cyrillic-ext&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   DESIGN TOKENS — скопійовано з DESIGN.md (розділи 2, 3, 4) без змін
+   ===================================================================== */
+
+/* === PRIMITIVES === */
+:root {
+  --graphite-0:   #FFFFFF;
+  --graphite-25:  #F8F8F4;
+  --graphite-50:  #F4F4F5;
+  --graphite-75:  #F1F1EB;
+  --graphite-100: #E2E2E6;
+  --graphite-300: #A1A1AA;
+  --graphite-400: #8E8E98;
+  --graphite-450: #8B8B94;
+  --graphite-500: #6B6B75;
+  --graphite-550: #63636B;
+  --graphite-600: #52525B;
+  --graphite-800: #2E2E36;
+  --graphite-850: #24242A;
+  --graphite-900: #1B1B20;
+  --graphite-925: #18181B;
+  --graphite-950: #111114;
+  --graphite-925-a48: rgba(24, 24, 27, 0.48);
+
+  --lime-50:  #F7FDE6;
+  --lime-100: #ECFCCB;
+  --lime-300: #D4F75E;
+  --lime-400: #C6F432;
+  --lime-500: #B5E61D;
+  --lime-700: #4D7C0F;
+  --lime-800: #3F6212;
+  --lime-900: #262F12;
+  --lime-950: #1F2A0A;
+
+  --amber-50:  #FEF3E2;
+  --amber-300: #F5B454;
+  --amber-800: #9A4A06;
+  --amber-950: #3A2A12;
+
+  --red-50:  #FDECEC;
+  --red-400: #F87171;
+  --red-600: #C2261F;
+  --red-700: #A61F19;
+  --red-950: #3B1616;
+
+  --font-family-onest: 'Onest', system-ui, sans-serif;
+  --font-family-inter: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+
+  --font-size-12: 0.75rem;
+  --font-size-13: 0.8125rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-18: 1.125rem;
+  --font-size-20: 1.25rem;
+  --font-size-24: 1.5rem;
+  --font-size-28: 1.75rem;
+  --font-size-32: 2rem;
+  --font-size-40: 2.5rem;
+
+  --line-height-16: 1rem;
+  --line-height-18: 1.125rem;
+  --line-height-20: 1.25rem;
+  --line-height-24: 1.5rem;
+  --line-height-28: 1.75rem;
+  --line-height-32: 2rem;
+  --line-height-40: 2.5rem;
+  --line-height-48: 3rem;
+
+  --dim-0:  0;
+  --dim-0-5: 0.125rem;
+  --dim-1:  0.25rem;
+  --dim-2:  0.5rem;
+  --dim-3:  0.75rem;
+  --dim-4:  1rem;
+  --dim-5:  1.25rem;
+  --dim-6:  1.5rem;
+  --dim-8:  2rem;
+  --dim-10: 2.5rem;
+  --dim-11: 2.75rem;
+  --dim-12: 3rem;
+  --dim-14: 3.5rem;
+  --dim-16: 4rem;
+  --dim-18: 4.5rem;
+  --dim-20: 5rem;
+  --dim-24: 6rem;
+  --dim-42: 10.5rem;
+  --dim-70: 17.5rem;
+  --dim-80: 20rem;
+  --dim-100: 25rem;
+  --dim-120: 30rem;
+
+  --round-6:    6px;
+  --round-10:   10px;
+  --round-14:   14px;
+  --round-20:   20px;
+  --round-full: 9999px;
+
+  --shadow-1: 0 1px 2px rgba(24, 24, 27, 0.06);
+  --shadow-2: 0 4px 12px rgba(24, 24, 27, 0.08);
+  --shadow-3: 0 -4px 24px rgba(24, 24, 27, 0.12);
+  --shadow-4: 0 16px 40px rgba(24, 24, 27, 0.16);
+
+  --duration-0:   1ms;
+  --duration-120: 120ms;
+  --duration-200: 200ms;
+  --duration-280: 280ms;
+  --easing-decelerate: cubic-bezier(0.2, 0, 0, 1);
+  --easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  --layer-0:  0;
+  --layer-10: 10;
+  --layer-20: 20;
+  --layer-30: 30;
+  --layer-40: 40;
+  --layer-50: 50;
+
+  --opacity-40: 0.4;
+}
+
+/* === SEMANTIC: LIGHT (MVP) === */
+:root {
+  color-scheme: light;
+
+  --color-bg:         var(--graphite-25);
+  --color-surface:    var(--graphite-0);
+  --color-surface-2:  var(--graphite-75);
+  --color-logo-plate: var(--graphite-0);
+  --color-scrim:      var(--graphite-925-a48);
+
+  --color-text:   var(--graphite-925);
+  --color-text-2: var(--graphite-600);
+  --color-text-3: var(--graphite-550);
+
+  --color-border:        var(--graphite-100);
+  --color-border-strong: var(--graphite-400);
+
+  --color-accent:        var(--lime-400);      /* лише заливка; як текст/межа на світлому — 1.3:1 */
+  --color-accent-hover:  var(--lime-500);
+  --color-accent-subtle: var(--lime-50);
+  --color-accent-tint:   var(--lime-100);      /* декоративний фон hero, без акцентного тексту */
+  --color-on-accent:     var(--graphite-925);
+  --color-accent-fg:     var(--graphite-925);  /* текст, іконки, межі з акцентним значенням */
+  --color-ring:          var(--graphite-925);
+
+  --color-savings:          var(--lime-700);
+  --color-savings-strong:   var(--lime-800);
+  --color-savings-subtle:   var(--lime-100);
+  --color-savings-solid:    var(--graphite-925);  /* інверсна пігулка економії */
+  --color-on-savings-solid: var(--lime-400);
+
+  --color-warning:        var(--amber-800);
+  --color-warning-subtle: var(--amber-50);
+
+  --color-danger:        var(--red-600);
+  --color-danger-strong: var(--red-700);
+  --color-danger-subtle: var(--red-50);
+
+  --color-skeleton: var(--graphite-75);
+
+  --font-display: var(--font-family-onest);
+  --font-ui:      var(--font-family-inter);
+
+  --weight-regular:  var(--font-weight-400);
+  --weight-medium:   var(--font-weight-500);
+  --weight-semibold: var(--font-weight-600);
+  --weight-bold:     var(--font-weight-700);
+
+  --text-display:  var(--font-size-32)/var(--line-height-40);
+  --text-h1:       var(--font-size-24)/var(--line-height-32);
+  --text-h2:       var(--font-size-20)/var(--line-height-28);
+  --text-price-lg: var(--font-size-28)/var(--line-height-32);
+  --text-body-lg:  var(--font-size-18)/var(--line-height-28);
+  --text-body:     var(--font-size-16)/var(--line-height-24);
+  --text-label:    var(--font-size-14)/var(--line-height-20);
+  --text-meta:     var(--font-size-13)/var(--line-height-18);
+  --text-caption:  var(--font-size-12)/var(--line-height-16);
+
+  --space-2xs: var(--dim-0-5);
+  --space-xs:  var(--dim-1);
+  --space-sm:  var(--dim-2);
+  --space-ms:  var(--dim-3);
+  --space-md:  var(--dim-4);
+  --space-lg:  var(--dim-6);
+  --space-xl:  var(--dim-8);
+  --space-2xl: var(--dim-12);
+  --space-3xl: var(--dim-16);
+  --gutter:    var(--space-md);
+
+  --size-icon-sm:     var(--dim-4);
+  --size-icon-md:     var(--dim-5);
+  --size-icon-lg:     var(--dim-6);
+  --size-badge:       var(--dim-6);
+  --size-chip:        var(--dim-10);
+  --size-touch:       var(--dim-11);
+  --size-control:     var(--dim-12);
+  --size-touch-store: var(--dim-14);
+  --size-mic-compact: var(--dim-18);
+  --size-mic:         var(--dim-24);
+
+  --radius-sm:   var(--round-6);
+  --radius-md:   var(--round-10);
+  --radius-lg:   var(--round-14);
+  --radius-xl:   var(--round-20);
+  --radius-full: var(--round-full);
+
+  --shadow-sm: var(--shadow-1);
+  --shadow-md: var(--shadow-2);
+  --shadow-lg: var(--shadow-3);
+  --shadow-xl: var(--shadow-4);
+
+  --dur-fast: var(--duration-120);
+  --dur-base: var(--duration-200);
+  --dur-slow: var(--duration-280);
+  --ease-out: var(--easing-decelerate);
+  --ease-in:  var(--easing-accelerate);
+
+  --focus-width:  var(--dim-0-5);
+  --focus-offset: var(--dim-0-5);
+
+  --z-base:    var(--layer-0);
+  --z-sticky:  var(--layer-10);
+  --z-sheet:   var(--layer-20);
+  --z-popover: var(--layer-30);
+  --z-modal:   var(--layer-40);
+  --z-toast:   var(--layer-50);
+
+  --opacity-disabled: var(--opacity-40);
+}
+
+/* === SEMANTIC: REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: var(--duration-0);
+    --dur-base: var(--duration-0);
+    --dur-slow: var(--duration-0);
+  }
+}
+
+/* === COMPONENT: Button === */
+:root {
+  --button-height:       var(--size-control);
+  --button-height-sm:    var(--size-touch);
+  --button-padding-x:    var(--space-lg);
+  --button-padding-x-sm: var(--space-ms);
+  --button-radius:       var(--radius-md);
+  --button-gap:          var(--space-sm);
+  --button-icon-size:    var(--size-icon-md);
+  --button-primary-bg:       var(--color-accent);
+  --button-primary-bg-hover: var(--color-accent-hover);
+  --button-primary-fg:       var(--color-on-accent);
+  --button-secondary-bg:       var(--color-surface);
+  --button-secondary-bg-hover: var(--color-surface-2);
+  --button-secondary-fg:       var(--color-text);
+  --button-secondary-border:   var(--color-border-strong);
+  --button-ghost-bg:       transparent;
+  --button-ghost-bg-hover: var(--color-accent-subtle);
+  --button-ghost-fg:       var(--color-accent-fg);
+  --button-ghost-fg-hover: var(--color-accent-fg);
+  --button-transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+/* === COMPONENT: VoiceButton === */
+:root {
+  --voice-size:            var(--size-mic);
+  --voice-size-compact:    var(--size-mic-compact);
+  --voice-icon-size:       var(--dim-8);
+  --voice-icon-size-compact: var(--size-icon-lg);
+  --voice-size-inline:      var(--dim-12);   /* 48px, у RequestComposer на десктопі */
+  --voice-icon-size-inline: var(--size-icon-md);
+  --voice-radius:          var(--radius-full);
+  --voice-bg:        var(--color-accent);
+  --voice-bg-hover:  var(--color-accent-hover);
+  --voice-bg-active: var(--color-accent-hover);
+  --voice-fg:        var(--color-on-accent);
+  --voice-bg-listening:   var(--color-accent-hover);
+  --voice-ring-color:     var(--color-accent-fg);
+  --voice-ring-width:     var(--dim-0-5);
+  --voice-ring-gap:       var(--space-sm);
+  --voice-ring-scale-min: 1;
+  --voice-ring-scale-max: 1.15;
+  --voice-bg-processing: var(--color-accent);
+  --voice-bg-blocked:     var(--color-surface-2);
+  --voice-fg-blocked:     var(--color-text-2);
+  --voice-border-blocked: var(--color-border-strong);
+  --voice-status-font:  var(--text-label);
+  --voice-status-fg:    var(--color-text-2);
+  --voice-error-fg:     var(--color-danger);
+  --voice-message-gap:  var(--space-ms);
+  --voice-level-width:  var(--size-mic);
+  --voice-level-height: var(--space-xs);
+  --voice-level-track:  var(--color-surface-2);
+  --voice-level-fill:   var(--color-accent-fg);
+  --voice-shadow-compact: var(--shadow-md);
+  --voice-transition: background-color var(--dur-fast) var(--ease-out),
+                      transform var(--dur-fast) var(--ease-out);
+}
+
+/* === COMPONENT: StoreCard === */
+:root {
+  --store-card-bg:         var(--color-surface);
+  --store-card-bg-pressed: var(--color-surface-2);
+  --store-card-border:        var(--color-border);
+  --store-card-border-hover:  var(--color-border-strong);
+  --store-card-border-selected: var(--color-accent-fg);
+  --store-card-shadow-selected: 0 0 0 1px var(--color-accent-fg), var(--shadow-sm);
+  --store-card-radius:     var(--radius-lg);
+  --store-card-padding:    var(--space-md);
+  --store-card-gap:        var(--space-sm);
+  --store-card-width-mobile: var(--dim-70);
+  --store-card-min-height: var(--dim-42);
+  --store-card-title-font:  var(--text-h2);
+  --store-card-title-fg:    var(--color-text);
+  --store-card-total-font:  var(--text-price-lg);
+  --store-card-total-fg:    var(--color-text);
+  --store-card-meta-font:   var(--text-meta);
+  --store-card-meta-fg:     var(--color-text-3);
+  --store-card-chain-font:  var(--text-label);
+  --store-card-chain-fg:    var(--color-text);
+  --store-card-tradeoff-font:        var(--text-label);
+  --store-card-tradeoff-savings-fg:  var(--color-savings);
+  --store-card-tradeoff-fg:          var(--color-text-2);
+  --store-logo-size:   var(--size-icon-lg);
+  --store-logo-bg:     var(--color-logo-plate);
+  --store-logo-border: var(--color-border);
+  --store-logo-radius: var(--radius-sm);
+  --store-logo-fallback-bg: var(--color-surface-2);
+  --store-logo-fallback-fg: var(--color-text-2);
+  --store-card-transition: border-color var(--dur-fast) var(--ease-out),
+                           box-shadow var(--dur-fast) var(--ease-out),
+                           background-color var(--dur-fast) var(--ease-out);
+}
+
+/* === COMPONENT: BasketRow === */
+:root {
+  --basket-row-bg:         var(--color-surface);
+  --basket-row-divider:    var(--color-border);
+  --basket-row-padding-y:  var(--space-ms);
+  --basket-row-padding-x:  var(--space-md);
+  --basket-row-gap:        var(--space-ms);
+  --basket-row-min-height: var(--dim-20);
+  --basket-photo-size:   var(--size-touch-store);
+  --basket-photo-bg:     var(--color-surface-2);
+  --basket-photo-radius: var(--radius-md);
+  --basket-photo-placeholder-fg: var(--color-text-3);
+  --basket-name-font:  var(--text-body);
+  --basket-name-fg:    var(--color-text);
+  --basket-brand-font: var(--text-meta);
+  --basket-brand-fg:   var(--color-text-3);
+  --basket-badges-gap: var(--space-sm);
+  --basket-price-font:  var(--text-label);
+  --basket-price-fg:    var(--color-text);
+  --basket-qty-font:    var(--text-meta);
+  --basket-qty-fg:      var(--color-text-3);
+  --basket-missing-price-fg: var(--color-text-3);
+}
+
+/* === COMPONENT: UnitPrice === */
+:root {
+  --unit-price-font: var(--text-meta);
+  --unit-price-fg:   var(--color-text-3);
+  --unit-price-badge-height:  var(--size-badge);
+  --unit-price-badge-padding-x: var(--space-sm);
+  --unit-price-badge-gap:     var(--space-xs);
+  --unit-price-badge-radius:  var(--radius-sm);
+  --unit-price-badge-bg:      var(--color-surface-2);
+  --unit-price-badge-fg:      var(--color-text-2);
+  --unit-price-badge-weight:  var(--weight-medium);
+  --unit-price-lowest-bg: var(--color-savings-subtle);
+  --unit-price-lowest-fg: var(--color-savings-strong);
+  --unit-price-icon-size: var(--size-icon-sm);
+  --unit-price-weight-bg: var(--color-warning-subtle);
+  --unit-price-weight-fg: var(--color-warning);
+}
+
+/* === COMPONENT: AnalogNotice === */
+:root {
+  --analog-bg:        var(--color-warning-subtle);
+  --analog-radius:    var(--radius-md);
+  --analog-padding:   var(--space-ms);
+  --analog-gap:       var(--space-sm);
+  --analog-icon-size: var(--size-icon-sm);
+  --analog-icon-fg:   var(--color-warning);
+  --analog-title-font: var(--text-label);
+  --analog-title-fg:   var(--color-warning);
+  --analog-body-font:  var(--text-label);
+  --analog-body-fg:    var(--color-text);
+  --analog-meta-font:  var(--text-meta);
+  --analog-meta-fg:    var(--color-text-2);
+  --analog-diff-fg:         var(--color-text-2);
+  --analog-diff-savings-fg: var(--color-savings-strong);
+  --analog-badge-height:    var(--size-badge);
+  --analog-badge-padding-x: var(--space-sm);
+  --analog-badge-radius:    var(--radius-sm);
+  --analog-badge-font:      var(--text-caption);
+  --analog-badge-bg:        var(--color-warning-subtle);
+  --analog-badge-fg:        var(--color-warning);
+}
+
+/* === COMPONENT: AllergenBadge === */
+:root {
+  --allergen-height:     var(--size-badge);
+  --allergen-hit-area:   var(--size-touch);
+  --allergen-padding-x:  var(--space-sm);
+  --allergen-gap:        var(--space-xs);
+  --allergen-radius:     var(--radius-sm);
+  --allergen-font:       var(--text-caption);
+  --allergen-icon-size:  var(--size-icon-sm);
+  --allergen-verified-bg: var(--color-surface-2);
+  --allergen-verified-fg: var(--color-text-2);
+  --allergen-unknown-bg:     var(--color-surface);
+  --allergen-unknown-fg:     var(--color-text-2);
+  --allergen-unknown-border: var(--color-border-strong);
+  --allergen-traces-bg: var(--color-warning-subtle);
+  --allergen-traces-fg: var(--color-warning);
+  --allergen-contains-bg: var(--color-danger-subtle);
+  --allergen-contains-fg: var(--color-danger-strong);
+  --allergen-hover-overlay: var(--color-border);
+  --allergen-details-bg:      var(--color-surface);
+  --allergen-details-shadow:  var(--shadow-md);
+  --allergen-details-radius:  var(--radius-md);
+  --allergen-details-padding: var(--space-md);
+  --allergen-details-width:   var(--dim-80);
+  --allergen-details-font:    var(--text-label);
+  --allergen-details-meta-fg: var(--color-text-2);
+}
+
+/* === COMPONENT: CitySelect === */
+:root {
+  --city-label-font:  var(--text-label);
+  --city-label-fg:    var(--color-text);
+  --city-field-height:   var(--size-control);
+  --city-field-padding-x: var(--space-ms);
+  --city-field-gap:      var(--space-sm);
+  --city-field-radius:   var(--radius-md);
+  --city-field-bg:       var(--color-surface);
+  --city-field-border:   var(--color-border-strong);
+  --city-field-border-hover: var(--color-text-2);
+  --city-field-border-open:  var(--color-accent-fg);
+  --city-field-border-invalid: var(--color-danger);
+  --city-field-font:     var(--text-body);
+  --city-field-fg:       var(--color-text);
+  --city-placeholder-fg: var(--color-text-3);
+  --city-icon-size:      var(--size-icon-md);
+  --city-icon-fg:        var(--color-text-2);
+  --city-trigger-height: var(--size-touch);
+  --city-trigger-font:   var(--text-label);
+  --city-trigger-bg-hover: var(--color-surface-2);
+  --city-option-height:    var(--size-control);
+  --city-option-padding-x: var(--space-ms);
+  --city-option-font:      var(--text-body);
+  --city-option-meta-font: var(--text-meta);
+  --city-option-meta-fg:   var(--color-text-3);
+  --city-option-bg-active: var(--color-surface-2);
+  --city-option-bg-selected: var(--color-accent-subtle);
+  --city-option-fg-selected: var(--color-accent-fg);
+  --city-option-locate-fg:   var(--color-accent-fg);
+  --city-message-font: var(--text-meta);
+  --city-hint-fg:      var(--color-text-2);
+  --city-error-fg:     var(--color-danger);
+  --city-chevron-transition: transform var(--dur-base) var(--ease-out);
+}
+
+/* =====================================================================
+   BASE
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font: var(--weight-regular) var(--text-body) var(--font-ui);
+  color: var(--color-text);
+  background: var(--color-surface-2);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+ul, ol { list-style: none; }
+:focus-visible { outline: var(--focus-width) solid var(--color-ring); outline-offset: var(--focus-offset); }
+.num { font-family: var(--font-ui); font-variant-numeric: tabular-nums; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Lucide icons: stroke 1.75, 16 / 20 / 24 */
+.i {
+  width: var(--size-icon-md); height: var(--size-icon-md); flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.75;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.i-sm { width: var(--size-icon-sm); height: var(--size-icon-sm); }
+.i-lg { width: var(--size-icon-lg); height: var(--size-icon-lg); }
+.spin { animation: spin 900ms linear infinite; transform-origin: center; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================================
+   CANVAS (оболонка прототипу, не частина продукту)
+   ===================================================================== */
+.canvas { max-width: 1680px; margin: 0 auto; padding: var(--space-xl) var(--gutter) var(--space-3xl); }
+.intro { max-width: 760px; margin-bottom: var(--space-xl); }
+.intro h1 { font: var(--weight-bold) var(--text-display) var(--font-display); letter-spacing: -0.01em; }
+.intro p { color: var(--color-text-2); margin-top: var(--space-sm); }
+.legend { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-md); }
+.group-title {
+  font: var(--weight-semibold) var(--text-h1) var(--font-display);
+  margin: var(--space-2xl) 0 var(--space-lg);
+  padding-top: var(--space-lg); border-top: 1px solid var(--color-border);
+}
+.flow { display: flex; flex-wrap: wrap; gap: var(--space-xl) var(--space-lg); align-items: flex-start; }
+.shot { width: 375px; max-width: 100%; }
+.shot-head { margin-bottom: var(--space-ms); min-height: calc(var(--line-height-18) * 3 + var(--line-height-24)); }
+.shot-num { font: var(--weight-medium) var(--text-caption) var(--font-ui); color: var(--color-text-3); letter-spacing: 0.04em; }
+.shot-head h3 { font: var(--weight-semibold) var(--text-body) var(--font-display); }
+.shot-head p:last-child { font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-2); margin-top: var(--space-2xs); }
+.device {
+  position: relative; width: 100%; height: 780px; overflow: hidden;
+  border-radius: calc(var(--radius-xl) * 1.6);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xl);
+  background: var(--color-bg);
+  isolation: isolate;
+}
+.screen { position: relative; height: 100%; display: flex; flex-direction: column; background: var(--color-bg); }
+.scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.pad { padding: 0 var(--gutter); }
+
+/* =====================================================================
+   APP CHROME
+   ===================================================================== */
+.appbar {
+  flex: none; display: flex; align-items: center; gap: var(--space-xs);
+  min-height: var(--dim-14); padding: 0 var(--space-sm) 0 var(--gutter);
+  background: var(--color-bg);
+}
+.appbar.with-back { padding-left: var(--space-xs); }
+.appbar-title { font: var(--weight-semibold) var(--text-body-lg) var(--font-display); flex: 1; min-width: 0; }
+.logo-word { font: var(--weight-bold) var(--text-h2) var(--font-display); letter-spacing: -0.02em; flex: 1; display: flex; align-items: center; gap: var(--space-xs); }
+.logo-word span { width: var(--space-sm); height: var(--space-sm); border-radius: var(--radius-full); background: var(--color-accent); margin-top: var(--space-xs); }
+
+.icon-btn {
+  width: var(--size-touch); height: var(--size-touch); flex: none;
+  display: grid; place-items: center; border-radius: var(--radius-md);
+  color: var(--color-text); transition: var(--button-transition);
+}
+.icon-btn:hover { background: var(--color-surface-2); }
+
+/* Buttons (4.0) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--button-gap);
+  min-height: var(--button-height); padding: 0 var(--button-padding-x);
+  border-radius: var(--button-radius); border: 1px solid transparent;
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  transition: var(--button-transition); white-space: nowrap; text-decoration: none;
+}
+.btn .i { width: var(--button-icon-size); height: var(--button-icon-size); }
+.btn-sm { min-height: var(--button-height-sm); padding: 0 var(--button-padding-x-sm); }
+.btn-block { width: 100%; }
+.btn-primary { background: var(--button-primary-bg); color: var(--button-primary-fg); }
+.btn-primary:hover, .btn-primary:active { background: var(--button-primary-bg-hover); }
+.btn-secondary { background: var(--button-secondary-bg); color: var(--button-secondary-fg); border-color: var(--button-secondary-border); }
+.btn-secondary:hover { background: var(--button-secondary-bg-hover); }
+.btn-ghost { background: var(--button-ghost-bg); color: var(--button-ghost-fg); }
+.btn-ghost:hover { background: var(--button-ghost-bg-hover); color: var(--button-ghost-fg-hover); }
+
+.bottombar {
+  flex: none; display: flex; gap: var(--space-sm);
+  padding: var(--space-ms) var(--gutter) calc(var(--space-ms) + env(safe-area-inset-bottom));
+  background: var(--color-surface); border-top: 1px solid var(--color-border);
+}
+.bottombar .grow { flex: 1; }
+
+.meta { font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-3); }
+.h1 { font: var(--weight-semibold) var(--text-h1) var(--font-display); }
+.section-label { font: var(--weight-semibold) var(--text-label) var(--font-ui); color: var(--color-text); }
+
+/* Badges */
+.badge {
+  display: inline-flex; align-items: center; gap: var(--space-xs);
+  height: var(--size-badge); padding: 0 var(--space-sm); border-radius: var(--radius-sm);
+  font: var(--weight-medium) var(--text-caption) var(--font-ui); white-space: nowrap;
+}
+.badge .i { width: var(--size-icon-sm); height: var(--size-icon-sm); }
+.badge-savings { background: var(--color-savings-solid); color: var(--color-on-savings-solid); }
+.badge-warning { background: var(--color-warning-subtle); color: var(--color-warning); }
+.badge-danger  { background: var(--color-danger-subtle); color: var(--color-danger-strong); }
+.badge-neutral { background: var(--color-surface-2); color: var(--color-text-2); }
+.badge-accent  { background: var(--color-accent); color: var(--color-on-accent); }
+
+/* =====================================================================
+   4.7 CitySelect
+   ===================================================================== */
+.city-trigger {
+  display: inline-flex; align-items: center; gap: var(--space-xs);
+  height: var(--city-trigger-height); padding: 0 var(--space-sm);
+  border-radius: var(--city-field-radius);
+  font: var(--weight-medium) var(--city-trigger-font) var(--font-ui);
+  transition: var(--button-transition);
+}
+.city-trigger:hover { background: var(--city-trigger-bg-hover); }
+.city-trigger .pin-ic { color: var(--city-icon-fg); }
+.city-trigger .chev { color: var(--city-icon-fg); transition: var(--city-chevron-transition); }
+
+.city-head { flex: none; padding: var(--space-sm) var(--space-sm) var(--space-ms) var(--gutter); background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+.city-head-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-sm); }
+.city-label { font: var(--weight-medium) var(--city-label-font) var(--font-ui); color: var(--city-label-fg); }
+.city-field {
+  display: flex; align-items: center; gap: var(--city-field-gap);
+  height: var(--city-field-height); padding: 0 var(--city-field-padding-x);
+  background: var(--city-field-bg); border: 1px solid var(--city-field-border-open);
+  border-radius: var(--city-field-radius); margin-right: var(--space-sm);
+}
+.city-field:focus-within { outline: var(--focus-width) solid var(--color-ring); outline-offset: var(--focus-offset); }
+.city-field .i { color: var(--city-icon-fg); }
+.city-field input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: var(--weight-regular) var(--city-field-font) var(--font-ui); color: var(--city-field-fg); }
+.city-field input::placeholder { color: var(--city-placeholder-fg); }
+.city-list { background: var(--color-surface); }
+.city-opt {
+  display: flex; align-items: center; gap: var(--space-ms);
+  min-height: var(--city-option-height); padding: 0 var(--gutter);
+  font: var(--weight-regular) var(--city-option-font) var(--font-ui);
+  border-bottom: 1px solid var(--color-border); cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.city-opt:hover, .city-opt.is-active { background: var(--city-option-bg-active); }
+.city-opt .check { width: var(--size-icon-md); visibility: hidden; color: var(--city-option-fg-selected); }
+.city-opt[aria-selected="true"] { background: var(--city-option-bg-selected); color: var(--city-option-fg-selected); font-weight: var(--weight-medium); }
+.city-opt[aria-selected="true"] .check { visibility: visible; }
+.city-opt .city-name { flex: 1; }
+.city-opt .city-meta { font: var(--weight-regular) var(--city-option-meta-font) var(--font-ui); color: var(--city-option-meta-fg); }
+.city-opt[aria-selected="true"] .city-meta { color: var(--city-option-fg-selected); }
+.city-opt.locate { color: var(--city-option-locate-fg); font-weight: var(--weight-medium); }
+.city-empty { padding: var(--space-md) var(--gutter); font: var(--weight-regular) var(--city-message-font) var(--font-ui); color: var(--city-hint-fg); }
+.city-empty strong { display: block; color: var(--color-text); font: var(--weight-medium) var(--text-body) var(--font-ui); margin-bottom: var(--space-xs); }
+.city-note { padding: var(--space-md) var(--gutter); }
+
+/* =====================================================================
+   4.1 VoiceButton
+   ===================================================================== */
+.voice-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--voice-message-gap); --level: 0; }
+.voice {
+  position: relative; display: grid; place-items: center;
+  width: var(--voice-size); height: var(--voice-size); border-radius: var(--voice-radius);
+  background: var(--voice-bg); color: var(--voice-fg); border: 1px solid transparent;
+  transition: var(--voice-transition);
+}
+.voice:hover { background: var(--voice-bg-hover); }
+.voice:active { background: var(--voice-bg-active); }
+.voice .vi { display: none; width: var(--voice-icon-size); height: var(--voice-icon-size); }
+.voice .ring {
+  position: absolute; inset: calc(-1 * (var(--voice-ring-gap) + var(--voice-ring-width)));
+  border-radius: inherit; border: var(--voice-ring-width) solid var(--voice-ring-color);
+  opacity: 0; pointer-events: none;
+  transform: scale(calc(var(--voice-ring-scale-min) + (var(--voice-ring-scale-max) - var(--voice-ring-scale-min)) * var(--level)));
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+}
+.voice-wrap:is([data-state="idle"], [data-state="error"]) [data-icon="mic"],
+.voice-wrap[data-state="listening"] [data-icon="stop"],
+.voice-wrap[data-state="processing"] [data-icon="loader"],
+.voice-wrap[data-state="blocked"] [data-icon="micoff"] { display: block; }
+.voice-wrap[data-state="listening"] .voice { background: var(--voice-bg-listening); }
+.voice-wrap[data-state="listening"] .ring { opacity: 1; }
+.voice-wrap[data-state="processing"] .voice { background: var(--voice-bg-processing); cursor: progress; }
+.voice-wrap[data-state="blocked"] .voice { background: var(--voice-bg-blocked); color: var(--voice-fg-blocked); border-color: var(--voice-border-blocked); cursor: not-allowed; }
+.voice-status {
+  min-height: var(--line-height-20);
+  font: var(--weight-medium) var(--voice-status-font) var(--font-ui); color: var(--voice-status-fg);
+  text-align: center;
+}
+.voice-error {
+  display: flex; gap: var(--space-sm); align-items: flex-start; max-width: var(--dim-70);
+  font: var(--weight-medium) var(--text-label) var(--font-ui); color: var(--voice-error-fg);
+}
+.voice-error .i { margin-top: var(--space-2xs); }
+.voice-hint { font: var(--weight-regular) var(--text-label) var(--font-ui); color: var(--color-text-2); text-align: center; max-width: var(--dim-70); }
+.voice-level { display: none; width: var(--voice-level-width); height: var(--voice-level-height); background: var(--voice-level-track); border-radius: var(--radius-full); overflow: hidden; }
+.voice-level span { display: block; height: 100%; background: var(--voice-level-fill); transform-origin: left; transform: scaleX(var(--level)); }
+@media (prefers-reduced-motion: reduce) {
+  .voice .ring { transform: scale(1); }
+  .voice-wrap[data-state="listening"] .voice-level { display: block; }
+  .voice .spin { animation: none; }
+}
+.voice-wrap.compact .voice { width: var(--voice-size-compact); height: var(--voice-size-compact); box-shadow: var(--voice-shadow-compact); }
+.voice-wrap.compact .vi { width: var(--voice-icon-size-compact); height: var(--voice-icon-size-compact); }
+.live-text { font: var(--weight-regular) var(--text-body-lg) var(--font-ui); color: var(--color-text); text-align: center; max-width: var(--dim-80); }
+
+/* =====================================================================
+   SCREEN 1 — Запит
+   ===================================================================== */
+.hero { padding: var(--space-md) var(--gutter) 0; }
+.hero p, .hero-sub { color: var(--color-text-2); margin-top: var(--space-xs); }
+.hero-lime { margin: var(--space-xs) var(--gutter) 0; padding: var(--space-lg) var(--space-md); background: var(--color-accent-tint); border-radius: var(--radius-lg); }
+.display { font: var(--weight-bold) var(--text-display) var(--font-display); letter-spacing: -0.02em; }
+.hl { background: var(--color-accent); color: var(--color-on-accent); padding: 0 var(--space-xs); border-radius: var(--radius-sm); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.voice-zone { padding: var(--space-lg) var(--gutter) var(--space-md); display: flex; flex-direction: column; align-items: center; gap: var(--space-ms); }
+.field-label { display: block; font: var(--weight-medium) var(--text-label) var(--font-ui); margin-bottom: var(--space-sm); }
+.request {
+  display: flex; align-items: flex-end; gap: var(--space-sm);
+  padding: var(--space-ms) var(--space-xs) var(--space-xs) var(--space-ms);
+  background: var(--color-surface); border: 2px solid var(--color-accent-fg); border-radius: var(--radius-lg);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.request:focus-within { outline: var(--focus-width) solid var(--color-ring); outline-offset: var(--focus-offset); }
+.request textarea {
+  flex: 1; min-width: 0; border: 0; outline: none; resize: none; background: transparent;
+  font: var(--weight-regular) var(--text-body) var(--font-ui); color: var(--color-text);
+  height: calc(var(--line-height-24) * 3); padding-bottom: var(--space-sm);
+}
+.request textarea::placeholder { color: var(--color-text-3); }
+.ex-chips { display: flex; gap: var(--space-sm); margin-top: var(--space-ms); overflow-x: auto; padding-bottom: var(--space-2xs); scrollbar-width: none; }
+.ex-chips li { flex: none; }
+.example {
+  display: inline-flex; align-items: center; gap: var(--space-xs); white-space: nowrap;
+  min-height: var(--size-touch); padding: 0 var(--space-ms);
+  border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); background: var(--color-surface); color: var(--color-text);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  transition: var(--button-transition);
+}
+.example:hover { background: var(--color-accent-subtle); border-color: var(--color-accent-fg); }
+.example .i { color: var(--color-text-2); }
+.preview-line { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm); margin-top: var(--space-md); }
+.free-note { display: flex; align-items: center; justify-content: center; gap: var(--space-xs); padding: var(--space-lg) var(--gutter) var(--space-xl); }
+.btn-lg { min-height: var(--size-control); padding: 0 var(--space-lg); font: var(--weight-semibold) var(--text-body) var(--font-ui); }
+
+/* --- Desktop frame (1440) --- */
+.shot-desktop { width: 100%; max-width: 1280px; }
+.browser { border-radius: var(--radius-xl); border: 1px solid var(--color-border); box-shadow: var(--shadow-xl); background: var(--color-bg); overflow: hidden; }
+.browser-bar { display: flex; align-items: center; gap: var(--space-sm); height: var(--dim-10); padding: 0 var(--space-md); background: var(--color-surface-2); border-bottom: 1px solid var(--color-border); }
+.browser-bar i { width: var(--space-ms); height: var(--space-ms); border-radius: var(--radius-full); background: var(--color-border); }
+.browser-bar span { margin-left: var(--space-md); padding: var(--space-2xs) var(--space-md); border-radius: var(--radius-full); background: var(--color-surface); font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-3); }
+.d-appbar { display: flex; align-items: center; gap: var(--space-lg); height: var(--dim-16); padding: 0 var(--space-xl); }
+.d-appbar .logo-word { flex: none; }
+.d-steps { display: flex; gap: var(--space-xs); margin: 0 auto; font: var(--weight-medium) var(--text-label) var(--font-ui); color: var(--color-text-3); }
+.d-steps li { display: flex; align-items: center; gap: var(--space-xs); }
+.d-steps li + li::before { content: '→'; color: var(--color-border-strong); }
+.d-steps [aria-current] { color: var(--color-text); }
+.d-steps [aria-current] > span { color: var(--color-on-accent); background: var(--color-accent); padding: var(--space-2xs) var(--space-sm); border-radius: var(--radius-full); }
+.free-pill { font: var(--weight-medium) var(--text-label) var(--font-ui); padding: var(--space-xs) var(--space-ms); border-radius: var(--radius-full); background: var(--color-surface); border: 1px solid var(--color-border); }
+.d-hero { margin: 0 var(--space-xl) var(--space-xl); padding: var(--space-3xl); background: var(--color-accent-tint); border-radius: var(--radius-xl); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-2xl); align-items: center; }
+.d-hero h2 { font: var(--weight-bold) var(--font-size-40)/var(--line-height-48) var(--font-display); letter-spacing: -0.02em; }
+.d-hero .sub { font: var(--weight-regular) var(--text-body-lg) var(--font-ui); color: var(--color-text-2); margin-top: var(--space-ms); }
+.composer {
+  display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-lg);
+  min-height: var(--dim-16); padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-md);
+  background: var(--color-surface); border: 2px solid var(--color-accent-fg); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.composer:focus-within { outline: var(--focus-width) solid var(--color-ring); outline-offset: var(--focus-offset); }
+.composer textarea { flex: 1; min-width: 0; border: 0; outline: none; resize: none; background: transparent; font: var(--weight-regular) var(--text-body-lg) var(--font-ui); color: var(--color-text); height: var(--line-height-28); }
+.composer textarea::placeholder { color: var(--color-text-3); }
+.voice-wrap.inline { flex-direction: row; gap: 0; }
+.voice-wrap.inline .voice { width: var(--voice-size-inline); height: var(--voice-size-inline); }
+.voice-wrap.inline .vi { width: var(--voice-icon-size-inline); height: var(--voice-icon-size-inline); }
+.voice-wrap.inline .voice .ring { inset: calc(-1 * var(--space-xs)); }
+.d-hero .ex-chips { flex-wrap: wrap; overflow: visible; }
+.trust { display: flex; align-items: center; gap: var(--space-xs); margin-top: var(--space-md); }
+.rpreview { background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: var(--space-lg); }
+.rp-cap { font: var(--weight-medium) var(--text-caption) var(--font-ui); color: var(--color-text-3); text-transform: none; margin-bottom: var(--space-ms); }
+.rp-list { display: flex; flex-direction: column; gap: var(--space-xs); }
+.rp-list li { display: grid; grid-template-columns: 1fr auto; gap: 0 var(--space-md); padding: var(--space-ms) var(--space-md); border-radius: var(--radius-md); border: 1px solid var(--color-border); }
+.rp-list li.is-best { background: var(--color-accent); border: 2px solid var(--color-accent-fg); }
+.rp-name { font: var(--weight-semibold) var(--text-label) var(--font-ui); }
+.rp-store { grid-column: 1; font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-2); }
+.rp-list li.is-best .rp-store { color: var(--color-on-accent); }
+.rp-sum { grid-row: 1 / span 2; grid-column: 2; align-self: center; font: var(--weight-semibold) var(--text-body-lg) var(--font-ui); font-variant-numeric: tabular-nums; }
+.rpreview .badge { margin-top: var(--space-ms); }
+/* --- Desktop screens 2–3 --- */
+.d-steps a { color: var(--color-text-2); text-decoration: underline; text-underline-offset: 3px; }
+.d-steps a:hover { color: var(--color-text); }
+.d-page-head { padding: var(--space-sm) var(--space-xl) var(--space-lg); }
+.d-title { font: var(--weight-bold) var(--text-h1) var(--font-display); letter-spacing: -0.01em; }
+.d-said { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-xs); color: var(--color-text-2); font: var(--weight-regular) var(--text-label) var(--font-ui); }
+.d-said q { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.d-main { display: grid; grid-template-columns: minmax(400px, 480px) minmax(0, 1fr); gap: var(--space-lg); padding: 0 var(--space-xl) var(--space-xl); align-items: start; }
+.d-panel { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-lg); }
+.plist { margin-top: var(--space-xs); }
+.prow { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: var(--space-sm); min-height: var(--dim-14); border-bottom: 1px solid var(--color-border); }
+.prow-name { font: var(--weight-medium) var(--text-label) var(--font-ui); min-width: 0; }
+.prow-name .meta { display: block; }
+.prow-x { color: var(--color-text-2); }
+.stepper-sm button { width: var(--size-touch); height: var(--size-touch); }
+.stepper-sm output { min-width: var(--space-lg); font: var(--weight-semibold) var(--text-label) var(--font-ui); font-variant-numeric: tabular-nums; }
+.d-add { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-md); height: var(--size-control); padding: 0 var(--space-ms); border: 1px dashed var(--color-border-strong); border-radius: var(--radius-md); color: var(--color-text-2); }
+.d-add:focus-within { border-style: solid; border-color: var(--color-accent-fg); outline: var(--focus-width) solid var(--color-ring); outline-offset: var(--focus-offset); }
+.d-add input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: var(--weight-regular) var(--text-body) var(--font-ui); color: var(--color-text); }
+.d-add input::placeholder { color: var(--color-text-3); }
+.fset { border: 0; padding: var(--space-md) 0; margin: 0; border-bottom: 1px solid var(--color-border); min-width: 0; }
+.fset legend { float: left; width: 100%; padding: 0; margin-bottom: var(--space-ms); font: var(--weight-semibold) var(--text-label) var(--font-ui); }
+.fset legend + * { clear: both; }
+.hint { margin-top: var(--space-sm); font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-2); }
+.budget-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-ms); }
+.money { display: flex; align-items: center; gap: var(--space-xs); width: var(--dim-42); height: var(--size-control); padding: 0 var(--space-ms); border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); background: var(--color-surface); font: var(--weight-semibold) var(--text-body) var(--font-ui); }
+.money:focus-within { border-color: var(--color-accent-fg); outline: var(--focus-width) solid var(--color-ring); outline-offset: var(--focus-offset); }
+.money input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: inherit; font-variant-numeric: tabular-nums; color: var(--color-text); }
+.presets { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.presets button { min-height: var(--size-touch); padding: 0 var(--space-ms); border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); font: var(--weight-medium) var(--text-label) var(--font-ui); background: var(--color-surface); }
+.presets button:hover, .seg button:hover { border-color: var(--color-accent-fg); }
+.presets [aria-checked="true"], .seg [aria-checked="true"] { background: var(--color-accent); color: var(--color-on-accent); border-color: var(--color-accent-fg); box-shadow: inset 0 0 0 1px var(--color-accent-fg); }
+.checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--dim-42), 1fr)); gap: 0 var(--space-md); }
+.check { display: flex; align-items: center; gap: var(--space-sm); min-height: var(--size-touch); font: var(--weight-regular) var(--text-label) var(--font-ui); cursor: pointer; }
+.check input { appearance: none; -webkit-appearance: none; flex: none; width: var(--dim-5); height: var(--dim-5); margin: 0; border: 1.5px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-surface) center / 14px no-repeat; transition: background-color var(--dur-fast) var(--ease-out); }
+.check input:checked { background-color: var(--color-accent); border-color: var(--color-accent-fg); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2318181B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
+.check input:focus-visible { outline: var(--focus-width) solid var(--color-ring); outline-offset: var(--focus-offset); }
+.check input:checked + span { font-weight: var(--weight-medium); }
+.seg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-xs); }
+.seg button { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: var(--dim-14); border-radius: var(--radius-md); border: 1px solid var(--color-border-strong); background: var(--color-surface); font: var(--weight-semibold) var(--text-label) var(--font-ui); }
+.seg small { font: var(--weight-regular) var(--text-caption) var(--font-ui); color: inherit; opacity: 1; }
+.seg [aria-checked="false"] small { color: var(--color-text-2); }
+.d-cta { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); padding-top: var(--space-lg); }
+
+.d-split { display: grid; grid-template-columns: 440px minmax(0, 1fr); height: 720px; border-top: 1px solid var(--color-border); }
+.d-left { display: flex; flex-direction: column; min-height: 0; background: var(--color-surface); border-right: 1px solid var(--color-border); }
+.d-left-head { padding: var(--space-lg) var(--space-lg) var(--space-ms); }
+.d-cards { flex: 1; min-height: 0; overflow-y: auto; }
+.d-cards .cards { padding: var(--space-2xs) var(--space-lg) var(--space-md); }
+.why { margin: 0 var(--space-lg) var(--space-lg); padding: var(--space-ms) var(--space-md); border-radius: var(--radius-md); background: var(--color-surface-2); font: var(--weight-regular) var(--text-label) var(--font-ui); }
+.why summary { cursor: pointer; font-weight: var(--weight-semibold); color: var(--color-accent-fg); text-decoration: underline; text-underline-offset: 3px; }
+.why p { margin-top: var(--space-sm); color: var(--color-text-2); }
+.d-actions { flex: none; display: flex; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); border-top: 1px solid var(--color-border); }
+.d-actions .grow { flex: 1; }
+.d-map { position: relative; overflow: hidden; }
+.d-map .map { inset: 0; height: 100%; }
+.d-me { position: absolute; width: var(--space-md); height: var(--space-md); transform: translate(-50%, -50%); border-radius: var(--radius-full); background: var(--color-accent); border: 3px solid var(--color-accent-fg); box-shadow: 0 0 0 10px rgba(198, 244, 50, 0.28); }
+.d-map .pin { cursor: pointer; }
+.d-map .pin.is-hover .pin-body { transform: scale(1.15); box-shadow: 0 0 0 2px var(--color-accent-fg), var(--shadow-md); }
+.d-addr { position: absolute; top: var(--space-md); left: var(--space-md); max-width: 60%; }
+.d-locate { position: absolute; right: var(--space-md); bottom: var(--space-md); background: var(--color-surface); box-shadow: var(--shadow-md); }
+
+/* =====================================================================
+   SCREEN 2 — «Я зрозумів так»
+   ===================================================================== */
+.said { margin: var(--space-xs) var(--gutter) 0; padding: var(--space-ms); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.said p:last-child { font: var(--weight-regular) var(--text-label) var(--font-ui); color: var(--color-text-2); margin-top: var(--space-2xs); }
+.block { padding: var(--space-lg) var(--gutter) 0; }
+.block-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-sm); margin-bottom: var(--space-ms); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+
+.pchip { display: inline-flex; align-items: center; height: var(--size-chip); background: var(--color-surface-2); border-radius: var(--radius-md); transition: box-shadow var(--dur-fast) var(--ease-out); }
+.pchip.is-editing { box-shadow: inset 0 0 0 2px var(--color-accent-fg); }
+.pchip button { position: relative; height: 100%; display: inline-flex; align-items: center; }
+.pchip button::before { content: ''; position: absolute; inset: calc(-1 * var(--space-2xs)) 0; }
+.pchip-main { gap: var(--space-xs); padding-left: var(--space-ms); font: var(--weight-medium) var(--text-label) var(--font-ui); border-radius: var(--radius-md) 0 0 var(--radius-md); }
+.pchip-main .qty { color: var(--color-text-2); font-weight: var(--weight-regular); }
+.pchip-x { width: var(--size-touch); justify-content: center; color: var(--color-text-2); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.pchip-x:hover { color: var(--color-text); }
+
+.editor { margin-top: var(--space-ms); padding: var(--space-ms) var(--space-ms) var(--space-ms) var(--space-md); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); display: flex; align-items: center; gap: var(--space-ms); }
+.editor-name { flex: 1; min-width: 0; font: var(--weight-medium) var(--text-label) var(--font-ui); }
+.editor-name .meta { display: block; }
+.stepper { display: flex; align-items: center; border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); }
+.stepper button { width: var(--size-touch); height: var(--size-touch); display: grid; place-items: center; color: var(--color-text); }
+.stepper button:hover { background: var(--color-surface-2); }
+.stepper output { min-width: var(--space-xl); text-align: center; font: var(--weight-semibold) var(--text-body) var(--font-ui); font-variant-numeric: tabular-nums; }
+
+.add-row { margin-top: var(--space-ms); margin-left: calc(-1 * var(--button-padding-x-sm)); }
+
+.cchip {
+  position: relative; display: inline-flex; align-items: center; gap: var(--space-sm);
+  height: var(--size-chip); padding: 0 var(--space-ms);
+  border: 1px solid var(--color-border-strong); border-radius: var(--radius-full);
+  background: var(--color-surface); color: var(--color-text);
+  font: var(--weight-medium) var(--text-label) var(--font-ui);
+  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.cchip::before { content: ''; position: absolute; inset: calc(-1 * var(--space-2xs)) 0; }
+.cchip .i { color: var(--color-text-2); }
+.cchip .ic-check { display: none; }
+.cchip:hover { background: var(--color-surface-2); }
+.cchip[aria-pressed="true"] { background: var(--color-accent); color: var(--color-on-accent); border-color: var(--color-accent-fg); }
+.cchip[aria-pressed="true"] .i { color: var(--color-on-accent); }
+.cchip[aria-pressed="true"] .ic-check { display: block; }
+.cchip[aria-pressed="true"] .ic-type { display: none; }
+.screen2-pad { padding-bottom: calc(var(--size-mic-compact) + var(--space-xl)); }
+.fab { position: absolute; right: var(--gutter); bottom: calc(var(--size-control) + var(--space-ms) * 2 + var(--space-md)); z-index: var(--z-sticky); }
+
+/* =====================================================================
+   SCREEN 3 — Карта + варіанти
+   ===================================================================== */
+.map { position: absolute; inset: 0 0 auto 0; height: 330px; overflow: hidden; }
+.map svg { display: block; width: 100%; height: 100%; }
+.m-land { fill: var(--color-border); }
+.m-open { fill: var(--color-surface-2); }
+.m-street { stroke: var(--color-surface); stroke-linecap: round; fill: none; }
+.m-route { stroke: var(--color-accent-fg); stroke-width: 3; stroke-dasharray: 2 7; stroke-linecap: round; fill: none; opacity: 0; transition: opacity var(--dur-base) var(--ease-out); }
+.m-route.is-on { opacity: 1; }
+.m-me-halo { fill: var(--color-accent); opacity: 0.16; }
+.m-me { fill: var(--color-accent); stroke: var(--color-accent-fg); stroke-width: 3; }
+.map-top { position: absolute; top: var(--space-ms); left: var(--space-ms); right: var(--space-ms); display: flex; gap: var(--space-sm); align-items: center; z-index: var(--z-sticky); }
+.map-top .icon-btn { background: var(--color-surface); box-shadow: var(--shadow-md); }
+.map-chip { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--space-xs); height: var(--size-touch); padding: 0 var(--space-ms); background: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-md); font: var(--weight-medium) var(--text-label) var(--font-ui); }
+.map-chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.map-chip .i { color: var(--color-text-2); }
+.pin { position: absolute; width: var(--size-touch); height: var(--size-touch); transform: translate(-50%, -50%); display: grid; place-items: center; z-index: 1; }
+.pin-body {
+  display: grid; place-items: center; width: var(--dim-8); height: var(--dim-8);
+  border-radius: var(--radius-full); background: var(--color-text-2);
+  box-shadow: 0 0 0 2px var(--color-surface), var(--shadow-md);
+  transition: background-color var(--dur-fast) var(--ease-out), width var(--dur-fast) var(--ease-out), height var(--dur-fast) var(--ease-out);
+}
+.pin .logo { width: var(--size-icon-md); height: var(--size-icon-md); font-size: var(--font-size-12); border: 0; background: var(--color-logo-plate); color: var(--color-text); }
+.pin.is-selected { z-index: 2; }
+.pin.is-selected .pin-body { background: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent-fg); width: var(--dim-10); height: var(--dim-10); }
+.pin.is-selected .logo { width: var(--size-icon-lg); height: var(--size-icon-lg); }
+
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; top: 290px; z-index: var(--z-sheet);
+  display: flex; flex-direction: column;
+  background: var(--color-surface); border-radius: var(--radius-xl) var(--radius-xl) 0 0; box-shadow: var(--shadow-lg);
+}
+.handle { flex: none; display: grid; place-items: center; height: var(--size-touch); width: 100%; }
+.handle span { width: var(--dim-8); height: var(--space-xs); border-radius: var(--radius-full); background: var(--color-border-strong); }
+.sheet-head { flex: none; padding: 0 var(--gutter) var(--space-ms); }
+.sheet-head .h2 { font: var(--weight-semibold) var(--text-h2) var(--font-display); }
+.whole { display: flex; align-items: center; gap: var(--space-xs); margin-top: var(--space-xs); font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-2); }
+.whole .i { color: var(--color-text-2); }
+.cards { display: flex; flex-direction: column; gap: var(--space-ms); padding: var(--space-2xs) var(--gutter) var(--space-md); }
+
+/* 4.2 StoreCard */
+.store-card {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: var(--store-card-bg); border: 1px solid var(--store-card-border);
+  border-radius: var(--store-card-radius); padding: var(--store-card-padding);
+  transition: var(--store-card-transition);
+}
+.store-card:hover { border-color: var(--store-card-border-hover); }
+.store-card:active { background: var(--store-card-bg-pressed); border-color: var(--store-card-border-hover); }
+.store-card[aria-checked="true"] { border-color: var(--store-card-border-selected); box-shadow: var(--store-card-shadow-selected); }
+.sc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-sm); }
+.sc-title { font: var(--weight-semibold) var(--store-card-title-font) var(--font-display); color: var(--store-card-title-fg); }
+.sc-chain { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--store-card-gap); font: var(--weight-medium) var(--store-card-chain-font) var(--font-ui); color: var(--store-card-chain-fg); min-width: 0; }
+.sc-addr { font: var(--weight-regular) var(--store-card-meta-font) var(--font-ui); color: var(--store-card-meta-fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.sc-split-row { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: var(--space-sm); margin-top: var(--store-card-gap); font: var(--weight-medium) var(--store-card-chain-font) var(--font-ui); }
+.sc-split-row .meta { text-align: right; }
+.sc-split-row .sub { font-weight: var(--weight-semibold); min-width: var(--dim-16); text-align: right; }
+.sc-total { margin-top: var(--space-ms); font: var(--weight-semibold) var(--store-card-total-font) var(--font-ui); color: var(--store-card-total-fg); letter-spacing: -0.01em; }
+.sc-trade { margin-top: var(--space-2xs); font: var(--weight-medium) var(--store-card-tradeoff-font) var(--font-ui); color: var(--store-card-tradeoff-fg); }
+.sc-trade .save { color: var(--store-card-tradeoff-savings-fg); font-weight: var(--weight-semibold); }
+.sc-meta { margin-top: var(--space-xs); font: var(--weight-regular) var(--store-card-meta-font) var(--font-ui); color: var(--store-card-meta-fg); }
+.logo {
+  display: grid; place-items: center; flex: none;
+  width: var(--store-logo-size); height: var(--store-logo-size);
+  border-radius: var(--store-logo-radius); border: 1px solid var(--store-logo-border);
+  background: var(--store-logo-fallback-bg); color: var(--store-logo-fallback-fg);
+  font: var(--weight-bold) var(--text-caption) var(--font-display);
+}
+
+/* Skeleton */
+.skel { background: var(--color-skeleton); border-radius: var(--radius-sm); }
+.skel-card { height: var(--store-card-min-height); border-radius: var(--store-card-radius); background: var(--color-skeleton); }
+.stages { padding: 0 var(--gutter) var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); }
+.stage { display: flex; align-items: center; gap: var(--space-sm); font: var(--weight-regular) var(--text-label) var(--font-ui); color: var(--color-text-2); }
+.stage.done .i { color: var(--color-text-2); }
+.stage.now { color: var(--color-text); font-weight: var(--weight-medium); }
+.stage.now .i { color: var(--color-accent-fg); }
+.stage.next { color: var(--color-text-3); }
+.stage .num { margin-left: auto; color: var(--color-text-3); font: var(--weight-regular) var(--text-meta) var(--font-ui); font-variant-numeric: tabular-nums; }
+.bar { height: var(--space-xs); background: var(--color-surface-2); border-radius: var(--radius-full); overflow: hidden; margin: var(--space-2xs) 0 var(--space-xs) calc(var(--size-icon-md) + var(--space-sm)); }
+.bar span { display: block; height: 100%; width: 66%; background: var(--color-accent-fg); border-radius: inherit; }
+.map-skel { position: absolute; inset: 0 0 auto 0; height: 330px; background: var(--color-surface-2); }
+.map-skel .skel { position: absolute; background: var(--color-border); border-radius: var(--radius-full); }
+
+/* =====================================================================
+   SCREEN 4 — Деталі кошика
+   ===================================================================== */
+.summary { margin: var(--space-xs) var(--gutter) 0; padding: var(--space-md); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.overline { font: var(--weight-medium) var(--text-meta) var(--font-ui); color: var(--color-text-2); }
+.summary .sc-chain { margin-top: var(--space-xs); }
+.summary-total { margin-top: var(--space-ms); font: var(--weight-semibold) var(--text-price-lg) var(--font-ui); letter-spacing: -0.01em; }
+.summary-save { font: var(--weight-semibold) var(--text-label) var(--font-ui); color: var(--color-savings); margin-top: var(--space-2xs); }
+.summary-flags { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-ms); }
+.updated { display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-md) var(--gutter) var(--space-sm); }
+
+.banner { display: flex; gap: var(--space-ms); margin: var(--space-ms) var(--gutter) 0; padding: var(--space-ms); border-radius: var(--radius-md); }
+.banner-danger { background: var(--color-danger-subtle); }
+.banner-danger > .i { color: var(--color-danger-strong); margin-top: var(--space-2xs); }
+.banner-title { font: var(--weight-semibold) var(--text-label) var(--font-ui); color: var(--color-danger-strong); }
+.banner-text { font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-2); margin-top: var(--space-2xs); }
+.banner .btn { margin-top: var(--space-xs); margin-left: calc(-1 * var(--button-padding-x-sm)); }
+
+.basket { background: var(--basket-row-bg); border-top: 1px solid var(--basket-row-divider); border-bottom: 1px solid var(--basket-row-divider); }
+
+/* 4.3 BasketRow */
+.brow {
+  display: grid; grid-template-columns: var(--basket-photo-size) minmax(0, 1fr) auto;
+  column-gap: var(--basket-row-gap); align-items: start;
+  min-height: var(--basket-row-min-height);
+  padding: var(--basket-row-padding-y) var(--basket-row-padding-x);
+  border-bottom: 1px solid var(--basket-row-divider);
+}
+.brow:last-child { border-bottom: 0; }
+.bphoto {
+  width: var(--basket-photo-size); aspect-ratio: 1; border-radius: var(--basket-photo-radius);
+  background: var(--basket-photo-bg); display: grid; place-items: center; overflow: hidden;
+  color: var(--basket-photo-placeholder-fg);
+}
+.bphoto svg.photo { width: 100%; height: 100%; }
+.bname {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  text-align: left; font: var(--weight-medium) var(--basket-name-font) var(--font-ui); color: var(--basket-name-fg);
+  border-radius: var(--radius-sm);
+}
+.bname:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-border-strong); }
+.bbrand { font: var(--weight-regular) var(--basket-brand-font) var(--font-ui); color: var(--basket-brand-fg); margin-top: var(--space-2xs); }
+.bbadges { display: flex; flex-wrap: wrap; gap: var(--basket-badges-gap); margin-top: var(--space-sm); }
+.bprice { display: flex; flex-direction: column; align-items: flex-end; text-align: right; min-width: var(--dim-24); gap: var(--space-2xs); }
+.bqty { font: var(--weight-regular) var(--basket-qty-font) var(--font-ui); color: var(--basket-qty-fg); font-variant-numeric: tabular-nums; }
+.bsum { font: var(--weight-semibold) var(--basket-price-font) var(--font-ui); color: var(--basket-price-fg); font-variant-numeric: tabular-nums; }
+.bsum.missing { color: var(--basket-missing-price-fg); font-weight: var(--weight-medium); }
+.unit-row { display: flex; align-items: center; gap: var(--space-xs); flex-wrap: wrap; justify-content: flex-end; }
+.unit { font: var(--weight-regular) var(--unit-price-font) var(--font-ui); color: var(--unit-price-fg); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.wbadge { display: inline-flex; align-items: center; height: var(--size-badge); padding: 0 var(--unit-price-badge-padding-x); border-radius: var(--unit-price-badge-radius); background: var(--unit-price-weight-bg); color: var(--unit-price-weight-fg); font: var(--weight-medium) var(--text-caption) var(--font-ui); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.brow .full { grid-column: 2 / -1; }
+.brow .bprice .btn { margin-right: calc(-1 * var(--button-padding-x-sm)); }
+
+/* 4.6 AllergenBadge */
+.allergen {
+  position: relative; display: inline-flex; align-items: center; gap: var(--allergen-gap);
+  height: var(--allergen-height); padding: 0 var(--allergen-padding-x); border-radius: var(--allergen-radius);
+  font: var(--weight-medium) var(--allergen-font) var(--font-ui); white-space: nowrap;
+  transition: box-shadow var(--dur-fast) var(--ease-out);
+}
+.allergen::before { content: ''; position: absolute; inset: calc((var(--allergen-height) - var(--allergen-hit-area)) / 2) 0; }
+.allergen .i { width: var(--allergen-icon-size); height: var(--allergen-icon-size); }
+.allergen:hover { box-shadow: inset 0 0 0 1px var(--allergen-hover-overlay); }
+.allergen.verified { background: var(--allergen-verified-bg); color: var(--allergen-verified-fg); }
+.allergen.unknown  { background: var(--allergen-unknown-bg); color: var(--allergen-unknown-fg); border: 1px dashed var(--allergen-unknown-border); }
+.allergen.traces   { background: var(--allergen-traces-bg); color: var(--allergen-traces-fg); }
+.allergen.contains { background: var(--allergen-contains-bg); color: var(--allergen-contains-fg); }
+.allergen-details {
+  margin-top: var(--space-sm); padding: var(--allergen-details-padding);
+  background: var(--allergen-details-bg); box-shadow: var(--allergen-details-shadow), 0 0 0 1px var(--color-border);
+  border-radius: var(--allergen-details-radius); font: var(--weight-regular) var(--allergen-details-font) var(--font-ui);
+}
+.allergen-details p:first-child { font-weight: var(--weight-semibold); }
+.allergen-details p + p { margin-top: var(--space-xs); }
+.allergen-details .src { color: var(--allergen-details-meta-fg); font: var(--weight-regular) var(--text-meta) var(--font-ui); }
+
+/* 4.5 AnalogNotice */
+.analog { display: flex; gap: var(--analog-gap); margin-top: var(--space-ms); padding: var(--analog-padding); background: var(--analog-bg); border-radius: var(--analog-radius); }
+.analog > .i { width: var(--analog-icon-size); height: var(--analog-icon-size); color: var(--analog-icon-fg); margin-top: var(--space-2xs); }
+.analog-body { flex: 1; min-width: 0; }
+.analog-line { font: var(--weight-regular) var(--analog-body-font) var(--font-ui); color: var(--analog-body-fg); }
+.analog-title { font: var(--weight-semibold) var(--analog-title-font) var(--font-ui); color: var(--analog-title-fg); }
+.analog-meta { font: var(--weight-regular) var(--analog-meta-font) var(--font-ui); color: var(--analog-meta-fg); margin-top: var(--space-2xs); }
+.analog-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); margin-top: var(--space-2xs); }
+.analog-diff { font: var(--weight-medium) var(--analog-meta-font) var(--font-ui); color: var(--analog-diff-fg); font-variant-numeric: tabular-nums; }
+.analog-foot .btn { margin-right: calc(-1 * var(--space-xs)); }
+
+/* =====================================================================
+   STATE BOARD
+   ===================================================================== */
+.board { width: 100%; max-width: 1180px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-lg); }
+.board h3 { font: var(--weight-semibold) var(--text-body) var(--font-display); }
+.board > p { font: var(--weight-regular) var(--text-meta) var(--font-ui); color: var(--color-text-2); margin-top: var(--space-2xs); }
+.board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-lg); margin-top: var(--space-lg); }
+.board-cell { display: flex; flex-direction: column; align-items: center; gap: var(--space-ms); padding: var(--space-lg) var(--space-sm); border-radius: var(--radius-lg); background: var(--color-bg); }
+.board-cell .tag { font: var(--weight-medium) var(--text-caption) var(--font-ui); color: var(--color-text-3); letter-spacing: 0.04em; text-transform: uppercase; }
+.board-cell .voice-wrap { min-height: 190px; justify-content: flex-start; padding-top: var(--space-ms); }
+</style>
+</head>
+<body>
+
+<!-- ============ ICON SPRITE (Lucide, stroke 1.75) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></symbol>
+  <symbol id="i-square" viewBox="0 0 24 24"><rect width="14" height="14" x="5" y="5" rx="2"/></symbol>
+  <symbol id="i-loader" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></symbol>
+  <symbol id="i-mic-off" viewBox="0 0 24 24"><line x1="2" x2="22" y1="2" y2="22"/><path d="M18.89 13.23A7.12 7.12 0 0 0 19 12v-2"/><path d="M5 10v2a7 7 0 0 0 12 5"/><path d="M15 9.34V5a3 3 0 0 0-5.68-1.33"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12"/><line x1="12" x2="12" y1="19" y2="22"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-trending-down" viewBox="0 0 24 24"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></symbol>
+  <symbol id="i-replace" viewBox="0 0 24 24"><path d="M14 4a1 1 0 0 1 1-1"/><path d="M15 10a1 1 0 0 1-1-1"/><path d="M21 4a1 1 0 0 0-1-1"/><path d="M21 9a1 1 0 0 1-1 1"/><path d="m3 7 3 3 3-3"/><path d="M6 10V5a2 2 0 0 1 2-2h2"/><rect x="3" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-triangle" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-package-x" viewBox="0 0 24 24"><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"/><path d="m7.5 4.27 9 5.15"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/><path d="m17 13 5 5m-5 0 5-5"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-locate" viewBox="0 0 24 24"><line x1="2" x2="5" y1="12" y2="12"/><line x1="19" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="5"/><line x1="12" x2="12" y1="19" y2="22"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="m5.6 5.6 2.1 2.1"/><path d="m16.3 16.3 2.1 2.1"/><path d="m5.6 18.4 2.1-2.1"/><path d="m16.3 7.7 2.1-2.1"/></symbol>
+  <symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></symbol>
+  <symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-wheat-off" viewBox="0 0 24 24"><path d="m2 22 10-10"/><path d="m16 8-1.17 1.17"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="m8 8-.53.53a3.5 3.5 0 0 0 0 4.94L9 15l1.53-1.53c.55-.55.88-1.25.98-1.97"/><path d="M10.91 5.26c.15-.26.34-.51.56-.73L13 3l1.53 1.53a3.5 3.5 0 0 1 .28 4.62"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><line x1="2" x2="22" y1="2" y2="22"/></symbol>
+  <symbol id="i-milk-off" viewBox="0 0 24 24"><path d="M8 2h8"/><path d="M9 2v1.343M15 2v2.789a4 4 0 0 0 .672 2.219l.656.984a4 4 0 0 1 .672 2.22v1.131M7.8 7.8l-.128.192A4 4 0 0 0 7 10.212V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3"/><path d="M7 15a6.47 6.47 0 0 1 5 0 6.472 6.472 0 0 0 3.435.435"/><line x1="2" x2="22" y1="2" y2="22"/></symbol>
+
+  <!-- Фото товарів: плейсхолдери замість фото з даних мереж -->
+  <symbol id="p-milk" viewBox="0 0 56 56"><path d="M20 10h16v5H20z" fill="#E4E6EE" stroke="#C9CAD3"/><path d="M19 15h18l4 8v22a3 3 0 0 1-3 3H18a3 3 0 0 1-3-3V23z" fill="#FFFFFF" stroke="#C9CAD3"/><path d="M15 29h26v9H15z" fill="#8CA6DA"/></symbol>
+  <symbol id="p-bread" viewBox="0 0 56 56"><ellipse cx="28" cy="33" rx="20" ry="11" fill="#C08A55"/><path d="M9 31c3-11 35-11 38 0-6 4-32 4-38 0z" fill="#D6A26A"/><path d="M19 24l3 6M28 22.5l1 7M37 24l-2 6" stroke="#9C6634" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="p-eggs" viewBox="0 0 56 56"><rect x="8" y="30" width="40" height="14" rx="3" fill="#D9CBB5"/><ellipse cx="17" cy="28" rx="6" ry="8" fill="#F3E3CC"/><ellipse cx="28" cy="27" rx="6" ry="8" fill="#F7EBD9"/><ellipse cx="39" cy="28" rx="6" ry="8" fill="#F3E3CC"/></symbol>
+  <symbol id="p-grain" viewBox="0 0 56 56"><rect x="15" y="9" width="26" height="39" rx="3" fill="#C99A6B"/><rect x="19" y="20" width="18" height="17" rx="2" fill="#F5EBDD"/><g fill="#8A5A35"><circle cx="23" cy="25" r="1.4"/><circle cx="28" cy="27" r="1.4"/><circle cx="33" cy="24" r="1.4"/><circle cx="25" cy="31" r="1.4"/><circle cx="31" cy="32" r="1.4"/></g></symbol>
+  <symbol id="p-banana" viewBox="0 0 56 56"><path d="M11 20c3 17 22 24 35 15l1.5-4.5C37 37 22 33 16 18z" fill="#F2C94C" stroke="#D9A92E"/><path d="M12.5 19.5 10 16" stroke="#6B4E1E" stroke-width="2.5" stroke-linecap="round"/></symbol>
+  <symbol id="p-chicken" viewBox="0 0 56 56"><rect x="7" y="19" width="42" height="23" rx="4" fill="#E2E3E8"/><path d="M13 31c0-6 8-9 15-8s14 4 14 8-6 6-14 6-15-1-15-6z" fill="#F0B7A4"/><path d="M19 30c4-2 10-2 16 0" stroke="#E29C87" stroke-width="1.5" fill="none"/></symbol>
+  <symbol id="p-yogurt" viewBox="0 0 56 56"><path d="M17 17h22l-3 29H20z" fill="#FFFFFF" stroke="#C9CAD3"/><rect x="15" y="12.5" width="26" height="5" rx="1.5" fill="#9DB4DE"/><path d="M18.6 28h18.8l-.8 8H19.4z" fill="#E4ECF8"/></symbol>
+  <symbol id="p-oil" viewBox="0 0 56 56"><rect x="23" y="5" width="10" height="6" rx="1" fill="#D99A2B"/><path d="M22 11h12v6l4 6v23a3 3 0 0 1-3 3H21a3 3 0 0 1-3-3V23l4-6z" fill="#F6D776" stroke="#D9B44A"/><rect x="18" y="30" width="20" height="10" fill="#FFF7DA"/></symbol>
+  <symbol id="p-cheese" viewBox="0 0 56 56"><path d="M8 37 38 19l10 6v13H8z" fill="#F5C86B"/><path d="M8 37 38 19l10 6L18 40z" fill="#F8D68A"/><circle cx="23" cy="34" r="2.4" fill="#E0AC45"/><circle cx="35" cy="28" r="1.9" fill="#E0AC45"/><circle cx="41" cy="34" r="1.8" fill="#E0AC45"/></symbol>
+  <symbol id="p-tomato" viewBox="0 0 56 56"><circle cx="28" cy="31" r="15" fill="#E35A44"/><circle cx="23" cy="26" r="4" fill="#EC7C68"/><path d="M21 17c3 2 11 2 14 0-2 3-2 4 0 6-4-1-10-1-14 0 2-2 2-3 0-6z" fill="#5C8F3E"/></symbol>
+  <symbol id="p-coffee" viewBox="0 0 56 56"><path d="M16 13h24l2 33a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2z" fill="#6B4632"/><path d="M16 13l4-5h16l4 5z" fill="#573826"/><rect x="18" y="24" width="20" height="12" rx="2" fill="#EADBC8"/></symbol>
+</svg>
+
+<main class="canvas">
+  <header class="intro">
+    <h1>Sayvy · прототип MVP</h1>
+    <p>Десктоп — основна платформа (екрани 1–3 на 1440 px), далі мобільна адаптація 375 px. Світла тема. Токени взято з DESIGN.md без змін. Мережі показано монограмою (fallback логотипа), фото товарів — плейсхолдери. Кнопка голосу, вибір міста, чипи, обмеження, картки кошиків і бейджі складу клікабельні.</p>
+    <div class="legend">
+      <span class="badge badge-savings"><svg class="i" aria-hidden="true"><use href="#i-trending-down"/></svg>Оливковий і чорна пігулка — лише економія</span>
+      <span class="badge badge-accent">Лайм — дія і вибір</span>
+      <span class="badge badge-warning">Бурштин — аналог, вага</span>
+      <span class="badge badge-danger">Червоний — немає товару, помилка</span>
+    </div>
+  </header>
+
+  <h2 class="group-title">Десктоп · основна платформа</h2>
+  <div class="flow">
+    <!-- ================= 01 · ЗАПИТ · DESKTOP ================= -->
+    <article class="shot shot-desktop" id="s1d" aria-labelledby="s1d-t">
+      <header class="shot-head">
+        <p class="shot-num">01 · 1440 px</p>
+        <h3 id="s1d-t">Головний: композер + приклад результату</h3>
+        <p>Одна головна дія — «Знайти кошик» поруч із полем. Мікрофон усередині композера. Праворуч — що людина отримає.</p>
+      </header>
+      <div class="browser">
+        <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>sayvy.app</span></div>
+        <div class="screen">
+          <header class="d-appbar">
+            <p class="logo-word">Sayvy<span aria-hidden="true"></span></p>
+            <ol class="d-steps" aria-label="Кроки">
+              <li aria-current="step"><span>Запит</span></li><li>Список</li><li>Варіанти</li><li>Кошик</li><li>У магазині</li>
+            </ol>
+            <button class="city-trigger" type="button" aria-haspopup="listbox" aria-label="Місто: Київ. Змінити">
+              <svg class="i pin-ic" aria-hidden="true"><use href="#i-map-pin"/></svg>
+              <span data-city-label>Київ</span>
+              <svg class="i i-sm chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+            <span class="free-pill num">3 з 3 безкоштовних</span>
+          </header>
+          <section class="d-hero">
+            <div>
+              <h2>Той самий кошик — <mark class="hl">до 30% дешевше</mark></h2>
+              <p class="sub">Скажіть або вставте список. Порівняємо весь кошик у 6 мережах поруч.</p>
+              <div class="composer">
+                <label class="sr-only" for="req-d">Введіть або вставте список</label>
+                <textarea id="req-d" rows="1" placeholder="Молоко, хліб, десяток яєць…"></textarea>
+                <div class="voice-wrap inline" data-voice data-state="idle" data-target="#req-d">
+                  <button class="voice" type="button" aria-label="Почати голосове введення" aria-pressed="false">
+                    <span class="ring" aria-hidden="true"></span>
+                    <svg class="i vi" data-icon="mic" aria-hidden="true"><use href="#i-mic"/></svg>
+                    <svg class="i vi" data-icon="stop" aria-hidden="true"><use href="#i-square"/></svg>
+                    <svg class="i vi spin" data-icon="loader" aria-hidden="true"><use href="#i-loader"/></svg>
+                    <svg class="i vi" data-icon="micoff" aria-hidden="true"><use href="#i-mic-off"/></svg>
+                  </button>
+                  <p class="sr-only voice-status" aria-live="polite"></p>
+                </div>
+                <a class="btn btn-primary btn-lg" href="#s2">Знайти кошик<svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              </div>
+              <ul class="ex-chips" aria-label="Приклади запитів">
+                <li><button class="example" type="button" data-example="#req-d"><svg class="i i-sm" aria-hidden="true"><use href="#i-sparkle"/></svg>Борщ на 4 людини</button></li>
+                <li><button class="example" type="button" data-example="#req-d"><svg class="i i-sm" aria-hidden="true"><use href="#i-sparkle"/></svg>Молоко, хліб, 10 яєць, сир кисломолочний 500 г</button></li>
+                <li><button class="example" type="button" data-example="#req-d"><svg class="i i-sm" aria-hidden="true"><use href="#i-sparkle"/></svg>Сніданки на тиждень для двох, без лактози</button></li>
+              </ul>
+              <p class="trust meta num">3 кошики безкоштовно · без реєстрації · ціни 6 мереж</p>
+            </div>
+            <aside class="rpreview" aria-label="Приклад результату">
+              <p class="sr-only">Приклад результату: найвигідніший кошик у Сільпо, на 75 гривень дешевше за найближчий.</p>
+              <div aria-hidden="true">
+                <p class="rp-cap">Приклад для «Борщ на 4 людини»</p>
+                <ul class="rp-list">
+                  <li><span class="rp-name">Найближчий</span><span class="rp-sum">1&#8239;012,30&nbsp;₴</span><span class="rp-store num">Novus · 180&nbsp;м</span></li>
+                  <li class="is-best"><span class="rp-name">Найвигідніший</span><span class="rp-sum">937,40&nbsp;₴</span><span class="rp-store num">Сільпо · 630&nbsp;м</span></li>
+                  <li><span class="rp-name">Smart Split</span><span class="rp-sum">897,10&nbsp;₴</span><span class="rp-store num">АТБ + Сільпо · 1,1&nbsp;км</span></li>
+                </ul>
+                <span class="badge badge-savings"><svg class="i" aria-hidden="true"><use href="#i-trending-down"/></svg><span class="num">−75&nbsp;₴ за +450&nbsp;м</span></span>
+              </div>
+            </aside>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 02 · СПИСОК · DESKTOP ================= -->
+    <article class="shot shot-desktop" id="s2d" aria-labelledby="s2d-t">
+      <header class="shot-head">
+        <p class="shot-num">02 · 1440 px</p>
+        <h3 id="s2d-t">«Я зрозумів так»: список ліворуч, обмеження праворуч</h3>
+        <p>Товари — вертикальним списком зі степпером. Обмеження розгорнуті формами, без sheet. «Знайти ціни» — під формою, яку надсилає.</p>
+      </header>
+      <div class="browser">
+        <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>sayvy.app/list</span></div>
+        <div class="screen">
+          <header class="d-appbar">
+            <p class="logo-word">Sayvy<span aria-hidden="true"></span></p>
+            <ol class="d-steps" aria-label="Кроки">
+              <li><a href="#s1d">Запит</a></li><li aria-current="step"><span>Список</span></li><li>Варіанти</li><li>Кошик</li><li>У магазині</li>
+            </ol>
+            <button class="city-trigger" type="button" aria-haspopup="listbox" aria-label="Місто: Київ. Змінити">
+              <svg class="i pin-ic" aria-hidden="true"><use href="#i-map-pin"/></svg>
+              <span data-city-label>Київ</span>
+              <svg class="i i-sm chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+            <span class="free-pill num">3 з 3 безкоштовних</span>
+          </header>
+          <div class="d-page-head">
+            <h2 class="d-title">Я зрозумів так</h2>
+            <p class="d-said"><span class="meta">Ви сказали:</span><q>Молоко без лактози два літри, хліб, десяток яєць, гречку, банани, кіло філе, три йогурти, олію, твердий сир, помідори і каву. До півтори тисячі, пішки недалеко</q><a class="btn btn-ghost btn-sm" href="#s1d">Змінити</a></p>
+          </div>
+          <div class="d-main" data-plist-scope>
+            <section class="d-panel" aria-labelledby="s2d-prod">
+              <div class="block-head">
+                <h3 class="section-label" id="s2d-prod">Продукти</h3>
+                <span class="meta num" data-pcount>11 товарів</span>
+              </div>
+              <ul class="plist" data-plist>
+                  <li class="prow">
+                    <span class="prow-name">Молоко без лактози<span class="meta num">пачка 1&nbsp;л</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Молоко без лактози">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">2</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Молоко без лактози"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Хліб житній<span class="meta num">поштучно</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Хліб житній">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Хліб житній"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Яйця С1<span class="meta num">поштучно</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Яйця С1">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">10</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Яйця С1"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Гречка<span class="meta num">пачка 1&nbsp;кг</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Гречка">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Гречка"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Банани<span class="meta num">пачка 1&nbsp;кг</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Банани">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Банани"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Куряче філе<span class="meta num">пачка 1&nbsp;кг</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Куряче філе">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Куряче філе"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Йогурт без лактози<span class="meta num">поштучно</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Йогурт без лактози">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">3</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Йогурт без лактози"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Олія соняшникова<span class="meta num">пачка 1&nbsp;л</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Олія соняшникова">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Олія соняшникова"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Сир твердий без лактози<span class="meta num">пачка 200&nbsp;г</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Сир твердий без лактози">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Сир твердий без лактози"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Помідори<span class="meta num">пачка 1&nbsp;кг</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Помідори">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Помідори"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+                  <li class="prow">
+                    <span class="prow-name">Кава мелена<span class="meta num">пачка 250&nbsp;г</span></span>
+                    <div class="stepper stepper-sm" role="group" aria-label="Кількість: Кава мелена">
+                      <button type="button" data-step="-1" aria-label="Менше"><svg class="i i-sm" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <output aria-live="polite">1</output>
+                      <button type="button" data-step="1" aria-label="Більше"><svg class="i i-sm" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <button class="icon-btn prow-x" type="button" aria-label="Прибрати Кава мелена"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+                  </li>
+              </ul>
+              <div class="d-add">
+                <label class="sr-only" for="s2d-search">Додати товар</label>
+                <svg class="i i-sm" aria-hidden="true"><use href="#i-search"/></svg>
+                <input id="s2d-search" type="search" placeholder="Додати товар: сметана, буряк…">
+              </div>
+            </section>
+
+            <section class="d-panel" aria-labelledby="s2d-lim">
+              <div class="block-head">
+                <h3 class="section-label" id="s2d-lim">Обмеження</h3>
+                <span class="meta">Склад перевіримо для кожного товару</span>
+              </div>
+              <fieldset class="fset">
+                <legend>Бюджет</legend>
+                <div class="budget-row">
+                  <label class="money"><span class="sr-only">Сума бюджету</span><input inputmode="numeric" value="1 500" data-budget-input><span aria-hidden="true">₴</span></label>
+                  <div class="presets" role="radiogroup" aria-label="Швидкий вибір бюджету" data-seg>
+                    <button type="button" role="radio" aria-checked="false" data-budget="500" class="num">500&nbsp;₴</button>
+                    <button type="button" role="radio" aria-checked="false" data-budget="1 000" class="num">1&#8239;000&nbsp;₴</button>
+                    <button type="button" role="radio" aria-checked="true" data-budget="1 500" class="num">1&#8239;500&nbsp;₴</button>
+                    <button type="button" role="radio" aria-checked="false" data-budget="">Без бюджету</button>
+                  </div>
+                </div>
+                <p class="hint">Покажемо, якщо варіант не вкладається, і що можна прибрати</p>
+              </fieldset>
+              <fieldset class="fset">
+                <legend>Дієта</legend>
+                <div class="checks">
+                    <label class="check"><input type="checkbox" name="diet"><span>Вегетаріанська</span></label>
+                    <label class="check"><input type="checkbox" name="diet"><span>Веганська</span></label>
+                    <label class="check"><input type="checkbox" name="diet" checked><span>Без лактози</span></label>
+                    <label class="check"><input type="checkbox" name="diet"><span>Без глютену</span></label>
+                    <label class="check"><input type="checkbox" name="diet"><span>Без цукру</span></label>
+                </div>
+                <p class="hint">Підберемо товари, що підходять</p>
+              </fieldset>
+              <fieldset class="fset">
+                <legend>Алергени</legend>
+                <div class="checks">
+                    <label class="check"><input type="checkbox" name="allergen"><span>Глютен</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Лактоза</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Яйця</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Горіхи</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Арахіс</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Соя</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Риба</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Ракоподібні</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Кунжут</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Селера</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Гірчиця</span></label>
+                    <label class="check"><input type="checkbox" name="allergen"><span>Сульфіти</span></label>
+                </div>
+                <p class="hint">Відсіємо товари з цими алергенами в складі. Сліди — позначимо окремо</p>
+              </fieldset>
+              <fieldset class="fset">
+                <legend>Відстань пішки</legend>
+                <div class="seg" role="radiogroup" aria-label="Відстань пішки" data-seg>
+                  <button type="button" role="radio" aria-checked="false"><span class="num">500&nbsp;м</span><small class="num">≈ 6 хв</small></button>
+                  <button type="button" role="radio" aria-checked="true"><span class="num">1 км</span><small class="num">≈ 12 хв</small></button>
+                  <button type="button" role="radio" aria-checked="false"><span class="num">2 км</span><small class="num">≈ 25 хв</small></button>
+                  <button type="button" role="radio" aria-checked="false"><span class="num">3 км</span><small class="num">≈ 38 хв</small></button>
+                </div>
+                <p class="hint">Шукаємо магазини в цьому радіусі від вул. Хрещатик, 22</p>
+              </fieldset>
+              <div class="d-cta">
+                <p class="meta">Порівняємо весь кошик у 6 мережах</p>
+                <a class="btn btn-primary btn-lg" href="#s3d" data-pcta>Знайти ціни · 11 товарів<svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 03 · ВАРІАНТИ · DESKTOP ================= -->
+    <article class="shot shot-desktop" id="s3d" aria-labelledby="s3d-t">
+      <header class="shot-head">
+        <p class="shot-num">03 · 1440 px</p>
+        <h3 id="s3d-t">3 варіанти: картки ліворуч, карта праворуч</h3>
+        <p>Radiogroup: клік або ↑↓ змінює варіант, пін і маршрут. Наведення на картку підсвічує пін, клік на пін вибирає картку.</p>
+      </header>
+      <div class="browser">
+        <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>sayvy.app/options</span></div>
+        <div class="screen">
+          <header class="d-appbar">
+            <p class="logo-word">Sayvy<span aria-hidden="true"></span></p>
+            <ol class="d-steps" aria-label="Кроки">
+              <li><a href="#s1d">Запит</a></li><li><a href="#s2d">Список</a></li><li aria-current="step"><span>Варіанти</span></li><li>Кошик</li><li>У магазині</li>
+            </ol>
+            <button class="city-trigger" type="button" aria-haspopup="listbox" aria-label="Місто: Київ. Змінити">
+              <svg class="i pin-ic" aria-hidden="true"><use href="#i-map-pin"/></svg>
+              <span data-city-label>Київ</span>
+              <svg class="i i-sm chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+            <span class="free-pill num">3 з 3 безкоштовних</span>
+          </header>
+          <div class="d-split" data-cards-scope>
+            <section class="d-left" aria-labelledby="s3d-h">
+              <div class="d-left-head">
+                <h2 class="d-title" id="s3d-h">3 варіанти кошика</h2>
+                <p class="whole"><svg class="i i-sm" aria-hidden="true"><use href="#i-info"/></svg>Порівнюємо весь кошик, а не окремі знижки · 11 товарів · ціни станом на 09:40</p>
+              </div>
+              <div class="d-cards">
+                <div class="cards" role="radiogroup" aria-label="Варіанти кошика" data-cards>
+                  <div class="store-card" role="radio" tabindex="0" aria-checked="true" data-option="cheapest">
+                    <div class="sc-head">
+                      <p class="sc-title">Найвигідніший</p>
+                      <span class="badge badge-savings"><svg class="i" aria-hidden="true"><use href="#i-trending-down"/></svg>Найдешевший кошик</span>
+                    </div>
+                    <p class="sc-chain"><span class="logo">А</span>АТБ <span class="sc-addr">· вул. Січових Стрільців, 12</span></p>
+                    <p class="sc-total num">1&#8239;173,80&nbsp;₴</p>
+                    <p class="sc-trade num"><span class="save">−240&nbsp;₴</span> за +450&nbsp;м</p>
+                    <p class="sc-meta num">850&nbsp;м · 11&nbsp;хв пішки · 11 з 11 товарів · у бюджеті</p>
+                  </div>
+                  <div class="store-card" role="radio" tabindex="-1" aria-checked="false" data-option="nearest">
+                    <div class="sc-head"><p class="sc-title">Найближчий</p></div>
+                    <p class="sc-chain"><span class="logo">С</span>Сільпо <span class="sc-addr">· вул. Хрещатик, 34</span></p>
+                    <p class="sc-total num">1&#8239;413,80&nbsp;₴</p>
+                    <p class="sc-trade">Найближчий до вас</p>
+                    <p class="sc-meta num">400&nbsp;м · 5&nbsp;хв пішки · 11 з 11 товарів · у бюджеті</p>
+                  </div>
+                  <div class="store-card" role="radio" tabindex="-1" aria-checked="false" data-option="split">
+                    <div class="sc-head"><p class="sc-title">Smart Split</p><span class="badge badge-neutral num">2 магазини</span></div>
+                    <div class="sc-split-row"><span class="logo">А</span><span>АТБ</span><span class="meta num">7 товарів</span><span class="sub num">698,30&nbsp;₴</span></div>
+                    <div class="sc-split-row"><span class="logo">N</span><span>Novus</span><span class="meta num">4 товари</span><span class="sub num">530,30&nbsp;₴</span></div>
+                    <p class="sc-total num">1&#8239;228,60&nbsp;₴</p>
+                    <p class="sc-trade num"><span class="save">−185&nbsp;₴</span> за +1 магазин</p>
+                    <p class="sc-meta num">Маршрут 1,1&nbsp;км · 15&nbsp;хв пішки · у бюджеті</p>
+                  </div>
+                </div>
+                <details class="why" data-why>
+                  <summary>Чому цей варіант?</summary>
+                  <p data-why-text>В АТБ дорожчі 3 товари з 11, але решта дешевша. Разом — на 240 ₴ менше, ніж у найближчому Сільпо.</p>
+                </details>
+              </div>
+              <div class="d-actions">
+                <a class="btn btn-secondary" href="#s3d" aria-label="Маршрут у Google Maps (відкриється зовнішня карта)"><svg class="i" aria-hidden="true"><use href="#i-external"/></svg>Маршрут</a>
+                <a class="btn btn-primary btn-lg grow" href="#s4">Деталі кошика<svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              </div>
+            </section>
+            <div class="d-map">
+              <div class="map" aria-hidden="true">
+              <svg viewBox="0 0 800 680" preserveAspectRatio="none">
+                <rect class="m-land" width="800" height="680"/>
+                <rect class="m-open" x="0" y="0" width="150" height="80"/>
+                <rect class="m-open" x="560" y="500" width="240" height="180"/>
+                <path class="m-open" d="M660 0h140v240c-60-40-120-120-140-240z"/>
+                <rect class="m-open" x="250" y="560" width="160" height="120"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="18" d="M-10 310 L810 260"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="10" d="M-10 120 L810 80"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="10" d="M-10 480 L810 430"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="7" d="M-10 620 L810 590"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="10" d="M110 -10 L140 690"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="10" d="M420 -10 L430 690"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="14" d="M620 -10 L590 690"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="7" d="M270 -10 L280 690"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="7" d="M520 -10 L512 690"/>
+                <path class="m-street" vector-effect="non-scaling-stroke" stroke-width="7" d="M700 260 L810 360"/>
+                <path class="m-route is-on" vector-effect="non-scaling-stroke" data-route="cheapest" d="M430 470 L425 290 L135 312 L130 190"/>
+                <path class="m-route" vector-effect="non-scaling-stroke" data-route="nearest" d="M430 470 L428 455 L560 446 L560 395"/>
+                <path class="m-route" vector-effect="non-scaling-stroke" data-route="split" d="M430 470 L425 290 L135 312 L130 190 M130 190 L118 100 L610 84 L640 130"/>
+              </svg>
+              </div>
+              <span class="d-me" style="left:53.75%;top:69.1%" aria-hidden="true"></span>
+              <span class="pin is-selected" data-pin="cheapest split" style="left:16.25%;top:27.9%" aria-hidden="true"><span class="pin-body"><span class="logo">А</span></span></span>
+              <span class="pin" data-pin="nearest" style="left:70%;top:58.1%" aria-hidden="true"><span class="pin-body"><span class="logo">С</span></span></span>
+              <span class="pin" data-pin="split" style="left:80%;top:19.1%" aria-hidden="true"><span class="pin-body"><span class="logo">N</span></span></span>
+              <p class="map-chip d-addr"><svg class="i i-sm" aria-hidden="true"><use href="#i-map-pin"/></svg><span><span data-city-label>Київ</span>, вул. Хрещатик, 22</span></p>
+              <button class="icon-btn d-locate" type="button" aria-label="Моє місце"><svg class="i" aria-hidden="true"><use href="#i-locate"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <h2 class="group-title">Мобільна адаптація · основний потік</h2>
+  <div class="flow">
+
+    <!-- ================= 01 · ЗАПИТ ================= -->
+    <article class="shot" id="s1" aria-labelledby="s1-t">
+      <header class="shot-head">
+        <p class="shot-num">01</p>
+        <h3 id="s1-t">Головний: голос + місто</h3>
+        <p>Мобільна адаптація. Hero з лаймовим виділенням, мікрофон 96px, «Знайти кошик» закріплена внизу.</p>
+      </header>
+      <div class="device">
+        <div class="screen">
+          <header class="appbar">
+            <p class="logo-word">Sayvy<span aria-hidden="true"></span></p>
+            <button class="city-trigger" type="button" aria-haspopup="listbox" aria-label="Місто: Київ. Змінити">
+              <svg class="i pin-ic" aria-hidden="true"><use href="#i-map-pin"/></svg>
+              <span data-city-label>Київ</span>
+              <svg class="i i-sm chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </header>
+          <div class="scroll">
+            <section class="hero-lime">
+              <h2 class="display">Той самий кошик — <mark class="hl">до 30% дешевше</mark></h2>
+              <p class="hero-sub">Скажіть або вставте список. Порівняємо весь кошик у 6 мережах поруч.</p>
+            </section>
+
+            <section class="voice-zone" aria-label="Голосове введення">
+              <div class="voice-wrap" data-voice data-state="idle" data-target="#req-1">
+                <button class="voice" type="button" aria-label="Почати голосове введення" aria-pressed="false">
+                  <span class="ring" aria-hidden="true"></span>
+                  <svg class="i vi" data-icon="mic" aria-hidden="true"><use href="#i-mic"/></svg>
+                  <svg class="i vi" data-icon="stop" aria-hidden="true"><use href="#i-square"/></svg>
+                  <svg class="i vi spin" data-icon="loader" aria-hidden="true"><use href="#i-loader"/></svg>
+                  <svg class="i vi" data-icon="micoff" aria-hidden="true"><use href="#i-mic-off"/></svg>
+                </button>
+                <span class="voice-level" aria-hidden="true"><span></span></span>
+                <p class="voice-status" aria-live="polite"></p>
+                <p class="live-text" data-live hidden></p>
+                <a class="btn btn-ghost btn-sm" href="#s2" data-next hidden>Перевірити список</a>
+              </div>
+            </section>
+
+            <section class="pad">
+              <label class="sr-only" for="req-1">Введіть або вставте список</label>
+              <div class="request">
+                <textarea id="req-1" placeholder="Або введіть: молоко, хліб, десяток яєць…"></textarea>
+              </div>
+              <ul class="ex-chips" aria-label="Приклади запитів">
+                <li><button class="example" type="button" data-example="#req-1"><svg class="i i-sm" aria-hidden="true"><use href="#i-sparkle"/></svg>Борщ на 4 людини</button></li>
+                <li><button class="example" type="button" data-example="#req-1"><svg class="i i-sm" aria-hidden="true"><use href="#i-sparkle"/></svg>Сніданки на тиждень для двох</button></li>
+                <li><button class="example" type="button" data-example="#req-1"><svg class="i i-sm" aria-hidden="true"><use href="#i-sparkle"/></svg>Без лактози, до 800 ₴</button></li>
+              </ul>
+              <p class="preview-line"><span class="meta">Приклад:</span><span class="badge badge-savings"><svg class="i" aria-hidden="true"><use href="#i-trending-down"/></svg><span class="num">−75&nbsp;₴ за +450&nbsp;м</span></span></p>
+            </section>
+            <p class="free-note meta"><span class="num">3 кошики безкоштовно · без реєстрації</span></p>
+          </div>
+          <div class="bottombar">
+            <a class="btn btn-primary btn-lg btn-block" href="#s2">Знайти кошик<svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 01b · ВИБІР МІСТА ================= -->
+    <article class="shot" id="s1b" aria-labelledby="s1b-t">
+      <header class="shot-head">
+        <p class="shot-num">01b</p>
+        <h3 id="s1b-t">Вибір міста (sheet &lt; 768 px)</h3>
+        <p>Combobox: пошук кирилицею й латиницею («lviv»), без апострофа і «м.».</p>
+      </header>
+      <div class="device">
+        <div class="screen">
+          <div class="city-head">
+            <div class="city-head-row">
+              <label class="city-label" for="city-in">Місто</label>
+              <button class="icon-btn" type="button" aria-label="Закрити"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
+            </div>
+            <div class="city-field">
+              <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+              <input id="city-in" type="text" role="combobox" aria-expanded="true" aria-controls="city-list" aria-autocomplete="list" autocomplete="off" placeholder="Почніть вводити назву">
+            </div>
+          </div>
+          <div class="scroll">
+            <ul class="city-list" id="city-list" role="listbox" aria-label="Міста">
+              <li class="city-opt locate" role="option" id="city-o0" aria-selected="false" data-locate>
+                <svg class="i" aria-hidden="true"><use href="#i-locate"/></svg>
+                <span class="city-name">Визначити автоматично</span>
+              </li>
+              <li class="city-opt" role="option" id="city-o1" aria-selected="true" data-city="Київ" data-alias="kyiv kiev kyjiv">
+                <svg class="i check" aria-hidden="true"><use href="#i-check"/></svg>
+                <span class="city-name">Київ</span><span class="city-meta num">Київська обл. · 6 мереж</span>
+              </li>
+              <li class="city-opt" role="option" id="city-o2" aria-selected="false" data-city="Львів" data-alias="lviv lvov lwow">
+                <svg class="i check" aria-hidden="true"><use href="#i-check"/></svg>
+                <span class="city-name">Львів</span><span class="city-meta num">Львівська обл. · 5 мереж</span>
+              </li>
+              <li class="city-opt" role="option" id="city-o3" aria-selected="false" data-city="Одеса" data-alias="odesa odessa">
+                <svg class="i check" aria-hidden="true"><use href="#i-check"/></svg>
+                <span class="city-name">Одеса</span><span class="city-meta num">Одеська обл. · 5 мереж</span>
+              </li>
+              <li class="city-opt" role="option" id="city-o4" aria-selected="false" data-city="Дніпро" data-alias="dnipro dnepr">
+                <svg class="i check" aria-hidden="true"><use href="#i-check"/></svg>
+                <span class="city-name">Дніпро</span><span class="city-meta num">Дніпропетровська обл. · 5 мереж</span>
+              </li>
+              <li class="city-opt" role="option" id="city-o5" aria-selected="false" data-city="Харків" data-alias="kharkiv kharkov">
+                <svg class="i check" aria-hidden="true"><use href="#i-check"/></svg>
+                <span class="city-name">Харків</span><span class="city-meta num">Харківська обл. · 4 мережі</span>
+              </li>
+            </ul>
+            <div class="city-empty" data-city-empty hidden>
+              <strong>Поки не працюємо в місті «<span data-city-query></span>»</strong>
+              Доступні: Київ, Львів, Одеса, Дніпро, Харків
+            </div>
+            <p class="city-note meta">Показуємо лише міста, де маємо ціни. Місто зберігається на цьому пристрої.</p>
+            <p class="sr-only" aria-live="polite" data-city-count>Знайдено 5 міст</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 02 · Я ЗРОЗУМІВ ТАК ================= -->
+    <article class="shot" id="s2" aria-labelledby="s2-t">
+      <header class="shot-head">
+        <p class="shot-num">02</p>
+        <h3 id="s2-t">Розпізнаний список</h3>
+        <p>Натисніть чип, щоб змінити кількість; × прибирає. Обмеження вмикаються натисканням.</p>
+      </header>
+      <div class="device">
+        <div class="screen">
+          <header class="appbar with-back">
+            <button class="icon-btn" type="button" aria-label="Назад"><svg class="i" aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+            <p class="appbar-title">Я зрозумів так</p>
+            <button class="city-trigger" type="button" aria-haspopup="listbox" aria-label="Місто: Київ. Змінити">
+              <svg class="i pin-ic" aria-hidden="true"><use href="#i-map-pin"/></svg>
+              <span data-city-label>Київ</span>
+              <svg class="i i-sm chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </header>
+          <div class="scroll screen2-pad">
+            <div class="said">
+              <p class="meta">Ви сказали</p>
+              <p>«Молоко без лактози два літри, хліб, десяток яєць, гречку, банани, кіло філе, три йогурти, олію, твердий сир, помідори і каву. До півтори тисячі, пішки недалеко»</p>
+            </div>
+
+            <section class="block" aria-labelledby="s2-prod">
+              <div class="block-head">
+                <h2 class="section-label" id="s2-prod">Продукти</h2>
+                <span class="meta num" data-count>11 товарів</span>
+              </div>
+              <ul class="chips" data-chips>
+                <li class="pchip" data-qty="2" data-pack="1 л"><button class="pchip-main" type="button">Молоко без лактози <span class="qty num">2 × 1 л</span></button><button class="pchip-x" type="button" aria-label="Прибрати Молоко без лактози"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="шт"><button class="pchip-main" type="button">Хліб житній <span class="qty num">1 шт</span></button><button class="pchip-x" type="button" aria-label="Прибрати Хліб житній"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="10" data-pack="шт"><button class="pchip-main" type="button">Яйця С1 <span class="qty num">10 шт</span></button><button class="pchip-x" type="button" aria-label="Прибрати Яйця С1"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="1 кг"><button class="pchip-main" type="button">Гречка <span class="qty num">1 кг</span></button><button class="pchip-x" type="button" aria-label="Прибрати Гречка"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="1 кг"><button class="pchip-main" type="button">Банани <span class="qty num">1 кг</span></button><button class="pchip-x" type="button" aria-label="Прибрати Банани"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="1 кг"><button class="pchip-main" type="button">Куряче філе <span class="qty num">1 кг</span></button><button class="pchip-x" type="button" aria-label="Прибрати Куряче філе"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="3" data-pack="шт"><button class="pchip-main" type="button">Йогурт без лактози <span class="qty num">3 шт</span></button><button class="pchip-x" type="button" aria-label="Прибрати Йогурт без лактози"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="1 л"><button class="pchip-main" type="button">Олія соняшникова <span class="qty num">1 л</span></button><button class="pchip-x" type="button" aria-label="Прибрати Олія соняшникова"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="200 г"><button class="pchip-main" type="button">Сир твердий без лактози <span class="qty num">200 г</span></button><button class="pchip-x" type="button" aria-label="Прибрати Сир твердий без лактози"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="1 кг"><button class="pchip-main" type="button">Помідори <span class="qty num">1 кг</span></button><button class="pchip-x" type="button" aria-label="Прибрати Помідори"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="pchip" data-qty="1" data-pack="250 г"><button class="pchip-main" type="button">Кава мелена <span class="qty num">250 г</span></button><button class="pchip-x" type="button" aria-label="Прибрати Кава мелена"><svg class="i i-sm" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+              </ul>
+
+              <div class="editor" data-editor hidden>
+                <p class="editor-name"><span data-editor-name>Молоко без лактози</span><span class="meta num" data-editor-pack>пачка 1 л</span></p>
+                <div class="stepper" role="group" aria-label="Кількість">
+                  <button type="button" data-step="-1" aria-label="Менше"><svg class="i" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                  <output data-editor-qty aria-live="polite">2</output>
+                  <button type="button" data-step="1" aria-label="Більше"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                </div>
+                <button class="icon-btn" type="button" data-editor-close aria-label="Готово"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></button>
+              </div>
+
+              <div class="add-row">
+                <button class="btn btn-ghost btn-sm" type="button"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>Додати товар</button>
+              </div>
+            </section>
+
+            <section class="block" aria-labelledby="s2-lim">
+              <div class="block-head">
+                <h2 class="section-label" id="s2-lim">Обмеження</h2>
+                <span class="meta">Склад перевіримо для кожного товару</span>
+              </div>
+              <div class="chips">
+                <button class="cchip" type="button" aria-pressed="true"><svg class="i i-sm ic-type" aria-hidden="true"><use href="#i-wallet"/></svg><svg class="i i-sm ic-check" aria-hidden="true"><use href="#i-check"/></svg><span class="num">Бюджет до 1&#8239;500&nbsp;₴</span></button>
+                <button class="cchip" type="button" aria-pressed="true"><svg class="i i-sm ic-type" aria-hidden="true"><use href="#i-milk-off"/></svg><svg class="i i-sm ic-check" aria-hidden="true"><use href="#i-check"/></svg>Без лактози</button>
+                <button class="cchip" type="button" aria-pressed="true"><svg class="i i-sm ic-type" aria-hidden="true"><use href="#i-route"/></svg><svg class="i i-sm ic-check" aria-hidden="true"><use href="#i-check"/></svg><span class="num">До 1 км пішки</span></button>
+                <button class="cchip" type="button" aria-pressed="false"><svg class="i i-sm ic-type" aria-hidden="true"><use href="#i-wheat-off"/></svg><svg class="i i-sm ic-check" aria-hidden="true"><use href="#i-check"/></svg>Без глютену</button>
+                <button class="cchip" type="button" aria-pressed="false"><svg class="i i-sm ic-type" aria-hidden="true"><use href="#i-leaf"/></svg><svg class="i i-sm ic-check" aria-hidden="true"><use href="#i-check"/></svg>Веганське</button>
+                <button class="cchip" type="button" aria-pressed="false"><svg class="i i-sm ic-type" aria-hidden="true"><use href="#i-plus"/></svg><svg class="i i-sm ic-check" aria-hidden="true"><use href="#i-check"/></svg>Інший алерген</button>
+              </div>
+            </section>
+          </div>
+
+          <div class="fab voice-wrap compact" data-voice data-state="idle" data-compact>
+            <button class="voice" type="button" aria-label="Додати голосом" aria-pressed="false">
+              <span class="ring" aria-hidden="true"></span>
+              <svg class="i vi" data-icon="mic" aria-hidden="true"><use href="#i-mic"/></svg>
+              <svg class="i vi" data-icon="stop" aria-hidden="true"><use href="#i-square"/></svg>
+              <svg class="i vi spin" data-icon="loader" aria-hidden="true"><use href="#i-loader"/></svg>
+              <svg class="i vi" data-icon="micoff" aria-hidden="true"><use href="#i-mic-off"/></svg>
+            </button>
+            <p class="sr-only voice-status" aria-live="polite"></p>
+          </div>
+
+          <div class="bottombar">
+            <a class="btn btn-primary btn-block" href="#s3">Знайти найвигідніший кошик</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 03 · ПОРІВНЯННЯ КОШИКІВ ================= -->
+    <article class="shot" id="s3" aria-labelledby="s3-t">
+      <header class="shot-head">
+        <p class="shot-num">03</p>
+        <h3 id="s3-t">Порівняння кошиків по мережах</h3>
+        <p>Radiogroup: клік або ↑↓ змінює варіант, пін і маршрут на карті.</p>
+      </header>
+      <div class="device">
+        <div class="screen">
+          <div class="map" aria-hidden="true">
+            <svg viewBox="0 0 375 330" preserveAspectRatio="xMidYMid slice">
+              <rect class="m-land" width="375" height="330"/>
+              <rect class="m-open" x="0" y="0" width="120" height="52"/>
+              <rect class="m-open" x="250" y="230" width="125" height="100"/>
+              <path class="m-open" d="M300 0h75v120c-30-20-60-60-75-120z"/>
+              <path class="m-street" stroke-width="16" d="M-10 150 L385 118"/>
+              <path class="m-street" stroke-width="9" d="M-10 64 L385 40"/>
+              <path class="m-street" stroke-width="9" d="M-10 238 L385 210"/>
+              <path class="m-street" stroke-width="9" d="M62 -10 L82 340"/>
+              <path class="m-street" stroke-width="9" d="M168 -10 L180 340"/>
+              <path class="m-street" stroke-width="12" d="M270 -10 L250 340"/>
+              <path class="m-street" stroke-width="6" d="M-10 300 L385 280"/>
+              <path class="m-street" stroke-width="6" d="M120 -10 L130 340"/>
+              <path class="m-street" stroke-width="6" d="M220 -10 L215 340"/>
+              <path class="m-street" stroke-width="6" d="M320 120 L375 180"/>
+              <path class="m-route is-on" data-route="cheapest" d="M180 250 L176 140 L84 148 L80 96"/>
+              <path class="m-route" data-route="nearest" d="M180 250 L178 196 L228 192 L232 172"/>
+              <path class="m-route" data-route="split" d="M180 250 L176 140 L84 148 L80 96 M80 96 L76 58 L268 42 L292 68"/>
+              <circle class="m-me-halo" cx="180" cy="250" r="20"/>
+              <circle class="m-me" cx="180" cy="250" r="8"/>
+            </svg>
+          </div>
+          <span class="pin is-selected" data-pin="cheapest split" style="left:21.3%;top:96px"><span class="pin-body"><span class="logo">А</span></span></span>
+          <span class="pin" data-pin="nearest" style="left:61.9%;top:172px"><span class="pin-body"><span class="logo">С</span></span></span>
+          <span class="pin" data-pin="split" style="left:77.9%;top:68px"><span class="pin-body"><span class="logo">N</span></span></span>
+
+          <div class="map-top">
+            <a class="icon-btn" href="#s2" aria-label="Назад до списку"><svg class="i" aria-hidden="true"><use href="#i-arrow-left"/></svg></a>
+            <p class="map-chip"><svg class="i i-sm" aria-hidden="true"><use href="#i-map-pin"/></svg><span><span data-city-label>Київ</span>, вул. Хрещатик, 22</span></p>
+          </div>
+
+          <section class="sheet" aria-labelledby="s3-sheet">
+            <button class="handle" type="button" aria-label="Розгорнути список варіантів"><span></span></button>
+            <div class="sheet-head">
+              <h2 class="h2" id="s3-sheet">3 варіанти кошика</h2>
+              <p class="whole"><svg class="i i-sm" aria-hidden="true"><use href="#i-info"/></svg>Порівнюємо весь кошик, а не окремі знижки</p>
+            </div>
+            <div class="scroll">
+              <div class="cards" role="radiogroup" aria-label="Варіанти кошика" data-cards>
+                <div class="store-card" role="radio" tabindex="0" aria-checked="true" data-option="cheapest">
+                  <div class="sc-head">
+                    <p class="sc-title">Найвигідніший</p>
+                    <span class="badge badge-savings"><svg class="i" aria-hidden="true"><use href="#i-trending-down"/></svg>Найдешевший кошик</span>
+                  </div>
+                  <p class="sc-chain"><span class="logo">А</span>АТБ <span class="sc-addr">· вул. Січових Стрільців, 12</span></p>
+                  <p class="sc-total num">1&#8239;173,80&nbsp;₴</p>
+                  <p class="sc-trade num"><span class="save">−240&nbsp;₴</span> за +450&nbsp;м</p>
+                  <p class="sc-meta num">850&nbsp;м · 11&nbsp;хв пішки · 11 з 11 товарів</p>
+                </div>
+                <div class="store-card" role="radio" tabindex="-1" aria-checked="false" data-option="nearest">
+                  <div class="sc-head"><p class="sc-title">Найближчий</p></div>
+                  <p class="sc-chain"><span class="logo">С</span>Сільпо <span class="sc-addr">· вул. Хрещатик, 34</span></p>
+                  <p class="sc-total num">1&#8239;413,80&nbsp;₴</p>
+                  <p class="sc-trade">Найближчий до вас</p>
+                  <p class="sc-meta num">400&nbsp;м · 5&nbsp;хв пішки · 11 з 11 товарів</p>
+                </div>
+                <div class="store-card" role="radio" tabindex="-1" aria-checked="false" data-option="split">
+                  <div class="sc-head"><p class="sc-title">Smart Split</p><span class="badge badge-neutral num">2 магазини</span></div>
+                  <div class="sc-split-row"><span class="logo">А</span><span>АТБ</span><span class="meta num">7 товарів</span><span class="sub num">698,30&nbsp;₴</span></div>
+                  <div class="sc-split-row"><span class="logo">N</span><span>Novus</span><span class="meta num">4 товари</span><span class="sub num">530,30&nbsp;₴</span></div>
+                  <p class="sc-total num">1&#8239;228,60&nbsp;₴</p>
+                  <p class="sc-trade num"><span class="save">−185&nbsp;₴</span> за +1 магазин</p>
+                  <p class="sc-meta num">Маршрут 1,1&nbsp;км · 15&nbsp;хв пішки</p>
+                </div>
+              </div>
+            </div>
+            <div class="bottombar">
+              <a class="btn btn-secondary" href="#s3" aria-label="Маршрут у Google Maps (відкриється зовнішня карта)"><svg class="i" aria-hidden="true"><use href="#i-external"/></svg>Маршрут</a>
+              <a class="btn btn-primary grow" href="#s4">Деталі кошика</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 04 · ФІНАЛЬНИЙ КОШИК ================= -->
+    <article class="shot" id="s4" aria-labelledby="s4-t">
+      <header class="shot-head">
+        <p class="shot-num">04</p>
+        <h3 id="s4-t">Фінальний кошик: фото і ціни</h3>
+        <p>Ціна пачки + за кг, нестандартна вага, склад із причиною (натисніть бейдж), аналог із «Замінити».</p>
+      </header>
+      <div class="device">
+        <div class="screen">
+          <header class="appbar with-back">
+            <a class="icon-btn" href="#s3" aria-label="Назад до варіантів"><svg class="i" aria-hidden="true"><use href="#i-arrow-left"/></svg></a>
+            <p class="appbar-title">Деталі кошика</p>
+          </header>
+          <div class="scroll">
+            <section class="summary" aria-label="Підсумок">
+              <p class="overline">Найвигідніший</p>
+              <p class="sc-chain"><span class="logo">А</span>АТБ <span class="sc-addr">· вул. Січових Стрільців, 12</span></p>
+              <p class="summary-total num">1&#8239;173,80&nbsp;₴</p>
+              <p class="summary-save num">Економія 240&nbsp;₴ порівняно з найближчим</p>
+              <p class="meta num">11 з 11 товарів · 850&nbsp;м · 11&nbsp;хв пішки</p>
+              <div class="summary-flags">
+                <span class="badge badge-neutral"><svg class="i" aria-hidden="true"><use href="#i-shield-check"/></svg>Склад перевірено: без лактози</span>
+                <span class="badge badge-warning num"><svg class="i" aria-hidden="true"><use href="#i-replace"/></svg>1 аналог</span>
+              </div>
+            </section>
+            <p class="updated meta num"><svg class="i i-sm" aria-hidden="true"><use href="#i-info"/></svg>Ціни АТБ оновлено сьогодні о 09:40</p>
+
+            <ul class="basket" aria-label="Товари в кошику">
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-milk"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Молоко безлактозне 2,5&nbsp;%</button>
+                  <p class="bbrand num">Лугове · 870&nbsp;г</p>
+                  <div class="bbadges">
+                    <button class="allergen verified" type="button" aria-expanded="false" aria-controls="ad-milk" aria-label="Склад перевірено: без лактози. Показати пояснення"><svg class="i" aria-hidden="true"><use href="#i-shield-check"/></svg>Без лактози</button>
+                  </div>
+                </div>
+                <div class="bprice">
+                  <span class="bqty">2 × 52,90&nbsp;₴</span>
+                  <span class="bsum">105,80&nbsp;₴</span>
+                  <span class="unit-row"><span class="unit"><span aria-hidden="true">60,80&nbsp;₴/кг</span><span class="sr-only">60,80 гривні за кілограм</span></span><span class="wbadge">870&nbsp;г</span></span>
+                </div>
+                <div class="full allergen-details" id="ad-milk" hidden>
+                  <p>Склад перевірено: без лактози</p>
+                  <p>У складі немає: молоко звичайне, лактоза, вершки, сироватка. Лактозу розщеплено ферментом.</p>
+                  <p class="src num">Джерело: склад з етикетки, дані мережі · оновлено 18.11.2026</p>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-bread"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Хліб житній</button>
+                  <p class="bbrand num">Хлібна хата · 500&nbsp;г</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">34,50&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">69,00&nbsp;₴/кг</span><span class="sr-only">69 гривень за кілограм</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-eggs"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Яйця курячі С1</button>
+                  <p class="bbrand num">Ясна ферма · 10&nbsp;шт</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">62,90&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">6,29&nbsp;₴/шт</span><span class="sr-only">6,29 гривні за штуку</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-yogurt"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Йогурт безлактозний 2,5&nbsp;%</button>
+                  <p class="bbrand num">Лугове · 250&nbsp;г</p>
+                  <div class="bbadges">
+                    <button class="allergen verified" type="button" aria-expanded="false" aria-controls="ad-yog" aria-label="Склад перевірено: без лактози. Показати пояснення"><svg class="i" aria-hidden="true"><use href="#i-shield-check"/></svg>Без лактози</button>
+                  </div>
+                </div>
+                <div class="bprice">
+                  <span class="bqty">3 × 41,90&nbsp;₴</span>
+                  <span class="bsum">125,70&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">167,60&nbsp;₴/кг</span><span class="sr-only">167,60 гривні за кілограм</span></span>
+                </div>
+                <div class="full allergen-details" id="ad-yog" hidden>
+                  <p>Склад перевірено: без лактози</p>
+                  <p>У складі немає: лактоза, вершки, сироватка, казеїн.</p>
+                  <p class="src num">Джерело: склад з етикетки, дані мережі · оновлено 18.11.2026</p>
+                </div>
+                <div class="full analog">
+                  <svg class="i" aria-hidden="true"><use href="#i-replace"/></svg>
+                  <div class="analog-body">
+                    <p class="analog-line"><span class="analog-title">Аналог</span> · замість «Йогурт Ферма безлактозний 2,5&nbsp;%, 280&nbsp;г»</p>
+                    <p class="analog-meta">Немає в АТБ на Січових Стрільців. Та сама жирність, теж без лактози.</p>
+                    <div class="analog-foot">
+                      <span class="analog-diff">+3,67&nbsp;₴/кг до оригіналу</span>
+                      <button class="btn btn-ghost btn-sm" type="button" aria-label="Замінити аналог для «Йогурт Ферма безлактозний 2,5 %, 280 г»">Замінити</button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-cheese"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Сир твердий безлактозний 45&nbsp;%</button>
+                  <p class="bbrand num">Карпатський · 200&nbsp;г</p>
+                  <div class="bbadges">
+                    <button class="allergen verified" type="button" aria-expanded="false" aria-controls="ad-chs" aria-label="Склад перевірено: без лактози. Показати пояснення"><svg class="i" aria-hidden="true"><use href="#i-shield-check"/></svg>Без лактози</button>
+                  </div>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">129,90&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">649,50&nbsp;₴/кг</span><span class="sr-only">649,50 гривні за кілограм</span></span>
+                </div>
+                <div class="full allergen-details" id="ad-chs" hidden>
+                  <p>Склад перевірено: без лактози</p>
+                  <p>Витримка понад 6 місяців, лактоза менше 0,1 г на 100 г.</p>
+                  <p class="src num">Джерело: склад з етикетки, дані мережі · оновлено 17.11.2026</p>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-chicken"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Філе куряче охолоджене</button>
+                  <p class="bbrand num">Наша птиця · 1&nbsp;кг</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">239,00&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">239,00&nbsp;₴/кг</span><span class="sr-only">239 гривень за кілограм</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-grain"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Крупа гречана ядриця</button>
+                  <p class="bbrand num">Злаки · 1&nbsp;кг</p>
+                  <div class="bbadges">
+                    <button class="allergen traces" type="button" aria-expanded="false" aria-controls="ad-grn" aria-label="Може містити сліди глютену. Показати пояснення"><svg class="i" aria-hidden="true"><use href="#i-triangle"/></svg>Може містити глютен</button>
+                  </div>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">58,40&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">58,40&nbsp;₴/кг</span><span class="sr-only">58,40 гривні за кілограм</span></span>
+                </div>
+                <div class="full allergen-details" id="ad-grn" hidden>
+                  <p>Може містити сліди глютену</p>
+                  <p>Виробник пише: «фасується на лінії, де обробляють пшеницю». Обмеження «без глютену» у вас не ввімкнене.</p>
+                  <p class="src num">Джерело: етикетка, дані мережі · оновлено 15.11.2026</p>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-banana"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Банани</button>
+                  <p class="bbrand num">Вагові · 1&nbsp;кг</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">64,90&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">64,90&nbsp;₴/кг</span><span class="sr-only">64,90 гривні за кілограм</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-tomato"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Помідори червоні</button>
+                  <p class="bbrand num">Вагові · 1&nbsp;кг</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">89,90&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">89,90&nbsp;₴/кг</span><span class="sr-only">89,90 гривні за кілограм</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-oil"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Олія соняшникова рафінована</button>
+                  <p class="bbrand num">Сонячна · 1&nbsp;л</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">72,90&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">72,90&nbsp;₴/л</span><span class="sr-only">72,90 гривні за літр</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-coffee"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Кава мелена арабіка</button>
+                  <p class="bbrand num">Обсмажка · 250&nbsp;г</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">189,90&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">759,60&nbsp;₴/кг</span><span class="sr-only">759,60 гривні за кілограм</span></span>
+                </div>
+              </li>
+            </ul>
+            <p class="updated meta">Кількість змінюється в деталях товару: натисніть назву.</p>
+          </div>
+          <div class="bottombar">
+            <a class="btn btn-secondary" href="#s4" aria-label="Маршрут у Google Maps (відкриється зовнішня карта)"><svg class="i" aria-hidden="true"><use href="#i-external"/></svg>Маршрут</a>
+            <button class="btn btn-primary grow" type="button">Почати покупки</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <h2 class="group-title">Стани</h2>
+  <div class="flow">
+
+    <!-- ================= 05a · ЗАВАНТАЖЕННЯ ================= -->
+    <article class="shot" id="s5a" aria-labelledby="s5a-t">
+      <header class="shot-head">
+        <p class="shot-num">05a</p>
+        <h3 id="s5a-t">Завантаження: пошук цін</h3>
+        <p>Етапи з aria-live, скелетони фіксованої висоти 168 px (без CLS). Понад 10 с — стан помилки.</p>
+      </header>
+      <div class="device">
+        <div class="screen" aria-busy="true">
+          <div class="map-skel" aria-hidden="true">
+            <span class="skel" style="left:21%;top:80px;width:32px;height:32px"></span>
+            <span class="skel" style="left:60%;top:156px;width:32px;height:32px"></span>
+            <span class="skel" style="left:76%;top:52px;width:32px;height:32px"></span>
+          </div>
+          <div class="map-top">
+            <a class="icon-btn" href="#s2" aria-label="Скасувати пошук"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></a>
+            <p class="map-chip"><svg class="i i-sm" aria-hidden="true"><use href="#i-map-pin"/></svg><span><span data-city-label>Київ</span>, вул. Хрещатик, 22</span></p>
+          </div>
+          <section class="sheet" aria-labelledby="s5a-sheet">
+            <span class="handle" aria-hidden="true"><span></span></span>
+            <div class="sheet-head">
+              <h2 class="h2" id="s5a-sheet">Шукаю найвигідніший кошик</h2>
+              <p class="whole num">11 товарів · бюджет до 1&#8239;500&nbsp;₴ · без лактози</p>
+            </div>
+            <div class="stages" role="status" aria-live="polite">
+              <p class="stage done"><svg class="i" aria-hidden="true"><use href="#i-circle-check"/></svg>Розібрав запит: 11 товарів</p>
+              <p class="stage now"><svg class="i spin" aria-hidden="true"><use href="#i-loader"/></svg>Шукаю ціни в 6 мережах…<span class="num">4 з 6</span></p>
+              <div class="bar" aria-hidden="true"><span></span></div>
+              <p class="stage next"><svg class="i" aria-hidden="true"><use href="#i-circle"/></svg>Рахую маршрути пішки</p>
+            </div>
+            <div class="scroll">
+              <div class="cards" aria-hidden="true">
+                <div class="skel-card"></div>
+                <div class="skel-card"></div>
+                <div class="skel-card"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 05b · НЕ РОЗПІЗНАВ ================= -->
+    <article class="shot" id="s5b" aria-labelledby="s5b-t">
+      <header class="shot-head">
+        <p class="shot-num">05b</p>
+        <h3 id="s5b-t">«Не розпізнав» (no-speech)</h3>
+        <p>Помилка текстом з іконкою (role="alert"), не лише кольором. Поле вводу лишається поруч.</p>
+      </header>
+      <div class="device">
+        <div class="screen">
+          <header class="appbar">
+            <p class="logo-word">Sayvy<span aria-hidden="true"></span></p>
+            <button class="city-trigger" type="button" aria-haspopup="listbox" aria-label="Місто: Київ. Змінити">
+              <svg class="i pin-ic" aria-hidden="true"><use href="#i-map-pin"/></svg>
+              <span data-city-label>Київ</span>
+              <svg class="i i-sm chev" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </header>
+          <div class="scroll">
+            <section class="hero-lime">
+              <h2 class="display">Той самий кошик — <mark class="hl">до 30% дешевше</mark></h2>
+              <p class="hero-sub">Скажіть або вставте список. Порівняємо весь кошик у 6 мережах поруч.</p>
+            </section>
+            <section class="voice-zone" aria-label="Голосове введення">
+              <div class="voice-wrap" data-voice data-state="error" data-target="#req-2">
+                <button class="voice" type="button" aria-label="Спробувати голосове введення ще раз" aria-pressed="false">
+                  <span class="ring" aria-hidden="true"></span>
+                  <svg class="i vi" data-icon="mic" aria-hidden="true"><use href="#i-mic"/></svg>
+                  <svg class="i vi" data-icon="stop" aria-hidden="true"><use href="#i-square"/></svg>
+                  <svg class="i vi spin" data-icon="loader" aria-hidden="true"><use href="#i-loader"/></svg>
+                  <svg class="i vi" data-icon="micoff" aria-hidden="true"><use href="#i-mic-off"/></svg>
+                </button>
+                <span class="voice-level" aria-hidden="true"><span></span></span>
+                <p class="voice-status" aria-live="polite"></p>
+                <p class="voice-error" role="alert"><svg class="i i-sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Не почув. Спробуйте ще раз або введіть текстом</span></p>
+                <p class="voice-hint" data-hint>Говоріть ближче до телефона, наприклад: «молоко, хліб і десяток яєць»</p>
+                <p class="live-text" data-live hidden></p>
+                <a class="btn btn-ghost btn-sm" href="#s2" data-next hidden>Перевірити список</a>
+              </div>
+            </section>
+            <section class="pad">
+              <label class="sr-only" for="req-2">Введіть або вставте список</label>
+              <div class="request">
+                <textarea id="req-2" placeholder="Або введіть: молоко, хліб, десяток яєць…"></textarea>
+              </div>
+            </section>
+          </div>
+          <div class="bottombar">
+            <a class="btn btn-primary btn-lg btn-block" href="#s2">Знайти кошик<svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 05c · ТОВАРУ НЕМАЄ ================= -->
+    <article class="shot" id="s5c" aria-labelledby="s5c-t">
+      <header class="shot-head">
+        <p class="shot-num">05c</p>
+        <h3 id="s5c-t">«Товару немає в жодній мережі»</h3>
+        <p>Банер над списком + рядок not-found. Сума рахується без позиції, і це сказано явно.</p>
+      </header>
+      <div class="device">
+        <div class="screen">
+          <header class="appbar with-back">
+            <a class="icon-btn" href="#s3" aria-label="Назад до варіантів"><svg class="i" aria-hidden="true"><use href="#i-arrow-left"/></svg></a>
+            <p class="appbar-title">Деталі кошика</p>
+          </header>
+          <div class="scroll">
+            <section class="summary" aria-label="Підсумок">
+              <p class="overline">Найвигідніший</p>
+              <p class="sc-chain"><span class="logo">А</span>АТБ <span class="sc-addr">· вул. Січових Стрільців, 12</span></p>
+              <p class="summary-total num">1&#8239;173,80&nbsp;₴</p>
+              <p class="meta num">Сума без 1 товару · 11 з 12 товарів · 850&nbsp;м</p>
+            </section>
+
+            <div class="banner banner-danger" role="status">
+              <svg class="i" aria-hidden="true"><use href="#i-alert"/></svg>
+              <div>
+                <p class="banner-title">1 товару немає в жодній мережі</p>
+                <p class="banner-text">«Хумус з печеним перцем» не знайшли в 6 мережах поруч. Суму порахували без нього.</p>
+                <button class="btn btn-ghost btn-sm" type="button">Знайти схожий товар</button>
+              </div>
+            </div>
+
+            <p class="updated meta num"><svg class="i i-sm" aria-hidden="true"><use href="#i-info"/></svg>Ціни АТБ оновлено сьогодні о 09:40</p>
+            <ul class="basket" aria-label="Товари в кошику">
+              <li class="brow">
+                <div class="bphoto"><svg class="i i-lg" aria-hidden="true"><use href="#i-package-x"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Хумус з печеним перцем</button>
+                  <p class="bbrand num">Шукали: 200–250&nbsp;г</p>
+                  <div class="bbadges"><span class="badge badge-danger"><svg class="i" aria-hidden="true"><use href="#i-alert"/></svg>Немає в жодній мережі</span></div>
+                </div>
+                <div class="bprice">
+                  <span class="bsum missing" aria-label="Ціни немає">—</span>
+                  <button class="btn btn-ghost btn-sm" type="button" aria-label="Прибрати Хумус з печеним перцем">Прибрати</button>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-milk"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Молоко безлактозне 2,5&nbsp;%</button>
+                  <p class="bbrand num">Лугове · 870&nbsp;г</p>
+                  <div class="bbadges"><span class="allergen verified"><svg class="i" aria-hidden="true"><use href="#i-shield-check"/></svg>Без лактози</span></div>
+                </div>
+                <div class="bprice">
+                  <span class="bqty">2 × 52,90&nbsp;₴</span>
+                  <span class="bsum">105,80&nbsp;₴</span>
+                  <span class="unit-row"><span class="unit"><span aria-hidden="true">60,80&nbsp;₴/кг</span><span class="sr-only">60,80 гривні за кілограм</span></span><span class="wbadge">870&nbsp;г</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-bread"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Хліб житній</button>
+                  <p class="bbrand num">Хлібна хата · 500&nbsp;г</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">34,50&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">69,00&nbsp;₴/кг</span><span class="sr-only">69 гривень за кілограм</span></span>
+                </div>
+              </li>
+              <li class="brow">
+                <div class="bphoto"><svg class="photo" aria-hidden="true"><use href="#p-eggs"/></svg></div>
+                <div>
+                  <button class="bname" type="button">Яйця курячі С1</button>
+                  <p class="bbrand num">Ясна ферма · 10&nbsp;шт</p>
+                </div>
+                <div class="bprice">
+                  <span class="bsum">62,90&nbsp;₴</span>
+                  <span class="unit"><span aria-hidden="true">6,29&nbsp;₴/шт</span><span class="sr-only">6,29 гривні за штуку</span></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="bottombar">
+            <a class="btn btn-secondary" href="#s5c" aria-label="Маршрут у Google Maps (відкриється зовнішня карта)"><svg class="i" aria-hidden="true"><use href="#i-external"/></svg>Маршрут</a>
+            <button class="btn btn-primary grow" type="button">Почати покупки</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= 05d · СТАНИ КНОПКИ ГОЛОСУ ================= -->
+    <section class="board" aria-labelledby="s5d-t">
+      <p class="shot-num">05d</p>
+      <h3 id="s5d-t">VoiceButton: усі стани</h3>
+      <p>Статичні зразки для розробки (4.1). Unsupported не рендериться: під полем лише підказка сірим.</p>
+      <div class="board-grid">
+        <div class="board-cell">
+          <span class="tag">idle</span>
+          <div class="voice-wrap" data-state="idle">
+            <span class="voice" aria-hidden="true"><svg class="i vi" data-icon="mic"><use href="#i-mic"/></svg></span>
+            <p class="voice-status"></p>
+          </div>
+        </div>
+        <div class="board-cell">
+          <span class="tag">listening</span>
+          <div class="voice-wrap" data-state="listening" style="--level:0.6">
+            <span class="voice" aria-hidden="true"><span class="ring"></span><svg class="i vi" data-icon="stop"><use href="#i-square"/></svg></span>
+            <span class="voice-level"><span></span></span>
+            <p class="voice-status">Слухаю…</p>
+          </div>
+        </div>
+        <div class="board-cell">
+          <span class="tag">processing</span>
+          <div class="voice-wrap" data-state="processing">
+            <span class="voice" aria-hidden="true"><svg class="i vi spin" data-icon="loader"><use href="#i-loader"/></svg></span>
+            <p class="voice-status">Розбираю запит…</p>
+          </div>
+        </div>
+        <div class="board-cell">
+          <span class="tag">error · retry</span>
+          <div class="voice-wrap" data-state="error">
+            <span class="voice" aria-hidden="true"><svg class="i vi" data-icon="mic"><use href="#i-mic"/></svg></span>
+            <p class="voice-error"><svg class="i i-sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Немає з'єднання. Голос тимчасово недоступний — введіть текстом</span></p>
+          </div>
+        </div>
+        <div class="board-cell">
+          <span class="tag">error · blocked</span>
+          <div class="voice-wrap" data-state="blocked">
+            <span class="voice" aria-hidden="true"><svg class="i vi" data-icon="micoff"><use href="#i-mic-off"/></svg></span>
+            <p class="voice-error"><svg class="i i-sm" aria-hidden="true"><use href="#i-alert"/></svg><span>Доступ до мікрофона заборонено. Введіть список текстом або дозвольте мікрофон у налаштуваннях браузера</span></p>
+          </div>
+        </div>
+        <div class="board-cell">
+          <span class="tag">unsupported</span>
+          <div class="voice-wrap" style="justify-content:center">
+            <p class="voice-hint">Браузер не підтримує голос. Введіть список текстом</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- VoiceButton (4.1) ---------- */
+  var STATUS = { idle: '', listening: 'Слухаю…', processing: 'Розбираю запит…', error: '', blocked: '' };
+  var TRANSCRIPT = '«Молоко без лактози два літри, хліб, десяток яєць, гречку, банани, кіло філе…»';
+
+  document.querySelectorAll('[data-voice]').forEach(function (wrap) {
+    var btn = wrap.querySelector('.voice');
+    var status = wrap.querySelector('.voice-status');
+    var err = wrap.querySelector('.voice-error');
+    var hint = wrap.querySelector('[data-hint]');
+    var live = wrap.querySelector('[data-live]');
+    var next = wrap.querySelector('[data-next]');
+    var compact = wrap.hasAttribute('data-compact');
+    var target = wrap.dataset.target ? document.querySelector(wrap.dataset.target) : null;
+    var basePh = target ? target.getAttribute('placeholder') : '';
+    var baseLabel = btn.getAttribute('aria-label');
+    var levelTimer = null, procTimer = null;
+
+    function set(state) {
+      wrap.dataset.state = state;
+      if (status) status.textContent = STATUS[state] || '';
+      btn.setAttribute('aria-pressed', state === 'listening' ? 'true' : 'false');
+      btn.setAttribute('aria-label',
+        state === 'listening' ? 'Зупинити запис' :
+        state === 'error' ? 'Спробувати голосове введення ще раз' :
+        compact ? 'Додати голосом' : 'Почати голосове введення');
+      if (state === 'processing') { btn.setAttribute('aria-busy', 'true'); btn.setAttribute('aria-disabled', 'true'); }
+      else { btn.removeAttribute('aria-busy'); btn.removeAttribute('aria-disabled'); }
+      if (err) err.hidden = state !== 'error';
+      if (hint) hint.hidden = state !== 'error';
+      clearInterval(levelTimer);
+      wrap.style.setProperty('--level', 0);
+      if (target) target.setAttribute('placeholder', state === 'listening' ? 'Слухаю… говоріть список' : state === 'processing' ? 'Розбираю запит…' : basePh);
+      if (state === 'listening') {
+        if (live) live.hidden = true;
+        if (next) next.hidden = true;
+        levelTimer = setInterval(function () {
+          wrap.style.setProperty('--level', (0.25 + Math.random() * 0.75).toFixed(2));
+        }, 140);
+      }
+    }
+
+    btn.addEventListener('click', function () {
+      var s = wrap.dataset.state;
+      if (s === 'processing' || s === 'blocked') return;
+      if (s === 'listening') {
+        set('processing');
+        procTimer = setTimeout(function () {
+          set('idle');
+          if (live) { live.textContent = TRANSCRIPT; live.hidden = false; }
+          if (target) target.value = TRANSCRIPT.replace(/[«»…]/g, '');
+          if (next) next.hidden = false;
+          if (compact && status) status.textContent = 'Додано 1 товар';
+        }, 1600);
+        return;
+      }
+      set('listening');
+    });
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.dataset.state === 'listening') { e.preventDefault(); set('idle'); }
+    });
+  });
+
+  /* ---------- Request examples ---------- */
+  document.querySelectorAll('[data-example]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var ta = document.querySelector(b.dataset.example);
+      ta.value = b.textContent.trim();
+      ta.focus();
+    });
+  });
+
+  /* ---------- CitySelect (4.7) ---------- */
+  var cityIn = document.getElementById('city-in');
+  var cityOpts = Array.prototype.slice.call(document.querySelectorAll('#city-list [data-city]'));
+  var locateOpt = document.querySelector('#city-list [data-locate]');
+  var cityEmpty = document.querySelector('[data-city-empty]');
+  var cityQuery = document.querySelector('[data-city-query]');
+  var cityCount = document.querySelector('[data-city-count]');
+  var activeIdx = -1;
+
+  function norm(s) {
+    return s.toLowerCase().replace(/[’'ʼ`]/g, '').replace(/^\s*м\.\s*/, '').trim();
+  }
+  function plural(n) {
+    var m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return n + ' місто';
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return n + ' міста';
+    return n + ' міст';
+  }
+  function visibleOpts() { return cityOpts.filter(function (o) { return !o.hidden; }); }
+  function setActive(i) {
+    var vis = visibleOpts();
+    cityOpts.forEach(function (o) { o.classList.remove('is-active'); });
+    if (!vis.length) { activeIdx = -1; cityIn.removeAttribute('aria-activedescendant'); return; }
+    activeIdx = (i + vis.length) % vis.length;
+    vis[activeIdx].classList.add('is-active');
+    cityIn.setAttribute('aria-activedescendant', vis[activeIdx].id);
+    vis[activeIdx].scrollIntoView({ block: 'nearest' });
+  }
+  function choose(opt) {
+    cityOpts.forEach(function (o) { o.setAttribute('aria-selected', o === opt ? 'true' : 'false'); });
+    var name = opt.dataset.city;
+    document.querySelectorAll('[data-city-label]').forEach(function (el) { el.textContent = name; });
+    document.querySelectorAll('.city-trigger').forEach(function (el) { el.setAttribute('aria-label', 'Місто: ' + name + '. Змінити'); });
+    try { localStorage.setItem('sayvy-city', name); } catch (e) {}
+  }
+  function filter() {
+    var q = norm(cityIn.value);
+    var n = 0;
+    cityOpts.forEach(function (o) {
+      var hay = [norm(o.dataset.city)].concat(o.dataset.alias.split(' '));
+      var hit = !q || hay.some(function (h) { return h.indexOf(q) === 0; });
+      o.hidden = !hit;
+      if (hit) n++;
+    });
+    locateOpt.hidden = !!q;
+    cityEmpty.hidden = n > 0;
+    cityQuery.textContent = cityIn.value.trim();
+    cityCount.textContent = n ? 'Знайдено ' + plural(n) : 'Нічого не знайдено';
+    activeIdx = -1;
+    cityIn.removeAttribute('aria-activedescendant');
+    cityOpts.forEach(function (o) { o.classList.remove('is-active'); });
+  }
+  if (cityIn) {
+    cityIn.addEventListener('input', filter);
+    cityIn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setActive(activeIdx + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(activeIdx - 1); }
+      else if (e.key === 'Enter' && activeIdx > -1) { e.preventDefault(); choose(visibleOpts()[activeIdx]); }
+      else if (e.key === 'Escape') { cityIn.value = ''; filter(); }
+    });
+    cityOpts.forEach(function (o) { o.addEventListener('click', function () { choose(o); }); });
+    try { var saved = localStorage.getItem('sayvy-city'); if (saved) { var o = cityOpts.filter(function (x) { return x.dataset.city === saved; })[0]; if (o) choose(o); } } catch (e) {}
+  }
+
+  /* ---------- ProductChip + editor ---------- */
+  var chipsList = document.querySelector('[data-chips]');
+  var countEl = document.querySelector('[data-count]');
+  var editor = document.querySelector('[data-editor]');
+  var editing = null;
+
+  function goods(n) {
+    var m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return n + ' товар';
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return n + ' товари';
+    return n + ' товарів';
+  }
+  function qtyLabel(q, pack) { return pack === 'шт' ? q + ' шт' : (q === 1 ? pack : q + ' × ' + pack); }
+  function closeEditor() {
+    if (editing) editing.classList.remove('is-editing');
+    editing = null; editor.hidden = true;
+  }
+  if (chipsList) {
+    chipsList.addEventListener('click', function (e) {
+      var chip = e.target.closest('.pchip'); if (!chip) return;
+      if (e.target.closest('.pchip-x')) {
+        if (chip === editing) closeEditor();
+        chip.remove();
+        countEl.textContent = goods(chipsList.children.length);
+        return;
+      }
+      if (editing === chip) { closeEditor(); return; }
+      if (editing) editing.classList.remove('is-editing');
+      editing = chip; chip.classList.add('is-editing');
+      editor.querySelector('[data-editor-name]').textContent = chip.querySelector('.pchip-main').firstChild.textContent.trim();
+      editor.querySelector('[data-editor-pack]').textContent = chip.dataset.pack === 'шт' ? 'поштучно' : 'пачка ' + chip.dataset.pack;
+      editor.querySelector('[data-editor-qty]').textContent = chip.dataset.qty;
+      editor.hidden = false;
+    });
+    editor.addEventListener('click', function (e) {
+      var step = e.target.closest('[data-step]');
+      if (step && editing) {
+        var q = Math.max(1, Math.min(99, parseInt(editing.dataset.qty, 10) + parseInt(step.dataset.step, 10)));
+        editing.dataset.qty = q;
+        editing.querySelector('.qty').textContent = qtyLabel(q, editing.dataset.pack);
+        editor.querySelector('[data-editor-qty]').textContent = q;
+      }
+      if (e.target.closest('[data-editor-close]')) closeEditor();
+    });
+  }
+
+  /* ---------- ConstraintChip ---------- */
+  document.querySelectorAll('.cchip').forEach(function (c) {
+    c.addEventListener('click', function () {
+      c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    });
+  });
+
+  /* ---------- StoreCard radiogroup (4.2) ---------- */
+  var WHY = {
+    cheapest: 'В АТБ дорожчі 3 товари з 11, але решта дешевша. Разом — на 240 ₴ менше, ніж у найближчому Сільпо.',
+    nearest: 'Сільпо за 400 м — найменше йти. Той самий кошик тут дорожчий на 240 ₴, ніж в АТБ.',
+    split: '7 товарів дешевші в АТБ, 4 — в Novus. Порівняно з найближчим магазином це −185 ₴, але треба зайти у 2 магазини.'
+  };
+  document.querySelectorAll('[data-cards]').forEach(function (group) {
+    var cards = Array.prototype.slice.call(group.querySelectorAll('[role="radio"]'));
+    var scope = group.closest('[data-cards-scope]') || group.closest('.device');
+    var pins = Array.prototype.slice.call(scope.querySelectorAll('.pin'));
+    var whyText = scope.querySelector('[data-why-text]');
+    function select(card, focus) {
+      cards.forEach(function (c) {
+        var on = c === card;
+        c.setAttribute('aria-checked', on ? 'true' : 'false');
+        c.tabIndex = on ? 0 : -1;
+      });
+      var opt = card.dataset.option;
+      pins.forEach(function (p) { p.classList.toggle('is-selected', p.dataset.pin.split(' ').indexOf(opt) > -1); });
+      scope.querySelectorAll('.m-route').forEach(function (r) { r.classList.toggle('is-on', r.dataset.route === opt); });
+      if (whyText && WHY[opt]) whyText.textContent = WHY[opt];
+      if (focus) card.focus();
+    }
+    cards.forEach(function (c, i) {
+      c.addEventListener('click', function () { select(c, false); });
+      c.addEventListener('keydown', function (e) {
+        var k = e.key, j = null;
+        if (k === 'ArrowDown' || k === 'ArrowRight') j = (i + 1) % cards.length;
+        if (k === 'ArrowUp' || k === 'ArrowLeft') j = (i - 1 + cards.length) % cards.length;
+        if (j !== null) { e.preventDefault(); select(cards[j], true); }
+        if (k === ' ' || k === 'Enter') { e.preventDefault(); select(c, false); }
+      });
+      c.addEventListener('mouseenter', function () {
+        pins.forEach(function (p) { p.classList.toggle('is-hover', p.dataset.pin.split(' ').indexOf(c.dataset.option) > -1); });
+      });
+      c.addEventListener('mouseleave', function () { pins.forEach(function (p) { p.classList.remove('is-hover'); }); });
+    });
+    pins.forEach(function (p) {
+      p.addEventListener('click', function () {
+        var opt = p.dataset.pin.split(' ')[0];
+        var card = cards.filter(function (c) { return c.dataset.option === opt; })[0];
+        if (card) select(card, false);
+      });
+    });
+  });
+
+  /* ---------- Desktop product list (screen 2) ---------- */
+  function goodsWord(n) {
+    var m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return 'товар';
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return 'товари';
+    return 'товарів';
+  }
+  document.querySelectorAll('[data-plist]').forEach(function (list) {
+    var scope = list.closest('[data-plist-scope]');
+    var countEl = scope.querySelector('[data-pcount]');
+    var cta = scope.querySelector('[data-pcta]');
+    var ctaIcon = cta ? cta.querySelector('svg') : null;
+    function update() {
+      var n = list.querySelectorAll('.prow').length;
+      countEl.textContent = n + ' ' + goodsWord(n);
+      if (cta) { cta.firstChild.textContent = 'Знайти ціни · ' + n + ' ' + goodsWord(n); }
+    }
+    list.addEventListener('click', function (e) {
+      var step = e.target.closest('[data-step]');
+      if (step) {
+        var out = step.parentNode.querySelector('output');
+        out.textContent = Math.max(1, parseInt(out.textContent, 10) + parseInt(step.dataset.step, 10));
+        return;
+      }
+      var x = e.target.closest('.prow-x');
+      if (x) { x.closest('.prow').remove(); update(); }
+    });
+  });
+
+  /* ---------- Segmented controls / presets ---------- */
+  document.querySelectorAll('[data-seg]').forEach(function (seg) {
+    var opts = Array.prototype.slice.call(seg.querySelectorAll('[role="radio"]'));
+    var budgetIn = seg.closest('.fset') ? seg.closest('.fset').querySelector('[data-budget-input]') : null;
+    function pick(o, focus) {
+      opts.forEach(function (x) { x.setAttribute('aria-checked', x === o ? 'true' : 'false'); x.tabIndex = x === o ? 0 : -1; });
+      if (budgetIn && o.hasAttribute('data-budget')) budgetIn.value = o.dataset.budget;
+      if (focus) o.focus();
+    }
+    opts.forEach(function (o, i) {
+      o.tabIndex = o.getAttribute('aria-checked') === 'true' ? 0 : -1;
+      o.addEventListener('click', function () { pick(o, false); });
+      o.addEventListener('keydown', function (e) {
+        var j = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') j = (i + 1) % opts.length;
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') j = (i - 1 + opts.length) % opts.length;
+        if (j !== null) { e.preventDefault(); pick(opts[j], true); }
+      });
+    });
+  });
+
+  /* ---------- AllergenBadge details (4.6) ---------- */
+  document.querySelectorAll('button.allergen[aria-controls]').forEach(function (b) {
+    var panel = document.getElementById(b.getAttribute('aria-controls'));
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      panel.hidden = !open;
+    });
+    b.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && b.getAttribute('aria-expanded') === 'true') {
+        b.setAttribute('aria-expanded', 'false'); panel.hidden = true; b.focus();
+      }
+    });
+  });
+
+  /* Відкрити одне пояснення складу, щоб його було видно на скріншоті */
+  var demo = document.querySelector('[aria-controls="ad-milk"]');
+  if (demo) demo.click();
+})();
+</script>
+</body>
+</html>
