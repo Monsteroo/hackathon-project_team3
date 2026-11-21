@@ -202,6 +202,19 @@ def rule_constraints(text: str) -> dict:
     return {"mode": mode, "radius_km": _valid_radius(radius)}
 
 
+DISTANCE_CUE_RE = re.compile(_NUM + r"\s*" + _UNIT, re.IGNORECASE)
+
+
+def has_distance_cue(text: str) -> bool:
+    """Чи людина взагалі сказала щось про відстань: явну межу («2 км», «до 500 метрів») або «недалеко/поруч».
+
+    Без цього радіус від LLM не беремо: на просте «пішки» модель вигадує 1 км, і пошук стає вужчим
+    за типовий пішохідний радіус (`DEFAULT_RADIUS_KM["walk"]` у модулі geo).
+    """
+    t = norm(text)
+    return bool(RADIUS_RE.search(t) or NEAR_RE.search(t) or DISTANCE_CUE_RE.search(t))
+
+
 def _valid_radius(v) -> float | None:
     if isinstance(v, bool):
         return None
@@ -389,7 +402,7 @@ async def clean_text(raw: str, client: httpx.AsyncClient | None = None) -> dict:
         "tokens": data["_usage"].get("total_tokens", 0),
     }
     mode = data.get("mode") if data.get("mode") in ("walk", "car") else None
-    radius = _valid_radius(data.get("radius_km"))
+    radius = _valid_radius(data.get("radius_km")) if has_distance_cue(raw) else None
     result["mode"] = mode or rules["mode"]
     result["radius_km"] = radius if radius is not None else rules["radius_km"]
     if not issues:

@@ -127,6 +127,39 @@ async def test_llm_radius_wins_over_rules():
     assert r["radius_km"] == 3.0
 
 
+@pytest.mark.parametrize(
+    "raw",
+    [
+        "короче кава розчинна і шоколад рошен з фундуком, пішки",  # v06
+        "молоко без лактози і хліб, не хочу їхати на машині, піду пішки",  # x03
+        "кетчуп і майонез, поїду на машині",
+    ],
+)
+async def test_llm_radius_ignored_without_distance_cue(raw):
+    """Регресія v06/x03: на «пішки» без відстані LLM ставила 1 км → пошук вужчий за типові 2 км."""
+    r = await cleanup.clean_text(
+        raw, client=client(lambda req: llm_reply({"text": "x", "mode": "walk", "radius_km": 1}))
+    )
+    assert r["radius_km"] is None
+
+
+@pytest.mark.parametrize(
+    "raw,expected",
+    [
+        ("хліб, щоб недалеко", 1.0),
+        ("хліб, ну десь в районі, щоб був магазин", 1.0),
+        ("хліб, пішки не більше, щоб було одного кілометра", 1.0),
+        ("хліб у радіусі трьох кілометрів", 1.0),  # явна межа є → беремо відповідь LLM
+        ("молоко, на авто до десяти кілометрів", 1.0),
+    ],
+)
+async def test_llm_radius_kept_with_distance_cue(raw, expected):
+    r = await cleanup.clean_text(
+        raw, client=client(lambda req: llm_reply({"text": "хліб", "mode": None, "radius_km": 1}))
+    )
+    assert r["radius_km"] == expected
+
+
 def test_guard_catches_added_product():
     raw = "молоко і хліб"
     assert cleanup.new_content_words(raw, "молоко, хліб і цукор") == ["цукор"]
@@ -158,7 +191,8 @@ async def test_clean_text_rejection_normalizes_numbers_and_retains_valid_llm_con
     )
     assert r["cleanup"]["guard"] == "rejected"
     assert r["raw_text"] == raw and r["text"] == "10 яєць і 1,5 кг борошна, до 300 грн"
-    assert (r["mode"], r["radius_km"]) == ("car", 3.0)
+    # mode від LLM зберігаємо; радіус — ні, бо людина не згадувала відстань («до 300 грн» — це бюджет)
+    assert (r["mode"], r["radius_km"]) == ("car", None)
 
 
 async def test_clean_text_rejection_uses_rules_for_invalid_llm_constraints():
