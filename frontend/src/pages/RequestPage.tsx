@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, TrendingDown } from 'lucide-react'
+import { ArrowRight, TrendingDown } from 'lucide-react'
 import { useId, useLayoutEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { useNavigate } from 'react-router'
 import { Button } from '../components/Button/Button'
@@ -11,12 +11,6 @@ import { formatDistance, formatPrice, formatSavings } from '../lib/format'
 import { useCity } from '../lib/useCity'
 import { MQ_COMPACT, useMediaQuery } from '../lib/useMediaQuery'
 import styles from './RequestPage.module.css'
-
-const EXAMPLES = [
-  'Борщ на 4 людини',
-  'Молоко, хліб, 10 яєць, сир кисломолочний 500 г',
-  'Сніданки на тиждень для двох, без лактози',
-]
 
 /** Статичний приклад результату для «Борщ на 4 людини» (прототип, екран 01). */
 const PREVIEW = [
@@ -113,12 +107,6 @@ export function RequestPage() {
     if (e.key === 'Enter' && !e.shiftKey && !compact && !e.nativeEvent.isComposing) void submit(e)
   }
 
-  function applyExample(text: string) {
-    setQuery(text)
-    setInvalid(false)
-    textareaRef.current?.focus()
-  }
-
   const supported = voice.state !== 'unsupported'
   const voiceButton = supported && (
     <VoiceButton
@@ -202,17 +190,6 @@ export function RequestPage() {
             </p>
           )}
           {!compact && supported && <div className={styles.voiceMessages}>{voiceStatus}</div>}
-
-          <ul className={styles.examples} aria-label="Приклади запитів">
-            {EXAMPLES.map((text) => (
-              <li key={text}>
-                <button type="button" className={`${styles.example} num`} onClick={() => applyExample(text)}>
-                  <Sparkles strokeWidth={1.75} aria-hidden="true" />
-                  {text}
-                </button>
-              </li>
-            ))}
-          </ul>
 
           {compact && (
             <p className={styles.previewLine}>
