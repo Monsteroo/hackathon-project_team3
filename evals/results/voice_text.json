@@ -1,0 +1,697 @@
+{
+ "summary": {
+  "suite": "text",
+  "cases": 25,
+  "passed": 23,
+  "mode_acc": 1.0,
+  "radius_acc": 1.0,
+  "items_kept": 0.96,
+  "fillers_removed": 0.96,
+  "guard_rejected": 0,
+  "latency_p50_s": 0.35,
+  "latency_max_s": 1.41,
+  "llm_tokens_avg": 466.92,
+  "fallback_model_used": 1
+ },
+ "rows": [
+  {
+   "id": "v01",
+   "spoken": "ееее мені треба молоко галичина літр, два десятки яєць і кава якобс монарх, бюджет двісті п'ятдесят гривень",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.32,
+   "result": {
+    "raw_text": "ееее мені треба молоко галичина літр, два десятки яєць і кава якобс монарх, бюджет двісті п'ятдесят гривень",
+    "text": "мені треба молоко галичина 1 л, 20 яєць і кава якобс монарх, бюджет 250 грн",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 501
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v02",
+   "spoken": "хочу зробити сирники на сніданок без цукру і без пальмової олії, на чотири людини, щоб недалеко йти",
+   "expected": {
+    "mode": "walk",
+    "radius_km": 1.0
+   },
+   "latency_s": 0.34,
+   "result": {
+    "raw_text": "хочу зробити сирники на сніданок без цукру і без пальмової олії, на чотири людини, щоб недалеко йти",
+    "text": "хочу зробити сирники на сніданок без цукру і без пальмової олії, на 4 людини",
+    "mode": "walk",
+    "radius_km": 1.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 491
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v03",
+   "spoken": "ну типу хліб, масло і сметана, далеко йти не хочу",
+   "expected": {
+    "mode": "walk",
+    "radius_km": 1.0
+   },
+   "latency_s": 0.23,
+   "result": {
+    "raw_text": "ну типу хліб, масло і сметана, далеко йти не хочу",
+    "text": "хліб, масло і сметана",
+    "mode": "walk",
+    "radius_km": 1.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 449
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v04",
+   "spoken": "кетчуп торчин, майонез і вода моршинська, поїду на машині",
+   "expected": {
+    "mode": "car",
+    "radius_km": null
+   },
+   "latency_s": 0.28,
+   "result": {
+    "raw_text": "кетчуп торчин, майонез і вода моршинська, поїду на машині",
+    "text": "кетчуп торчин, майонез і вода моршинська",
+    "mode": "car",
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 459
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v05",
+   "spoken": "борщ на шість людей без свинини, в радіусі трьох кілометрів",
+   "expected": {
+    "mode": null,
+    "radius_km": 3.0
+   },
+   "latency_s": 0.3,
+   "result": {
+    "raw_text": "борщ на шість людей без свинини, в радіусі трьох кілометрів",
+    "text": "борщ на 6 людей без свинини",
+    "mode": null,
+    "radius_km": 3.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 458
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v06",
+   "spoken": "короче кава розчинна і шоколад рошен з фундуком, пішки",
+   "expected": {
+    "mode": "walk",
+    "radius_km": null
+   },
+   "latency_s": 0.35,
+   "result": {
+    "raw_text": "короче кава розчинна і шоколад рошен з фундуком, пішки",
+    "text": "кава розчинна і шоколад рошен з фундуком",
+    "mode": "walk",
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 459
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v07",
+   "spoken": "кілограм гречки, півтора кіло курячого філе і десяток яєць",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 1.08,
+   "result": {
+    "raw_text": "кілограм гречки, півтора кіло курячого філе і десяток яєць",
+    "text": "1 кг гречки, 1,5 кг курячого філе, 10 яєць",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 469
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v08",
+   "spoken": "молоко без лактози і йогурт грецький, на авто до десяти кілометрів",
+   "expected": {
+    "mode": "car",
+    "radius_km": 10.0
+   },
+   "latency_s": 0.68,
+   "result": {
+    "raw_text": "молоко без лактози і йогурт грецький, на авто до десяти кілометрів",
+    "text": "молоко без лактози і йогурт грецький",
+    "mode": "car",
+    "radius_km": 10.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 463
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v09",
+   "spoken": "ммм сир кисломолочний п'ять відсотків, два пакети",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.25,
+   "result": {
+    "raw_text": "ммм сир кисломолочний п'ять відсотків, два пакети",
+    "text": "сир кисломолочний 5%, 2 пакети",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 456
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v10",
+   "spoken": "продукти на вечерю для двох до трьохсот гривень, поруч з домом",
+   "expected": {
+    "mode": "walk",
+    "radius_km": 1.0
+   },
+   "latency_s": 0.58,
+   "result": {
+    "raw_text": "продукти на вечерю для двох до трьохсот гривень, поруч з домом",
+    "text": "продукти на вечерю для двох до 300 грн",
+    "mode": "walk",
+    "radius_km": 1.0,
+    "cleanup": {
+     "model": "openai/gpt-oss-120b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 661
+    },
+    "error": null
+   },
+   "missing": [
+    "2"
+   ],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": false
+  },
+  {
+   "id": "v11",
+   "spoken": "яблука, банани, ой ні, апельсини і кефір",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.89,
+   "result": {
+    "raw_text": "яблука, банани, ой ні, апельсини і кефір",
+    "text": "яблука, банани, апельсини і кефір",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 454
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [
+    "банани"
+   ],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": false
+  },
+  {
+   "id": "v12",
+   "spoken": "пиво не треба, тільки чипси і кола зеро пів літра",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.41,
+   "result": {
+    "raw_text": "пиво не треба, тільки чипси і кола зеро пів літра",
+    "text": "чипси і кола зеро 0,5 л",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 454
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v13",
+   "spoken": "макарони, томатна паста і пармезан, в радіусі п'ятисот метрів",
+   "expected": {
+    "mode": null,
+    "radius_km": 0.5
+   },
+   "latency_s": 1.41,
+   "result": {
+    "raw_text": "макарони, томатна паста і пармезан, в радіусі п'ятисот метрів",
+    "text": "макарони, томатна паста і пармезан",
+    "mode": null,
+    "radius_km": 0.5,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 468
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v14",
+   "spoken": "значить так, вода три пляшки по півтора літра і мінералка",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.6,
+   "result": {
+    "raw_text": "значить так, вода три пляшки по півтора літра і мінералка",
+    "text": "вода 3 пляшки по 1,5 л і мінералка",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 458
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v15",
+   "spoken": "все для піци: борошно, дріжджі, моцарела, без глютену не треба",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.34,
+   "result": {
+    "raw_text": "все для піци: борошно, дріжджі, моцарела, без глютену не треба",
+    "text": "все для піци: борошно, дріжджі, моцарела, без глютену не треба",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 471
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v16",
+   "spoken": "олія соняшникова літр і цукор два кілограми, доїду машиною",
+   "expected": {
+    "mode": "car",
+    "radius_km": null
+   },
+   "latency_s": 0.44,
+   "result": {
+    "raw_text": "олія соняшникова літр і цукор два кілограми, доїду машиною",
+    "text": "олія соняшникова 1 л і цукор 2 кг",
+    "mode": "car",
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 463
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v17",
+   "spoken": "ну як би курка, рис і овочі для салату, недалеко",
+   "expected": {
+    "mode": "walk",
+    "radius_km": 1.0
+   },
+   "latency_s": 0.22,
+   "result": {
+    "raw_text": "ну як би курка, рис і овочі для салату, недалеко",
+    "text": "курка, рис і овочі для салату",
+    "mode": "walk",
+    "radius_km": 1.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 452
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v18",
+   "spoken": "дитяче пюре і підгузки, пішки не більше одного кілометра",
+   "expected": {
+    "mode": "walk",
+    "radius_km": 1.0
+   },
+   "latency_s": 0.4,
+   "result": {
+    "raw_text": "дитяче пюре і підгузки, пішки не більше одного кілометра",
+    "text": "дитяче пюре і підгузки",
+    "mode": "walk",
+    "radius_km": 1.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 450
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v19",
+   "spoken": "сніданок на тиждень на сімсот гривень",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.59,
+   "result": {
+    "raw_text": "сніданок на тиждень на сімсот гривень",
+    "text": "сніданок на тиждень на 700 грн",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 449
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v20",
+   "spoken": "ееее ну ммм чай зелений і печиво",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.21,
+   "result": {
+    "raw_text": "ееее ну ммм чай зелений і печиво",
+    "text": "чай зелений і печиво",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 440
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v21",
+   "spoken": "морозиво пломбір дві штуки і вершки, на таксі",
+   "expected": {
+    "mode": "car",
+    "radius_km": null
+   },
+   "latency_s": 0.35,
+   "result": {
+    "raw_text": "морозиво пломбір дві штуки і вершки, на таксі",
+    "text": "морозиво пломбір 2 шт і вершки",
+    "mode": "car",
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 452
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v22",
+   "spoken": "сосиски, гірчиця і батон, біля дому",
+   "expected": {
+    "mode": "walk",
+    "radius_km": 1.0
+   },
+   "latency_s": 0.64,
+   "result": {
+    "raw_text": "сосиски, гірчиця і батон, біля дому",
+    "text": "сосиски, гірчиця і батон",
+    "mode": "walk",
+    "radius_km": 1.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 451
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v23",
+   "spoken": "огірки, помідори, зелень, у радіусі двох кілометрів пішки",
+   "expected": {
+    "mode": "walk",
+    "radius_km": 2.0
+   },
+   "latency_s": 0.47,
+   "result": {
+    "raw_text": "огірки, помідори, зелень, у радіусі двох кілометрів пішки",
+    "text": "огірки, помідори, зелень",
+    "mode": "walk",
+    "radius_km": 2.0,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 456
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v24",
+   "spoken": "риба червона сто п'ятдесят грам і авокадо",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.32,
+   "result": {
+    "raw_text": "риба червона сто п'ятдесят грам і авокадо",
+    "text": "риба червона 150 г і авокадо",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 454
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  },
+  {
+   "id": "v25",
+   "spoken": "те саме що минулого разу",
+   "expected": {
+    "mode": null,
+    "radius_km": null
+   },
+   "latency_s": 0.3,
+   "result": {
+    "raw_text": "те саме що минулого разу",
+    "text": "те саме що минулого разу",
+    "mode": null,
+    "radius_km": null,
+    "cleanup": {
+     "model": "qwen/qwen3.8-27b",
+     "guard": "ok",
+     "new_words": [],
+     "tokens": 435
+    },
+    "error": null
+   },
+   "missing": [],
+   "leaked": [],
+   "mode_ok": true,
+   "radius_ok": true,
+   "passed": true
+  }
+ ]
+}

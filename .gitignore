@@ -15,3 +15,6 @@ dist/
 # IDE
 .idea/
 .DS_Store
+
+# Аудіо для evals (синтетичні й особисті записи)
+evals/audio/
