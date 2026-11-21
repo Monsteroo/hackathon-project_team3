@@ -118,7 +118,7 @@ def test_same_building_shares_place():
 
 def test_generated_directory_is_sane():
     stores = load_stores()
-    assert len(stores) > 500
+    assert len(stores) > 200  # лише Київ (SERVICE_CITIES)
     assert len({s["id"] for s in stores}) == len(stores)
     assert all(44 < s["lat"] < 53 and 22 < s["lng"] < 41 for s in stores)
     assert not any(s["source"] == "osm" and s["chain"] == "silpo" for s in stores)

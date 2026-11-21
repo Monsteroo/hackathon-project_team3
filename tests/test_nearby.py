@@ -36,7 +36,9 @@ def fake_data(monkeypatch):
 def test_default_walk_radius_and_recommend_nearest_online():
     r = nearby.find_nearby(*ORIGIN)
     assert r["radius_km"] == 2.0 and not r["radius_expanded"]
-    assert [s["id"] for s in r["stores"]] == ["osm:n1", "zakaz:1", "silpo:a"]
+    # у радіусі — 3; плюс магазин з цінами поза радіусом (in_radius=False), щоб було куди вести маршрут
+    assert [(s["id"], s["in_radius"]) for s in r["stores"]] == [
+        ("osm:n1", True), ("zakaz:1", True), ("silpo:a", True), ("zakaz:far", False)]
     assert r["recommended_id"] == "zakaz:1"  # найближчий osm без цін пропускаємо
     assert r["recommended_reason"] == "nearest_with_online_prices"
 
@@ -77,3 +79,12 @@ def test_api_nearby_and_validation():
 def test_api_route_unknown_store():
     r = TestClient(app).get("/api/route", params={"lat": 50.45, "lng": 30.52, "store_id": "nope"})
     assert r.status_code == 404
+
+
+def test_priced_store_outside_radius_is_still_recommended(monkeypatch):
+    stores = (store("osm:n1", 50.4510, 30.5200, online=False),
+              store("zakaz:far", 50.5200, 30.5200, online=True))   # ~7.8 км, з цінами
+    monkeypatch.setattr(nearby, "load_stores", lambda: stores)
+    r = nearby.find_nearby(*ORIGIN)
+    assert r["recommended_id"] == "zakaz:far" and r["recommended_reason"] == "nearest_with_online_prices"
+    assert [s["in_radius"] for s in r["stores"]] == [True, False]

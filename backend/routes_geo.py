@@ -5,8 +5,9 @@ from typing import Literal
 
 from fastapi import APIRouter, HTTPException, Query
 
+from backend.config import in_service_area, not_found_in_area_message, outside_area_message
 from backend.geo.directory import load_stores
-from backend.geo.geocode import GeocoderUnavailable, geocode, reverse
+from backend.geo.geocode import GeocoderUnavailable, OutsideServiceArea, geocode, reverse
 from backend.geo.nearby import find_nearby, find_store
 from backend.geo.routing import maps_urls, route_shape
 
@@ -14,6 +15,16 @@ router = APIRouter(prefix="/api", tags=["geo"])
 
 Lat = Query(..., ge=-90, le=90)
 Lng = Query(..., ge=-180, le=180)
+
+
+def _outside_area() -> HTTPException:
+    return HTTPException(422, {"code": "outside_service_area",
+                               "message": outside_area_message()})
+
+
+def _require_service_area(lat: float, lng: float) -> None:
+    if not in_service_area(lat, lng):
+        raise _outside_area()
 
 
 @router.get("/stores/nearby")
@@ -24,6 +35,7 @@ def stores_nearby(
     radius_km: float | None = Query(None, gt=0, le=50),
     store_ids: str | None = Query(None, description="ID через кому: магазини з підтвердженою ціною й наявністю"),
 ):
+    _require_service_area(lat, lng)
     ids = store_ids.split(",") if store_ids else None
     return find_nearby(lat, lng, mode=mode, radius_km=radius_km, store_ids=ids)
 
@@ -35,6 +47,7 @@ def route(
     store_id: str = Query(...),
     mode: Literal["walk", "car"] = "walk",
 ):
+    _require_service_area(lat, lng)
     store = find_store(store_id)
     if store is None:
         raise HTTPException(404, {"code": "store_not_found", "message": "Магазин не знайдено"})
@@ -57,16 +70,23 @@ def geocode_address(
 ):
     bias = (lat, lng) if lat is not None and lng is not None else None
     try:
-        return {"results": geocode(q, limit=limit, suggest=suggest, bias=bias)}
+        results = geocode(q, limit=limit, suggest=suggest, bias=bias)
+    except OutsideServiceArea:
+        raise _outside_area()
     except GeocoderUnavailable:
         raise HTTPException(503, {"code": "geocoder_unavailable",
                                   "message": "Пошук адреси тимчасово недоступний. Спробуйте кнопку геолокації."})
+    if not results and not suggest:
+        raise HTTPException(404, {"code": "not_found_in_service_area", "message": not_found_in_area_message()})
+    return {"results": results}
 
 
 @router.get("/reverse")
 def reverse_geocode(lat: float = Lat, lng: float = Lng):
     try:
         result = reverse(lat, lng)
+    except OutsideServiceArea:
+        raise _outside_area()
     except GeocoderUnavailable:
         raise HTTPException(503, {"code": "geocoder_unavailable", "message": "Не вдалося визначити адресу"})
     # Без адреси координати все одно придатні для пошуку магазинів

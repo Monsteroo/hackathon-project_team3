@@ -225,10 +225,16 @@ def assign_places(stores: list[dict]) -> list[dict]:
 
 
 def build_directory(csv_rows: Iterable[dict], osm_elements: Iterable[dict],
-                    offer_store_ids: set[str] | None = None) -> tuple[list[dict], dict]:
+                    offer_store_ids: set[str] | None = None,
+                    cities: Iterable[str] | None = None) -> tuple[list[dict], dict]:
+    """cities=None — усі міста; інакше лише магазини цих міст (за полем city)."""
     listed = dedup_same_address(stores_from_csv(csv_rows))
     stores, stats = merge_osm(listed, stores_from_osm(osm_elements))
     stats["listed"] = len(listed)
+    if cities is not None:
+        keep = {c.lower() for c in cities}
+        stats["dropped_other_cities"] = sum(s["city"].lower() not in keep for s in stores)
+        stores = [s for s in stores if s["city"].lower() in keep]
     stats["total"] = len(stores)
     stats["with_offers"] = apply_offers(stores, offer_store_ids or set())
     return assign_places(stores), stats

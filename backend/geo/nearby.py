@@ -4,7 +4,8 @@
   * на карті — усі магазини в радіусі (за замовчуванням пішки 2 км, авто 10 км), відсортовані за часом у дорозі;
   * якщо в радіусі порожньо — радіус подвоюється (до 3 разів), у відповіді `radius_expanded: true`;
   * `recommended` — найближчий за часом магазин серед `store_ids` (підтверджені ціна й наявність від
-    агента / Учасника 2), навіть якщо він поза радіусом; без `store_ids` — найближчий з онлайн-цінами.
+    агента / Учасника 2), навіть якщо він поза радіусом; без `store_ids` — найближчий з товарами в наявності
+    за OFFERS (`has_online_prices`), теж і поза радіусом (до 5 найближчих таких магазинів).
 """
 from __future__ import annotations
 
@@ -50,11 +51,15 @@ def find_nearby(lat: float, lng: float, mode: Mode = "walk", radius_km: float | 
         in_radius = [x for x in with_dist if x[0] <= radius]
         expanded = True
 
+    # Маршрут має вести туди, де ціну підтверджено, навіть якщо це поза радіусом:
+    # з store_ids — підтверджені агентом; без них — магазини з товарами в наявності за OFFERS.
+    def priced(s: dict) -> bool:
+        return _is_confirmed(s, confirmed_ids) if confirmed_ids else s["has_online_prices"]
+
     candidates = list(in_radius)
-    if confirmed_ids:
-        seen = {s["id"] for _, s in in_radius}
-        extra = [x for x in with_dist if x[1]["id"] not in seen and _is_confirmed(x[1], confirmed_ids)]
-        candidates += extra[:CONFIRMED_OUTSIDE_RADIUS]
+    seen = {s["id"] for _, s in in_radius}
+    extra = [x for x in with_dist if x[1]["id"] not in seen and priced(x[1])]
+    candidates += extra[:CONFIRMED_OUTSIDE_RADIUS]
 
     travel = travel_matrix(origin, [(s["lat"], s["lng"]) for _, s in candidates], mode, client=client)
 
@@ -87,7 +92,7 @@ def find_nearby(lat: float, lng: float, mode: Mode = "walk", radius_km: float | 
         recommended = next((i for i in items if i["confirmed"]), None)
         reason = "confirmed_offer" if recommended else None
     if recommended is None:
-        recommended = next((i for i in items if i["has_online_prices"] and i["in_radius"]), None)
+        recommended = next((i for i in items if i["has_online_prices"]), None)
         reason = "nearest_with_online_prices" if recommended else None
 
     return {

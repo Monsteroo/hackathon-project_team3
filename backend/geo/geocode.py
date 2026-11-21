@@ -12,7 +12,7 @@ from collections import OrderedDict
 
 import httpx
 
-from backend.config import get_settings
+from backend.config import get_settings, in_service_area, outside_area_message, service_bboxes
 
 log = logging.getLogger(__name__)
 
@@ -22,6 +22,21 @@ CACHE_SIZE = 512
 
 class GeocoderUnavailable(RuntimeError):
     pass
+
+
+class OutsideServiceArea(ValueError):
+    """Точка або адреса поза містами демо (зараз — лише Київ)."""
+
+    def __init__(self):
+        super().__init__(outside_area_message())
+
+
+def _area_box() -> tuple[float, float, float, float] | None:
+    """Обгортка над усіма містами демо: (lat_min, lng_min, lat_max, lng_max)."""
+    boxes = service_bboxes()
+    if not boxes:
+        return None
+    return (min(b[0] for b in boxes), min(b[1] for b in boxes), max(b[2] for b in boxes), max(b[3] for b in boxes))
 
 
 class _LRU(OrderedDict):
@@ -86,10 +101,24 @@ def _photon_search(client: httpx.Client, q: str, limit: int, bias: tuple[float, 
     params = {"q": q, "limit": limit * 2}
     if bias:
         params.update(lat=bias[0], lon=bias[1])
+    if box := _area_box():
+        params["bbox"] = f"{box[1]},{box[0]},{box[3]},{box[2]}"  # minLon,minLat,maxLon,maxLat
     r = client.get(f"{get_settings().photon_url}/api/", params=params)
     r.raise_for_status()
     feats = [f for f in r.json().get("features", []) if (f.get("properties") or {}).get("countrycode") == "UA"]
     return [_from_photon(f) for f in feats[:limit]]
+
+
+def _nominatim_search(client: httpx.Client, q: str, limit: int, bounded: bool) -> list[dict]:
+    _nominatim_throttle()
+    params = {"q": q, "format": "jsonv2", "countrycodes": "ua", "accept-language": "uk",
+              "addressdetails": 1, "limit": limit}
+    if bounded and (box := _area_box()):
+        # viewbox=lng_min,lat_max,lng_max,lat_min; bounded=1 — лише всередині міст демо
+        params.update(viewbox=f"{box[1]},{box[2]},{box[3]},{box[0]}", bounded=1)
+    r = client.get(f"{get_settings().nominatim_url}/search", params=params)
+    r.raise_for_status()
+    return [_from_nominatim(i) for i in r.json()]
 
 
 def geocode(q: str, limit: int = 5, suggest: bool = False, bias: tuple[float, float] | None = None,
@@ -107,23 +136,30 @@ def geocode(q: str, limit: int = 5, suggest: bool = False, bias: tuple[float, fl
         results = None
         if not suggest:
             try:
-                _nominatim_throttle()
-                r = client.get(f"{get_settings().nominatim_url}/search", params={
-                    "q": q, "format": "jsonv2", "countrycodes": "ua", "accept-language": "uk",
-                    "addressdetails": 1, "limit": limit})
-                r.raise_for_status()
-                results = [_from_nominatim(i) for i in r.json()]
+                results = _nominatim_search(client, q, limit, bounded=True)
+                if not results and _area_box():
+                    # У межах міста порожньо: перевіряємо, чи адреса взагалі є, але деінде («Львів, …»),
+                    # щоб сказати «поки лише Київ», а не підсунути схожу київську вулицю.
+                    anywhere = _nominatim_search(client, q, 1, bounded=False)
+                    if anywhere and not in_service_area(anywhere[0]["lat"], anywhere[0]["lng"]):
+                        raise OutsideServiceArea()
+            except OutsideServiceArea:
+                raise
             except Exception as e:  # noqa: BLE001
                 log.warning("Nominatim search failed: %s", e)
-        if results is None or (not results and not suggest):
+                results = None
+        if results is None:  # Nominatim недоступний (не «порожньо») або режим підказок
             try:
-                results = _photon_search(client, q, limit, bias) or (results or [])
+                results = _photon_search(client, q, limit, bias)
             except Exception as e:  # noqa: BLE001
                 log.warning("Photon search failed: %s", e)
-                if results is None:
+                if not suggest:
                     raise GeocoderUnavailable("Обидва геокодери недоступні") from e
+                results = []
         seen, unique = set(), []
         for r_ in results:  # той самий будинок як node і way → один рядок
+            if not in_service_area(r_["lat"], r_["lng"]):
+                continue
             if r_["label"] not in seen:
                 seen.add(r_["label"])
                 unique.append(r_)
@@ -135,6 +171,8 @@ def geocode(q: str, limit: int = 5, suggest: bool = False, bias: tuple[float, fl
 
 
 def reverse(lat: float, lng: float, client: httpx.Client | None = None) -> dict | None:
+    if not in_service_area(lat, lng):
+        raise OutsideServiceArea()
     key = ("r", round(lat, 5), round(lng, 5))
     if (hit := _cache.get_or(key)) is not None:
         return hit

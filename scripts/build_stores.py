@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from backend.config import service_cities  # noqa: E402
 from backend.geo.directory import STORES_JSON, build_directory  # noqa: E402
 from backend.geo.offers import OFFERS_CSV, load_offer_store_ids  # noqa: E402
 
@@ -96,6 +97,8 @@ def main() -> None:
     ap.add_argument("--refresh-osm", action="store_true")
     ap.add_argument("--fetch-addresses", action="store_true",
                     help="дозаповнити адреси OSM-магазинів через Nominatim (~1 с на магазин)")
+    ap.add_argument("--all-cities", action="store_true",
+                    help="усі міста з даних (за замовчуванням — SERVICE_CITIES, зараз Київ)")
     ap.add_argument("--offers", type=Path, default=OFFERS_CSV,
                     help="вивантаження OFFERS (CSV): has_online_prices лише для магазинів з in_stock=true")
     args = ap.parse_args()
@@ -105,7 +108,9 @@ def main() -> None:
     rows = list(csv.DictReader(CSV_PATH.open(encoding="utf-8")))
     osm = json.loads(OSM_PATH.read_text(encoding="utf-8"))["elements"]
     offer_ids = load_offer_store_ids(args.offers)
-    stores, stats = build_directory(rows, osm, offer_ids)
+    cities = None if args.all_cities else service_cities()
+    stores, stats = build_directory(rows, osm, offer_ids, cities)
+    stats["cities"] = cities or "all"
     missing = offer_ids - {i for s in stores for i in [s["id"], *s["alt_ids"]]}
     if missing:
         print("⚠️ магазини з OFFERS, яких немає в довіднику:", sorted(missing))
