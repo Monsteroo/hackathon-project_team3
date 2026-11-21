@@ -16,9 +16,11 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    // Бекенд API: змініть ціль, коли буде відомий порт бекенду.
+    // Бекенд FastAPI (backend/, порт 8000): модулі без префікса /api.
     proxy: {
-      '/api': { target: 'http://localhost:8000', changeOrigin: true },
+      '/catalog': { target: 'http://localhost:8000', changeOrigin: true },
+      '/geo': { target: 'http://localhost:8000', changeOrigin: true },
+      '/voice': { target: 'http://localhost:8000', changeOrigin: true },
     },
   },
   test: {

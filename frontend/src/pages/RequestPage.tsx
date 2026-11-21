@@ -3,7 +3,10 @@ import { useId, useLayoutEffect, useRef, useState, type FormEvent, type Keyboard
 import { useNavigate } from 'react-router'
 import { Button } from '../components/Button/Button'
 import { VoiceButton, VoiceStatus } from '../components/VoiceButton/VoiceButton'
-import { useSpeechRecognition, VOICE_MESSAGES } from '../features/voice/useSpeechRecognition'
+import { VOICE_MESSAGES } from '../features/voice/useSpeechRecognition'
+import { useVoiceInput } from '../features/voice/useVoiceInput'
+import { api, localVoiceResult, MAX_TEXT_LENGTH } from '../lib/api/client'
+import type { VoiceResult } from '../lib/api/types'
 import { formatDistance, formatPrice, formatSavings } from '../lib/format'
 import { useCity } from '../lib/useCity'
 import { MQ_COMPACT, useMediaQuery } from '../lib/useMediaQuery'
@@ -40,17 +43,31 @@ export function RequestPage() {
 
   const [query, setQuery] = useState('')
   const [invalid, setInvalid] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const baseRef = useRef('')
+  /** Останній результат Whisper і текст поля з ним: якщо поле не правили, сабміт не робить ще один запит. */
+  const lastVoiceRef = useRef<{ result: VoiceResult; field: string } | null>(null)
+  /** Текст поля, яке заповнив Web Speech: тоді в /voice/parse-text іде source=web_speech. */
+  const webSpeechFieldRef = useRef<string | null>(null)
   const id = useId()
   const errorId = `${id}-error`
   const voiceErrorId = `${id}-voice-error`
   const hintId = `${id}-hint`
 
-  const voice = useSpeechRecognition({
+  const voice = useVoiceInput({
     onTranscript: (text) => {
+      const next = joinQuery(baseRef.current, text)
       setInvalid(false)
-      setQuery(joinQuery(baseRef.current, text))
+      setQuery(next)
+      webSpeechFieldRef.current = next
+    },
+    onResult: (result) => {
+      // У поле — те, що почули (прототип, екран 05b); агенту далі піде очищений `text`.
+      const next = joinQuery(baseRef.current, result.raw_text)
+      setInvalid(false)
+      setQuery(next)
+      lastVoiceRef.current = { result, field: next }
     },
   })
 
@@ -67,21 +84,37 @@ export function RequestPage() {
     voice.toggle()
   }
 
-  function submit(e?: FormEvent) {
+  /** VoiceResult для /confirm. Помилка /voice/parse-text (ліміт, мережа) сабміт не блокує. */
+  async function resolveVoice(text: string): Promise<VoiceResult> {
+    const last = lastVoiceRef.current
+    // Поле = лише результат Whisper без правок → готовий VoiceResult без нового запиту.
+    if (last && last.field.trim() === text && last.result.raw_text.trim() === text) return last.result
+    const source = webSpeechFieldRef.current?.trim() === text ? 'web_speech' : 'manual'
+    try {
+      return await api.parseText(text, source)
+    } catch {
+      return localVoiceResult(text, source)
+    }
+  }
+
+  async function submit(e?: FormEvent) {
     e?.preventDefault()
-    const text = query.trim()
+    if (submitting) return
+    const text = query.trim().slice(0, MAX_TEXT_LENGTH)
     if (!text) {
       setInvalid(true)
       textareaRef.current?.focus()
       return
     }
     if (voice.state === 'listening') voice.cancel()
-    navigate('/confirm', { state: { query: text, cityId: city.id } })
+    setSubmitting(true)
+    const result = await resolveVoice(text)
+    navigate('/confirm', { state: { voice: result, query: result.text, cityId: city.id } })
   }
 
   function onKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
     // Десктоп: Enter надсилає, Shift+Enter — новий рядок. Мобільний: Enter — новий рядок.
-    if (e.key === 'Enter' && !e.shiftKey && !compact && !e.nativeEvent.isComposing) submit(e)
+    if (e.key === 'Enter' && !e.shiftKey && !compact && !e.nativeEvent.isComposing) void submit(e)
   }
 
   function applyExample(text: string) {
@@ -106,6 +139,7 @@ export function RequestPage() {
       state={voice.state}
       error={voice.error}
       errorId={voiceErrorId}
+      elapsed={voice.elapsed}
       align={compact ? 'center' : 'start'}
       hint={compact ? 'Говоріть ближче до телефона, наприклад: «молоко, хліб і десяток яєць»' : undefined}
     />
@@ -146,6 +180,7 @@ export function RequestPage() {
               value={query}
               aria-invalid={invalid || undefined}
               aria-describedby={describedBy}
+              maxLength={MAX_TEXT_LENGTH}
               onChange={(e) => {
                 setQuery(e.target.value)
                 if (invalid) setInvalid(false)
@@ -154,7 +189,7 @@ export function RequestPage() {
             />
             {!compact && voiceButton}
             <div className={styles.submit}>
-              <Button type="submit" className={styles.submitButton} iconEnd={<ArrowRight />}>
+              <Button type="submit" className={styles.submitButton} iconEnd={<ArrowRight />} loading={submitting}>
                 Знайти кошик
               </Button>
             </div>

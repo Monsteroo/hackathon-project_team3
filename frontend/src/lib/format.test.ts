@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatDistance, formatPrice, formatSavings, formatUnitPrice, formatWalk } from './format'
+import { formatClock, formatDistance, formatPrice, formatSavings, formatUnitPrice, formatWalk } from './format'
 
 describe('format (uk-UA)', () => {
   it('formats pack price with narrow nbsp thousands and comma', () => {
@@ -21,5 +21,11 @@ describe('format (uk-UA)', () => {
     expect(formatDistance(1200)).toBe('1,2 км')
     expect(formatDistance(2000)).toBe('2 км')
     expect(formatWalk(450, 6)).toBe('450 м · 6 хв пішки')
+  })
+
+  it('formats recording time as m:ss', () => {
+    expect(formatClock(0)).toBe('0:00')
+    expect(formatClock(7.9)).toBe('0:07')
+    expect(formatClock(65)).toBe('1:05')
   })
 })

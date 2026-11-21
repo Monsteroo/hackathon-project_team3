@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { attachLevelMeter } from './levelMeter'
 
 /**
  * Web Speech API + рівень гучності для VoiceButton (DESIGN.md §4.1).
@@ -57,7 +58,7 @@ export function useSpeechRecognition({ lang = 'uk-UA', onTranscript }: Options) 
   const recRef = useRef<Recognition | null>(null)
   const session = useRef({ heard: false, aborted: false, failed: false })
   const timer = useRef<number | undefined>(undefined)
-  const meter = useRef<{ stream: MediaStream; ctx: AudioContext; raf: number } | null>(null)
+  const meter = useRef<{ stream: MediaStream; stop: () => void } | null>(null)
   const onTranscriptRef = useRef(onTranscript)
   useEffect(() => {
     onTranscriptRef.current = onTranscript
@@ -67,36 +68,21 @@ export function useSpeechRecognition({ lang = 'uk-UA', onTranscript }: Options) 
     const m = meter.current
     meter.current = null
     if (m) {
-      cancelAnimationFrame(m.raf)
+      m.stop()
       m.stream.getTracks().forEach((t) => t.stop())
-      void m.ctx.close()
     }
     levelRef.current?.style.setProperty('--level', '0')
   }, [])
 
   const startMeter = useCallback(async () => {
-    if (!navigator.mediaDevices?.getUserMedia || typeof AudioContext === 'undefined') return
+    if (!navigator.mediaDevices?.getUserMedia) return
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       if (!recRef.current) {
         stream.getTracks().forEach((t) => t.stop())
         return
       }
-      const ctx = new AudioContext()
-      const analyser = ctx.createAnalyser()
-      analyser.fftSize = 512
-      ctx.createMediaStreamSource(stream).connect(analyser)
-      const data = new Uint8Array(analyser.fftSize)
-      const tick = () => {
-        analyser.getByteTimeDomainData(data)
-        let sum = 0
-        for (const v of data) sum += ((v - 128) / 128) ** 2
-        const rms = Math.sqrt(sum / data.length)
-        const level = Math.min(1, rms * 4)
-        levelRef.current?.style.setProperty('--level', level.toFixed(2))
-        if (meter.current) meter.current.raf = requestAnimationFrame(tick)
-      }
-      meter.current = { stream, ctx, raf: requestAnimationFrame(tick) }
+      meter.current = { stream, stop: attachLevelMeter(stream, () => levelRef.current) }
     } catch {
       // Рівень гучності — прикраса; помилки доступу обробляє саме розпізнавання.
     }

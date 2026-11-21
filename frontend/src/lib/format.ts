@@ -42,3 +42,9 @@ export function formatDistance(meters: number): string {
 export function formatWalk(meters: number, minutes: number): string {
   return `${formatDistance(meters)} · ${minutes}${NBSP}хв пішки`
 }
+
+/** 7.4 → «0:07»; 65 → «1:05». Тривалість запису голосу. */
+export function formatClock(seconds: number): string {
+  const total = Math.max(0, Math.floor(seconds))
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`
+}
