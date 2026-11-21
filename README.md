@@ -5,7 +5,7 @@
 Голосовий AI-оптимізатор продуктового кошика по супермаркетах України (**Сільпо, NOVUS, METRO, Auchan, Ultramarket, ЕКО Маркет**), який за 10 секунд розкладає голосовий запит або рецепт на продукти, викриває шрінкфляцію (`870 г` vs `950 г`), підбирає вигідні аналоги та власні торгові марки (Private Labels) і рекомендує, у який найближчий магазин піти, щоб зекономити 15–30% чеку.
 
 👉 **Детальна концепція, дослідження ринку та юніт-економіка:** [PRODUCT_CONCEPT.md](./PRODUCT_CONCEPT.md)
-🎨 **MarTech-креативи (90 банерів у 3 форматах):** [Google Drive (`hackathon-project_team3`)](https://drive.google.com/drive/folders/1tlN3K2Z2RxFZ3zpuHarb2sdPPgqQMAdf) · код генерації у гілці `feat/martech-creatives-pipeline`
+🎨 **MarTech-креативи (90 банерів у 3 форматах):** [Google Drive (`hackathon-project_team3`)](https://drive.google.com/drive/folders/1tlN3K2Z2RxFZ3zpuHarb2sdPPgqQMAdf) · код генерації у [martech/](./martech)
 
 ---
 

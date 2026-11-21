@@ -13,9 +13,10 @@ import tempfile
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
+ROOT_DIR = BASE_DIR.parent
 CAMPAIGN_PATH = BASE_DIR / "campaign.json"
-SCENES_DIR = BASE_DIR / "assets" / "scenes"
-OUTPUT_DIR = BASE_DIR / "output"
+SCENES_DIR = ROOT_DIR / "assets" / "scenes"
+OUTPUT_DIR = ROOT_DIR / "output"
 
 CHROME_BIN = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
@@ -293,10 +294,10 @@ def main() -> None:
                         "headline": copy["headline"],
                         "subheadline": copy["subheadline"],
                         "cta": copy["cta"],
-                        "file_path": str(out_path.relative_to(BASE_DIR)),
+                        "file_path": str(out_path.relative_to(ROOT_DIR)),
                     }
                 )
-                print(f"[Render] ({total}) {out_path.relative_to(BASE_DIR)}", flush=True)
+                print(f"[Render] ({total}) {out_path.relative_to(ROOT_DIR)}", flush=True)
 
     manifest_path = OUTPUT_DIR / "manifest.csv"
     with manifest_path.open("w", newline="", encoding="utf-8") as f:
@@ -304,7 +305,7 @@ def main() -> None:
         writer.writeheader()
         writer.writerows(manifest_rows)
 
-    print(f"\nDone! Rendered {total} creatives + {manifest_path.relative_to(BASE_DIR)}")
+    print(f"\nDone! Rendered {total} creatives + {manifest_path.relative_to(ROOT_DIR)}")
 
 
 if __name__ == "__main__":

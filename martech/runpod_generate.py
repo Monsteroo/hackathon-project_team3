@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Automated RunPod Community Cloud image generator for marketing scenes.
-- Spins up an NVIDIA RTX A5000 (Community Cloud, ~$0.16/hr)
-- Runs FLUX.1-schnell (Apache 2.0, ungated, fast 4-step generation)
-- Downloads all scene PNGs from campaign.json into assets/scenes/
+- Discovers cheapest available Community Cloud GPU (>=16 GB VRAM)
+- Runs SG161222/RealVisXL_V5.0 (ungated photorealistic SDXL)
+- Downloads all scene PNGs from campaign.json into ../assets/scenes/
 - ALWAYS terminates the Pod in finally: so no money is wasted.
 """
 
@@ -17,9 +17,10 @@ import urllib.request
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-ENV_PATH = BASE_DIR / ".env"
+ROOT_DIR = BASE_DIR.parent
+ENV_PATH = ROOT_DIR / ".env"
 CAMPAIGN_PATH = BASE_DIR / "campaign.json"
-SCENES_DIR = BASE_DIR / "assets" / "scenes"
+SCENES_DIR = ROOT_DIR / "assets" / "scenes"
 
 GRAPHQL_URL = "https://api.runpod.io/graphql"
 GPU_FALLBACK_LIST = [
@@ -145,15 +146,18 @@ if __name__ == "__main__":
 
 
 def load_api_key() -> str:
-    if not ENV_PATH.exists():
-        raise RuntimeError(f"Missing {ENV_PATH}")
-    for line in ENV_PATH.read_text().splitlines():
-        line = line.strip()
-        if line.startswith("RUNPOD_API_KEY="):
-            key = line.split("=", 1)[1].strip().strip('"').strip("'")
-            if key:
-                return key
-    raise RuntimeError("RUNPOD_API_KEY is empty in .env")
+    env_key = os.environ.get("RUNPOD_API_KEY", "").strip()
+    if env_key:
+        return env_key
+    for candidate in (BASE_DIR / ".env", ENV_PATH):
+        if candidate.exists():
+            for line in candidate.read_text().splitlines():
+                line = line.strip()
+                if line.startswith("RUNPOD_API_KEY="):
+                    key = line.split("=", 1)[1].strip().strip('"').strip("'")
+                    if key:
+                        return key
+    raise RuntimeError(f"RUNPOD_API_KEY is missing in environment or {ENV_PATH}")
 
 
 def gql(api_key: str, query: str, variables: dict | None = None) -> dict:
