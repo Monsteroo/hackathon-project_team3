@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { ArrowLeft, ArrowRight, CircleAlert, ExternalLink, Info, PackageX, RotateCcw } from 'lucide-react'
+import { ArrowLeft, CircleAlert, ExternalLink, Info, PackageX, RotateCcw } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { BasketRow } from '../components/BasketRow/BasketRow'
@@ -266,7 +266,7 @@ export function BasketPage() {
         <div className={styles.actions}>
           {route && (
             <a
-              className={`${buttonStyles.button} ${buttonStyles.secondary}`}
+              className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.grow}`}
               href={route}
               target="_blank"
               rel="noopener noreferrer"
@@ -278,15 +278,6 @@ export function BasketPage() {
               Маршрут
             </a>
           )}
-          <Link
-            to={`/store/${basket.type}`}
-            className={`${buttonStyles.button} ${buttonStyles.primary} ${styles.grow}`}
-          >
-            Почати покупки
-            <span className={buttonStyles.icon} aria-hidden="true">
-              <ArrowRight strokeWidth={1.75} />
-            </span>
-          </Link>
         </div>
       </aside>
 

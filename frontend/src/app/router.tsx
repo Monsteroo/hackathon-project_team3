@@ -4,10 +4,9 @@ import { OnboardingPage } from '../pages/OnboardingPage'
 import { RequestPage } from '../pages/RequestPage'
 import { ConfirmPage } from '../pages/ConfirmPage'
 import { BasketPage } from '../pages/BasketPage'
-import { InStorePage } from '../pages/InStorePage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 
-/** Екрани 0–5 з design/BRIEF.md. Paywall (екран 6) — модальне вікно, не маршрут. */
+/** Екрани 0–4 з design/BRIEF.md. Екран 5 «У магазині» прибрано: потік закінчується деталями кошика. Paywall (екран 6) — модальне вікно, не маршрут. */
 export const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -21,7 +20,6 @@ export const router = createBrowserRouter([
         lazy: () => import('../pages/ResultsPage').then((m) => ({ Component: m.ResultsPage })),
       },
       { path: '/basket/:optionId', element: <BasketPage /> },
-      { path: '/store/:optionId', element: <InStorePage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

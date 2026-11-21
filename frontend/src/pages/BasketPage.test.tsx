@@ -87,7 +87,6 @@ function renderPage(path = '/basket/cheapest') {
     [
       { path: '/basket/:optionId', element: <BasketPage /> },
       { path: '/results', element: <p>results</p> },
-      { path: '/store/:optionId', element: <p>store</p> },
     ],
     { initialEntries: [path] },
   )
@@ -127,7 +126,7 @@ describe('BasketPage', () => {
     expect(screen.getByText('900 г')).toBeInTheDocument()
     expect(screen.getAllByRole('button', { name: /Склад перевірено: без цукру/ }).length).toBe(2)
     expect(screen.getByText('пастернак')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Почати покупки/ })).toHaveAttribute('href', '/store/cheapest')
+    expect(screen.queryByRole('link', { name: /Почати покупки/ })).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Маршрут/ })).toHaveAttribute('href', 'https://maps.example/auchan')
   })
 
