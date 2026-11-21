@@ -7,7 +7,7 @@
 
 ```mermaid
 flowchart LR
-  U[Користувач] -- голос / текст --> FE[React + Leaflet<br/>frontend/]
+  U[Користувач] -- голос / текст --> FE[Фронт команди<br/>хуки й api.js з tools/geo-voice-testbench]
   U -- GPS / адреса --> FE
   FE -- POST /api/transcribe --> API[FastAPI на Vercel<br/>api/index.py → backend/]
   FE -- GET /api/stores/nearby, /api/route, /api/geocode --> API
@@ -15,7 +15,7 @@ flowchart LR
   API -- текст --> L[Groq qwen3.8-27b<br/>fallback gpt-oss-120b]
   API -- адреса --> N[Nominatim → Photon]
   API -- матриця / маршрут --> V[Valhalla OSM]
-  API -- довідник --> D[(stores.json<br/>stores.csv Учасника 2 + OSM)]
+  API -- довідник --> D[(stores.json, Київ<br/>stores.csv + OSM + OFFERS)]
   FE -- text, mode, radius_km --> AG[Агент, Учасник 5]
   AG -- store_ids з цінами --> FE
 ```
@@ -31,9 +31,9 @@ flowchart LR
 |---|---|
 | `POST /api/transcribe` (multipart `audio`) | Whisper + чистка → `{text, raw_text, mode, radius_km, duration_s, cleanup}` |
 | `POST /api/parse-text` `{text, source}` | Та сама чистка для ручного вводу й Web Speech |
-| `GET /api/stores/nearby?lat&lng&mode=walk\|car&radius_km&store_ids=` | Усі магазини в радіусі за часом у дорозі + `recommended_id` |
+| `GET /api/stores/nearby?lat&lng&mode=walk\|car&radius_km&store_ids=` | Усі магазини в радіусі + до 5 найближчих із цінами поза ним, за часом у дорозі, + `recommended_id` |
 | `GET /api/route?lat&lng&store_id&mode` | Лінія маршруту (Valhalla) + посилання Google Maps |
-| `GET /api/geocode?q&suggest` / `GET /api/reverse?lat&lng` | Адреса ↔ координати (лише Україна, українською) |
+| `GET /api/geocode?q&suggest` / `GET /api/reverse?lat&lng` | Адреса ↔ координати (лише Київ, українською) |
 | `GET /api/stores` | Увесь довідник для оглядової карти |
 
 Помилки голосу повертаються як `{"error": {"code", "message", "fallback"}}`. Якщо `fallback: true`, фронт
@@ -44,17 +44,30 @@ flowchart LR
 (ID у форматі `zakaz:<store_id>` / `silpo:<branchId>`, як у STORES Учасника 2). `recommended_id` тоді
 дорівнює найближчому за часом із них, навіть якщо він поза радіусом.
 
+Повні контракти з прикладами відповідей і що брати у фронт — [tools/geo-voice-testbench/HANDOFF.md](../tools/geo-voice-testbench/HANDOFF.md).
+
+**Обсяг демо — лише Київ** (`SERVICE_CITIES` у `.env`, межі в `CITY_BBOX` у `backend/config.py`). Точки
+поза Києвом → 422 «Поки працюємо лише по Києву». Щоб повернути інші міста: додати межі в `CITY_BBOX`, місто в
+`SERVICE_CITIES` і перезібрати `scripts/build_stores.py` (або `--all-cities`).
+
 ## Дані магазинів
 
-`scripts/build_stores.py` → `backend/data/stores.json` (567 магазинів, 84 міста):
+`scripts/build_stores.py` → `backend/data/stores.json`: **238 магазинів Києва** (Сільпо 113, NOVUS 70,
+ЕКО маркет 25, Auchan 16, METRO 4, Megamarket / Ultramarket / За Раз по 3, Епіцентр 1). Без фільтра міст —
+567 магазинів у 84 містах.
 
-- **Список Учасника 2** (`stores.csv`: Zakaz.ua + Сільпо, 519 рядків) — магазини з онлайн-цінами. Відкинуто
+- **Список Учасника 2** (`stores.csv`: Zakaz.ua + Сільпо, 519 рядків) — магазини з онлайн-каталогом
+  (`online_catalog`). Відкинуто
   7 службових філій «delete_…» і 3 записи з битими координатами (`1.0,1.0` тощо). Філії однієї мережі
   ближче 60 м зведено в один магазин з `alt_ids` (переважно Сільпо).
 - **OpenStreetMap** — фізичні NOVUS / Auchan / METRO / ЕКО маркет без онлайн-цін (+152). Точку злито з
   магазином зі списку, якщо вона тієї ж мережі ближче 200 м. Відкинуто закордон, окупований Крим і точки
   далі 25 км від будь-якого магазину зі списку («лише міста, для яких є дані»). Сільпо з OSM не беремо, бо
-  API Сільпо повніший. 54 адреси дозаповнено зворотним геокодингом.
+  API Сільпо повніший. Адреси без `addr:*` дозаповнено зворотним геокодингом.
+- **OFFERS Учасника 2** — `has_online_prices: true` лише для магазинів, де є товари з `in_stock=true`
+  (ціни й наявність прив'язані до пари «магазин × товар»). Поки джерело — `offers_sample.csv`
+  (5 київських магазинів, категорія «молоко»); з доступом до БД `load_offer_store_ids()` у
+  `backend/geo/offers.py` замінюється запитом до таблиці OFFERS.
 
 ## Ключові компроміси
 
@@ -67,6 +80,7 @@ flowchart LR
 | Громадський транспорт лише посиланням | Valhalla без розкладу Києва; Google Directions потребує білінгу | Час на транспорті рахує Google, не ми |
 | Радіус за прямою, сортування за часом | Дешевий відбір + чесний порядок | Магазин «у радіусі 3 км» може бути 5 км дорогою |
 | Статичний `stores.json` | Vercel: файлова система лише для читання, старт без БД | Оновлення — перезапуск скрипта (до підключення БД Учасника 2) |
+| Рекомендований магазин може бути поза радіусом | Маршрут веде туди, де ціну підтверджено, а не до найближчого без цін | Довший шлях; позначено `in_radius: false` |
 
 Припущення fallback-оцінки (коли Valhalla недоступний): пішки 4.8 км/год × 1.3 обходу, авто 25 км/год × 1.4.
 
@@ -129,20 +143,21 @@ flowchart LR
 python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
 cp .env.example .env   # вписати GROQ_API_KEY
 .venv/bin/uvicorn backend.app:app --reload --port 8000
-cd frontend && npm ci && npm run dev    # http://localhost:5173 (проксі /api → :8000)
+cd tools/geo-voice-testbench && npm ci && npm run dev    # тестовий стенд, http://localhost:5173
 .venv/bin/python -m pytest -q
 .venv/bin/python scripts/build_stores.py            # перебудувати довідник магазинів
 .venv/bin/python scripts/eval_voice.py --text --delay 7
 ```
 
-**Vercel:** `vercel.json` збирає `frontend/` і піднімає `api/index.py` (FastAPI). Змінні середовища з
-`.env.example` додати в Project Settings → Environment Variables.
+**Vercel:** `vercel.json` піднімає лише `api/index.py` (FastAPI). Збірку продуктового фронту додає його
+автор; `tools/` у `.vercelignore`. Змінні середовища з `.env.example` додати в Project Settings →
+Environment Variables.
 
 ## Що чекаємо від команди
 
-- **Учасник 2:** доступ до БД; брати STORES з БД замість CSV (`is_active` замість припущення «усі з
-  онлайн-цінами»); топ брендів з PRODUCTS для словника Whisper (`backend/data/stt_vocabulary.txt`);
-  функція «магазини, де є кошик» → `store_ids`.
-- **Учасник 3:** макети, щоб замінити тимчасовий стиль (`frontend/src/styles.css`, кольори маркерів у
-  `StoresMap.jsx`).
+- **Учасник 2:** доступ до БД — STORES замість `stores.csv`, OFFERS замість `offers_sample.csv`
+  (`load_offer_store_ids()`); топ брендів з PRODUCTS для словника Whisper
+  (`backend/data/stt_vocabulary.txt`); функція «магазини, де є кошик» → `store_ids`. У `stores.csv` три
+  записи Сільпо мають биті координати (`1.0, 1.0` тощо) — варто виправити в джерелі.
+- **Фронтенд команди:** забрати хуки й `api.js` за [HANDOFF.md](../tools/geo-voice-testbench/HANDOFF.md).
 - **Учасник 5:** підтвердити контракт `text`/`raw_text` → `store_ids`.
