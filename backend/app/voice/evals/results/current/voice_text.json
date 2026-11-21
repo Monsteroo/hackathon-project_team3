@@ -2,14 +2,14 @@
  "summary": {
   "suite": "text",
   "cases": 28,
-  "passed": 25,
+  "passed": 27,
   "mode_acc": 1.0,
-  "radius_acc": 0.9285714285714286,
+  "radius_acc": 1.0,
   "items_kept": 1.0,
   "fillers_removed": 0.9642857142857143,
   "guard_rejected": 0,
-  "latency_p50_s": 0.28400000000000003,
-  "latency_max_s": 0.426,
+  "latency_p50_s": 0.28049999999999997,
+  "latency_max_s": 0.494,
   "llm_tokens_avg": 557.9285714285714,
   "fallback_model_used": 0,
   "llm_unavailable": 0
@@ -33,7 +33,7 @@
     ],
     "radius_km": null
    },
-   "latency_s": 0.347,
+   "latency_s": 0.494,
    "result": {
     "raw_text": "ееее мені треба молоко галичина літр, два десятки яєць і кава якобс монарх, бюджет двісті п'ятдесят гривень",
     "text": "мені треба молоко галичина 1 л, 20 яєць і кава якобс монарх, бюджет 250 грн",
@@ -68,7 +68,7 @@
     "must_not_contain": [],
     "radius_km": 1.0
    },
-   "latency_s": 0.275,
+   "latency_s": 0.251,
    "result": {
     "raw_text": "хочу зробити сирники на сніданок без цукру і без пальмової олії, на чотири людини, щоб недалеко йти",
     "text": "сирники на сніданок без цукру і без пальмової олії, на 4 людини",
@@ -104,7 +104,7 @@
     ],
     "radius_km": 1.0
    },
-   "latency_s": 0.229,
+   "latency_s": 0.277,
    "result": {
     "raw_text": "ну типу хліб, масло і сметана, далеко йти не хочу",
     "text": "хліб, масло і сметана",
@@ -139,7 +139,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.236,
+   "latency_s": 0.354,
    "result": {
     "raw_text": "кетчуп торчин, майонез і вода моршинська, поїду на машині",
     "text": "кетчуп торчин, майонез і вода моршинська",
@@ -173,7 +173,7 @@
     "must_not_contain": [],
     "radius_km": 3.0
    },
-   "latency_s": 0.329,
+   "latency_s": 0.391,
    "result": {
     "raw_text": "борщ на шість людей без свинини, в радіусі трьох кілометрів",
     "text": "борщ на 6 людей без свинини",
@@ -210,12 +210,12 @@
     ],
     "radius_km": null
    },
-   "latency_s": 0.255,
+   "latency_s": 0.307,
    "result": {
     "raw_text": "короче кава розчинна і шоколад рошен з фундуком, пішки",
     "text": "кава розчинна і шоколад рошен з фундуком",
     "mode": "walk",
-    "radius_km": 1.0,
+    "radius_km": null,
     "cleanup": {
      "model": "qwen/qwen3.8-27b",
      "guard": "ok",
@@ -228,8 +228,8 @@
    "missing": [],
    "leaked": [],
    "mode_ok": true,
-   "radius_ok": false,
-   "passed": false
+   "radius_ok": true,
+   "passed": true
   },
   {
    "id": "v07",
@@ -246,7 +246,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.321,
+   "latency_s": 0.325,
    "result": {
     "raw_text": "кілограм гречки, півтора кіло курячого філе і десяток яєць",
     "text": "1 кг гречки, 1,5 кг курячого філе, 10 яєць",
@@ -280,7 +280,7 @@
     "must_not_contain": [],
     "radius_km": 10.0
    },
-   "latency_s": 0.317,
+   "latency_s": 0.358,
    "result": {
     "raw_text": "молоко без лактози і йогурт грецький, на авто до десяти кілометрів",
     "text": "молоко без лактози і йогурт грецький",
@@ -317,7 +317,7 @@
     ],
     "radius_km": null
    },
-   "latency_s": 0.277,
+   "latency_s": 0.414,
    "result": {
     "raw_text": "ммм сир кисломолочний п'ять відсотків, два пакети",
     "text": "сир кисломолочний 5%, 2 пакети",
@@ -351,7 +351,7 @@
     "must_not_contain": [],
     "radius_km": 1.0
    },
-   "latency_s": 0.264,
+   "latency_s": 0.315,
    "result": {
     "raw_text": "продукти на вечерю для двох до трьохсот гривень, поруч з домом",
     "text": "продукти на вечерю для 2 до 300 грн",
@@ -387,7 +387,7 @@
     ],
     "radius_km": null
    },
-   "latency_s": 0.255,
+   "latency_s": 0.239,
    "result": {
     "raw_text": "яблука, банани, ой ні, апельсини і кефір",
     "text": "яблука, банани, апельсини і кефір",
@@ -423,7 +423,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.292,
+   "latency_s": 0.309,
    "result": {
     "raw_text": "пиво не треба, тільки чипси і кола зеро пів літра",
     "text": "пиво не треба, тільки чипси і кола зеро 0,5 л",
@@ -457,7 +457,7 @@
     "must_not_contain": [],
     "radius_km": 0.5
    },
-   "latency_s": 0.227,
+   "latency_s": 0.235,
    "result": {
     "raw_text": "макарони, томатна паста і пармезан, в радіусі п'ятисот метрів",
     "text": "макарони, томатна паста і пармезан",
@@ -494,7 +494,7 @@
     ],
     "radius_km": null
    },
-   "latency_s": 0.221,
+   "latency_s": 0.225,
    "result": {
     "raw_text": "значить так, вода три пляшки по півтора літра і мінералка",
     "text": "вода 3 пляшки по 1,5 л і мінералка",
@@ -529,7 +529,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.308,
+   "latency_s": 0.266,
    "result": {
     "raw_text": "все для піци: борошно, дріжджі, моцарела, без глютену не треба",
     "text": "все для піци: борошно, дріжджі, моцарела, без глютену не треба",
@@ -564,7 +564,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.307,
+   "latency_s": 0.26,
    "result": {
     "raw_text": "олія соняшникова літр і цукор два кілограми, доїду машиною",
     "text": "олія соняшникова 1 л і цукор 2 кг",
@@ -601,7 +601,7 @@
     ],
     "radius_km": 1.0
    },
-   "latency_s": 0.246,
+   "latency_s": 0.295,
    "result": {
     "raw_text": "ну як би курка, рис і овочі для салату, недалеко",
     "text": "курка, рис і овочі для салату",
@@ -634,7 +634,7 @@
     "must_not_contain": [],
     "radius_km": 1.0
    },
-   "latency_s": 0.331,
+   "latency_s": 0.301,
    "result": {
     "raw_text": "дитяче пюре і підгузки, пішки не більше одного кілометра",
     "text": "дитяче пюре і підгузки",
@@ -668,7 +668,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.311,
+   "latency_s": 0.246,
    "result": {
     "raw_text": "сніданок на тиждень на сімсот гривень",
     "text": "сніданок на тиждень на 700 грн",
@@ -705,7 +705,7 @@
     ],
     "radius_km": null
    },
-   "latency_s": 0.426,
+   "latency_s": 0.296,
    "result": {
     "raw_text": "ееее ну ммм чай зелений і печиво",
     "text": "чай зелений і печиво",
@@ -740,7 +740,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.229,
+   "latency_s": 0.237,
    "result": {
     "raw_text": "морозиво пломбір дві штуки і вершки, на таксі",
     "text": "морозиво пломбір 2 шт і вершки",
@@ -774,7 +774,7 @@
     "must_not_contain": [],
     "radius_km": 1.0
    },
-   "latency_s": 0.346,
+   "latency_s": 0.244,
    "result": {
     "raw_text": "сосиски, гірчиця і батон, біля дому",
     "text": "сосиски, гірчиця і батон",
@@ -808,7 +808,7 @@
     "must_not_contain": [],
     "radius_km": 2.0
    },
-   "latency_s": 0.235,
+   "latency_s": 0.361,
    "result": {
     "raw_text": "огірки, помідори, зелень, у радіусі двох кілометрів пішки",
     "text": "огірки, помідори, зелень",
@@ -842,7 +842,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.289,
+   "latency_s": 0.284,
    "result": {
     "raw_text": "риба червона сто п'ятдесят грам і авокадо",
     "text": "риба червона 150 г і авокадо",
@@ -875,7 +875,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.226,
+   "latency_s": 0.264,
    "result": {
     "raw_text": "те саме що минулого разу",
     "text": "те саме що минулого разу",
@@ -908,7 +908,7 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.279,
+   "latency_s": 0.247,
    "result": {
     "raw_text": "ну купи близько кілограма яблук і хліб",
     "text": "близько 1 кг яблук і хліб",
@@ -941,7 +941,7 @@
     "must_not_contain": [],
     "radius_km": 5.0
    },
-   "latency_s": 0.38,
+   "latency_s": 0.237,
    "result": {
     "raw_text": "купи триста грам м'ясного фаршу на машині в радіусі п'яти кілометрів",
     "text": "купи 300 г м'ясного фаршу",
@@ -975,12 +975,12 @@
     "must_not_contain": [],
     "radius_km": null
    },
-   "latency_s": 0.364,
+   "latency_s": 0.226,
    "result": {
     "raw_text": "молоко без лактози і хліб, не хочу їхати на машині, піду пішки",
     "text": "молоко без лактози і хліб",
     "mode": "walk",
-    "radius_km": 1.0,
+    "radius_km": null,
     "cleanup": {
      "model": "qwen/qwen3.8-27b",
      "guard": "ok",
@@ -993,8 +993,8 @@
    "missing": [],
    "leaked": [],
    "mode_ok": true,
-   "radius_ok": false,
-   "passed": false
+   "radius_ok": true,
+   "passed": true
   }
  ]
 }
