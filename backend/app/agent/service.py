@@ -1,6 +1,7 @@
 """Публічні функції модуля agent: текст запиту → 3 варіанти кошика з цінами каталогу."""
 
 import logging
+import re
 from collections import defaultdict
 from decimal import Decimal
 from math import asin, cos, radians, sin, sqrt
@@ -20,6 +21,7 @@ CHAIN_NAMES = {
     "ekomarket": "ЕКО маркет", "megamarket": "MegaMarket", "tavriav": "Таврія В",
 }  # fmt: skip
 log = logging.getLogger(__name__)
+ALLOWED_TAGS = {"sugar", "palm_oil", "lactose", "private_label"}  # теги складу каталогу
 OUTSIDE_RADIUS_MAX_KM = 30  # далі за це не пропонуємо, навіть якщо в радіусі порожньо
 ROAD_FACTOR = 1.3  # вулиці не прямі: пряма відстань × 1.3 ≈ відстань по дорозі
 SPEED_KMH = {"walk": 5, "car": 25}
@@ -157,6 +159,16 @@ def search_attempts(item: RequestedItem) -> list[tuple[str, str | None]]:
     return list(dict.fromkeys(attempts))
 
 
+def title_starts_with(title: str, query: str) -> bool:
+    """Назва товару починається з першого слова запиту (основи): «Банан» ← «бана», «Яйця курячі» ← «яйця».
+
+    Без категорії каталог шукає підрядок будь-де в назві, і «зелень» знаходить «Сир … з зеленою цибулею».
+    """
+    words = _stem(re.sub(r"[^\w\s'’ʼ-]", " ", query)).split()
+    first = title.lower().split()
+    return bool(words and first) and first[0].startswith(words[0])
+
+
 async def _search(session: AsyncSession, item: RequestedItem, store_ids: list[str], exclude: list[str]):
     for query, category in search_attempts(item):
         try:
@@ -165,8 +177,11 @@ async def _search(session: AsyncSession, item: RequestedItem, store_ids: list[st
             )
         except ValueError:  # у запиті немає слів, придатних для пошуку
             continue
-        if found.products:
-            return found.products
+        products = found.products
+        if category is None:  # без фільтра категорії приймаємо лише товари, що НАЗИВАЮТЬСЯ так, як просили
+            products = [p for p in products if title_starts_with(p.title, query)]
+        if products:
+            return products
     return []
 
 
@@ -183,7 +198,10 @@ async def find_candidates(
     candidates: dict[str, list[Candidate]] = {}
     reasons: dict[str, str] = {}
     for item in items:  # послідовно: одна AsyncSession не виконує запити паралельно
-        products = await _search(session, item, store_ids, exclude)
+        item_exclude = list(dict.fromkeys([*exclude, *item.exclude]))
+        products = await _search(session, item, store_ids, item_exclude)
+        if item.gtin:  # товар вибрано з каталогу на екрані 2 — лише він (якщо знайшовся)
+            products = [p for p in products if p.gtin == item.gtin] or products
         best: dict[tuple[int, str], Candidate] = {}  # товар × магазин: найдешевша з філій
         for p in products:
             for price in p.prices:
@@ -196,7 +214,7 @@ async def find_candidates(
         candidates[item.name] = list(best.values())
         if not candidates[item.name]:
             # Товар є, але не пройшов фільтр складу (або склад невідомий) — це різні речі для UI
-            filtered = exclude and await _search(session, item, store_ids, [])
+            filtered = item_exclude and await _search(session, item, store_ids, [])
             reasons[item.name] = "filtered_by_composition" if filtered else "not_found"
     return candidates, reasons
 
@@ -220,9 +238,41 @@ def explain(baskets: list[Basket], parsed: ParsedRequest) -> str:
     return text
 
 
+def parsed_from_items(req: BasketIn) -> ParsedRequest:
+    """Список з екрана 2 → ParsedRequest. Назви унікальні: за ними агент зводить ціни й missing."""
+    items: list[RequestedItem] = []
+    seen: dict[str, int] = {}
+    for it in req.items or []:
+        name = (
+            it.label or it.query or (CATEGORY_WORD[it.category] if it.category else "") or it.gtin or "товар"
+        ).strip()
+        seen[name] = seen.get(name, 0) + 1
+        if seen[name] > 1:
+            name = f"{name} ({seen[name]})"
+        search = it.query or it.label or (CATEGORY_WORD[it.category] if it.category else "")
+        items.append(
+            RequestedItem(
+                name=name,
+                search_query=search,
+                category=it.category,
+                quantity=it.need,
+                unit=it.unit,
+                gtin=it.gtin,
+                exclude=[t for t in it.exclude if t in ALLOWED_TAGS],
+            )
+        )
+    return ParsedRequest(
+        items=items,
+        constraints=Constraints(budget_uah=req.budget_uah, travel_mode=req.mode or "walk", radius_km=req.radius_km),
+    )
+
+
 async def build(session: AsyncSession, req: BasketIn) -> BasketOut:
     s = get_settings()
-    parsed, parser = await parse_request(req.text)
+    if req.items:
+        parsed, parser = parsed_from_items(req), "items"  # список уже підтверджено на екрані 2 — без LLM
+    else:
+        parsed, parser = await parse_request(req.text)
     if not parsed.items:
         raise ValueError("no products found in the request")
     c = parsed.constraints
