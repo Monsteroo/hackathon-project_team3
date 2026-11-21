@@ -15,6 +15,7 @@ backend/                 # один FastAPI-сервіс, поділений н�
   app/
     main.py config.py db.py types.py migrate.py   # тонке спільне ядро
     catalog/             # Учасник 2 — магазини, товари, ціни, порівняння кошика
+    agent/               # Учасник 5 — розбір запиту (LLM) і 3 варіанти кошика
   tests/                 # тести спільного ядра
 docs/
   stores.md / stores.csv # 443 магазини Zakaz.ua + Сільпо з онлайн-каталогом: store_id, адреса, координати
@@ -50,13 +51,18 @@ uv run python -m app.catalog.etl --help  # ETL цін вручну (той са�
 - **Позиція кошика** (від агента до каталогу): `{category | gtin | query, need, unit: "g"|"ml"|"pcs", exclude: [tags]}`.
 - **Канонічні категорії (демо):** `milk, kefir, curd, sour_cream, butter, cheese, eggs, flour, sugar, vanilla_sugar, buckwheat, rice, pasta, sunflower_oil, bread, coffee_ground, coffee_beans, tea, bananas, apples`.
 - **Теги складу:** `sugar`, `palm_oil`, `lactose`, `private_label`.
-- **Авторизація:** кожен запит до `/catalog/*` і `/health/db` має містити заголовок `X-API-Key` з одним із ключів `API_KEYS` (`backend/.env`). Без ключа — 401, без налаштованих ключів — 503. Відкриті лише `/health` і `/docs`.
+- **Авторизація:** кожен запит до `/catalog/*`, `/agent/*` і `/health/db` має містити заголовок `X-API-Key` з одним із ключів `API_KEYS` (`backend/.env`). Без ключа — 401, без налаштованих ключів — 503. Відкриті лише `/health` і `/docs`.
 - **API каталогу** (prefix `/catalog`, приклади відповідей у `mocks/`):
   - `GET /stores?city=Київ&chain=&with_prices=true` повертає доступні магазини з `store_id`, координатами й `offers_count`.
   - `GET /prices?q=молоко галичина 2,5&store_ids=a,b&category=&exclude=sugar,palm_oil&limit=20` повертає товари, назва яких містить усі слова запиту. Для кожного товару в масиві `prices` є ціни в запитаних магазинах: ціна, ₴/кг, акція, наявність. `store_ids` можна передати повторюваним параметром або через кому. Без `store_ids` пошук іде по всіх магазинах.
   - `GET /etl/status` — стан нічного ETL.
   - Заплановано `POST /basket/compare`.
   - Відстані каталог не рахує: агент бере їх у модуля геолокації і склеює з цінами за `store_id`.
+- **API агента** (prefix `/agent`, приклади в `mocks/16_*`, `mocks/17_*`, деталі в `backend/app/agent/README.md`):
+  - `POST /parse` `{text}` → розбір: позиції з `category` і обмеження (`budget_uah`, `exclude` тегами складу, `travel_mode`, `radius_km`, `preferred_chains`). Для екрана «Я зрозумів так».
+  - `POST /basket` `{text, raw_text?, lat, lng, mode?, radius_km?}` → до 3 кошиків (`nearest`, `cheapest`, `smart_split`) з цінами каталогу, `missing` з причиною, `explanation`. `text`, `raw_text`, `mode`, `radius_km` — рівно з `VoiceResult` модуля voice; `mode`/`radius_km` головніші за розбір тексту.
+  - Магазини поруч агент бере з `geo.service.find_nearby` (маршрути Valhalla); якщо geo впав — оцінка за прямою з `catalog.list_stores`.
+  - Ланцюжок фронту: `/voice/transcribe` (або `/voice/parse-text`) + GPS → `/agent/basket` → маршрут `/geo/route` до обраного магазину.
 
 ## Правила даних
 

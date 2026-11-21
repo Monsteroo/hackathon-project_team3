@@ -159,6 +159,8 @@ docker run --rm -p 8000:10000 -e PORT=10000 -e ENABLED_MODULES=catalog -e DATABA
 | `GET /catalog/stores?city=Київ&chain=silpo&with_prices=true` | Доступні магазини: `store_id`, мережа, адреса, координати, `offers_count` |
 | `GET /catalog/prices?q=молоко галичина 2,5&store_ids=482010105,<branchId>&limit=20` | Товари, назва яких містить усі слова `q`, і їхні ціни в цих магазинах: ціна, ₴/кг, акція, наявність |
 | `GET /catalog/etl/status` | Розклад і журнал нічного ETL |
+| `POST /agent/parse` | Розбір тексту запиту агентом (LLM): позиції й обмеження |
+| `POST /agent/basket` | Текст + координати → до 3 кошиків з цінами каталогу. Деталі: [`app/agent/README.md`](app/agent/README.md) |
 | `GET /health` (без ключа), `GET /health/db` | Перевірка сервісу й підключення до БД |
 
 Параметри `/catalog/prices`:
@@ -234,6 +236,7 @@ backend/
       etl/                    # нічний ETL: zakaz.py, silpo.py, normalize.py, runner.py
       migrations/             # 001_init.sql …
       tests/
+    agent/                    # Учасник 5: розбір запиту (LLM), кошики, евали
   tests/                      # тести спільного ядра
 ```
 
